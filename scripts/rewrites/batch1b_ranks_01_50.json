@@ -1,0 +1,83 @@
+{
+  "_comment": "Batch 1b: ranks 1-50, 13 entries (function words: particles, conjunctions, prepositions, numbers)",
+  "rewrites": [
+    {
+      "rank": 11, "thai": "ว่า", "category": "adverbios",
+      "phrase":    {"thai": "เขาคิดว่าคุณมา", "es": "khǎo kít wâa khun maa", "spanish": "él piensa que tú vienes", "en": "he thinks that you came"},
+      "question":  {"thai": "เขาบอกว่าอะไร", "es": "khǎo bòok wâa a-rai", "spanish": "¿Qué dijo él?", "en": "What did he say?"},
+      "answer":    {"thai": "บอกว่าจะมา", "es": "bòok wâa jà maa", "spanish": "dijo que vendría", "en": "he said he would come"}
+    },
+    {
+      "rank": 15, "thai": "ก็", "category": "adverbios",
+      "phrase":    {"thai": "ฝนตก ฉันก็ไม่ไป", "es": "fǒn dtòk, chǎn gâ mâi bpai", "spanish": "llueve, entonces no voy", "en": "it's raining, so I won't go"},
+      "question":  {"thai": "ฝนตกจะไปไหม", "es": "fǒn dtòk jà bpai mǎi", "spanish": "¿Llueve, vas a ir?", "en": "It's raining, will you go?"},
+      "answer":    {"thai": "ไม่ไป ฝนตกก็ไม่ไป", "es": "mâi bpai, fǒn dtòk gâ mâi bpai", "spanish": "no voy, si llueve no voy", "en": "I won't, if it rains I won't go"}
+    },
+    {
+      "rank": 18, "thai": "แล้ว", "category": "adverbios",
+      "phrase":    {"thai": "ฉันกินข้าวแล้ว", "es": "chǎn gin kâao lɛ́ɛo", "spanish": "ya comí", "en": "I've already eaten"},
+      "question":  {"thai": "คุณกินข้าวหรือยัง", "es": "khun gin kâao rʉ̌ʉ yang", "spanish": "¿Ya comiste?", "en": "Have you eaten yet?"},
+      "answer":    {"thai": "กินแล้ว", "es": "gin lɛ́ɛo", "spanish": "ya comí", "en": "I've already eaten"}
+    },
+    {
+      "rank": 22, "thai": "กัน", "category": "adverbios",
+      "phrase":    {"thai": "เราไปด้วยกัน", "es": "rao bpai dûuai gan", "spanish": "vamos juntos", "en": "we go together"},
+      "question":  {"thai": "ไปด้วยกันไหม", "es": "bpai dûuai gan mǎi", "spanish": "¿Vamos juntos?", "en": "Shall we go together?"},
+      "answer":    {"thai": "ไปด้วยกัน", "es": "bpai dûuai gan", "spanish": "vamos juntos", "en": "let's go together"}
+    },
+    {
+      "rank": 26, "thai": "อย่าง", "category": "adverbios",
+      "phrase":    {"thai": "เขาพูดเร็วอย่างนั้น", "es": "khǎo phûut reo yàang nán", "spanish": "él habla así de rápido", "en": "he speaks that fast"},
+      "question":  {"thai": "เขาพูดอย่างไร", "es": "khǎo phûut yàang rai", "spanish": "¿Cómo habla él?", "en": "How does he speak?"},
+      "answer":    {"thai": "พูดเร็วมาก", "es": "phûut reo mâak", "spanish": "habla muy rápido", "en": "he speaks very fast"}
+    },
+    {
+      "rank": 29, "thai": "ด้วย", "category": "adverbios",
+      "phrase":    {"thai": "ฉันอยากไปด้วย", "es": "chǎn yàak bpai dûuai", "spanish": "yo también quiero ir", "en": "I also want to go"},
+      "question":  {"thai": "คุณอยากไปด้วยไหม", "es": "khun yàak bpai dûuai mǎi", "spanish": "¿Quieres ir también?", "en": "Do you also want to go?"},
+      "answer":    {"thai": "อยากไปด้วย", "es": "yàak bpai dûuai", "spanish": "sí, quiero ir también", "en": "yes, I want to go too"}
+    },
+    {
+      "rank": 34, "thai": "ตาม", "category": "adverbios",
+      "phrase":    {"thai": "เด็กเดินตามแม่", "es": "dèk dəən dtaam mɛ̂ɛ", "spanish": "el niño camina detrás de la madre", "en": "the child walks behind the mother"},
+      "question":  {"thai": "เด็กเดินตามใคร", "es": "dèk dəən dtaam khrai", "spanish": "¿Detrás de quién camina el niño?", "en": "Who does the child walk behind?"},
+      "answer":    {"thai": "ตามแม่", "es": "dtaam mɛ̂ɛ", "spanish": "detrás de la madre", "en": "behind the mother"}
+    },
+    {
+      "rank": 36, "thai": "โดย", "category": "adverbios",
+      "phrase":    {"thai": "เขาเดินทางโดยเครื่องบิน", "es": "khǎo dəən-thaang dooi khrʉ̂ang-bin", "spanish": "él viaja en avión", "en": "he travels by plane"},
+      "question":  {"thai": "เขาเดินทางโดยอะไร", "es": "khǎo dəən-thaang dooi a-rai", "spanish": "¿En qué viaja él?", "en": "What does he travel by?"},
+      "answer":    {"thai": "โดยเครื่องบิน", "es": "dooi khrʉ̂ang-bin", "spanish": "en avión", "en": "by plane"}
+    },
+    {
+      "rank": 39, "thai": "ยัง", "category": "adverbios",
+      "phrase":    {"thai": "ฉันยังไม่กิน", "es": "chǎn yang mâi gin", "spanish": "todavía no he comido", "en": "I haven't eaten yet"},
+      "question":  {"thai": "คุณกินข้าวหรือยัง", "es": "khun gin kâao rʉ̌ʉ yang", "spanish": "¿Ya comiste?", "en": "Have you eaten yet?"},
+      "answer":    {"thai": "ยังไม่กิน", "es": "yang mâi gin", "spanish": "todavía no", "en": "not yet"}
+    },
+    {
+      "rank": 44, "thai": "อีก", "category": "adverbios",
+      "phrase":    {"thai": "ฉันต้องการอีกหนึ่งแก้ว", "es": "chǎn dtông-gaan ìik nǔng gɛ̂ɛo", "spanish": "quiero otro vaso más", "en": "I want one more glass"},
+      "question":  {"thai": "ต้องการอีกไหม", "es": "dtông-gaan ìik mǎi", "spanish": "¿Quieres más?", "en": "Do you want more?"},
+      "answer":    {"thai": "เอาอีกหน่อย", "es": "ao ìik nòi", "spanish": "sí, un poco más", "en": "yes, a little more"}
+    },
+    {
+      "rank": 45, "thai": "เมื่อ", "category": "adverbios",
+      "phrase":    {"thai": "เมื่อวานฉันไปตลาด", "es": "mʉ̂a-waan chǎn bpai dtà-làat", "spanish": "ayer fui al mercado", "en": "yesterday I went to the market"},
+      "question":  {"thai": "เมื่อวานคุณไปไหน", "es": "mʉ̂a-waan khun bpai nǎi", "spanish": "¿A dónde fuiste ayer?", "en": "Where did you go yesterday?"},
+      "answer":    {"thai": "ไปตลาด", "es": "bpai dtà-làat", "spanish": "fui al mercado", "en": "I went to the market"}
+    },
+    {
+      "rank": 48, "thai": "หนึ่ง", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันมีหนึ่งลูก", "es": "chǎn mii nǔng lûuk", "spanish": "tengo un hijo", "en": "I have one child"},
+      "question":  {"thai": "คุณมีลูกกี่คน", "es": "khun mii lûuk gii khon", "spanish": "¿Cuántos hijos tienes?", "en": "How many children do you have?"},
+      "answer":    {"thai": "มีหนึ่งคน", "es": "mii nǔng khon", "spanish": "tengo uno", "en": "I have one"}
+    },
+    {
+      "rank": 49, "thai": "เพื่อ", "category": "adverbios",
+      "phrase":    {"thai": "ฉันเรียนเพื่อทำงาน", "es": "chǎn rian phʉ̂a tam-ngaan", "spanish": "estudio para trabajar", "en": "I study in order to work"},
+      "question":  {"thai": "คุณเรียนเพื่ออะไร", "es": "khun rian phʉ̂a a-rai", "spanish": "¿Para qué estudias?", "en": "What do you study for?"},
+      "answer":    {"thai": "เพื่อทำงาน", "es": "phʉ̂a tam-ngaan", "spanish": "para trabajar", "en": "in order to work"}
+    }
+  ]
+}

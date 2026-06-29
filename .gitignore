@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Dev tooling local state
+.claude/
+.serena/
+coverage/
+*.log
+
+# Editor
+.vscode/
+.idea/

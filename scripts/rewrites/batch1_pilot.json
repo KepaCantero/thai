@@ -1,0 +1,35 @@
+{
+  "_comment": "Pilot batch: 5 broken-function-word rewrites. Format: rank → {phrase, question, answer} each {thai, es, spanish, en}.",
+  "rewrites": [
+    {
+      "rank": 4, "thai": "ใน", "category": "adverbios",
+      "phrase":    {"thai": "อยู่ในบ้าน", "es": "yùu nai bâan", "spanish": "estar en casa", "en": "be in the house"},
+      "question":  {"thai": "คุณอยู่ในบ้านไหม", "es": "khun yùu nai bâan mǎi", "spanish": "¿Estás en casa?", "en": "Are you in the house?"},
+      "answer":    {"thai": "ใช่ อยู่ในบ้าน", "es": "châi, yùu nai bâan", "spanish": "Sí, estoy en casa", "en": "Yes, I'm in the house"}
+    },
+    {
+      "rank": 5, "thai": "จะ", "category": "adverbios",
+      "phrase":    {"thai": "พรุ่งนี้ฉันจะไป", "es": "prùng-níi chǎn jà bpai", "spanish": "mañana iré", "en": "tomorrow I will go"},
+      "question":  {"thai": "พรุ่งนี้คุณจะไปไหม", "es": "prùng-níi khun jà bpai mǎi", "spanish": "¿Irás mañana?", "en": "Will you go tomorrow?"},
+      "answer":    {"thai": "จะไป", "es": "jà bpai", "spanish": "iré", "en": "I will go"}
+    },
+    {
+      "rank": 7, "thai": "ของ", "category": "adverbios",
+      "phrase":    {"thai": "นั่นรถของเขาเอง", "es": "nân rót khǒng khǎo eeng", "spanish": "ese es el coche de él", "en": "that's his own car"},
+      "question":  {"thai": "รถคันนี้ของใคร", "es": "ród kan níi khǒng khrai", "spanish": "¿De quién es este coche?", "en": "Whose car is this?"},
+      "answer":    {"thai": "ของเขา", "es": "khǒng khǎo", "spanish": "es suyo (de él)", "en": "it's his"}
+    },
+    {
+      "rank": 19, "thai": "กับ", "category": "adverbios",
+      "phrase":    {"thai": "ฉันจะไปกับเธอ", "es": "chǎn jà bpai gàp thər", "spanish": "iré contigo", "en": "I'll go with you"},
+      "question":  {"thai": "คุณไปกับใคร", "es": "khun bpai gàp khrai", "spanish": "¿Con quién vas?", "en": "Who are you going with?"},
+      "answer":    {"thai": "ไปกับเพื่อน", "es": "bpai gàp phʉ̂an", "spanish": "voy con un amigo", "en": "I'm going with a friend"}
+    },
+    {
+      "rank": 25, "thai": "จาก", "category": "adverbios",
+      "phrase":    {"thai": "ฉันมาจากสเปน", "es": "chǎn maa jàak sà-pĕen", "spanish": "vengo de España", "en": "I come from Spain"},
+      "question":  {"thai": "คุณมาจากไหน", "es": "khun maa jàak nǎi", "spanish": "¿De dónde vienes?", "en": "Where do you come from?"},
+      "answer":    {"thai": "มาจากสเปน", "es": "maa jàak sà-pĕen", "spanish": "vengo de España", "en": "I come from Spain"}
+    }
+  ]
+}

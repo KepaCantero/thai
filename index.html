@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d1b36">
+<title>Thai Flashcards</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="top-bar">
+  <h1>Thai Flashcards</h1>
+  <div class="top-controls">
+    <select id="ttsSelect" class="tts-select" title="Text-to-speech engine" onchange="setTtsEngine(this.value)">
+      <option value="static">Audio local</option>
+      <option value="kanya">Kanya (OS)</option>
+      <option value="google">Google TTS</option>
+    </select>
+    <p class="progress" id="progress">1 / ?</p>
+  </div>
+</div>
+
+<div class="search-bar" id="searchBar">
+  <input type="text" id="searchInput" placeholder="Buscar en español o inglés..." oninput="onSearch(this.value)">
+</div>
+
+<div class="tabs" id="lessonTabs"></div>
+
+<div class="mode-tabs" id="modeTabs"></div>
+
+<div class="filter-bar" id="filterBar">
+  <button class="filter-toggle" id="filterToggle" onclick="toggleFilterPanel()">&#9776; Filters</button>
+  <div class="filter-chips" id="filterChips"></div>
+</div>
+
+<div class="filter-panel" id="filterPanel" style="display:none">
+  <div class="fp-section">
+    <div class="fp-label">Type</div>
+    <div class="fp-options" id="fpType"></div>
+  </div>
+  <div class="fp-section">
+    <div class="fp-label">Topic</div>
+    <div class="fp-options" id="fpTopic"></div>
+  </div>
+  <div class="fp-actions">
+    <button class="fp-clear" onclick="clearFilters()">Clear all</button>
+    <button class="fp-done" onclick="toggleFilterPanel()">Done</button>
+  </div>
+</div>
+
+<div class="audio-bar" id="audioBar">
+  <button class="ab-play" id="playAllBtn" onclick="togglePlayAll()">&#9654; Play All</button>
+  <button class="ab-stop" id="stopBtn" onclick="stopPlayAll()">&#9632; Stop</button>
+  <div class="ab-indicator" id="playAllIndicator"></div>
+  <div class="ab-progress" id="playAllProgress"></div>
+</div>
+
+<div class="card-area" id="cardArea">
+  <div class="card-container" id="cardContainer">
+    <div class="card" id="card">
+      <div class="card-face card-front">
+        <button class="diff-btn" title="Añadir a Difíciles" onclick="event.stopPropagation(); toggleDifficult()">+</button>
+        <img class="card-img" id="frontImg" src="" alt="" style="display:none">
+        <div class="thai-word" id="frontWord"></div>
+        <div class="phonetic" id="frontPhonetic"></div>
+        <div class="es-phonetic" id="frontEsPhonetic"></div>
+        <div class="tone" id="frontTone"></div>
+        <div class="tone-note" id="frontToneNote"></div>
+        <div class="hint">tap to flip</div>
+      </div>
+      <div class="card-face card-back">
+        <button class="diff-btn" title="Añadir a Difíciles" onclick="event.stopPropagation(); toggleDifficult()">+</button>
+        <img class="card-img" id="backImg" src="" alt="" style="display:none">
+        <div class="translation" id="backWord"></div>
+        <div class="card-phonetic" id="backPhonetic"></div>
+        <div class="es-phonetic" id="backEsPhonetic"></div>
+        <div class="card-tone" id="backTone"></div>
+        <div class="tone-note" id="backToneNote"></div>
+        <div class="hint">tap to flip</div>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button onclick="prevCard()">&#8592; Previous</button>
+    <button class="play-btn" id="playBtn" onclick="playAudio()">&#9654; Audio</button>
+    <button onclick="nextCard()">Next &#8594;</button>
+  </div>
+  <div class="score-buttons">
+    <button class="btn-know" onclick="markCard(true)">Know it &#10003;</button>
+    <button class="btn-dont" onclick="markCard(false)">Don't know &#10007;</button>
+  </div>
+  <div class="phrase-hint" id="phraseHint"></div>
+  <div class="stats" id="stats"></div>
+</div>
+
+<div class="dashboard-grid" id="dashboardGrid" style="display:none"></div>
+
+<div class="questions-view" id="questionsView" style="display:none">
+  <div class="q-toolbar" id="qToolbar"></div>
+  <div class="questions-grid" id="questionsGrid"></div>
+</div>
+
+<div class="shadowing-view" id="shadowingView" style="display:none">
+  <div class="sh-list" id="shList"></div>
+  <div class="sh-player" id="shPlayer" style="display:none"></div>
+</div>
+
+<div class="matrix-view" id="matrixView" style="display:none">
+  <div class="matrix-grid" id="matrixGrid"></div>
+  <div class="matrix-result" id="matrixResult"></div>
+</div>
+
+<div class="tones-view" id="tonesView" style="display:none">
+  <div class="tones-strip" id="tonesStrip"></div>
+  <div class="tones-content" id="tonesContent"></div>
+</div>
+
+<div class="top1000-view" id="top1000View" style="display:none"></div>
+
+<div class="srs-view" id="srsView" style="display:none"></div>
+
+<script src="data.js"></script>
+<script src="config.js"></script>
+<script src="shadowing.js"></script>
+<script src="top1000.js"></script>
+<script src="top1000-ui.js"></script>
+<script src="audio-manifest.js"></script>
+<script src="audio.js"></script>
+<script src="srs.js"></script>
+<script src="srs-ui.js"></script>
+<script src="ui.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

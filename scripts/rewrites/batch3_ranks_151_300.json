@@ -1,0 +1,233 @@
+{
+  "_comment": "Batch 3: ranks 151-300, 38 entries",
+  "rewrites": [
+    {
+      "rank": 153, "thai": "บน", "category": "adverbios",
+      "phrase":    {"thai": "แมวอยู่บนโต๊ะ", "es": "mɛɛo yùu bon dto", "spanish": "el gato está sobre la mesa", "en": "the cat is on the table"},
+      "question":  {"thai": "แมวอยู่ที่ไหน", "es": "mɛɛo yùu thîi nǎi", "spanish": "¿Dónde está el gato?", "en": "Where is the cat?"},
+      "answer":    {"thai": "อยู่บนโต๊ะ", "es": "yùu bon dto", "spanish": "está sobre la mesa", "en": "on the table"}
+    },
+    {
+      "rank": 154, "thai": "ที่สุด", "category": "adverbios",
+      "phrase":    {"thai": "นี่คือของที่ดีที่สุด", "es": "nîi khuue kǒng thîi dii thîi-sùt", "spanish": "esto es lo mejor", "en": "this is the best thing"},
+      "question":  {"thai": "ของไหนดีที่สุด", "es": "kǒng nǎi dii thîi-sùt", "spanish": "¿Cuál es el mejor?", "en": "Which is the best?"},
+      "answer":    {"thai": "อันนี้ดีที่สุด", "es": "an níi dii thîi-sùt", "spanish": "este es el mejor", "en": "this one is the best"}
+    },
+    {
+      "rank": 155, "thai": "แก่", "category": "adjetivos",
+      "phrase":    {"thai": "คุณยายแก่มาก", "es": "khun-yai glàai mâak", "spanish": "la abuela es muy anciana", "en": "the grandmother is very old"},
+      "question":  {"thai": "คุณยายอายุเท่าไร", "es": "khun-yai aa-yu thâo rai", "spanish": "¿Cuántos años tiene la abuela?", "en": "How old is the grandmother?"},
+      "answer":    {"thai": "แก่มากแล้ว", "es": "glàai mâak lɛ́ɛo", "spanish": "ya es muy mayor", "en": "she's very old now"}
+    },
+    {
+      "rank": 156, "thai": "น้อย", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันมีเวลาน้อย", "es": "chǎn mii welaa nŏi", "spanish": "tengo poco tiempo", "en": "I have little time"},
+      "question":  {"thai": "คุณมีเวลามากไหม", "es": "khun mii welaa mâak mǎi", "spanish": "¿Tienes mucho tiempo?", "en": "Do you have a lot of time?"},
+      "answer":    {"thai": "ไม่ มีน้อย", "es": "mâi, mii nŏi", "spanish": "no, poco", "en": "no, little"}
+    },
+    {
+      "rank": 159, "thai": "ร่วม", "category": "adverbios",
+      "phrase":    {"thai": "เราร่วมงานกัน", "es": "rao rûam ngaan gan", "spanish": "trabajamos juntos", "en": "we work together"},
+      "question":  {"thai": "พวกเขาทำงานด้วยกันไหม", "es": "phûak khǎo tam-ngaan dûuai gan mǎi", "spanish": "¿Trabajan juntos?", "en": "Do they work together?"},
+      "answer":    {"thai": "ใช่ ร่วมกัน", "es": "châi, rûam gan", "spanish": "sí, juntos", "en": "yes, together"}
+    },
+    {
+      "rank": 160, "thai": "หาก", "category": "adverbios",
+      "phrase":    {"thai": "หากมีเวลา ฉันจะไป", "es": "hàak mii welaa, chǎn jà bpai", "spanish": "si tengo tiempo, iré", "en": "if I have time, I'll go"},
+      "question":  {"thai": "หากว่างจะไปไหม", "es": "hàak wâang jà bpai mǎi", "spanish": "Si estás libre, ¿irás?", "en": "If you're free, will you go?"},
+      "answer":    {"thai": "หากว่างจะไป", "es": "hàak wâang jà bpai", "spanish": "si estoy libre, iré", "en": "if I'm free, I'll go"}
+    },
+    {
+      "rank": 163, "thai": "สูง", "category": "adjetivos",
+      "phrase":    {"thai": "ตึกนี้สูงมาก", "es": "dtʉk níi sǔung mâak", "spanish": "este edificio es muy alto", "en": "this building is very tall"},
+      "question":  {"thai": "ตึกนี้สูงไหม", "es": "dtʉk níi sǔung mǎi", "spanish": "¿Es alto este edificio?", "en": "Is this building tall?"},
+      "answer":    {"thai": "สูงมาก", "es": "sǔung mâak", "spanish": "sí, muy alto", "en": "yes, very tall"}
+    },
+    {
+      "rank": 164, "thai": "เดียว", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันมีลูกคนเดียว", "es": "chǎn mii lûuk khon diao", "spanish": "tengo un solo hijo", "en": "I have only one child"},
+      "question":  {"thai": "คุณมีลูกกี่คน", "es": "khun mii lûuk gii khon", "spanish": "¿Cuántos hijos tienes?", "en": "How many children do you have?"},
+      "answer":    {"thai": "คนเดียว", "es": "khon diao", "spanish": "solo uno", "en": "only one"}
+    },
+    {
+      "rank": 166, "thai": "แรก", "category": "adjetivos",
+      "phrase":    {"thai": "ครั้งแรกฉันไม่เข้าใจ", "es": "kráng rɛ̂ɛk chǎn mâi kâo-jai", "spanish": "la primera vez no entendí", "en": "the first time I didn't understand"},
+      "question":  {"thai": "คุณเข้าใจตั้งแต่ครั้งแรกไหม", "es": "khun kâo-jai dtâng dtɛ̀ɛ kráng rɛ̂ɛk mǎi", "spanish": "¿Entendiste desde la primera vez?", "en": "Did you understand from the first time?"},
+      "answer":    {"thai": "ไม่เข้าใจครั้งแรก", "es": "mâi kâo-jai kráng rɛ̂ɛk", "spanish": "no entendí la primera vez", "en": "I didn't understand the first time"}
+    },
+    {
+      "rank": 171, "thai": "หลัง", "category": "adverbios",
+      "phrase":    {"thai": "หลังบ้านมีต้นไม้", "es": "lǎang bâan mii dtôn-mái", "spanish": "detrás de la casa hay árboles", "en": "behind the house there are trees"},
+      "question":  {"thai": "ด้านหลังมีอะไร", "es": "dàan lǎang mii a-rai", "spanish": "¿Qué hay detrás?", "en": "What is behind?"},
+      "answer":    {"thai": "มีต้นไม้", "es": "mii dtôn-mái", "spanish": "hay árboles", "en": "there are trees"}
+    },
+    {
+      "rank": 172, "thai": "นัก", "category": "adverbios",
+      "phrase":    {"thai": "อร่อยนัก", "es": "a-ròi nák", "spanish": "es muy delicioso", "en": "it's very delicious"},
+      "question":  {"thai": "อร่อยไหม", "es": "a-ròi mǎi", "spanish": "¿Está rico?", "en": "Is it delicious?"},
+      "answer":    {"thai": "อร่อยนัก", "es": "a-ròi nák", "spanish": "riquísimo", "en": "very delicious"}
+    },
+    {
+      "rank": 179, "thai": "เพียง", "category": "adverbios",
+      "phrase":    {"thai": "ฉันเพียงแค่อยากรู้", "es": "chǎn phia kǎe yàak rúu", "spanish": "solo quiero saber", "en": "I just want to know"},
+      "question":  {"thai": "คุณต้องการอะไร", "es": "khun dtông-gaan a-rai", "spanish": "¿Qué quieres?", "en": "What do you want?"},
+      "answer":    {"thai": "เพียงแค่รู้", "es": "phia kǎe rúu", "spanish": "solo saber", "en": "just to know"}
+    },
+    {
+      "rank": 182, "thai": "บ้าง", "category": "adjetivos",
+      "phrase":    {"thai": "บางครั้งฉันเหนื่อยบ้าง", "es": "baang kráng chǎn nǔeai bàang", "spanish": "a veces estoy un poco cansado", "en": "sometimes I'm a bit tired"},
+      "question":  {"thai": "คุณเหนื่อยไหม", "es": "khun nǔeai mǎi", "spanish": "¿Estás cansado?", "en": "Are you tired?"},
+      "answer":    {"thai": "เหนื่อยบ้าง", "es": "nǔeai bàang", "spanish": "un poco", "en": "a bit"}
+    },
+    {
+      "rank": 188, "thai": "เกี่ยวกับ", "category": "adverbios",
+      "phrase":    {"thai": "หนังสือเกี่ยวกับประวัติศาสตร์", "es": "nǎng-sǔe gìao gàp bprà-wàt sǎat", "spanish": "un libro sobre historia", "en": "a book about history"},
+      "question":  {"thai": "หนังสือเล่มนี้เกี่ยวกับอะไร", "es": "nǎng-sǔe lêm níi gìao gàp a-rai", "spanish": "¿De qué trata este libro?", "en": "What is this book about?"},
+      "answer":    {"thai": "เกี่ยวกับประวัติศาสตร์", "es": "gìao gàp bprà-wàt sǎat", "spanish": "sobre historia", "en": "about history"}
+    },
+    {
+      "rank": 194, "thai": "ดังกล่าว", "category": "adjetivos",
+      "phrase":    {"thai": "บุคคลดังกล่าวมาแล้ว", "es": "bùk-khon dang-glài maa lɛ́ɛo", "spanish": "la persona mencionada", "en": "the aforementioned person"},
+      "question":  {"thai": "บุคคลดังกล่าวมาถึงไหน", "es": "bùk-khon dang-glài maa thǔng nǎi", "spanish": "¿La persona mencionada llegó?", "en": "Did the mentioned person arrive?"},
+      "answer":    {"thai": "มาแล้ว", "es": "maa lɛ́ɛo", "spanish": "ya llegó", "en": "has arrived"}
+    },
+    {
+      "rank": 206, "thai": "ตรง", "category": "adjetivos",
+      "phrase":    {"thai": "ถนนตรงไป", "es": "thà-nǒn dtrong bpai", "spanish": "la calle va recta", "en": "the road goes straight"},
+      "question":  {"thai": "ถนนตรงหรือคด", "es": "thà-nǒn dtrong rʉ̌ʉ kòt", "spanish": "¿La calle es recta o curva?", "en": "Is the road straight or curved?"},
+      "answer":    {"thai": "ตรง", "es": "dtrong", "spanish": "recta", "en": "straight"}
+    },
+    {
+      "rank": 207, "thai": "ยิ่ง", "category": "adverbios",
+      "phrase":    {"thai": "ยิ่งร้อนยิ่งเหนื่อย", "es": "yîng róon yîng nǔeai", "spanish": "cuanto más calor, más cansancio", "en": "the hotter, the more tired"},
+      "question":  {"thai": "ยิ่งกินยิ่งอ้วนไหม", "es": "yîng gin yîng uân mǎi", "spanish": "¿Cuanto más comes, más engordas?", "en": "The more you eat, the fatter?"},
+      "answer":    {"thai": "ใช่ ยิ่งกินยิ่งอ้วน", "es": "châi, yîng gin yîng uân", "spanish": "sí, cuanto más como, más engordo", "en": "yes, the more I eat, the fatter"}
+    },
+    {
+      "rank": 210, "thai": "ตั้งแต่", "category": "adverbios",
+      "phrase":    {"thai": "ตั้งแต่เมื่อวาน", "es": "dtâng dtɛ̀ɛ mʉ̂a-waan", "spanish": "desde ayer", "en": "since yesterday"},
+      "question":  {"thai": "คุณอยู่นี่ตั้งแต่เมื่อไร", "es": "khun yùu nîi dtâng dtɛ̀ɛ mʉ̂a-rai", "spanish": "¿Desde cuándo estás aquí?", "en": "Since when are you here?"},
+      "answer":    {"thai": "ตั้งแต่เมื่อวาน", "es": "dtâng dtɛ̀ɛ mʉ̂a-waan", "spanish": "desde ayer", "en": "since yesterday"}
+    },
+    {
+      "rank": 211, "thai": "ดัง", "category": "adverbios",
+      "phrase":    {"thai": "เสียงดังมาก", "es": "sǐang dang mâak", "spanish": "el sonido es muy fuerte", "en": "the sound is very loud"},
+      "question":  {"thai": "เสียงดังไหม", "es": "sǐang dang mǎi", "spanish": "¿Está fuerte el sonido?", "en": "Is the sound loud?"},
+      "answer":    {"thai": "ดังมาก", "es": "dang mâak", "spanish": "sí, muy fuerte", "en": "yes, very loud"}
+    },
+    {
+      "rank": 215, "thai": "ต่อไป", "category": "adverbios",
+      "phrase":    {"thai": "ทำต่อไป", "es": "tam dtòà-bpai", "spanish": "continúa", "en": "continue"},
+      "question":  {"thai": "หยุดหรือทำต่อไป", "es": "yùt rʉ̌ʉ tam dtòà-bpai", "spanish": "¿Paras o continúas?", "en": "Stop or continue?"},
+      "answer":    {"thai": "ทำต่อไป", "es": "tam dtòà-bpai", "spanish": "continúa", "en": "continue"}
+    },
+    {
+      "rank": 217, "thai": "ก็ได้", "category": "adverbios",
+      "phrase":    {"thai": "อันไหนก็ได้", "es": "an nǎi gâ dâai", "spanish": "cualquiera", "en": "any one is fine"},
+      "question":  {"thai": "เอาอันไหน", "es": "ao an nǎi", "spanish": "¿Cuál quieres?", "en": "Which one do you want?"},
+      "answer":    {"thai": "อันไหนก็ได้", "es": "an nǎi gâ dâai", "spanish": "cualquiera", "en": "any one"}
+    },
+    {
+      "rank": 219, "thai": "นาน", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันรอนานแล้ว", "es": "chǎn rɔɔ naan lɛ́ɛo", "spanish": "esperé mucho tiempo", "en": "I've waited a long time"},
+      "question":  {"thai": "คุณรอนานไหม", "es": "khun rɔɔ naan mǎi", "spanish": "¿Esperaste mucho?", "en": "Did you wait long?"},
+      "answer":    {"thai": "รอนานมาก", "es": "rɔɔ naan mâak", "spanish": "sí, mucho", "en": "yes, a lot"}
+    },
+    {
+      "rank": 227, "thai": "เท่านั้น", "category": "adverbios",
+      "phrase":    {"thai": "มีเพียงคนเดียวเท่านั้น", "es": "mii phia khon diao thâo nán", "spanish": "hay solo una persona", "en": "there is only one person"},
+      "question":  {"thai": "มีกี่คน", "es": "mii gii khon", "spanish": "¿Cuántos hay?", "en": "How many are there?"},
+      "answer":    {"thai": "คนเดียวเท่านั้น", "es": "khon diao thâo nán", "spanish": "solo uno", "en": "only one"}
+    },
+    {
+      "rank": 231, "thai": "เล็ก", "category": "adjetivos",
+      "phrase":    {"thai": "แมวตัวเล็ก", "es": "mɛɛo tua lék", "spanish": "gato pequeño", "en": "small cat"},
+      "question":  {"thai": "แมวตัวใหญ่หรือเล็ก", "es": "mɛɛo tua yài rʉ̌ʉ lék", "spanish": "¿El gato es grande o pequeño?", "en": "Is the cat big or small?"},
+      "answer":    {"thai": "ตัวเล็ก", "es": "tua lék", "spanish": "pequeño", "en": "small"}
+    },
+    {
+      "rank": 236, "thai": "ผิด", "category": "adjetivos",
+      "phrase":    {"thai": "คำตอบนี้ผิด", "es": "kam dtòp níi pìt", "spanish": "esta respuesta es incorrecta", "en": "this answer is wrong"},
+      "question":  {"thai": "คำตอบถูกหรือผิด", "es": "kam dtòp thǔuk rʉ̌ʉ pìt", "spanish": "¿La respuesta es correcta o incorrecta?", "en": "Is the answer right or wrong?"},
+      "answer":    {"thai": "ผิด", "es": "pìt", "spanish": "incorrecta", "en": "wrong"}
+    },
+    {
+      "rank": 243, "thai": "สาม", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันมีสามเพื่อน", "es": "chǎn mii sǎam phʉ̂an", "spanish": "tengo tres amigos", "en": "I have three friends"},
+      "question":  {"thai": "คุณมีเพื่อนกี่คน", "es": "khun mii phʉ̂an gii khon", "spanish": "¿Cuántos amigos tienes?", "en": "How many friends do you have?"},
+      "answer":    {"thai": "สามคน", "es": "sǎam khon", "spanish": "tres", "en": "three"}
+    },
+    {
+      "rank": 246, "thai": "ภายใน", "category": "adverbios",
+      "phrase":    {"thai": "ภายในห้องมีโต๊ะ", "es": "phǎai-khǎi hâwng mii dto", "spanish": "dentro de la habitación hay una mesa", "en": "inside the room there is a table"},
+      "question":  {"thai": "ภายในห้องมีอะไร", "es": "phǎai-khǎi hâwng mii a-rai", "spanish": "¿Qué hay dentro de la habitación?", "en": "What is inside the room?"},
+      "answer":    {"thai": "มีโต๊ะ", "es": "mii dto", "spanish": "hay una mesa", "en": "a table"}
+    },
+    {
+      "rank": 258, "thai": "แต่ละ", "category": "adjetivos",
+      "phrase":    {"thai": "แต่ละคนมีความคิดต่างกัน", "es": "dtɛ̀ɛ-lá khon mii kwaam-kít tàang gan", "spanish": "cada persona piensa distinto", "en": "each person thinks differently"},
+      "question":  {"thai": "ทุกคนคิดเหมือนกันไหม", "es": "thúk khon kít mǔean gan mǎi", "spanish": "¿Todos piensan igual?", "en": "Does everyone think the same?"},
+      "answer":    {"thai": "ไม่ แต่ละคนต่างกัน", "es": "mâi, dtɛ̀ɛ-lá khon tàang gan", "spanish": "no, cada uno distinto", "en": "no, each differently"}
+    },
+    {
+      "rank": 263, "thai": "พร้อม", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันพร้อมแล้ว", "es": "chǎn prôm lɛ́ɛo", "spanish": "estoy listo", "en": "I'm ready"},
+      "question":  {"thai": "พร้อมไปหรือยัง", "es": "prôm bpai rʉ̌ʉ yang", "spanish": "¿Estás listo para ir?", "en": "Are you ready to go?"},
+      "answer":    {"thai": "พร้อมแล้ว", "es": "prôm lɛ́ɛo", "spanish": "ya estoy listo", "en": "I'm ready now"}
+    },
+    {
+      "rank": 268, "thai": "ตลอด", "category": "adverbios",
+      "phrase":    {"thai": "ฉันรอตลอดคืน", "es": "chǎn rɔɔ dtà-lòot kheuu", "spanish": "esperé toda la noche", "en": "I waited all night"},
+      "question":  {"thai": "คุณรอนานไหม", "es": "khun rɔɔ naan mǎi", "spanish": "¿Esperaste mucho?", "en": "Did you wait long?"},
+      "answer":    {"thai": "รอตลอดคืน", "es": "rɔɔ dtà-lòot kheuu", "spanish": "toda la noche", "en": "all night"}
+    },
+    {
+      "rank": 269, "thai": "มัก", "category": "adverbios",
+      "phrase":    {"thai": "เขามักมาสาย", "es": "khǎo mák maa sǎai", "spanish": "él suele llegar tarde", "en": "he often arrives late"},
+      "question":  {"thai": "เขามาตรงเวลาไหม", "es": "khǎo maa dtrong welaa mǎi", "spanish": "¿Él llega puntual?", "en": "Does he arrive on time?"},
+      "answer":    {"thai": "ไม่ มักสาย", "es": "mâi, mák sǎai", "spanish": "no, suele tarde", "en": "no, often late"}
+    },
+    {
+      "rank": 272, "thai": "ก็คือ", "category": "adverbios",
+      "phrase":    {"thai": "ปัญหาก็คือเวลา", "es": "pan-hǎa gâ khuue welaa", "spanish": "el problema es el tiempo", "en": "the problem is time"},
+      "question":  {"thai": "ปัญหาคืออะไร", "es": "pan-hǎa khuue a-rai", "spanish": "¿Cuál es el problema?", "en": "What is the problem?"},
+      "answer":    {"thai": "ก็คือเวลา", "es": "gâ khuue welaa", "spanish": "es el tiempo", "en": "it's time"}
+    },
+    {
+      "rank": 276, "thai": "แค่", "category": "adverbios",
+      "phrase":    {"thai": "ฉันแค่อยากนอน", "es": "chǎn khǎe yàak nɔɔn", "spanish": "solo quiero dormir", "en": "I just want to sleep"},
+      "question":  {"thai": "คุณต้องการอะไร", "es": "khun dtông-gaan a-rai", "spanish": "¿Qué necesitas?", "en": "What do you need?"},
+      "answer":    {"thai": "แค่นอน", "es": "khǎe nɔɔn", "spanish": "solo dormir", "en": "just sleep"}
+    },
+    {
+      "rank": 285, "thai": "สู่", "category": "adverbios",
+      "phrase":    {"thai": "ฉันไปสู่โรงเรียน", "es": "chǎn bpai sùu roong-rian", "spanish": "voy hacia la escuela", "en": "I go toward school"},
+      "question":  {"thai": "คุณไปสู่ไหน", "es": "khun bpai sùu nǎi", "spanish": "¿Hacia dónde vas?", "en": "Where are you heading?"},
+      "answer":    {"thai": "สู่โรงเรียน", "es": "sùu roong-rian", "spanish": "hacia la escuela", "en": "toward school"}
+    },
+    {
+      "rank": 287, "thai": "เดียวกัน", "category": "adjetivos",
+      "phrase":    {"thai": "เราเรียนโรงเรียนเดียวกัน", "es": "rao rian roong-rian diao gan", "spanish": "vamos a la misma escuela", "en": "we go to the same school"},
+      "question":  {"thai": "พวกคุณเรียนที่เดียวกันไหม", "es": "phûak khun rian thîi diao gan mǎi", "spanish": "¿Van a la misma escuela?", "en": "Do you go to the same school?"},
+      "answer":    {"thai": "ใช่ โรงเรียนเดียวกัน", "es": "châi, roong-rian diao gan", "spanish": "sí, la misma", "en": "yes, the same"}
+    },
+    {
+      "rank": 292, "thai": "สัก", "category": "adverbios",
+      "phrase":    {"thai": "รอสักครู่", "es": "rɔɔ sàk khrûu", "spanish": "espera un momento", "en": "wait a moment"},
+      "question":  {"thai": "รอสักครู่ได้ไหม", "es": "rɔɔ sàk khrûu dâai mǎi", "spanish": "¿Puedes esperar un momento?", "en": "Can you wait a moment?"},
+      "answer":    {"thai": "ได้ รอสักครู่", "es": "dâai, rɔɔ sàk khrûu", "spanish": "sí, espera un momento", "en": "yes, wait a moment"}
+    },
+    {
+      "rank": 296, "thai": "ประจำ", "category": "adjetivos",
+      "phrase":    {"thai": "ฉันมาประจำที่นี่", "es": "chǎn maa bprà-jam thîi nîi", "spanish": "vengo aquí regularmente", "en": "I come here regularly"},
+      "question":  {"thai": "คุณมาที่นี่บ่อยไหม", "es": "khun maa thîi nîi bòi mǎi", "spanish": "¿Vienes aquí a menudo?", "en": "Do you come here often?"},
+      "answer":    {"thai": "มาประจำ", "es": "maa bprà-jam", "spanish": "sí, regularmente", "en": "yes, regularly"}
+    },
+    {
+      "rank": 300, "thai": "แม้", "category": "adverbios",
+      "phrase":    {"thai": "แม้ฝนตก ฉันก็ไป", "es": "mɛ́ɛ fǒn dtòk, chǎn gâ bpai", "spanish": "aunque llueva, voy", "en": "even if it rains, I'll go"},
+      "question":  {"thai": "ถ้าฝนตกจะไปไหม", "es": "thâa fǒn dtòk jà bpai mǎi", "spanish": "Si llueve, ¿irás?", "en": "If it rains, will you go?"},
+      "answer":    {"thai": "แม้ตกก็ไป", "es": "mɛ́ɛ dtòk gâ bpai", "spanish": "aunque llueva, voy", "en": "even if it rains, I'll go"}
+    }
+  ]
+}
