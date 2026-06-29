@@ -251,19 +251,6 @@ input, select, textarea { font-size: 16px; }
   .mode-tab .mt-icon { font-size: 1.2rem; line-height: 1; }
   .mode-tab .mt-icon + * { display: block; }
 
-  /* Lesson tabs — same horizontal scroll treatment */
-  .tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab { flex-shrink: 0; scroll-snap-align: start; padding: 7px 14px; min-height: 34px; }
-
   /* Audio bar — tighter, hide progress text on narrow */
   .audio-bar { padding: 8px 10px; gap: 6px; }
   .audio-bar button { padding: 9px 12px; font-size: 0.8rem; min-height: 40px; }
