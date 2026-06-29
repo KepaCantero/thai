@@ -53,18 +53,18 @@
   </div>
 </div>
 
-<div class="audio-bar" id="audioBar">
-  <button class="ab-play" id="playAllBtn" onclick="togglePlayAll()">&#9654; Play All</button>
-  <button class="ab-stop" id="stopBtn" onclick="stopPlayAll()">&#9632; Stop</button>
-  <div class="ab-indicator" id="playAllIndicator"></div>
-  <div class="ab-progress" id="playAllProgress"></div>
+<div class="audio-bar" id="audioBar" aria-label="Reproductor de lección">
+  <button class="ab-play" id="playAllBtn" onclick="togglePlayAll()" aria-label="Reproducir todo">&#9654; Play All</button>
+  <button class="ab-stop" id="stopBtn" onclick="stopPlayAll()" aria-label="Detener">&#9632; Stop</button>
+  <div class="ab-indicator" id="playAllIndicator" aria-live="polite"></div>
+  <div class="ab-progress" id="playAllProgress" aria-hidden="true"></div>
 </div>
 
 <div class="card-area" id="cardArea">
   <div class="card-container" id="cardContainer">
     <div class="card" id="card">
       <div class="card-face card-front">
-        <button class="diff-btn" title="Añadir a Difíciles" onclick="event.stopPropagation(); toggleDifficult()">+</button>
+        <button class="diff-btn" title="Añadir a Difíciles" aria-label="Añadir a Difíciles" onclick="event.stopPropagation(); toggleDifficult()">+</button>
         <img class="card-img" id="frontImg" src="" alt="" style="display:none">
         <div class="thai-word" id="frontWord"></div>
         <div class="phonetic" id="frontPhonetic"></div>
@@ -74,7 +74,7 @@
         <div class="hint">tap to flip</div>
       </div>
       <div class="card-face card-back">
-        <button class="diff-btn" title="Añadir a Difíciles" onclick="event.stopPropagation(); toggleDifficult()">+</button>
+        <button class="diff-btn" title="Añadir a Difíciles" aria-label="Añadir a Difíciles" onclick="event.stopPropagation(); toggleDifficult()">+</button>
         <img class="card-img" id="backImg" src="" alt="" style="display:none">
         <div class="translation" id="backWord"></div>
         <div class="card-phonetic" id="backPhonetic"></div>
@@ -85,14 +85,17 @@
       </div>
     </div>
   </div>
-  <div class="controls">
-    <button onclick="prevCard()">&#8592; Previous</button>
-    <button class="play-btn" id="playBtn" onclick="playAudio()">&#9654; Audio</button>
-    <button onclick="nextCard()">Next &#8594;</button>
-  </div>
-  <div class="score-buttons">
-    <button class="btn-know" onclick="markCard(true)">Know it &#10003;</button>
-    <button class="btn-dont" onclick="markCard(false)">Don't know &#10007;</button>
+  <div class="cards-bottom" id="cardsBottom">
+    <button class="diff-btn-bottom" id="diffBtnBottom" title="Añadir a Difíciles" aria-label="Añadir a Difíciles" onclick="toggleDifficult()">+</button>
+    <div class="controls">
+      <button onclick="prevCard()" aria-label="Anterior">&#8592; Previous</button>
+      <button class="play-btn" id="playBtn" onclick="playAudio()" aria-label="Reproducir audio">&#9654; Audio</button>
+      <button onclick="nextCard()" aria-label="Siguiente">Next &#8594;</button>
+    </div>
+    <div class="score-buttons">
+      <button class="btn-know" onclick="markCard(true)" aria-label="La sé">Know it &#10003;</button>
+      <button class="btn-dont" onclick="markCard(false)" aria-label="No la sé">Don't know &#10007;</button>
+    </div>
   </div>
   <div class="phrase-hint" id="phraseHint"></div>
   <div class="stats" id="stats"></div>

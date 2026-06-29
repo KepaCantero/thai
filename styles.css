@@ -344,16 +344,7 @@ input, select, textarea { font-size: 16px; }
   .top1000-tabs::-webkit-scrollbar { display: none; }
   .top1000-tab { flex-shrink: 0; min-height: 38px; padding: 7px 12px; }
   .top1000-bar { gap: 8px; flex-wrap: wrap; }
-  .top1000-chips {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    flex: 1;
-    min-width: 0;
-  }
-  .top1000-chips::-webkit-scrollbar { display: none; }
-  .top1000-chip { flex-shrink: 0; padding: 7px 12px; min-height: 34px; }
+  /* chips/tabs scroll behavior declared once in ROUND 3 (end of file) */
   .top1000-search { flex-basis: 100%; min-width: 100%; order: -1; margin-bottom: 4px; }
   .top1000-search input { font-size: 16px; padding: 10px 14px; }
   .top1000-card { padding: 12px; }
@@ -1358,4 +1349,84 @@ button:disabled { opacity: 0.4; cursor: default; }
   .srs-screen { max-width: 600px; margin: 0 auto; }
   .srs-study-top, .srs-actions { max-width: 600px; margin-left: auto; margin-right: auto; }
   .srs-card { max-width: 480px; }
+}
+/* ===================================================================
+   ROUND 3 — final overrides (iPhone 16 one-handed)
+   Source-order: this block comes LAST → wins cascade ties.
+   =================================================================== */
+@media (max-width: 720px) {
+  /* --- Top 1000 chips: force horizontal scroll (base .top1000-chips
+     at line 712 has flex-wrap:wrap which was overriding the round-2
+     nowrap due to source order). Lock it here. --- */
+  .top1000-chips {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .top1000-chips::-webkit-scrollbar { display: none; }
+  .top1000-chip { flex-shrink: 0; }
+
+  /* Top 1000 sub-tabs: ensure horizontal scroll wins */
+  .top1000-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    border-bottom: none;
+    margin-bottom: 8px;
+  }
+  .top1000-tabs::-webkit-scrollbar { display: none; }
+  .top1000-tab { flex-shrink: 0; }
+
+  /* --- Cards mode: sticky thumb-zone action bar above fixed mode-tabs --- */
+  .cards-bottom {
+    position: fixed;
+    left: 0; right: 0;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    z-index: 80;
+    background: rgba(13, 27, 54, 0.96);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border-top: 1px solid #252550;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+    padding: 8px 10px calc(env(safe-area-inset-bottom) + 8px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cards-bottom .controls,
+  .cards-bottom .score-buttons { margin-bottom: 0; gap: 6px; }
+  .cards-bottom .controls button,
+  .cards-bottom .score-buttons button {
+    flex: 1; min-height: 44px; padding: 10px 8px; font-size: 0.88rem;
+  }
+
+  /* Duplicate diff-btn at bottom-left of action bar */
+  .diff-btn-bottom {
+    position: absolute;
+    top: -22px; left: 10px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #1e1e3f;
+    color: #e94560;
+    border: 1.5px solid #e9456088;
+    font-size: 22px; font-weight: 700; line-height: 1;
+    cursor: pointer; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: background 0.15s, transform 0.15s, color 0.15s;
+  }
+  .diff-btn-bottom:hover { background: #e9456033; transform: scale(1.1); }
+  .diff-btn-bottom.diff-btn-on { background: #e94560; color: #fff; border-color: #e94560; }
+
+  /* Body padding: clear fixed mode-tabs (72) + cards-bottom (~150) */
+  body { padding-bottom: calc(72px + 160px + env(safe-area-inset-bottom)) !important; }
+
+  /* Hide cards-bottom in non-cards modes (JS toggles display, but be safe) */
+  body:not(.mode-cards) .cards-bottom { display: none !important; }
+
+  /* Audio bar stays in flow on mobile (already at top, no change needed) */
 }

@@ -446,6 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cc) cc.addEventListener('click', function(e) { flipCard(); });
   var ttsSel = $('ttsSelect');
   if (ttsSel && typeof AUDIO_ENGINE !== 'undefined') ttsSel.value = AUDIO_ENGINE;
+  document.body.classList.toggle('mode-cards', currentMode === 'cards');
 });
 function nextCard() {
   if (!deck.length) return;
@@ -506,18 +507,20 @@ function toggleDifficult() {
 }
 
 function updateDifficultBtn() {
-  var btns = document.querySelectorAll('.diff-btn');
+  var btns = document.querySelectorAll('.diff-btn, .diff-btn-bottom');
   if (!btns.length) return;
   var show = deck.length > 0;
   var inDiff = show && difficult.has(cardKey(deck[idx]));
   var label = inDiff ? '−' : '+';
-  var cls = 'diff-btn' + (inDiff ? ' diff-btn-on' : '');
   var title = inDiff ? 'Quitar de Difíciles' : 'Añadir a Difíciles';
   btns.forEach(function(b) {
     b.style.display = show ? '' : 'none';
     b.textContent = label;
-    b.className = cls;
+    var onCls = b.classList.contains('diff-btn-bottom') ? 'diff-btn-bottom' : 'diff-btn';
+    b.className = onCls + (inDiff ? (onCls === 'diff-btn-bottom' ? ' diff-btn-on' : ' diff-btn-on') : '');
     b.title = title;
+    b.setAttribute('aria-label', title);
+    b.setAttribute('aria-pressed', inDiff ? 'true' : 'false');
   });
 }
 
@@ -717,6 +720,7 @@ function setMode(mode) {
   matrixMode = (mode === 'matrix');
   tonesMode = (mode === 'tones');
   questionsMode = (mode === 'questions');
+  document.body.classList.toggle('mode-cards', mode === 'cards');
 
   // Sections visibility
   $('cardArea').style.display = (mode === 'cards') ? 'flex' : 'none';
