@@ -1,5 +1,24 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 16px 16px 40px; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { overscroll-behavior-y: none; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(env(safe-area-inset-top) + 10px) 14px calc(env(safe-area-inset-bottom) + 20px);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent iOS auto-zoom on input focus (must be ≥16px) */
+input, select, textarea { font-size: 16px; }
+@media (min-width: 721px) {
+  input, select, textarea { font-size: inherit; }
+}
 
 /* Top bar */
 .top-bar { width: 100%; max-width: 860px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
@@ -162,6 +181,105 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .diff-btn:hover { background: #e9456033; transform: scale(1.1); }
 .diff-btn.diff-btn-on { background: #e94560; color: #fff; border-color: #e94560; }
 .card-container.card-conv { min-height: 820px; max-width: 680px; flex: 0 1 auto; }
+
+/* ===================================================================
+   MOBILE OVERRIDES — iPhone 16 + similar (≤720px)
+   Navigability fixes: horizontal chip bars, safe areas, hit targets
+   =================================================================== */
+@media (max-width: 720px) {
+  /* Top bar — shrink h1, ensure progress + select fit */
+  .top-bar { gap: 8px; margin-bottom: 8px; }
+  .top-bar h1 { font-size: 1.05rem; letter-spacing: 0; }
+  .tts-select { padding: 6px 8px; font-size: 0.75rem; min-height: 36px; }
+  .progress { font-size: 0.78rem; }
+
+  /* Mode tabs — horizontal chip bar with snap */
+  .mode-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .mode-tabs::-webkit-scrollbar { display: none; }
+  .mode-tab {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 9px 14px;
+    min-height: 40px;
+  }
+
+  /* Lesson tabs — same horizontal scroll treatment */
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0; scroll-snap-align: start; padding: 7px 14px; min-height: 34px; }
+
+  /* Audio bar — tighter, hide progress text on narrow */
+  .audio-bar { padding: 8px 10px; gap: 6px; }
+  .audio-bar button { padding: 9px 12px; font-size: 0.8rem; min-height: 40px; }
+  .ab-indicator { min-width: auto; font-size: 0.75rem; flex: 1; }
+  .ab-progress { display: none; }
+
+  /* Filter panel — bottom sheet on mobile */
+  .filter-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    border-radius: 18px 18px 0 0;
+    padding: 16px 16px calc(env(safe-area-inset-bottom) + 16px);
+    z-index: 100;
+    background: #16213e;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.5);
+    animation: fp-slide-up 0.25s ease-out;
+  }
+  .filter-panel::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: #444;
+    border-radius: 2px;
+    margin: 0 auto 12px;
+  }
+  @keyframes fp-slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+  /* Diff button — Apple HIG 44pt minimum hit target */
+  .diff-btn { width: 40px; height: 40px; font-size: 22px; top: 12px; right: 12px; }
+
+  /* Top 1000 grid — 1 col compact on narrow */
+  .top1000-grid { grid-template-columns: 1fr; gap: 10px; }
+
+  /* Controls + score buttons — touch friendly */
+  .controls { gap: 6px; }
+  .controls button { padding: 12px 14px; font-size: 0.9rem; min-height: 44px; }
+  .score-buttons { gap: 6px; }
+  .score-buttons button { min-height: 44px; padding: 12px; font-size: 0.9rem; }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 /* Conversation back: top-align so scrolling shows all content */
 .card-container.card-conv .card-back { justify-content: flex-start; padding-top: 20px; }

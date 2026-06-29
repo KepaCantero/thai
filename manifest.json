@@ -1,0 +1,19 @@
+{
+  "name": "Thai Flashcards",
+  "short_name": "Thai",
+  "description": "Top 1000 tailandés con repetición espaciada estilo Anki",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1a2e",
+  "theme_color": "#0d1b36",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
