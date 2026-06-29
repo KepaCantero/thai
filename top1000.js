@@ -7,7 +7,7 @@ var TOP1000_WORDS = [
   {
     rank: 1, thai: "ที่", es: "tîi", spanish: "que / lugar", english: "that / place", rtgs: "", cefr: null, freq: 1, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "บ้านที่ฉันอยู่", es: "bâan thîi chǎn yùu", spanish: "la casa donde vivo, en: "the house where I live" },
+    phrase: { thai: "บ้านที่ฉันอยู่", es: "bâan thîi chǎn yùu", spanish: "la casa donde vivo", en: "the house where I live" },
     question: { thai: "ที่คือใคร", es: "tîi khuu khrai", spanish: "¿Quién es que?" },
     answer: { thai: "ที่", es: "tîi", spanish: "que / lugar" }
   },
@@ -63,7 +63,7 @@ var TOP1000_WORDS = [
   {
     rank: 9, thai: "และ", es: "lɛ́", spanish: "y", english: "and", rtgs: "", cefr: null, freq: 9, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "สวยและดี", es: "sǔuai lɛ́ dii", spanish: "hermoso y bueno, en: "beautiful and good" },
+    phrase: { thai: "สวยและดี", es: "sǔuai lɛ́ dii", spanish: "hermoso y bueno", en: "beautiful and good" },
     question: { thai: "และ", es: "lɛ́", spanish: "y" },
     answer: { thai: "และ", es: "lɛ́", spanish: "y" }
   },
@@ -147,7 +147,7 @@ var TOP1000_WORDS = [
   {
     rank: 21, thai: "หรือ", es: "rǔɯ", spanish: "o / ¿...?", english: "or", rtgs: "", cefr: null, freq: 21, notes: "",
     category: "expresiones", tone: "r",
-    phrase: { thai: "ชาหรือกาแฟ", es: "chaa rǔɯ gaa-fae", spanish: "¿té o café?, en: "tea or coffee?" },
+    phrase: { thai: "ชาหรือกาแฟ", es: "chaa rǔɯ gaa-fae", spanish: "¿té o café?", en: "tea or coffee?" },
     question: { thai: "หรือ", es: "rǔɯ", spanish: "o / ¿...?" },
     answer: { thai: "หรือ", es: "rǔɯ", spanish: "o / ¿...?" }
   },
@@ -161,14 +161,14 @@ var TOP1000_WORDS = [
   {
     rank: 23, thai: "นี้", es: "níi", spanish: "este / esta", english: "this", rtgs: "", cefr: null, freq: 23, notes: "",
     category: "pronombres", tone: "h",
-    phrase: { thai: "คนนี้ใจดี", es: "khon níi jai-dii", spanish: "esta persona es amable, en: "this person is kind" },
+    phrase: { thai: "คนนี้ใจดี", es: "khon níi jai-dii", spanish: "esta persona es amable", en: "this person is kind" },
     question: { thai: "นี้คือใคร", es: "níi khuu khrai", spanish: "¿Quién es este?" },
     answer: { thai: "นี้", es: "níi", spanish: "este / esta" }
   },
   {
     rank: 24, thai: "แต่", es: "dtɛ̀ɛ", spanish: "pero", english: "but", rtgs: "", cefr: null, freq: 24, notes: "",
     category: "expresiones", tone: "l",
-    phrase: { thai: "ดีแต่แพง", es: "dii dtɛ̀ɛ pɛɛng", spanish: "bueno pero caro, en: "good but expensive" },
+    phrase: { thai: "ดีแต่แพง", es: "dii dtɛ̀ɛ pɛɛng", spanish: "bueno pero caro", en: "good but expensive" },
     question: { thai: "แต่", es: "dtɛ̀ɛ", spanish: "pero" },
     answer: { thai: "แต่", es: "dtɛ̀ɛ", spanish: "pero" }
   },
@@ -217,21 +217,21 @@ var TOP1000_WORDS = [
   {
     rank: 31, thai: "นั้น", es: "nán", spanish: "ese / aquel", english: "that", rtgs: "", cefr: null, freq: 31, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "คนนั้นสูง", es: "khon nán sǔung", spanish: "esa persona es alta, en: "that person is tall" },
+    phrase: { thai: "คนนั้นสูง", es: "khon nán sǔung", spanish: "esa persona es alta", en: "that person is tall" },
     question: { thai: "นั้นคือใคร", es: "nán khuu khrai", spanish: "¿Quién es ese?" },
     answer: { thai: "นั้น", es: "nán", spanish: "ese / aquel" }
   },
   {
     rank: 32, thai: "ผู้", es: "phûu", spanish: "persona (prefijo)", english: "person prefix", rtgs: "", cefr: null, freq: 32, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "ผู้ชาย", es: "phûu-chaai", spanish: "hombre (persona masculina), en: "man (male person)" },
+    phrase: { thai: "ผู้ชาย", es: "phûu-chaai", spanish: "hombre (persona masculina)", en: "man (male person)" },
     question: { thai: "ผู้คือใคร", es: "phûu khuu khrai", spanish: "¿Quién es persona (prefijo)?" },
     answer: { thai: "ผู้", es: "phûu", spanish: "persona (prefijo)" }
   },
   {
     rank: 33, thai: "ซึ่ง", es: "sʉ̂ŋ", spanish: "el cual", english: "which", rtgs: "", cefr: null, freq: 33, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "คนซึ่งมา", es: "khon sʉ̂ŋ maa", spanish: "la persona que vino, en: "the person who came" },
+    phrase: { thai: "คนซึ่งมา", es: "khon sʉ̂ŋ maa", spanish: "la persona que vino", en: "the person who came" },
     question: { thai: "ซึ่งคือใคร", es: "sʉ̂ŋ khuu khrai", spanish: "¿Quién es el cual?" },
     answer: { thai: "ซึ่ง", es: "sʉ̂ŋ", spanish: "el cual" }
   },
@@ -287,14 +287,14 @@ var TOP1000_WORDS = [
   {
     rank: 41, thai: "เรา", es: "rao", spanish: "nosotros", english: "we", rtgs: "", cefr: null, freq: 41, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "เราไปด้วยกัน", es: "rao bpai dûuai gan", spanish: "vamos juntos, en: "let's go together" },
+    phrase: { thai: "เราไปด้วยกัน", es: "rao bpai dûuai gan", spanish: "vamos juntos", en: "let's go together" },
     question: { thai: "เราคือใคร", es: "rao khuu khrai", spanish: "¿Quién es nosotros?" },
     answer: { thai: "เรา", es: "rao", spanish: "nosotros" }
   },
   {
     rank: 42, thai: "ผม", es: "phǒm", spanish: "yo (hombre)", english: "I (male)", rtgs: "", cefr: null, freq: 42, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "ผมเป็นครู", es: "phǒm pen khruu", spanish: "yo soy profesor, en: "I am a teacher" },
+    phrase: { thai: "ผมเป็นครู", es: "phǒm pen khruu", spanish: "yo soy profesor", en: "I am a teacher" },
     question: { thai: "ผมคือใคร", es: "phǒm khuu khrai", spanish: "¿Quién es yo (hombre)?" },
     answer: { thai: "ผม", es: "phǒm", spanish: "yo (hombre)" }
   },
@@ -399,7 +399,7 @@ var TOP1000_WORDS = [
   {
     rank: 57, thai: "เธอ", es: "thəə", spanish: "tú / ella", english: "you / she", rtgs: "", cefr: null, freq: 57, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "เธอสวย", es: "thəə sǔuai", spanish: "tú eres hermosa, en: "you are beautiful" },
+    phrase: { thai: "เธอสวย", es: "thəə sǔuai", spanish: "tú eres hermosa", en: "you are beautiful" },
     question: { thai: "เธอคือใคร", es: "thəə khuu khrai", spanish: "¿Quién es tú?" },
     answer: { thai: "เธอ", es: "thəə", spanish: "tú / ella" }
   },
@@ -469,7 +469,7 @@ var TOP1000_WORDS = [
   {
     rank: 67, thai: "มัน", es: "man", spanish: "ello / ello", english: "it", rtgs: "", cefr: null, freq: 67, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "มันอร่อย", es: "man a-ròi", spanish: "está delicioso, en: "it is delicious" },
+    phrase: { thai: "มันอร่อย", es: "man a-ròi", spanish: "está delicioso", en: "it is delicious" },
     question: { thai: "มันคือใคร", es: "man khuu khrai", spanish: "¿Quién es ello?" },
     answer: { thai: "มัน", es: "man", spanish: "ello / ello" }
   },
@@ -483,7 +483,7 @@ var TOP1000_WORDS = [
   {
     rank: 69, thai: "อะไร", es: "à-rai", spanish: "qué", english: "what", rtgs: "", cefr: null, freq: 69, notes: "",
     category: "pronombres", tone: "l",
-    phrase: { thai: "จะกินอะไร", es: "jà gin à-rai", spanish: "¿qué vas a comer?, en: "what will you eat?" },
+    phrase: { thai: "จะกินอะไร", es: "jà gin à-rai", spanish: "¿qué vas a comer?", en: "what will you eat?" },
     question: { thai: "อะไรคือใคร", es: "à-rai khuu khrai", spanish: "¿Quién es qué?" },
     answer: { thai: "อะไร", es: "à-rai", spanish: "qué" }
   },
@@ -623,7 +623,7 @@ var TOP1000_WORDS = [
   {
     rank: 89, thai: "นะ", es: "ná", spanish: "¿vale?", english: "particle", rtgs: "", cefr: null, freq: 89, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "อย่าลืมนะ", es: "yàa lǔem ná", spanish: "no olvides, ¿vale?, en: "don't forget, okay?" },
+    phrase: { thai: "อย่าลืมนะ", es: "yàa lǔem ná", spanish: "no olvides, ¿vale?", en: "don't forget, okay?" },
     question: { thai: "นะ", es: "ná", spanish: "¿vale?" },
     answer: { thai: "นะ", es: "ná", spanish: "¿vale?" }
   },
@@ -728,7 +728,7 @@ var TOP1000_WORDS = [
   {
     rank: 104, thai: "นี่", es: "nîi", spanish: "esto", english: "this", rtgs: "", cefr: null, freq: 104, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "นี่คือหนังสือ", es: "nîi khuu nǎng-sǔeu", spanish: "esto es un libro, en: "this is a book" },
+    phrase: { thai: "นี่คือหนังสือ", es: "nîi khuu nǎng-sǔeu", spanish: "esto es un libro", en: "this is a book" },
     question: { thai: "นี่คือใคร", es: "nîi khuu khrai", spanish: "¿Quién es esto?" },
     answer: { thai: "นี่", es: "nîi", spanish: "esto" }
   },
@@ -882,14 +882,14 @@ var TOP1000_WORDS = [
   {
     rank: 126, thai: "ใด", es: "dai", spanish: "algún / cualquier", english: "any", rtgs: "", cefr: null, freq: 126, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "คนใดคนหนึ่ง", es: "khon dai khon nùeng", spanish: "alguna persona, en: "some person" },
+    phrase: { thai: "คนใดคนหนึ่ง", es: "khon dai khon nùeng", spanish: "alguna persona", en: "some person" },
     question: { thai: "ใดคือใคร", es: "dai khuu khrai", spanish: "¿Quién es algún?" },
     answer: { thai: "ใด", es: "dai", spanish: "algún / cualquier" }
   },
   {
     rank: 127, thai: "ท่าน", es: "thân", spanish: "usted (respetuoso)", english: "you (formal)", rtgs: "", cefr: null, freq: 127, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "ท่านครู", es: "thân khruu", spanish: "usted maestro, en: "you (respectful) teacher" },
+    phrase: { thai: "ท่านครู", es: "thân khruu", spanish: "usted maestro", en: "you (respectful) teacher" },
     question: { thai: "ท่านคือใคร", es: "thân khuu khrai", spanish: "¿Quién es usted (respetuoso)?" },
     answer: { thai: "ท่าน", es: "thân", spanish: "usted (respetuoso)" }
   },
@@ -966,7 +966,7 @@ var TOP1000_WORDS = [
   {
     rank: 138, thai: "เอง", es: "eeŋ", spanish: "mismo / por sí", english: "self", rtgs: "", cefr: null, freq: 138, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "ฉันเองทำ", es: "chǎn een tham", spanish: "yo mismo lo hice, en: "I did it myself" },
+    phrase: { thai: "ฉันเองทำ", es: "chǎn een tham", spanish: "yo mismo lo hice", en: "I did it myself" },
     question: { thai: "เองคือใคร", es: "eeŋ khuu khrai", spanish: "¿Quién es mismo?" },
     answer: { thai: "เอง", es: "eeŋ", spanish: "mismo / por sí" }
   },
@@ -994,7 +994,7 @@ var TOP1000_WORDS = [
   {
     rank: 142, thai: "อัน", es: "?an", spanish: "clasificador", english: "classifier", rtgs: "", cefr: null, freq: 142, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "อันนี้", es: "an níi", spanish: "este (clasificador), en: "this one (classifier)" },
+    phrase: { thai: "อันนี้", es: "an níi", spanish: "este (clasificador)", en: "this one (classifier)" },
     question: { thai: "อันคือใคร", es: "?an khuu khrai", spanish: "¿Quién es clasificador?" },
     answer: { thai: "อัน", es: "?an", spanish: "clasificador" }
   },
@@ -1155,7 +1155,7 @@ var TOP1000_WORDS = [
   {
     rank: 165, thai: "ตัวเอง", es: "dtua-eeŋ", spanish: "uno mismo", english: "oneself", rtgs: "", cefr: null, freq: 165, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "ดูแลตัวเอง", es: "duu-lɛɛ dtua-een", spanish: "cuidar de uno mismo, en: "take care of oneself" },
+    phrase: { thai: "ดูแลตัวเอง", es: "duu-lɛɛ dtua-een", spanish: "cuidar de uno mismo", en: "take care of oneself" },
     question: { thai: "ตัวเองคือใคร", es: "dtua-eeŋ khuu khrai", spanish: "¿Quién es uno mismo?" },
     answer: { thai: "ตัวเอง", es: "dtua-eeŋ", spanish: "uno mismo" }
   },
@@ -1176,7 +1176,7 @@ var TOP1000_WORDS = [
   {
     rank: 168, thai: "พวก", es: "phûak", spanish: "grupo", english: "group", rtgs: "", cefr: null, freq: 168, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "พวกเรา", es: "phûak rao", spanish: "nosotros, en: "we (group)" },
+    phrase: { thai: "พวกเรา", es: "phûak rao", spanish: "nosotros", en: "we (group)" },
     question: { thai: "พวกคือใคร", es: "phûak khuu khrai", spanish: "¿Quién es grupo?" },
     answer: { thai: "พวก", es: "phûak", spanish: "grupo" }
   },
@@ -1190,7 +1190,7 @@ var TOP1000_WORDS = [
   {
     rank: 170, thai: "ครับ", es: "khráp", spanish: "sí (cortesía masc.)", english: "polite particle", rtgs: "", cefr: null, freq: 170, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "ครับ ผมชื่อสมชาย", es: "khráp, phǒm chûue sǒm-chaai", spanish: "sí, me llamo Somchai, en: "yes, my name is Somchai" },
+    phrase: { thai: "ครับ ผมชื่อสมชาย", es: "khráp, phǒm chûue sǒm-chaai", spanish: "sí, me llamo Somchai", en: "yes, my name is Somchai" },
     question: { thai: "ครับ", es: "khráp", spanish: "sí (cortesía masc.)" },
     answer: { thai: "ครับ", es: "khráp", spanish: "sí (cortesía masc.)" }
   },
@@ -1302,7 +1302,7 @@ var TOP1000_WORDS = [
   {
     rank: 186, thai: "ตน", es: "ton", spanish: "uno mismo (formal)", english: "self", rtgs: "", cefr: null, freq: 186, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "ตนเอง", es: "ton een", spanish: "uno mismo (formal), en: "oneself (formal)" },
+    phrase: { thai: "ตนเอง", es: "ton een", spanish: "uno mismo (formal)", en: "oneself (formal)" },
     question: { thai: "ตนคือใคร", es: "ton khuu khrai", spanish: "¿Quién es uno mismo (formal)?" },
     answer: { thai: "ตน", es: "ton", spanish: "uno mismo (formal)" }
   },
@@ -1379,7 +1379,7 @@ var TOP1000_WORDS = [
   {
     rank: 197, thai: "ไหน", es: "nǎi", spanish: "cuál / dónde", english: "which", rtgs: "", cefr: null, freq: 197, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "อันไหน", es: "an nǎi", spanish: "¿cuál?, en: "which one?" },
+    phrase: { thai: "อันไหน", es: "an nǎi", spanish: "¿cuál?", en: "which one?" },
     question: { thai: "ไหนคือใคร", es: "nǎi khuu khrai", spanish: "¿Quién es cuál?" },
     answer: { thai: "ไหน", es: "nǎi", spanish: "cuál / dónde" }
   },
@@ -1610,7 +1610,7 @@ var TOP1000_WORDS = [
   {
     rank: 230, thai: "ละ", es: "lá", spanish: "o / dejar", english: "or", rtgs: "", cefr: null, freq: 230, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "แล้วจะทำอย่างไรละ", es: "lɛ́ɛw jà tham yàang-rai lá", spanish: "y entonces, ¿qué harás?, en: "so what will you do?" },
+    phrase: { thai: "แล้วจะทำอย่างไรละ", es: "lɛ́ɛw jà tham yàang-rai lá", spanish: "y entonces, ¿qué harás?", en: "so what will you do?" },
     question: { thai: "ละ", es: "lá", spanish: "o / dejar" },
     answer: { thai: "ละ", es: "lá", spanish: "o / dejar" }
   },
@@ -1680,7 +1680,7 @@ var TOP1000_WORDS = [
   {
     rank: 240, thai: "ล่ะ", es: "lâ", spanish: "¿y? (partícula)", english: "particle", rtgs: "", cefr: null, freq: 240, notes: "",
     category: "expresiones", tone: "f",
-    phrase: { thai: "แล้วเธอล่ะ", es: "lɛ́ɛw thəə lâ", spanish: "¿y tú?, en: "and you?" },
+    phrase: { thai: "แล้วเธอล่ะ", es: "lɛ́ɛw thəə lâ", spanish: "¿y tú?", en: "and you?" },
     question: { thai: "ล่ะ", es: "lâ", spanish: "¿y? (partícula)" },
     answer: { thai: "ล่ะ", es: "lâ", spanish: "¿y? (partícula)" }
   },
@@ -1708,7 +1708,7 @@ var TOP1000_WORDS = [
   {
     rank: 244, thai: "ค่ะ", es: "khâ", spanish: "sí (cortesía fem.)", english: "polite particle", rtgs: "", cefr: null, freq: 244, notes: "",
     category: "expresiones", tone: "f",
-    phrase: { thai: "ค่ะ ดิฉันสบายดี", es: "khâ, dì-chǎn sà-baai-dii", spanish: "sí, estoy bien, en: "yes, I'm fine" },
+    phrase: { thai: "ค่ะ ดิฉันสบายดี", es: "khâ, dì-chǎn sà-baai-dii", spanish: "sí, estoy bien", en: "yes, I'm fine" },
     question: { thai: "ค่ะ", es: "khâ", spanish: "sí (cortesía fem.)" },
     answer: { thai: "ค่ะ", es: "khâ", spanish: "sí (cortesía fem.)" }
   },
@@ -1785,7 +1785,7 @@ var TOP1000_WORDS = [
   {
     rank: 255, thai: "อย่างไร", es: "yàaŋ-rai", spanish: "cómo", english: "how", rtgs: "", cefr: null, freq: 255, notes: "",
     category: "pronombres", tone: "l",
-    phrase: { thai: "เป็นอย่างไร", es: "bpen yàang-rai", spanish: "¿cómo estás?, en: "how are you?" },
+    phrase: { thai: "เป็นอย่างไร", es: "bpen yàang-rai", spanish: "¿cómo estás?", en: "how are you?" },
     question: { thai: "อย่างไรคือใคร", es: "yàaŋ-rai khuu khrai", spanish: "¿Quién es cómo?" },
     answer: { thai: "อย่างไร", es: "yàaŋ-rai", spanish: "cómo" }
   },
@@ -1925,7 +1925,7 @@ var TOP1000_WORDS = [
   {
     rank: 275, thai: "ทำไม", es: "tham-mai", spanish: "por qué", english: "why", rtgs: "", cefr: null, freq: 275, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "ทำไมไม่มา", es: "tham-mai mâi maa", spanish: "¿por qué no vienes?, en: "why don't you come?" },
+    phrase: { thai: "ทำไมไม่มา", es: "tham-mai mâi maa", spanish: "¿por qué no vienes?", en: "why don't you come?" },
     question: { thai: "ทำไมคือใคร", es: "tham-mai khuu khrai", spanish: "¿Quién es por qué?" },
     answer: { thai: "ทำไม", es: "tham-mai", spanish: "por qué" }
   },
@@ -1974,7 +1974,7 @@ var TOP1000_WORDS = [
   {
     rank: 282, thai: "อย่า", es: "yàa", spanish: "no hagas", english: "don't", rtgs: "", cefr: null, freq: 282, notes: "",
     category: "expresiones", tone: "l",
-    phrase: { thai: "อย่าไป!", es: "yàa bpai!", spanish: "¡no vayas!, en: "don't go!" },
+    phrase: { thai: "อย่าไป!", es: "yàa bpai!", spanish: "¡no vayas!", en: "don't go!" },
     question: { thai: "อย่า", es: "yàa", spanish: "no hagas" },
     answer: { thai: "อย่า", es: "yàa", spanish: "no hagas" }
   },
@@ -1988,7 +1988,7 @@ var TOP1000_WORDS = [
   {
     rank: 284, thai: "นั่น", es: "nân", spanish: "eso", english: "that", rtgs: "", cefr: null, freq: 284, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "นั่นคือเพื่อนฉัน", es: "nân khuu phʉ̂an chǎn", spanish: "ese es mi amigo, en: "that is my friend" },
+    phrase: { thai: "นั่นคือเพื่อนฉัน", es: "nân khuu phʉ̂an chǎn", spanish: "ese es mi amigo", en: "that is my friend" },
     question: { thai: "นั่นคือใคร", es: "nân khuu khrai", spanish: "¿Quién es eso?" },
     answer: { thai: "นั่น", es: "nân", spanish: "eso" }
   },
@@ -2002,7 +2002,7 @@ var TOP1000_WORDS = [
   {
     rank: 286, thai: "หรือไม่", es: "rǔɯ-mâi", spanish: "o no", english: "or not", rtgs: "", cefr: null, freq: 286, notes: "",
     category: "expresiones", tone: "r",
-    phrase: { thai: "จะไปหรือไม่", es: "jà bpai rǔɯ-mâi", spanish: "¿vas a ir o no?, en: "will you go or not?" },
+    phrase: { thai: "จะไปหรือไม่", es: "jà bpai rǔɯ-mâi", spanish: "¿vas a ir o no?", en: "will you go or not?" },
     question: { thai: "หรือไม่", es: "rǔɯ-mâi", spanish: "o no" },
     answer: { thai: "หรือไม่", es: "rǔɯ-mâi", spanish: "o no" }
   },
@@ -2191,7 +2191,7 @@ var TOP1000_WORDS = [
   {
     rank: 313, thai: "หรอก", es: "rɔ̀ɔk", spanish: "¡no! (énfasis)", english: "no way", rtgs: "", cefr: null, freq: 313, notes: "",
     category: "expresiones", tone: "l",
-    phrase: { thai: "ไม่เป็นไรหรอก", es: "mâi bpen rai rɔ̀ɔk", spanish: "no te preocupes, en: "never mind" },
+    phrase: { thai: "ไม่เป็นไรหรอก", es: "mâi bpen rai rɔ̀ɔk", spanish: "no te preocupes", en: "never mind" },
     question: { thai: "หรอก", es: "rɔ̀ɔk", spanish: "¡no! (énfasis)" },
     answer: { thai: "หรอก", es: "rɔ̀ɔk", spanish: "¡no! (énfasis)" }
   },
@@ -2219,7 +2219,7 @@ var TOP1000_WORDS = [
   {
     rank: 317, thai: "แก", es: "kɛɛ", spanish: "tú (familiar)", english: "you (casual)", rtgs: "", cefr: null, freq: 317, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "แกจะไปไหม", es: "kɛɛ jà bpai mǎi", spanish: "¿vas a ir?, en: "are you going?" },
+    phrase: { thai: "แกจะไปไหม", es: "kɛɛ jà bpai mǎi", spanish: "¿vas a ir?", en: "are you going?" },
     question: { thai: "แกคือใคร", es: "kɛɛ khuu khrai", spanish: "¿Quién es tú (familiar)?" },
     answer: { thai: "แก", es: "kɛɛ", spanish: "tú (familiar)" }
   },
@@ -2408,7 +2408,7 @@ var TOP1000_WORDS = [
   {
     rank: 344, thai: "ไหม", es: "mǎi", spanish: "¿...o no?", english: "question particle", rtgs: "", cefr: null, freq: 344, notes: "",
     category: "expresiones", tone: "r",
-    phrase: { thai: "ไปไหม", es: "bpai mǎi", spanish: "¿vas?, en: "are you going?" },
+    phrase: { thai: "ไปไหม", es: "bpai mǎi", spanish: "¿vas?", en: "are you going?" },
     question: { thai: "ไหม", es: "mǎi", spanish: "¿...o no?" },
     answer: { thai: "ไหม", es: "mǎi", spanish: "¿...o no?" }
   },
@@ -2499,7 +2499,7 @@ var TOP1000_WORDS = [
   {
     rank: 357, thai: "น่ะ", es: "nà", spanish: "¿vale? (partícula)", english: "particle", rtgs: "", cefr: null, freq: 357, notes: "",
     category: "expresiones", tone: "l",
-    phrase: { thai: "ไปกันน่ะ", es: "bpai gan nà", spanish: "vamos, ¿vale?, en: "let's go, okay?" },
+    phrase: { thai: "ไปกันน่ะ", es: "bpai gan nà", spanish: "vamos, ¿vale?", en: "let's go, okay?" },
     question: { thai: "น่ะ", es: "nà", spanish: "¿vale? (partícula)" },
     answer: { thai: "น่ะ", es: "nà", spanish: "¿vale? (partícula)" }
   },
@@ -2604,7 +2604,7 @@ var TOP1000_WORDS = [
   {
     rank: 372, thai: "เหล่านี้", es: "lào-níi", spanish: "estos", english: "these", rtgs: "", cefr: null, freq: 372, notes: "",
     category: "pronombres", tone: "l",
-    phrase: { thai: "คนเหล่านี้", es: "khon lào-níi", spanish: "estas personas, en: "these people" },
+    phrase: { thai: "คนเหล่านี้", es: "khon lào-níi", spanish: "estas personas", en: "these people" },
     question: { thai: "เหล่านี้คือใคร", es: "lào-níi khuu khrai", spanish: "¿Quién es estos?" },
     answer: { thai: "เหล่านี้", es: "lào-níi", spanish: "estos" }
   },
@@ -2639,7 +2639,7 @@ var TOP1000_WORDS = [
   {
     rank: 377, thai: "สิ", es: "sì", spanish: "¿no es?", english: "particle", rtgs: "", cefr: null, freq: 377, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "ไปสิ!", es: "bpai sì!", spanish: "¡ve!, en: "go!" },
+    phrase: { thai: "ไปสิ!", es: "bpai sì!", spanish: "¡ve!", en: "go!" },
     question: { thai: "สิ", es: "sì", spanish: "¿no es?" },
     answer: { thai: "สิ", es: "sì", spanish: "¿no es?" }
   },
@@ -2751,7 +2751,7 @@ var TOP1000_WORDS = [
   {
     rank: 393, thai: "ไม่ว่า", es: "mâi-wâa", spanish: "sin importar", english: "no matter", rtgs: "", cefr: null, freq: 393, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "ไม่ว่าอย่างไรก็ตาม", es: "mâi wâa yàang-rai gâw-dtaam", spanish: "no importa cómo, en: "no matter what" },
+    phrase: { thai: "ไม่ว่าอย่างไรก็ตาม", es: "mâi wâa yàang-rai gâw-dtaam", spanish: "no importa cómo", en: "no matter what" },
     question: { thai: "ไม่ว่า", es: "mâi-wâa", spanish: "sin importar" },
     answer: { thai: "ไม่ว่า", es: "mâi-wâa", spanish: "sin importar" }
   },
@@ -2933,7 +2933,7 @@ var TOP1000_WORDS = [
   {
     rank: 419, thai: "ไง", es: "ŋai", spanish: "¿cómo? (coloquial)", english: "how", rtgs: "", cefr: null, freq: 419, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "เป็นไง", es: "bpen ngai", spanish: "¿cómo está? (coloquial), en: "how is it? (casual)" },
+    phrase: { thai: "เป็นไง", es: "bpen ngai", spanish: "¿cómo está? (coloquial)", en: "how is it? (casual)" },
     question: { thai: "ไงคือใคร", es: "ŋai khuu khrai", spanish: "¿Quién es ¿cómo? (coloquial)?" },
     answer: { thai: "ไง", es: "ŋai", spanish: "¿cómo? (coloquial)" }
   },
@@ -2975,7 +2975,7 @@ var TOP1000_WORDS = [
   {
     rank: 425, thai: "ยังไง", es: "yaŋ-ŋai", spanish: "cómo (coloquial)", english: "how", rtgs: "", cefr: null, freq: 425, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "เป็นยังไงบ้าง", es: "bpen yang-ngai bâang", spanish: "¿cómo estás? (coloquial), en: "how are you? (casual)" },
+    phrase: { thai: "เป็นยังไงบ้าง", es: "bpen yang-ngai bâang", spanish: "¿cómo estás? (coloquial)", en: "how are you? (casual)" },
     question: { thai: "ยังไงคือใคร", es: "yaŋ-ŋai khuu khrai", spanish: "¿Quién es cómo (coloquial)?" },
     answer: { thai: "ยังไง", es: "yaŋ-ŋai", spanish: "cómo (coloquial)" }
   },
@@ -2989,7 +2989,7 @@ var TOP1000_WORDS = [
   {
     rank: 427, thai: "หล่อน", es: "lɔ̀ɔn", spanish: "ella (literario)", english: "she", rtgs: "", cefr: null, freq: 427, notes: "",
     category: "pronombres", tone: "l",
-    phrase: { thai: "หล่อนสวย", es: "lɔ̀ɔn sǔuai", spanish: "ella es hermosa (literario), en: "she is beautiful (literary)" },
+    phrase: { thai: "หล่อนสวย", es: "lɔ̀ɔn sǔuai", spanish: "ella es hermosa (literario)", en: "she is beautiful (literary)" },
     question: { thai: "หล่อนคือใคร", es: "lɔ̀ɔn khuu khrai", spanish: "¿Quién es ella (literario)?" },
     answer: { thai: "หล่อน", es: "lɔ̀ɔn", spanish: "ella (literario)" }
   },
@@ -3297,7 +3297,7 @@ var TOP1000_WORDS = [
   {
     rank: 471, thai: "เป็นต้น", es: "pen-tôn", spanish: "etcétera", english: "etc.", rtgs: "", cefr: null, freq: 471, notes: "",
     category: "expresiones", tone: "m",
-    phrase: { thai: "ผลไม้ เช่น มะม่วง เป็นต้น", es: "phon-la-mái chên má-mûang pen-tôn", spanish: "frutas, por ejemplo mango, etc., en: "fruits, e.g. mango, etc." },
+    phrase: { thai: "ผลไม้ เช่น มะม่วง เป็นต้น", es: "phon-la-mái chên má-mûang pen-tôn", spanish: "frutas, por ejemplo mango, etc.", en: "fruits, e.g. mango, etc." },
     question: { thai: "เป็นต้น", es: "pen-tôn", spanish: "etcétera" },
     answer: { thai: "เป็นต้น", es: "pen-tôn", spanish: "etcétera" }
   },
@@ -3388,7 +3388,7 @@ var TOP1000_WORDS = [
   {
     rank: 484, thai: "ดิฉัน", es: "dì-chǎn", spanish: "yo (mujer formal)", english: "I (formal female)", rtgs: "", cefr: null, freq: 484, notes: "",
     category: "pronombres", tone: "l",
-    phrase: { thai: "ดิฉันชื่อมาลี", es: "dì-chǎn chûue maa-lii", spanish: "mi nombre es Malí, en: "my name is Mali" },
+    phrase: { thai: "ดิฉันชื่อมาลี", es: "dì-chǎn chûue maa-lii", spanish: "mi nombre es Malí", en: "my name is Mali" },
     question: { thai: "ดิฉันคือใคร", es: "dì-chǎn khuu khrai", spanish: "¿Quién es yo (mujer formal)?" },
     answer: { thai: "ดิฉัน", es: "dì-chǎn", spanish: "yo (mujer formal)" }
   },
@@ -3521,7 +3521,7 @@ var TOP1000_WORDS = [
   {
     rank: 503, thai: "ไอ้", es: "âai", spanish: "prefijo despectivo", english: "derogatory prefix", rtgs: "", cefr: null, freq: 503, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "ไอ้คนนั่น", es: "âai khon nân", spanish: "ese tipo (despectivo), en: "that guy (derogatory)" },
+    phrase: { thai: "ไอ้คนนั่น", es: "âai khon nân", spanish: "ese tipo (despectivo)", en: "that guy (derogatory)" },
     question: { thai: "ไอ้ไหม", es: "âai mǎi", spanish: "¿prefijo despectivo?" },
     answer: { thai: "ไอ้", es: "âai", spanish: "prefijo despectivo" }
   },
@@ -3549,7 +3549,7 @@ var TOP1000_WORDS = [
   {
     rank: 507, thai: "ยังคง", es: "yang-khong", spanish: "todavía/aún", english: "still", rtgs: "", cefr: null, freq: 507, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ยังคงรออยู่", es: "yang-khong rɔɔ yùu", spanish: "todavía está esperando, en: "still waiting" },
+    phrase: { thai: "ยังคงรออยู่", es: "yang-khong rɔɔ yùu", spanish: "todavía está esperando", en: "still waiting" },
     question: { thai: "ยังคงไหม", es: "yang-khong mǎi", spanish: "¿todavía/aún?" },
     answer: { thai: "ยังคง", es: "yang-khong", spanish: "todavía/aún" }
   },
@@ -3612,14 +3612,14 @@ var TOP1000_WORDS = [
   {
     rank: 516, thai: "ใกล้", es: "glâi", spanish: "cerca", english: "near", rtgs: "", cefr: null, freq: 516, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ใกล้บ้าน", es: "glâi bâan", spanish: "cerca de casa, en: "near home" },
+    phrase: { thai: "ใกล้บ้าน", es: "glâi bâan", spanish: "cerca de casa", en: "near home" },
     question: { thai: "ใกล้ไหม", es: "glâi mǎi", spanish: "¿cerca?" },
     answer: { thai: "ใกล้", es: "glâi", spanish: "cerca" }
   },
   {
     rank: 517, thai: "ก่อน", es: "gòon", spanish: "antes", english: "before", rtgs: "", cefr: null, freq: 517, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ก่อนนอน", es: "gòon non", spanish: "antes de dormir, en: "before sleeping" },
+    phrase: { thai: "ก่อนนอน", es: "gòon non", spanish: "antes de dormir", en: "before sleeping" },
     question: { thai: "ก่อนไหม", es: "gòon mǎi", spanish: "¿antes?" },
     answer: { thai: "ก่อน", es: "gòon", spanish: "antes" }
   },
@@ -3633,14 +3633,14 @@ var TOP1000_WORDS = [
   {
     rank: 519, thai: "เช่น", es: "chên", spanish: "como/tal como", english: "such as", rtgs: "", cefr: null, freq: 519, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "เช่นเดียวกัน", es: "chên diao gan", spanish: "de la misma manera, en: "likewise / the same" },
+    phrase: { thai: "เช่นเดียวกัน", es: "chên diao gan", spanish: "de la misma manera", en: "likewise / the same" },
     question: { thai: "เช่นไหม", es: "chên mǎi", spanish: "¿como/tal como?" },
     answer: { thai: "เช่น", es: "chên", spanish: "como/tal como" }
   },
   {
     rank: 520, thai: "อย่าง", es: "yàang", spanish: "manera", english: "way", rtgs: "", cefr: null, freq: 520, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "อย่างรวดเร็ว", es: "yàang rûat-reo", spanish: "de manera rápida, en: "in a quick way" },
+    phrase: { thai: "อย่างรวดเร็ว", es: "yàang rûat-reo", spanish: "de manera rápida", en: "in a quick way" },
     question: { thai: "อย่างไหม", es: "yàang mǎi", spanish: "¿manera?" },
     answer: { thai: "อย่าง", es: "yàang", spanish: "manera" }
   },
@@ -3654,14 +3654,14 @@ var TOP1000_WORDS = [
   {
     rank: 522, thai: "ทั้งหมด", es: "tháng-mòt", spanish: "todo/entero", english: "all", rtgs: "", cefr: null, freq: 522, notes: "",
     category: "expresiones", tone: "h",
-    phrase: { thai: "ทั้งหมดนี้", es: "tháng-mòt níi", spanish: "todo esto, en: "all of this" },
+    phrase: { thai: "ทั้งหมดนี้", es: "tháng-mòt níi", spanish: "todo esto", en: "all of this" },
     question: { thai: "ทั้งหมดไหม", es: "tháng-mòt mǎi", spanish: "¿todo/entero?" },
     answer: { thai: "ทั้งหมด", es: "tháng-mòt", spanish: "todo/entero" }
   },
   {
     rank: 523, thai: "หนึ่ง", es: "nùeng", spanish: "uno", english: "one", rtgs: "", cefr: null, freq: 523, notes: "",
     category: "números", tone: "l",
-    phrase: { thai: "หนึ่งคน", es: "nùeng khon", spanish: "una persona, en: "one person" },
+    phrase: { thai: "หนึ่งคน", es: "nùeng khon", spanish: "una persona", en: "one person" },
     question: { thai: "หนึ่งไหม", es: "nùeng mǎi", spanish: "¿uno?" },
     answer: { thai: "หนึ่ง", es: "nùeng", spanish: "uno" }
   },
@@ -3682,7 +3682,7 @@ var TOP1000_WORDS = [
   {
     rank: 526, thai: "ใช่", es: "châi", spanish: "sí (confirmación)", english: "yes", rtgs: "", cefr: null, freq: 526, notes: "",
     category: "expresiones", tone: "f",
-    phrase: { thai: "ใช่แล้ว!", es: "châi lɛ́ɛw!", spanish: "¡así es!, en: "that's right!" },
+    phrase: { thai: "ใช่แล้ว!", es: "châi lɛ́ɛw!", spanish: "¡así es!", en: "that's right!" },
     question: { thai: "ใช่ไหม", es: "châi mǎi", spanish: "¿sí (confirmación)?" },
     answer: { thai: "ใช่", es: "châi", spanish: "sí (confirmación)" }
   },
@@ -3696,14 +3696,14 @@ var TOP1000_WORDS = [
   {
     rank: 528, thai: "เมื่อ", es: "mûea", spanish: "cuando", english: "when", rtgs: "", cefr: null, freq: 528, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "เมื่อวานซืน", es: "mûea waan sǔen", spanish: "ayer, en: "yesterday" },
+    phrase: { thai: "เมื่อวานซืน", es: "mûea waan sǔen", spanish: "ayer", en: "yesterday" },
     question: { thai: "เมื่อไหม", es: "mûea mǎi", spanish: "¿cuando?" },
     answer: { thai: "เมื่อ", es: "mûea", spanish: "cuando" }
   },
   {
     rank: 529, thai: "เพราะ", es: "phrɔ́", spanish: "porque", english: "because", rtgs: "", cefr: null, freq: 529, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "เพราะฝนตก", es: "phrɔ fǒn dtòk", spanish: "porque llueve, en: "because it rains" },
+    phrase: { thai: "เพราะฝนตก", es: "phrɔ fǒn dtòk", spanish: "porque llueve", en: "because it rains" },
     question: { thai: "เพราะไหม", es: "phrɔ́ mǎi", spanish: "¿porque?" },
     answer: { thai: "เพราะ", es: "phrɔ́", spanish: "porque" }
   },
@@ -3717,7 +3717,7 @@ var TOP1000_WORDS = [
   {
     rank: 531, thai: "กว่า", es: "kwàa", spanish: "más que", english: "more than", rtgs: "", cefr: null, freq: 531, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "ดีกว่า", es: "dii kwàa", spanish: "mejor que, en: "better than" },
+    phrase: { thai: "ดีกว่า", es: "dii kwàa", spanish: "mejor que", en: "better than" },
     question: { thai: "กว่าไหม", es: "kwàa mǎi", spanish: "¿más que?" },
     answer: { thai: "กว่า", es: "kwàa", spanish: "más que" }
   },
@@ -3745,7 +3745,7 @@ var TOP1000_WORDS = [
   {
     rank: 535, thai: "ใต้", es: "dtâai", spanish: "debajo", english: "under", rtgs: "", cefr: null, freq: 535, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ใต้โต๊ะ", es: "dtâai tó", spanish: "debajo de la mesa, en: "under the table" },
+    phrase: { thai: "ใต้โต๊ะ", es: "dtâai tó", spanish: "debajo de la mesa", en: "under the table" },
     question: { thai: "ใต้ไหม", es: "dtâai mǎi", spanish: "¿debajo?" },
     answer: { thai: "ใต้", es: "dtâai", spanish: "debajo" }
   },
@@ -3759,21 +3759,21 @@ var TOP1000_WORDS = [
   {
     rank: 537, thai: "ภายใต้", es: "phaai-dtâai", spanish: "debajo de", english: "under", rtgs: "", cefr: null, freq: 537, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ภายใต้น้ำ", es: "phaai-dtâai nám", spanish: "bajo el agua, en: "under water" },
+    phrase: { thai: "ภายใต้น้ำ", es: "phaai-dtâai nám", spanish: "bajo el agua", en: "under water" },
     question: { thai: "ภายใต้ไหม", es: "phaai-dtâai mǎi", spanish: "¿debajo de?" },
     answer: { thai: "ภายใต้", es: "phaai-dtâai", spanish: "debajo de" }
   },
   {
     rank: 538, thai: "มาก", es: "mâak", spanish: "muy/mucho", english: "very/much", rtgs: "", cefr: null, freq: 538, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "อร่อยมาก", es: "a-ròi mâak", spanish: "muy delicioso, en: "very delicious" },
+    phrase: { thai: "อร่อยมาก", es: "a-ròi mâak", spanish: "muy delicioso", en: "very delicious" },
     question: { thai: "มากไหม", es: "mâak mǎi", spanish: "¿muy/mucho?" },
     answer: { thai: "มาก", es: "mâak", spanish: "muy/mucho" }
   },
   {
     rank: 539, thai: "จาก", es: "jàak", spanish: "de/desde", english: "from", rtgs: "", cefr: null, freq: 539, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "จากกรุงเทพ", es: "jàak grung-thêep", spanish: "desde Bangkok, en: "from Bangkok" },
+    phrase: { thai: "จากกรุงเทพ", es: "jàak grung-thêep", spanish: "desde Bangkok", en: "from Bangkok" },
     question: { thai: "จากไหม", es: "jàak mǎi", spanish: "¿de/desde?" },
     answer: { thai: "จาก", es: "jàak", spanish: "de/desde" }
   },
@@ -3794,7 +3794,7 @@ var TOP1000_WORDS = [
   {
     rank: 542, thai: "เพื่อ", es: "pêua", spanish: "para", english: "for", rtgs: "", cefr: null, freq: 542, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "เพื่อคุณ", es: "pêua khun", spanish: "para ti, en: "for you" },
+    phrase: { thai: "เพื่อคุณ", es: "pêua khun", spanish: "para ti", en: "for you" },
     question: { thai: "เพื่อไหม", es: "pêua mǎi", spanish: "¿para?" },
     answer: { thai: "เพื่อ", es: "pêua", spanish: "para" }
   },
@@ -3829,14 +3829,14 @@ var TOP1000_WORDS = [
   {
     rank: 547, thai: "กับ", es: "gàp", spanish: "con/y", english: "with/and", rtgs: "", cefr: null, freq: 547, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "กับฉัน", es: "gàp chǎn", spanish: "conmigo, en: "with me" },
+    phrase: { thai: "กับฉัน", es: "gàp chǎn", spanish: "conmigo", en: "with me" },
     question: { thai: "กับไหม", es: "gàp mǎi", spanish: "¿con/y?" },
     answer: { thai: "กับ", es: "gàp", spanish: "con/y" }
   },
   {
     rank: 548, thai: "หรือ", es: "rǐeu", spanish: "o", english: "or", rtgs: "", cefr: null, freq: 548, notes: "",
     category: "adverbios", tone: "r",
-    phrase: { thai: "ชาหรือกาแฟ", es: "chaa rǐeu gaa-fae", spanish: "¿té o café?, en: "tea or coffee?" },
+    phrase: { thai: "ชาหรือกาแฟ", es: "chaa rǐeu gaa-fae", spanish: "¿té o café?", en: "tea or coffee?" },
     question: { thai: "หรือไหม", es: "rǐeu mǎi", spanish: "¿o?" },
     answer: { thai: "หรือ", es: "rǐeu", spanish: "o" }
   },
@@ -3850,7 +3850,7 @@ var TOP1000_WORDS = [
   {
     rank: 550, thai: "ครั้ง", es: "kráng", spanish: "vez", english: "time/occasion", rtgs: "", cefr: null, freq: 550, notes: "",
     category: "clasificadores", tone: "m",
-    phrase: { thai: "สองครั้ง", es: "sǎawng kráng", spanish: "dos veces, en: "two times" },
+    phrase: { thai: "สองครั้ง", es: "sǎawng kráng", spanish: "dos veces", en: "two times" },
     question: { thai: "ครั้งไหม", es: "kráng mǎi", spanish: "¿vez?" },
     answer: { thai: "ครั้ง", es: "kráng", spanish: "vez" }
   },
@@ -3885,7 +3885,7 @@ var TOP1000_WORDS = [
   {
     rank: 555, thai: "เคย", es: "khooei", spanish: "soler/haber", english: "ever", rtgs: "", cefr: null, freq: 555, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "เคยไปเชียงใหม่", es: "khooei bpai chiang-mài", spanish: "haber ido a Chiang Mai, en: "have been to Chiang Mai" },
+    phrase: { thai: "เคยไปเชียงใหม่", es: "khooei bpai chiang-mài", spanish: "haber ido a Chiang Mai", en: "have been to Chiang Mai" },
     question: { thai: "เคยไหม", es: "khooei mǎi", spanish: "¿soler/haber?" },
     answer: { thai: "เคย", es: "khooei", spanish: "soler/haber" }
   },
@@ -3899,7 +3899,7 @@ var TOP1000_WORDS = [
   {
     rank: 557, thai: "เลย", es: "looei", spanish: "en absoluto/entonces", english: "at all/then", rtgs: "", cefr: null, freq: 557, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ไม่เลย", es: "mâi looei", spanish: "en absoluto, en: "not at all" },
+    phrase: { thai: "ไม่เลย", es: "mâi looei", spanish: "en absoluto", en: "not at all" },
     question: { thai: "เลยไหม", es: "looei mǎi", spanish: "¿en absoluto/entonces?" },
     answer: { thai: "เลย", es: "looei", spanish: "en absoluto/entonces" }
   },
@@ -3913,14 +3913,14 @@ var TOP1000_WORDS = [
   {
     rank: 559, thai: "เสมอ", es: "sà-mǒeo", spanish: "siempre", english: "always", rtgs: "", cefr: null, freq: 559, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "รักกันเสมอ", es: "rák gan sà-mǒeo", spanish: "amarse siempre, en: "always love each other" },
+    phrase: { thai: "รักกันเสมอ", es: "rák gan sà-mǒeo", spanish: "amarse siempre", en: "always love each other" },
     question: { thai: "เสมอไหม", es: "sà-mǒeo mǎi", spanish: "¿siempre?" },
     answer: { thai: "เสมอ", es: "sà-mǒeo", spanish: "siempre" }
   },
   {
     rank: 560, thai: "เกี่ยวกับ", es: "gìao-gàp", spanish: "sobre", english: "about", rtgs: "", cefr: null, freq: 560, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "เรื่องเกี่ยวกับการงาน", es: "rʉ̂aŋ gìao-gàp gaan-ngaam", spanish: "asunto sobre el trabajo, en: "matter about work" },
+    phrase: { thai: "เรื่องเกี่ยวกับการงาน", es: "rʉ̂aŋ gìao-gàp gaan-ngaam", spanish: "asunto sobre el trabajo", en: "matter about work" },
     question: { thai: "เกี่ยวกับไหม", es: "gìao-gàp mǎi", spanish: "¿sobre?" },
     answer: { thai: "เกี่ยวกับ", es: "gìao-gàp", spanish: "sobre" }
   },
@@ -3955,7 +3955,7 @@ var TOP1000_WORDS = [
   {
     rank: 565, thai: "หรอก", es: "rǎwk", spanish: "partícula (negación)", english: "particle", rtgs: "", cefr: null, freq: 565, notes: "",
     category: "expresiones", tone: "l",
-    phrase: { thai: "ไม่สนใจหรอก", es: "mâi sǒn-jai rǎwk", spanish: "no me importa, en: "I don't care" },
+    phrase: { thai: "ไม่สนใจหรอก", es: "mâi sǒn-jai rǎwk", spanish: "no me importa", en: "I don't care" },
     question: { thai: "หรอกไหม", es: "rǎwk mǎi", spanish: "¿partícula (negación)?" },
     answer: { thai: "หรอก", es: "rǎwk", spanish: "partícula (negación)" }
   },
@@ -3969,14 +3969,14 @@ var TOP1000_WORDS = [
   {
     rank: 567, thai: "คุณ", es: "khun", spanish: "tú/bueno", english: "you/good", rtgs: "", cefr: null, freq: 567, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "คุณชื่ออะไร", es: "khun chûue à-rai", spanish: "¿cómo te llamas?, en: "what is your name?" },
+    phrase: { thai: "คุณชื่ออะไร", es: "khun chûue à-rai", spanish: "¿cómo te llamas?", en: "what is your name?" },
     question: { thai: "คุณไหม", es: "khun mǎi", spanish: "¿tú/bueno?" },
     answer: { thai: "คุณ", es: "khun", spanish: "tú/bueno" }
   },
   {
     rank: 568, thai: "เรา", es: "rao", spanish: "nosotros", english: "we", rtgs: "", cefr: null, freq: 568, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "เราเป็นเพื่อน", es: "rao bpen phʉ̂an", spanish: "somos amigos, en: "we are friends" },
+    phrase: { thai: "เราเป็นเพื่อน", es: "rao bpen phʉ̂an", spanish: "somos amigos", en: "we are friends" },
     question: { thai: "เราไหม", es: "rao mǎi", spanish: "¿nosotros?" },
     answer: { thai: "เรา", es: "rao", spanish: "nosotros" }
   },
@@ -3990,42 +3990,42 @@ var TOP1000_WORDS = [
   {
     rank: 570, thai: "ใคร", es: "khrai", spanish: "quién", english: "who", rtgs: "", cefr: null, freq: 570, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "ใครมา", es: "khrai maa", spanish: "¿quién vino?, en: "who came?" },
+    phrase: { thai: "ใครมา", es: "khrai maa", spanish: "¿quién vino?", en: "who came?" },
     question: { thai: "ใครไหม", es: "khrai mǎi", spanish: "¿quién?" },
     answer: { thai: "ใคร", es: "khrai", spanish: "quién" }
   },
   {
     rank: 571, thai: "อะไร", es: "a-rai", spanish: "qué", english: "what", rtgs: "", cefr: null, freq: 571, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "นี่อะไร", es: "nîi à-rai", spanish: "¿qué es esto?, en: "what is this?" },
+    phrase: { thai: "นี่อะไร", es: "nîi à-rai", spanish: "¿qué es esto?", en: "what is this?" },
     question: { thai: "อะไรไหม", es: "a-rai mǎi", spanish: "¿qué?" },
     answer: { thai: "อะไร", es: "a-rai", spanish: "qué" }
   },
   {
     rank: 572, thai: "ที่ไหน", es: "thîi-nǎi", spanish: "dónde", english: "where", rtgs: "", cefr: null, freq: 572, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "อยู่ที่ไหน", es: "yùu thîi nǎi", spanish: "¿dónde está?, en: "where is it?" },
+    phrase: { thai: "อยู่ที่ไหน", es: "yùu thîi nǎi", spanish: "¿dónde está?", en: "where is it?" },
     question: { thai: "ที่ไหนไหม", es: "thîi-nǎi mǎi", spanish: "¿dónde?" },
     answer: { thai: "ที่ไหน", es: "thîi-nǎi", spanish: "dónde" }
   },
   {
     rank: 573, thai: "เมื่อไหร่", es: "mûea-rài", spanish: "cuándo", english: "when", rtgs: "", cefr: null, freq: 573, notes: "",
     category: "pronombres", tone: "h",
-    phrase: { thai: "เมื่อไหร่จะไป", es: "mûea-rài jà bpai", spanish: "¿cuándo vas a ir?, en: "when will you go?" },
+    phrase: { thai: "เมื่อไหร่จะไป", es: "mûea-rài jà bpai", spanish: "¿cuándo vas a ir?", en: "when will you go?" },
     question: { thai: "เมื่อไหร่ไหม", es: "mûea-rài mǎi", spanish: "¿cuándo?" },
     answer: { thai: "เมื่อไหร่", es: "mûea-rài", spanish: "cuándo" }
   },
   {
     rank: 574, thai: "อย่างไร", es: "yàang-rai", spanish: "cómo", english: "how", rtgs: "", cefr: null, freq: 574, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "ทำอย่างไรดี", es: "tham yàang-rai dii", spanish: "¿qué hacer?, en: "what should we do?" },
+    phrase: { thai: "ทำอย่างไรดี", es: "tham yàang-rai dii", spanish: "¿qué hacer?", en: "what should we do?" },
     question: { thai: "อย่างไรไหม", es: "yàang-rai mǎi", spanish: "¿cómo?" },
     answer: { thai: "อย่างไร", es: "yàang-rai", spanish: "cómo" }
   },
   {
     rank: 575, thai: "กี่", es: "kìi", spanish: "cuántos", english: "how many", rtgs: "", cefr: null, freq: 575, notes: "",
     category: "pronombres", tone: "f",
-    phrase: { thai: "กี่คน", es: "kìi khon", spanish: "¿cuántas personas?, en: "how many people?" },
+    phrase: { thai: "กี่คน", es: "kìi khon", spanish: "¿cuántas personas?", en: "how many people?" },
     question: { thai: "กี่ไหม", es: "kìi mǎi", spanish: "¿cuántos?" },
     answer: { thai: "กี่", es: "kìi", spanish: "cuántos" }
   },
@@ -4039,14 +4039,14 @@ var TOP1000_WORDS = [
   {
     rank: 577, thai: "ฉัน", es: "chǎn", spanish: "yo (mujer)/comer", english: "I (female)", rtgs: "", cefr: null, freq: 577, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "ฉันหิว", es: "chǎn hǐu", spanish: "tengo hambre, en: "I am hungry" },
+    phrase: { thai: "ฉันหิว", es: "chǎn hǐu", spanish: "tengo hambre", en: "I am hungry" },
     question: { thai: "ฉันไหม", es: "chǎn mǎi", spanish: "¿yo (mujer)/comer?" },
     answer: { thai: "ฉัน", es: "chǎn", spanish: "yo (mujer)/comer" }
   },
   {
     rank: 578, thai: "เขา", es: "khǎo", spanish: "él/ella/ellos", english: "he/she/they", rtgs: "", cefr: null, freq: 578, notes: "",
     category: "pronombres", tone: "r",
-    phrase: { thai: "เขากำลังกิน", es: "khǎo gam-lang gin", spanish: "él está comiendo, en: "he is eating" },
+    phrase: { thai: "เขากำลังกิน", es: "khǎo gam-lang gin", spanish: "él está comiendo", en: "he is eating" },
     question: { thai: "เขาไหม", es: "khǎo mǎi", spanish: "¿él/ella/ellos?" },
     answer: { thai: "เขา", es: "khǎo", spanish: "él/ella/ellos" }
   },
@@ -4060,7 +4060,7 @@ var TOP1000_WORDS = [
   {
     rank: 580, thai: "เธอ", es: "thooe", spanish: "ella/tú", english: "she/you", rtgs: "", cefr: null, freq: 580, notes: "",
     category: "pronombres", tone: "m",
-    phrase: { thai: "เธอน่ารัก", es: "thooe nâa-rák", spanish: "tú eres linda, en: "you are cute" },
+    phrase: { thai: "เธอน่ารัก", es: "thooe nâa-rák", spanish: "tú eres linda", en: "you are cute" },
     question: { thai: "เธอไหม", es: "thooe mǎi", spanish: "¿ella/tú?" },
     answer: { thai: "เธอ", es: "thooe", spanish: "ella/tú" }
   },
@@ -5355,14 +5355,14 @@ var TOP1000_WORDS = [
   {
     rank: 765, thai: "เร็ว", es: "reo", spanish: "rápido", english: "fast", rtgs: "", cefr: null, freq: 765, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "เดินเร็ว", es: "dooen reo", spanish: "caminar rápido, en: "walk fast" },
+    phrase: { thai: "เดินเร็ว", es: "dooen reo", spanish: "caminar rápido", en: "walk fast" },
     question: { thai: "เร็วไหม", es: "reo mǎi", spanish: "¿rápido?" },
     answer: { thai: "เร็ว", es: "reo", spanish: "rápido" }
   },
   {
     rank: 766, thai: "ช้า", es: "cháa", spanish: "despacio", english: "slowly", rtgs: "", cefr: null, freq: 766, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "พูดช้า", es: "phûut cháa", spanish: "hablar despacio, en: "speak slowly" },
+    phrase: { thai: "พูดช้า", es: "phûut cháa", spanish: "hablar despacio", en: "speak slowly" },
     question: { thai: "ช้าไหม", es: "cháa mǎi", spanish: "¿despacio?" },
     answer: { thai: "ช้า", es: "cháa", spanish: "despacio" }
   },
@@ -5635,7 +5635,7 @@ var TOP1000_WORDS = [
   {
     rank: 805, thai: "จน", es: "jon", spanish: "hasta", english: "until", rtgs: "", cefr: null, freq: 805, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ทำงานจนเช้า", es: "tham ngaan jon cháo", spanish: "trabajar hasta la mañana, en: "work until morning" },
+    phrase: { thai: "ทำงานจนเช้า", es: "tham ngaan jon cháo", spanish: "trabajar hasta la mañana", en: "work until morning" },
     question: { thai: "จนไหม", es: "jon mǎi", spanish: "¿hasta?" },
     answer: { thai: "จน", es: "jon", spanish: "hasta" }
   },
@@ -5852,7 +5852,7 @@ var TOP1000_WORDS = [
   {
     rank: 836, thai: "ทุกวัน", es: "thúk-wan", spanish: "cada día", english: "every day", rtgs: "", cefr: null, freq: 836, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "ออกกำลังกายทุกวัน", es: "ɔ̀ɔk gam-lang-kaai thúk-wan", spanish: "hacer ejercicio cada día, en: "exercise every day" },
+    phrase: { thai: "ออกกำลังกายทุกวัน", es: "ɔ̀ɔk gam-lang-kaai thúk-wan", spanish: "hacer ejercicio cada día", en: "exercise every day" },
     question: { thai: "ทุกวันไหม", es: "thúk-wan mǎi", spanish: "¿cada día?" },
     answer: { thai: "ทุกวัน", es: "thúk-wan", spanish: "cada día" }
   },
@@ -5971,336 +5971,336 @@ var TOP1000_WORDS = [
   {
     rank: 853, thai: "ตอนนี้", es: "dton-níi", spanish: "ahora", english: "now", rtgs: "", cefr: null, freq: 853, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ตอนนี้ไม่ว่าง", es: "dton-níi mâi wàang", spanish: "ahora estoy ocupado, en: "now I'm busy" },
+    phrase: { thai: "ตอนนี้ไม่ว่าง", es: "dton-níi mâi wàang", spanish: "ahora estoy ocupado", en: "now I'm busy" },
     question: { thai: "ตอนนี้ไหม", es: "dton-níi mǎi", spanish: "¿ahora?" },
     answer: { thai: "ตอนนี้", es: "dton-níi", spanish: "ahora" }
   },
   {
     rank: 854, thai: "เดี๋ยวนี้", es: "dǐao-níi", spanish: "ahora mismo", english: "right now", rtgs: "", cefr: null, freq: 854, notes: "",
     category: "adverbios", tone: "r",
-    phrase: { thai: "ต้องไปเดี๋ยวนี้", es: "dtɔ̂ɔŋ bpai dǐao-níi", spanish: "tengo que ir ahora mismo, en: "I must go right now" },
+    phrase: { thai: "ต้องไปเดี๋ยวนี้", es: "dtɔ̂ɔŋ bpai dǐao-níi", spanish: "tengo que ir ahora mismo", en: "I must go right now" },
     question: { thai: "เดี๋ยวนี้ไหม", es: "dǐao-níi mǎi", spanish: "¿ahora mismo?" },
     answer: { thai: "เดี๋ยวนี้", es: "dǐao-níi", spanish: "ahora mismo" }
   },
   {
     rank: 855, thai: "เร็วๆ นี้", es: "reo-reo-níi", spanish: "pronto", english: "soon", rtgs: "", cefr: null, freq: 855, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "เร็วๆ นี้จะไป", es: "reo-reo níi jà bpai", spanish: "iré pronto, en: "I'll go soon" },
+    phrase: { thai: "เร็วๆ นี้จะไป", es: "reo-reo níi jà bpai", spanish: "iré pronto", en: "I'll go soon" },
     question: { thai: "เร็วๆ นี้ไหม", es: "reo-reo-níi mǎi", spanish: "¿pronto?" },
     answer: { thai: "เร็วๆ นี้", es: "reo-reo-níi", spanish: "pronto" }
   },
   {
     rank: 856, thai: "ก่อนหน้า", es: "gòon-nǎa", spanish: "anterior", english: "previous", rtgs: "", cefr: null, freq: 856, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "สัปดาห์ก่อนหน้า", es: "sàp-daa gòon-nǎa", spanish: "la semana pasada, en: "last week" },
+    phrase: { thai: "สัปดาห์ก่อนหน้า", es: "sàp-daa gòon-nǎa", spanish: "la semana pasada", en: "last week" },
     question: { thai: "ก่อนหน้าไหม", es: "gòon-nǎa mǎi", spanish: "¿anterior?" },
     answer: { thai: "ก่อนหน้า", es: "gòon-nǎa", spanish: "anterior" }
   },
   {
     rank: 857, thai: "ภายหลัง", es: "phaai-lǎng", spanish: "después", english: "afterwards", rtgs: "", cefr: null, freq: 857, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ภายหลังจะบอก", es: "phaai-lǎng jà bɔ̀ɔk", spanish: "te lo diré después, en: "I'll tell you later" },
+    phrase: { thai: "ภายหลังจะบอก", es: "phaai-lǎng jà bɔ̀ɔk", spanish: "te lo diré después", en: "I'll tell you later" },
     question: { thai: "ภายหลังไหม", es: "phaai-lǎng mǎi", spanish: "¿después?" },
     answer: { thai: "ภายหลัง", es: "phaai-lǎng", spanish: "después" }
   },
   {
     rank: 858, thai: "ในที่สุด", es: "nai-thîi-sùt", spanish: "finalmente", english: "finally", rtgs: "", cefr: null, freq: 858, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "ในที่สุดก็ชนะ", es: "nai thîi-sùt gâ chá-ná", spanish: "finalmente ganó, en: "finally won" },
+    phrase: { thai: "ในที่สุดก็ชนะ", es: "nai thîi-sùt gâ chá-ná", spanish: "finalmente ganó", en: "finally won" },
     question: { thai: "ในที่สุดไหม", es: "nai-thîi-sùt mǎi", spanish: "¿finalmente?" },
     answer: { thai: "ในที่สุด", es: "nai-thîi-sùt", spanish: "finalmente" }
   },
   {
     rank: 859, thai: "ตั้งแต่", es: "dtàng-dtàae", spanish: "desde", english: "since", rtgs: "", cefr: null, freq: 859, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "ตั้งแต่เมื่อวาน", es: "dtàng-dtàae mûea waan", spanish: "desde ayer, en: "since yesterday" },
+    phrase: { thai: "ตั้งแต่เมื่อวาน", es: "dtàng-dtàae mûea waan", spanish: "desde ayer", en: "since yesterday" },
     question: { thai: "ตั้งแต่ไหม", es: "dtàng-dtàae mǎi", spanish: "¿desde?" },
     answer: { thai: "ตั้งแต่", es: "dtàng-dtàae", spanish: "desde" }
   },
   {
     rank: 860, thai: "จนกระทั่ง", es: "jon-grà-thùang", spanish: "hasta", english: "until", rtgs: "", cefr: null, freq: 860, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "รอจนกระทั่งพรุ่งนี้", es: "rɔɔ jon-grà-thùang prùng-níi", spanish: "esperar hasta mañana, en: "wait until tomorrow" },
+    phrase: { thai: "รอจนกระทั่งพรุ่งนี้", es: "rɔɔ jon-grà-thùang prùng-níi", spanish: "esperar hasta mañana", en: "wait until tomorrow" },
     question: { thai: "จนกระทั่งไหม", es: "jon-grà-thùang mǎi", spanish: "¿hasta?" },
     answer: { thai: "จนกระทั่ง", es: "jon-grà-thùang", spanish: "hasta" }
   },
   {
     rank: 861, thai: "ระหว่าง", es: "rá-wàang", spanish: "entre/durante", english: "between/during", rtgs: "", cefr: null, freq: 861, notes: "",
     category: "adverbios", tone: "r",
-    phrase: { thai: "ระหว่างทำงาน", es: "rá-wàang tham ngaan", spanish: "durante el trabajo, en: "during work" },
+    phrase: { thai: "ระหว่างทำงาน", es: "rá-wàang tham ngaan", spanish: "durante el trabajo", en: "during work" },
     question: { thai: "ระหว่างไหม", es: "rá-wàang mǎi", spanish: "¿entre/durante?" },
     answer: { thai: "ระหว่าง", es: "rá-wàang", spanish: "entre/durante" }
   },
   {
     rank: 862, thai: "ขณะ", es: "khà-ná", spanish: "mientras", english: "while", rtgs: "", cefr: null, freq: 862, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "ขณะนี้ฝนตก", es: "khà-ná níi fǒn dtòk", spanish: "en este momento llueve, en: "at the moment it's raining" },
+    phrase: { thai: "ขณะนี้ฝนตก", es: "khà-ná níi fǒn dtòk", spanish: "en este momento llueve", en: "at the moment it's raining" },
     question: { thai: "ขณะไหม", es: "khà-ná mǎi", spanish: "¿mientras?" },
     answer: { thai: "ขณะ", es: "khà-ná", spanish: "mientras" }
   },
   {
     rank: 863, thai: "ถ้า", es: "tâa", spanish: "si", english: "if", rtgs: "", cefr: null, freq: 863, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ถ้าฝนตกจะไม่ไป", es: "tâa fǒn dtòk jà mâi bpai", spanish: "si llueve no iré, en: "if it rains I won't go" },
+    phrase: { thai: "ถ้าฝนตกจะไม่ไป", es: "tâa fǒn dtòk jà mâi bpai", spanish: "si llueve no iré", en: "if it rains I won't go" },
     question: { thai: "ถ้าไหม", es: "tâa mǎi", spanish: "¿si?" },
     answer: { thai: "ถ้า", es: "tâa", spanish: "si" }
   },
   {
     rank: 864, thai: "หาก", es: "hàk", spanish: "si (condicional)", english: "if", rtgs: "", cefr: null, freq: 864, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "หากมีเวลา", es: "hàk mii we-laa", spanish: "si hay tiempo, en: "if there is time" },
+    phrase: { thai: "หากมีเวลา", es: "hàk mii we-laa", spanish: "si hay tiempo", en: "if there is time" },
     question: { thai: "หากไหม", es: "hàk mǎi", spanish: "¿si (condicional)?" },
     answer: { thai: "หาก", es: "hàk", spanish: "si (condicional)" }
   },
   {
     rank: 865, thai: "เพราะว่า", es: "phrɔ́-wâa", spanish: "porque", english: "because", rtgs: "", cefr: null, freq: 865, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "เพราะว่าฝนตกหนัก", es: "phrɔ̂-wâa fǒn dtòk nàk", spanish: "porque llueve fuerte, en: "because it rains heavily" },
+    phrase: { thai: "เพราะว่าฝนตกหนัก", es: "phrɔ̂-wâa fǒn dtòk nàk", spanish: "porque llueve fuerte", en: "because it rains heavily" },
     question: { thai: "เพราะว่าไหม", es: "phrɔ́-wâa mǎi", spanish: "¿porque?" },
     answer: { thai: "เพราะว่า", es: "phrɔ́-wâa", spanish: "porque" }
   },
   {
     rank: 866, thai: "เนื่องจาก", es: "nǔeang-jàak", spanish: "debido a", english: "due to", rtgs: "", cefr: null, freq: 866, notes: "",
     category: "adverbios", tone: "r",
-    phrase: { thai: "เนื่องจากฝนตก", es: "nǔeang-jàak fǒn dtòk", spanish: "debido a la lluvia, en: "due to the rain" },
+    phrase: { thai: "เนื่องจากฝนตก", es: "nǔeang-jàak fǒn dtòk", spanish: "debido a la lluvia", en: "due to the rain" },
     question: { thai: "เนื่องจากไหม", es: "nǔeang-jàak mǎi", spanish: "¿debido a?" },
     answer: { thai: "เนื่องจาก", es: "nǔeang-jàak", spanish: "debido a" }
   },
   {
     rank: 867, thai: "ดังนั้น", es: "dang-nán", spanish: "por lo tanto", english: "therefore", rtgs: "", cefr: null, freq: 867, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ดังนั้นอย่าไป", es: "dang-nán yàa bpai", spanish: "por lo tanto, no vayas, en: "therefore, don't go" },
+    phrase: { thai: "ดังนั้นอย่าไป", es: "dang-nán yàa bpai", spanish: "por lo tanto, no vayas", en: "therefore, don't go" },
     question: { thai: "ดังนั้นไหม", es: "dang-nán mǎi", spanish: "¿por lo tanto?" },
     answer: { thai: "ดังนั้น", es: "dang-nán", spanish: "por lo tanto" }
   },
   {
     rank: 868, thai: "ฉะนั้น", es: "chà-nán", spanish: "por consiguiente", english: "therefore", rtgs: "", cefr: null, freq: 868, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ฉะนั้นผมจะไป", es: "chà-nán phǒm jà bpai", spanish: "por consiguiente, yo iré, en: "consequently, I'll go" },
+    phrase: { thai: "ฉะนั้นผมจะไป", es: "chà-nán phǒm jà bpai", spanish: "por consiguiente, yo iré", en: "consequently, I'll go" },
     question: { thai: "ฉะนั้นไหม", es: "chà-nán mǎi", spanish: "¿por consiguiente?" },
     answer: { thai: "ฉะนั้น", es: "chà-nán", spanish: "por consiguiente" }
   },
   {
     rank: 869, thai: "แต่", es: "dtàae", spanish: "pero", english: "but", rtgs: "", cefr: null, freq: 869, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "อยากไปแต่ไม่ว่าง", es: "yàak bpai dtàae mâi wàang", spanish: "quería ir pero estoy ocupado, en: "I want to go but I'm busy" },
+    phrase: { thai: "อยากไปแต่ไม่ว่าง", es: "yàak bpai dtàae mâi wàang", spanish: "quería ir pero estoy ocupado", en: "I want to go but I'm busy" },
     question: { thai: "แต่ไหม", es: "dtàae mǎi", spanish: "¿pero?" },
     answer: { thai: "แต่", es: "dtàae", spanish: "pero" }
   },
   {
     rank: 870, thai: "อย่างไรก็ตาม", es: "yàang-rai-gâw-dtaam", spanish: "sin embargo", english: "however", rtgs: "", cefr: null, freq: 870, notes: "",
     category: "expresiones", tone: "r",
-    phrase: { thai: "อย่างไรก็ตามจะไป", es: "yàang-rai gâw-dtaam jà bpai", spanish: "sin embargo, iré, en: "however, I'll go" },
+    phrase: { thai: "อย่างไรก็ตามจะไป", es: "yàang-rai gâw-dtaam jà bpai", spanish: "sin embargo, iré", en: "however, I'll go" },
     question: { thai: "อย่างไรก็ตามไหม", es: "yàang-rai-gâw-dtaam mǎi", spanish: "¿sin embargo?" },
     answer: { thai: "อย่างไรก็ตาม", es: "yàang-rai-gâw-dtaam", spanish: "sin embargo" }
   },
   {
     rank: 871, thai: "แม้ว่า", es: "máae-wâa", spanish: "aunque", english: "although", rtgs: "", cefr: null, freq: 871, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "แม้ว่าลำบากก็ทำ", es: "máae-wâa lam-bàak gâ tham", spanish: "aunque sea difícil lo hago, en: "although it's hard I do it" },
+    phrase: { thai: "แม้ว่าลำบากก็ทำ", es: "máae-wâa lam-bàak gâ tham", spanish: "aunque sea difícil lo hago", en: "although it's hard I do it" },
     question: { thai: "แม้ว่าไหม", es: "máae-wâa mǎi", spanish: "¿aunque?" },
     answer: { thai: "แม้ว่า", es: "máae-wâa", spanish: "aunque" }
   },
   {
     rank: 872, thai: "และ", es: "lae", spanish: "y", english: "and", rtgs: "", cefr: null, freq: 872, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "สวยและดี", es: "sǔuai lae dii", spanish: "hermoso y bueno, en: "beautiful and good" },
+    phrase: { thai: "สวยและดี", es: "sǔuai lae dii", spanish: "hermoso y bueno", en: "beautiful and good" },
     question: { thai: "และไหม", es: "lae mǎi", spanish: "¿y?" },
     answer: { thai: "และ", es: "lae", spanish: "y" }
   },
   {
     rank: 873, thai: "แล้ว", es: "láew", spanish: "entonces/y", english: "then", rtgs: "", cefr: null, freq: 873, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "กินข้าวแล้ว", es: "gin kâao lɛ́ɛw", spanish: "ya comí, en: "already ate" },
+    phrase: { thai: "กินข้าวแล้ว", es: "gin kâao lɛ́ɛw", spanish: "ya comí", en: "already ate" },
     question: { thai: "แล้วไหม", es: "láew mǎi", spanish: "¿entonces/y?" },
     answer: { thai: "แล้ว", es: "láew", spanish: "entonces/y" }
   },
   {
     rank: 874, thai: "เพื่อที่จะ", es: "pêua-thîi-jà", spanish: "para que", english: "in order to", rtgs: "", cefr: null, freq: 874, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "เพื่อที่จะได้เรียน", es: "pêua thîi-jà dâai rian", spanish: "para poder estudiar, en: "in order to be able to study" },
+    phrase: { thai: "เพื่อที่จะได้เรียน", es: "pêua thîi-jà dâai rian", spanish: "para poder estudiar", en: "in order to be able to study" },
     question: { thai: "เพื่อที่จะไหม", es: "pêua-thîi-jà mǎi", spanish: "¿para que?" },
     answer: { thai: "เพื่อที่จะ", es: "pêua-thîi-jà", spanish: "para que" }
   },
   {
     rank: 875, thai: "โดย", es: "dooy", spanish: "por/mediante", english: "by", rtgs: "", cefr: null, freq: 875, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "เดินทางโดยรถไฟ", es: "dooen-thaang dooy rót-fai", spanish: "viajar en tren, en: "travel by train" },
+    phrase: { thai: "เดินทางโดยรถไฟ", es: "dooen-thaang dooy rót-fai", spanish: "viajar en tren", en: "travel by train" },
     question: { thai: "โดยไหม", es: "dooy mǎi", spanish: "¿por/mediante?" },
     answer: { thai: "โดย", es: "dooy", spanish: "por/mediante" }
   },
   {
     rank: 876, thai: "ผ่าน", es: "pàan", spanish: "a través de", english: "through", rtgs: "", cefr: null, freq: 876, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "เดินผ่านป่า", es: "dooen pàan bpàa", spanish: "caminar a través del bosque, en: "walk through the forest" },
+    phrase: { thai: "เดินผ่านป่า", es: "dooen pàan bpàa", spanish: "caminar a través del bosque", en: "walk through the forest" },
     question: { thai: "ผ่านไหม", es: "pàan mǎi", spanish: "¿a través de?" },
     answer: { thai: "ผ่าน", es: "pàan", spanish: "a través de" }
   },
   {
     rank: 877, thai: "ตลอด", es: "dtà-lòt", spanish: "durante/todo", english: "throughout", rtgs: "", cefr: null, freq: 877, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "ทำงานตลอดคืน", es: "tham ngaan dtà-lòt khuue", spanish: "trabajar toda la noche, en: "work all night" },
+    phrase: { thai: "ทำงานตลอดคืน", es: "tham ngaan dtà-lòt khuue", spanish: "trabajar toda la noche", en: "work all night" },
     question: { thai: "ตลอดไหม", es: "dtà-lòt mǎi", spanish: "¿durante/todo?" },
     answer: { thai: "ตลอด", es: "dtà-lòt", spanish: "durante/todo" }
   },
   {
     rank: 878, thai: "บ่อย", es: "bòi", spanish: "a menudo", english: "often", rtgs: "", cefr: null, freq: 878, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "ไปตลาดบ่อย", es: "bpai dtà-làat bòi", spanish: "ir al mercado a menudo, en: "go to the market often" },
+    phrase: { thai: "ไปตลาดบ่อย", es: "bpai dtà-làat bòi", spanish: "ir al mercado a menudo", en: "go to the market often" },
     question: { thai: "บ่อยไหม", es: "bòi mǎi", spanish: "¿a menudo?" },
     answer: { thai: "บ่อย", es: "bòi", spanish: "a menudo" }
   },
   {
     rank: 879, thai: "นานๆ", es: "naan-naan", spanish: "raramente", english: "rarely", rtgs: "", cefr: null, freq: 879, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "นานๆ ไปที", es: "naan-naan bpai thii", spanish: "ir raramente, en: "rarely go" },
+    phrase: { thai: "นานๆ ไปที", es: "naan-naan bpai thii", spanish: "ir raramente", en: "rarely go" },
     question: { thai: "นานๆไหม", es: "naan-naan mǎi", spanish: "¿raramente?" },
     answer: { thai: "นานๆ", es: "naan-naan", spanish: "raramente" }
   },
   {
     rank: 880, thai: "เป็นบางครั้ง", es: "bpen-baang-kráng", spanish: "a veces", english: "sometimes", rtgs: "", cefr: null, freq: 880, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "เป็นบางครั้งก็โกรธ", es: "bpen baang-kráng gàw gròot", spanish: "a veces se enoja, en: "sometimes he gets angry" },
+    phrase: { thai: "เป็นบางครั้งก็โกรธ", es: "bpen baang-kráng gàw gròot", spanish: "a veces se enoja", en: "sometimes he gets angry" },
     question: { thai: "เป็นบางครั้งไหม", es: "bpen-baang-kráng mǎi", spanish: "¿a veces?" },
     answer: { thai: "เป็นบางครั้ง", es: "bpen-baang-kráng", spanish: "a veces" }
   },
   {
     rank: 881, thai: "ไม่เคย", es: "mâi-khooei", spanish: "nunca", english: "never", rtgs: "", cefr: null, freq: 881, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ไม่เคยไปญี่ปุ่น", es: "mâi khooei bpai yîi-pùn", spanish: "nunca he ido a Japón, en: "never been to Japan" },
+    phrase: { thai: "ไม่เคยไปญี่ปุ่น", es: "mâi khooei bpai yîi-pùn", spanish: "nunca he ido a Japón", en: "never been to Japan" },
     question: { thai: "ไม่เคยไหม", es: "mâi-khooei mǎi", spanish: "¿nunca?" },
     answer: { thai: "ไม่เคย", es: "mâi-khooei", spanish: "nunca" }
   },
   {
     rank: 882, thai: "อีกครั้ง", es: "èek-kráng", spanish: "otra vez", english: "again", rtgs: "", cefr: null, freq: 882, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ลองอีกครั้ง", es: "lɔɔng èek-kráng", spanish: "intentar otra vez, en: "try again" },
+    phrase: { thai: "ลองอีกครั้ง", es: "lɔɔng èek-kráng", spanish: "intentar otra vez", en: "try again" },
     question: { thai: "อีกครั้งไหม", es: "èek-kráng mǎi", spanish: "¿otra vez?" },
     answer: { thai: "อีกครั้ง", es: "èek-kráng", spanish: "otra vez" }
   },
   {
     rank: 883, thai: "อีก", es: "èek", spanish: "más/otro", english: "more/again", rtgs: "", cefr: null, freq: 883, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "อีกหน่อย", es: "èek nòi", spanish: "un poco más, en: "a little more" },
+    phrase: { thai: "อีกหน่อย", es: "èek nòi", spanish: "un poco más", en: "a little more" },
     question: { thai: "อีกไหม", es: "èek mǎi", spanish: "¿más/otro?" },
     answer: { thai: "อีก", es: "èek", spanish: "más/otro" }
   },
   {
     rank: 884, thai: "ก็", es: "gâw", spanish: "también/entonces", english: "also/then", rtgs: "", cefr: null, freq: 884, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "ก็ดี", es: "gâw dii", spanish: "está bien entonces, en: "that's fine" },
+    phrase: { thai: "ก็ดี", es: "gâw dii", spanish: "está bien entonces", en: "that's fine" },
     question: { thai: "ก็ไหม", es: "gâw mǎi", spanish: "¿también/entonces?" },
     answer: { thai: "ก็", es: "gâw", spanish: "también/entonces" }
   },
   {
     rank: 885, thai: "เท่านั้น", es: "tâo-nán", spanish: "solamente", english: "only", rtgs: "", cefr: null, freq: 885, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ฉันคนเดียวเท่านั้น", es: "chǎn khon diao tâo-nán", spanish: "solamente yo, en: "only me" },
+    phrase: { thai: "ฉันคนเดียวเท่านั้น", es: "chǎn khon diao tâo-nán", spanish: "solamente yo", en: "only me" },
     question: { thai: "เท่านั้นไหม", es: "tâo-nán mǎi", spanish: "¿solamente?" },
     answer: { thai: "เท่านั้น", es: "tâo-nán", spanish: "solamente" }
   },
   {
     rank: 886, thai: "เกือบ", es: "gùeap", spanish: "casi", english: "almost", rtgs: "", cefr: null, freq: 886, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "เกือบถึงแล้ว", es: "gùeap thǔeng lɛ́ɛw", spanish: "casi llego, en: "almost arrived" },
+    phrase: { thai: "เกือบถึงแล้ว", es: "gùeap thǔeng lɛ́ɛw", spanish: "casi llego", en: "almost arrived" },
     question: { thai: "เกือบไหม", es: "gùeap mǎi", spanish: "¿casi?" },
     answer: { thai: "เกือบ", es: "gùeap", spanish: "casi" }
   },
   {
     rank: 887, thai: "น้อย", es: "nǎai", spanish: "poco", english: "little/few", rtgs: "", cefr: null, freq: 887, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "น้อยลง", es: "nǎai long", spanish: "menos, en: "less / reduced" },
+    phrase: { thai: "น้อยลง", es: "nǎai long", spanish: "menos", en: "less / reduced" },
     question: { thai: "น้อยไหม", es: "nǎai mǎi", spanish: "¿poco?" },
     answer: { thai: "น้อย", es: "nǎai", spanish: "poco" }
   },
   {
     rank: 888, thai: "เล็กน้อย", es: "lék-nǎai", spanish: "un poco", english: "a little", rtgs: "", cefr: null, freq: 888, notes: "",
     category: "adverbios", tone: "h",
-    phrase: { thai: "เล็กน้อยก็พอ", es: "lék-nǎai gâw poo", spanish: "un poco es suficiente, en: "a little is enough" },
+    phrase: { thai: "เล็กน้อยก็พอ", es: "lék-nǎai gâw poo", spanish: "un poco es suficiente", en: "a little is enough" },
     question: { thai: "เล็กน้อยไหม", es: "lék-nǎai mǎi", spanish: "¿un poco?" },
     answer: { thai: "เล็กน้อย", es: "lék-nǎai", spanish: "un poco" }
   },
   {
     rank: 889, thai: "มากเกินไป", es: "mâak-gəən-bpai", spanish: "demasiado", english: "too much", rtgs: "", cefr: null, freq: 889, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "เผ็ดมากเกินไป", es: "phèt mâak-gəən-bpai", spanish: "demasiado picante, en: "too spicy" },
+    phrase: { thai: "เผ็ดมากเกินไป", es: "phèt mâak-gəən-bpai", spanish: "demasiado picante", en: "too spicy" },
     question: { thai: "มากเกินไปไหม", es: "mâak-gəən-bpai mǎi", spanish: "¿demasiado?" },
     answer: { thai: "มากเกินไป", es: "mâak-gəən-bpai", spanish: "demasiado" }
   },
   {
     rank: 890, thai: "เหลือเกิน", es: "lǔea-gəən", spanish: "excesivo", english: "excessive", rtgs: "", cefr: null, freq: 890, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ดีเหลือเกิน", es: "dii lǔea-gəən", spanish: "es muy bueno, en: "it's so good" },
+    phrase: { thai: "ดีเหลือเกิน", es: "dii lǔea-gəən", spanish: "es muy bueno", en: "it's so good" },
     question: { thai: "เหลือเกินไหม", es: "lǔea-gəən mǎi", spanish: "¿excesivo?" },
     answer: { thai: "เหลือเกิน", es: "lǔea-gəən", spanish: "excesivo" }
   },
   {
     rank: 891, thai: "พอสมควร", es: "poo-sǒm-khwaan", spanish: "razonable", english: "reasonably", rtgs: "", cefr: null, freq: 891, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "พอสมควรดี", es: "poo-sǒm-khwaan dii", spanish: "razonablemente bien, en: "reasonably good" },
+    phrase: { thai: "พอสมควรดี", es: "poo-sǒm-khwaan dii", spanish: "razonablemente bien", en: "reasonably good" },
     question: { thai: "พอสมควรไหม", es: "poo-sǒm-khwaan mǎi", spanish: "¿razonable?" },
     answer: { thai: "พอสมควร", es: "poo-sǒm-khwaan", spanish: "razonable" }
   },
   {
     rank: 892, thai: "ด้วย", es: "dûuai", spanish: "también/con", english: "also/with", rtgs: "", cefr: null, freq: 892, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ฉันไปด้วย", es: "chǎn bpai dûuai", spanish: "yo también voy, en: "I'll go too" },
+    phrase: { thai: "ฉันไปด้วย", es: "chǎn bpai dûuai", spanish: "yo también voy", en: "I'll go too" },
     question: { thai: "ด้วยไหม", es: "dûuai mǎi", spanish: "¿también/con?" },
     answer: { thai: "ด้วย", es: "dûuai", spanish: "también/con" }
   },
   {
     rank: 893, thai: "เอง", es: "een", spanish: "mismo", english: "self", rtgs: "", cefr: null, freq: 893, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "ทำเอง", es: "tham een", spanish: "hacerlo uno mismo, en: "do it oneself" },
+    phrase: { thai: "ทำเอง", es: "tham een", spanish: "hacerlo uno mismo", en: "do it oneself" },
     question: { thai: "เองไหม", es: "een mǎi", spanish: "¿mismo?" },
     answer: { thai: "เอง", es: "een", spanish: "mismo" }
   },
   {
     rank: 894, thai: "จริงๆ", es: "jing-jing", spanish: "realmente", english: "really", rtgs: "", cefr: null, freq: 894, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "สวยจริงๆ", es: "sǔuai jing-jing", spanish: "realmente hermoso, en: "really beautiful" },
+    phrase: { thai: "สวยจริงๆ", es: "sǔuai jing-jing", spanish: "realmente hermoso", en: "really beautiful" },
     question: { thai: "จริงๆไหม", es: "jing-jing mǎi", spanish: "¿realmente?" },
     answer: { thai: "จริงๆ", es: "jing-jing", spanish: "realmente" }
   },
   {
     rank: 895, thai: "แท้จริง", es: "tâae-jing", spanish: "verdadero", english: "true", rtgs: "", cefr: null, freq: 895, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "หัวใจแท้จริง", es: "hǔua-jai tâae-jing", spanish: "corazón verdadero, en: "true heart" },
+    phrase: { thai: "หัวใจแท้จริง", es: "hǔua-jai tâae-jing", spanish: "corazón verdadero", en: "true heart" },
     question: { thai: "แท้จริงไหม", es: "tâae-jing mǎi", spanish: "¿verdadero?" },
     answer: { thai: "แท้จริง", es: "tâae-jing", spanish: "verdadero" }
   },
   {
     rank: 896, thai: "เช่นกัน", es: "chên-gan", spanish: "también", english: "as well", rtgs: "", cefr: null, freq: 896, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ผมก็เช่นกัน", es: "phǒm gâw chên-gan", spanish: "yo también, en: "me too" },
+    phrase: { thai: "ผมก็เช่นกัน", es: "phǒm gâw chên-gan", spanish: "yo también", en: "me too" },
     question: { thai: "เช่นกันไหม", es: "chên-gan mǎi", spanish: "¿también?" },
     answer: { thai: "เช่นกัน", es: "chên-gan", spanish: "también" }
   },
   {
     rank: 897, thai: "อีกด้วย", es: "èek-dûuai", spanish: "además", english: "as well", rtgs: "", cefr: null, freq: 897, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "สวยและฉลาดอีกด้วย", es: "sǔuai lae chà-làat èek-dûuai", spanish: "además es hermosa e inteligente, en: "also beautiful and smart" },
+    phrase: { thai: "สวยและฉลาดอีกด้วย", es: "sǔuai lae chà-làat èek-dûuai", spanish: "además es hermosa e inteligente", en: "also beautiful and smart" },
     question: { thai: "อีกด้วยไหม", es: "èek-dûuai mǎi", spanish: "¿además?" },
     answer: { thai: "อีกด้วย", es: "èek-dûuai", spanish: "además" }
   },
   {
     rank: 898, thai: "เป็นพิเศษ", es: "bpen-phí-sèt", spanish: "especialmente", english: "especially", rtgs: "", cefr: null, freq: 898, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "วันศุกร์เป็นพิเศษ", es: "wan sùk-krá bpen-phí-sèt", spanish: "especialmente el viernes, en: "especially Friday" },
+    phrase: { thai: "วันศุกร์เป็นพิเศษ", es: "wan sùk-krá bpen-phí-sèt", spanish: "especialmente el viernes", en: "especially Friday" },
     question: { thai: "เป็นพิเศษไหม", es: "bpen-phí-sèt mǎi", spanish: "¿especialmente?" },
     answer: { thai: "เป็นพิเศษ", es: "bpen-phí-sèt", spanish: "especialmente" }
   },
   {
     rank: 899, thai: "โดยเฉพาะ", es: "dooy-chà-phǒe", spanish: "particularmente", english: "particularly", rtgs: "", cefr: null, freq: 899, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "โดยเฉพาะอาหารไทย", es: "dooy chà-phǒe aa-hǎan thai", spanish: "particularmente la comida tailandesa, en: "particularly Thai food" },
+    phrase: { thai: "โดยเฉพาะอาหารไทย", es: "dooy chà-phǒe aa-hǎan thai", spanish: "particularmente la comida tailandesa", en: "particularly Thai food" },
     question: { thai: "โดยเฉพาะไหม", es: "dooy-chà-phǒe mǎi", spanish: "¿particularmente?" },
     answer: { thai: "โดยเฉพาะ", es: "dooy-chà-phǒe", spanish: "particularmente" }
   },
   {
     rank: 900, thai: "เนื่องกับ", es: "nǔeang-gàp", spanish: "relacionado con", english: "related to", rtgs: "", cefr: null, freq: 900, notes: "",
     category: "adverbios", tone: "r",
-    phrase: { thai: "เรื่องเนื่องกับการเงิน", es: "rʉ̂aŋ nǔeang-gàp gaan-ngən", spanish: "asunto relacionado con dinero, en: "matter related to money" },
+    phrase: { thai: "เรื่องเนื่องกับการเงิน", es: "rʉ̂aŋ nǔeang-gàp gaan-ngən", spanish: "asunto relacionado con dinero", en: "matter related to money" },
     question: { thai: "เนื่องกับไหม", es: "nǔeang-gàp mǎi", spanish: "¿relacionado con?" },
     answer: { thai: "เนื่องกับ", es: "nǔeang-gàp", spanish: "relacionado con" }
   },
@@ -6769,7 +6769,7 @@ var TOP1000_WORDS = [
   {
     rank: 967, thai: "จากนั้น", es: "jàak-nán", spanish: "luego/después", english: "after that", rtgs: "", cefr: null, freq: 967, notes: "",
     category: "adverbios", tone: "m",
-    phrase: { thai: "จากนั้นผมก็กลับบ้าน", es: "jàak-nán phǒm gâw glàp bâan", spanish: "luego yo volví a casa, en: "then I went home" },
+    phrase: { thai: "จากนั้นผมก็กลับบ้าน", es: "jàak-nán phǒm gâw glàp bâan", spanish: "luego yo volví a casa", en: "then I went home" },
     question: { thai: "จากนั้นไหม", es: "jàak-nán mǎi", spanish: "¿luego/después?" },
     answer: { thai: "จากนั้น", es: "jàak-nán", spanish: "luego/después" }
   },
@@ -6797,7 +6797,7 @@ var TOP1000_WORDS = [
   {
     rank: 971, thai: "อิน", es: "in", spanish: "on (inglés)", english: "on", rtgs: "", cefr: null, freq: 971, notes: "",
     category: "expresiones", tone: "m",
-    phrase: { thai: "ล็อกอินเข้าระบบ", es: "lók-in khâo rá-sòp", spanish: "iniciar sesión, en: "log in" },
+    phrase: { thai: "ล็อกอินเข้าระบบ", es: "lók-in khâo rá-sòp", spanish: "iniciar sesión", en: "log in" },
     question: { thai: "อินไหม", es: "in mǎi", spanish: "¿on (inglés)?" },
     answer: { thai: "อิน", es: "in", spanish: "on (inglés)" }
   },
@@ -6853,7 +6853,7 @@ var TOP1000_WORDS = [
   {
     rank: 979, thai: "สี่", es: "sìi", spanish: "cuatro", english: "four", rtgs: "", cefr: null, freq: 979, notes: "",
     category: "números", tone: "l",
-    phrase: { thai: "สี่คน", es: "sìi khon", spanish: "cuatro personas, en: "four people" },
+    phrase: { thai: "สี่คน", es: "sìi khon", spanish: "cuatro personas", en: "four people" },
     question: { thai: "สี่ไหม", es: "sìi mǎi", spanish: "¿cuatro?" },
     answer: { thai: "สี่", es: "sìi", spanish: "cuatro" }
   },
@@ -6965,14 +6965,14 @@ var TOP1000_WORDS = [
   {
     rank: 995, thai: "เหนือ", es: "nǔea", spanish: "norte/arriba", english: "north/above", rtgs: "", cefr: null, freq: 995, notes: "",
     category: "adverbios", tone: "r",
-    phrase: { thai: "เดินทางขึ้นเหนือ", es: "dooen-thaang khʉ̂n nǔea", spanish: "viajar al norte, en: "travel up north" },
+    phrase: { thai: "เดินทางขึ้นเหนือ", es: "dooen-thaang khʉ̂n nǔea", spanish: "viajar al norte", en: "travel up north" },
     question: { thai: "เหนือไหม", es: "nǔea mǎi", spanish: "¿norte/arriba?" },
     answer: { thai: "เหนือ", es: "nǔea", spanish: "norte/arriba" }
   },
   {
     rank: 996, thai: "สุด", es: "sùt", spanish: "extremo/lo más", english: "most/utmost", rtgs: "", cefr: null, freq: 996, notes: "",
     category: "adverbios", tone: "l",
-    phrase: { thai: "สุดยอดเลย", es: "sùt-yòot looei", spanish: "¡es el mejor!, en: "it's the best!" },
+    phrase: { thai: "สุดยอดเลย", es: "sùt-yòot looei", spanish: "¡es el mejor!", en: "it's the best!" },
     question: { thai: "สุดไหม", es: "sùt mǎi", spanish: "¿extremo/lo más?" },
     answer: { thai: "สุด", es: "sùt", spanish: "extremo/lo más" }
   },
@@ -6986,7 +6986,7 @@ var TOP1000_WORDS = [
   {
     rank: 998, thai: "แน่", es: "náae", spanish: "seguro/definitivo", english: "certain", rtgs: "", cefr: null, freq: 998, notes: "",
     category: "adverbios", tone: "f",
-    phrase: { thai: "ใช่แน่ๆ", es: "châi nâae-nâae", spanish: "seguro que sí, en: "absolutely sure" },
+    phrase: { thai: "ใช่แน่ๆ", es: "châi nâae-nâae", spanish: "seguro que sí", en: "absolutely sure" },
     question: { thai: "แน่ไหม", es: "nâae mǎi", spanish: "¿seguro/definitivo?" },
     answer: { thai: "แน่", es: "nâae", spanish: "seguro/definitivo" }
   },
