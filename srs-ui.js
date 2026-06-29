@@ -125,18 +125,50 @@ function renderStudyScreen() {
   // Card stage
   var cardHtml = renderSrsCardFront(card, deckKind, item);
 
-  // Rating actions (hidden until reveal)
+  // Bottom thumb zone: play phrase + rating actions (hidden until reveal)
   var intervals = previewIntervals(item.cardState);
-  var actions = renderRatingActions(intervals, !srsCurrent.revealed);
+  var bottomBar = renderBottomBar(card, deckKind, intervals, !srsCurrent.revealed);
 
   view.innerHTML =
     '<div class="srs-screen srs-study">' +
       header +
       '<div class="srs-card-stage" id="srsCardStage">' + cardHtml + '</div>' +
-      actions +
+      bottomBar +
     '</div>';
 
   bindCardStageTap();
+}
+
+function renderBottomBar(card, kind, intervals, hidden) {
+  var phraseThai = getCardPhraseThai(card, kind);
+  var playBtn = phraseThai
+    ? '<button class="srs-play-phrase" id="srsPlayPhrase" onclick="playSrsPhrase()"' + (hidden ? ' hidden' : '') + '>' +
+        '<span class="srs-play-icon">▶</span>' +
+        '<span class="srs-play-label">Frase</span>' +
+      '</button>'
+    : '';
+  return '<div class="srs-bottom-bar">' +
+    playBtn +
+    renderRatingActions(intervals, hidden) +
+  '</div>';
+}
+
+function getCardPhraseThai(card, kind) {
+  if (kind === 'word') return card.phrase && card.phrase.thai;
+  if (kind === 'phrase') return card.thai;
+  if (kind === 'structure') {
+    var ex = card.examples && card.examples[0];
+    return ex && ex.thai;
+  }
+  return null;
+}
+
+function playSrsPhrase() {
+  if (!srsCurrent) return;
+  var item = srsCurrent.queue[srsCurrent.idx];
+  var deck = SRS_DECKS[srsCurrent.deckKey];
+  var text = getCardPhraseThai(item.card, deck.kind);
+  if (text && typeof speakText === 'function') speakText(text);
 }
 
 function renderSrsCardFront(card, kind, item) {
@@ -299,9 +331,13 @@ function revealCard() {
   if (card) card.classList.add('srs-card-revealed');
   var actions = $('srsActions');
   if (actions) actions.classList.remove('srs-actions-hidden');
+  var playBtn = $('srsPlayPhrase');
+  if (playBtn) playBtn.hidden = false;
   var hint = document.querySelector('.srs-card-hint');
   if (hint) hint.style.display = 'none';
   vibrate(8);
+  // Auto-play the phrase so user hears it without reaching for the button
+  setTimeout(playSrsPhrase, 200);
 }
 
 function rateCurrent(rating) {

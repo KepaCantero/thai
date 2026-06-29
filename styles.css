@@ -1152,6 +1152,38 @@ button:disabled { opacity: 0.4; cursor: default; }
 }
 .srs-speak:active { transform: scale(0.92); background: var(--srs-border); }
 
+/* ---------- Bottom bar (thumb zone: play + ratings) ---------- */
+.srs-bottom-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px calc(env(safe-area-inset-bottom) + 10px);
+  background: linear-gradient(0deg, var(--srs-bg) 80%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.srs-play-phrase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(255,209,102,0.15), rgba(255,209,102,0.08));
+  color: var(--srs-warn);
+  border: 1.5px solid rgba(255,209,102,0.4);
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 50px;
+  font-family: inherit;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.srs-play-phrase:active { transform: scale(0.98); background: rgba(255,209,102,0.25); }
+.srs-play-icon { font-size: 1.1rem; line-height: 1; }
+.srs-play-label { letter-spacing: 0.3px; }
+
 /* ---------- Rating actions ---------- */
 .srs-actions {
   display: grid;
