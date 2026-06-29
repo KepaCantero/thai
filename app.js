@@ -1118,9 +1118,20 @@ function renderMatrix() {
 function matrixCellTap(colKey, idx) {
   matrixSel[colKey] = idx;
   renderMatrix();
-  var sent = buildMatrixSentence(matrixSel);
+  speakMatrixSelection();
+}
+
+function speakMatrixSelection() {
+  var cols = getMC();
+  var parts = cols.map(function(col) { return getColData(col.key)[matrixSel[col.key]]; }).filter(function(p){return p && p.thai;});
+  if (!parts.length) return;
   stopCurrentAudio();
-  speakText(sent.thai);
+  // Play each part sequentially so static audio lookups succeed per-word
+  function playNext(i) {
+    if (i >= parts.length) return;
+    speakText(parts[i].thai, function() { playNext(i + 1); });
+  }
+  playNext(0);
 }
 
 function buildMatrixSentence(sel) {
@@ -1201,18 +1212,14 @@ function matrixNav(dir) {
   flat = (flat + dir + total) % total;
   flatToMatrixSel(flat);
   renderMatrix();
-  var sent = buildMatrixSentence(matrixSel);
-  stopCurrentAudio();
-  speakText(sent.thai);
+  speakMatrixSelection();
 }
 
 function randomMatrix() {
   var cols = getMC();
   cols.forEach(function(col) { var d = getColData(col.key); if (d && d.length) matrixSel[col.key] = Math.floor(Math.random() * d.length); });
   renderMatrix();
-  var sent = buildMatrixSentence(matrixSel);
-  stopCurrentAudio();
-  speakText(sent.thai);
+  speakMatrixSelection();
 }
 
 function matrixSelToFlat() {
