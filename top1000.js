@@ -70,8 +70,8 @@ var TOP1000_WORDS = [
   {
     rank: 10, thai: "ได้", es: "dâai", spanish: "poder / obtener", english: "can / get", rtgs: "", cefr: null, freq: 10, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันได้", es: "chǎn dâai", spanish: "Yo podo" },
-    question: { thai: "คุณได้ไหม", es: "khun dâai mǎi", spanish: "¿Tú podo?" },
+    phrase: { thai: "ฉันได้", es: "chǎn dâai", spanish: "Yo puedo" },
+    question: { thai: "คุณได้ไหม", es: "khun dâai mǎi", spanish: "¿Tú puedes?" },
     answer: { thai: "ได้", es: "dâai", spanish: "poder / obtener" }
   },
   {
@@ -91,8 +91,8 @@ var TOP1000_WORDS = [
   {
     rank: 13, thai: "ให้", es: "hâi", spanish: "dar / para", english: "to give", rtgs: "", cefr: null, freq: 13, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันให้", es: "chǎn hâi", spanish: "Yo dar" },
-    question: { thai: "คุณให้ไหม", es: "khun hâi mǎi", spanish: "¿Tú dar?" },
+    phrase: { thai: "ฉันให้", es: "chǎn hâi", spanish: "Yo doy" },
+    question: { thai: "คุณให้ไหม", es: "khun hâi mǎi", spanish: "¿Tú das?" },
     answer: { thai: "ให้", es: "hâi", spanish: "dar / para" }
   },
   {
@@ -140,8 +140,8 @@ var TOP1000_WORDS = [
   {
     rank: 20, thai: "อยู่", es: "yùu", spanish: "estar (ubicarse)", english: "to be at", rtgs: "", cefr: null, freq: 20, notes: "",
     category: "verbos", tone: "n",
-    phrase: { thai: "ฉันอยู่", es: "chǎn yùu", spanish: "Yo estar (ubicarse)" },
-    question: { thai: "คุณอยู่ไหม", es: "khun yùu mǎi", spanish: "¿Tú estar (ubicarse)?" },
+    phrase: { thai: "ฉันอยู่", es: "chǎn yùu", spanish: "Yo estoy (ubicarse)" },
+    question: { thai: "คุณอยู่ไหม", es: "khun yùu mǎi", spanish: "¿Tú estás (ubicarse)?" },
     answer: { thai: "อยู่", es: "yùu", spanish: "estar (ubicarse)" }
   },
   {
@@ -197,7 +197,7 @@ var TOP1000_WORDS = [
     rank: 28, thai: "ต้อง", es: "dtɔ̂ɔŋ", spanish: "deber / tener que", english: "must", rtgs: "", cefr: null, freq: 28, notes: "",
     category: "verbos", tone: "f",
     phrase: { thai: "ฉันต้อง", es: "chǎn dtɔ̂ɔŋ", spanish: "Yo debo" },
-    question: { thai: "คุณต้องไหม", es: "khun dtɔ̂ɔŋ mǎi", spanish: "¿Tú debo?" },
+    question: { thai: "คุณต้องไหม", es: "khun dtɔ̂ɔŋ mǎi", spanish: "¿Tú debes?" },
     answer: { thai: "ต้อง", es: "dtɔ̂ɔŋ", spanish: "deber / tener que" }
   },
   {
@@ -211,7 +211,7 @@ var TOP1000_WORDS = [
     rank: 30, thai: "ขึ้น", es: "khʉ̂n", spanish: "subir", english: "to go up", rtgs: "", cefr: null, freq: 30, notes: "",
     category: "verbos", tone: "r",
     phrase: { thai: "ฉันขึ้น", es: "chǎn khʉ̂n", spanish: "Yo subo" },
-    question: { thai: "คุณขึ้นไหม", es: "khun khʉ̂n mǎi", spanish: "¿Tú subo?" },
+    question: { thai: "คุณขึ้นไหม", es: "khun khʉ̂n mǎi", spanish: "¿Tú subes?" },
     answer: { thai: "ขึ้น", es: "khʉ̂n", spanish: "subir" }
   },
   {
@@ -259,8 +259,8 @@ var TOP1000_WORDS = [
   {
     rank: 37, thai: "ใช้", es: "chái", spanish: "usar", english: "to use", rtgs: "", cefr: null, freq: 37, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันใช้", es: "chǎn chái", spanish: "Yo usar" },
-    question: { thai: "คุณใช้ไหม", es: "khun chái mǎi", spanish: "¿Tú usar?" },
+    phrase: { thai: "ฉันใช้", es: "chǎn chái", spanish: "Yo uso" },
+    question: { thai: "คุณใช้ไหม", es: "khun chái mǎi", spanish: "¿Tú usas?" },
     answer: { thai: "ใช้", es: "chái", spanish: "usar" }
   },
   {
@@ -330,7 +330,7 @@ var TOP1000_WORDS = [
     rank: 47, thai: "เข้า", es: "khâo", spanish: "entrar", english: "to enter", rtgs: "", cefr: null, freq: 47, notes: "",
     category: "verbos", tone: "f",
     phrase: { thai: "ฉันเข้า", es: "chǎn khâo", spanish: "Yo entro" },
-    question: { thai: "คุณเข้าไหม", es: "khun khâo mǎi", spanish: "¿Tú entro?" },
+    question: { thai: "คุณเข้าไหม", es: "khun khâo mǎi", spanish: "¿Tú entras?" },
     answer: { thai: "เข้า", es: "khâo", spanish: "entrar" }
   },
   {
@@ -350,8 +350,8 @@ var TOP1000_WORDS = [
   {
     rank: 50, thai: "ถึง", es: "thǔŋ", spanish: "llegar a", english: "to reach", rtgs: "", cefr: null, freq: 50, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันถึง", es: "chǎn thǔŋ", spanish: "Yo llegar a" },
-    question: { thai: "คุณถึงไหม", es: "khun thǔŋ mǎi", spanish: "¿Tú llegar a?" },
+    phrase: { thai: "ฉันถึง", es: "chǎn thǔŋ", spanish: "Yo llego" },
+    question: { thai: "คุณถึงไหม", es: "khun thǔŋ mǎi", spanish: "¿Tú llegas?" },
     answer: { thai: "ถึง", es: "thǔŋ", spanish: "llegar a" }
   },
   {
@@ -371,29 +371,29 @@ var TOP1000_WORDS = [
   {
     rank: 53, thai: "ออก", es: "ɔ̀ɔk", spanish: "salir", english: "to exit", rtgs: "", cefr: null, freq: 53, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันออก", es: "chǎn ɔ̀ɔk", spanish: "Yo salo" },
-    question: { thai: "คุณออกไหม", es: "khun ɔ̀ɔk mǎi", spanish: "¿Tú salo?" },
+    phrase: { thai: "ฉันออก", es: "chǎn ɔ̀ɔk", spanish: "Yo salgo" },
+    question: { thai: "คุณออกไหม", es: "khun ɔ̀ɔk mǎi", spanish: "¿Tú sales?" },
     answer: { thai: "ออก", es: "ɔ̀ɔk", spanish: "salir" }
   },
   {
     rank: 54, thai: "เห็น", es: "hěn", spanish: "ver", english: "to see", rtgs: "", cefr: null, freq: 54, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันเห็น", es: "chǎn hěn", spanish: "Yo ver" },
-    question: { thai: "คุณเห็นไหม", es: "khun hěn mǎi", spanish: "¿Tú ver?" },
+    phrase: { thai: "ฉันเห็น", es: "chǎn hěn", spanish: "Yo veo" },
+    question: { thai: "คุณเห็นไหม", es: "khun hěn mǎi", spanish: "¿Tú ves?" },
     answer: { thai: "เห็น", es: "hěn", spanish: "ver" }
   },
   {
     rank: 55, thai: "เกิด", es: "gə̀ət", spanish: "nacer / ocurrir", english: "to happen", rtgs: "", cefr: null, freq: 55, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันเกิด", es: "chǎn gə̀ət", spanish: "Yo naco" },
-    question: { thai: "คุณเกิดไหม", es: "khun gə̀ət mǎi", spanish: "¿Tú naco?" },
+    phrase: { thai: "ฉันเกิด", es: "chǎn gə̀ət", spanish: "Yo nazco" },
+    question: { thai: "คุณเกิดไหม", es: "khun gə̀ət mǎi", spanish: "¿Tú naces?" },
     answer: { thai: "เกิด", es: "gə̀ət", spanish: "nacer / ocurrir" }
   },
   {
     rank: 56, thai: "คือ", es: "khuu", spanish: "ser / o sea", english: "to be (equals)", rtgs: "", cefr: null, freq: 56, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันคือ", es: "chǎn khuu", spanish: "Yo ser" },
-    question: { thai: "คุณคือไหม", es: "khun khuu mǎi", spanish: "¿Tú ser?" },
+    phrase: { thai: "ฉันคือ", es: "chǎn khuu", spanish: "Yo soy" },
+    question: { thai: "คุณคือไหม", es: "khun khuu mǎi", spanish: "¿Tú eres?" },
     answer: { thai: "คือ", es: "khuu", spanish: "ser / o sea" }
   },
   {
@@ -414,7 +414,7 @@ var TOP1000_WORDS = [
     rank: 59, thai: "ไว้", es: "wâi", spanish: "guardar", english: "to keep", rtgs: "", cefr: null, freq: 59, notes: "",
     category: "verbos", tone: "f",
     phrase: { thai: "ฉันไว้", es: "chǎn wâi", spanish: "Yo guardo" },
-    question: { thai: "คุณไว้ไหม", es: "khun wâi mǎi", spanish: "¿Tú guardo?" },
+    question: { thai: "คุณไว้ไหม", es: "khun wâi mǎi", spanish: "¿Tú guardas?" },
     answer: { thai: "ไว้", es: "wâi", spanish: "guardar" }
   },
   {
@@ -435,7 +435,7 @@ var TOP1000_WORDS = [
     rank: 62, thai: "ทำให้", es: "tham-hâi", spanish: "causar", english: "to cause", rtgs: "", cefr: null, freq: 62, notes: "",
     category: "verbos", tone: "m",
     phrase: { thai: "ฉันทำให้", es: "chǎn tham-hâi", spanish: "Yo causo" },
-    question: { thai: "คุณทำให้ไหม", es: "khun tham-hâi mǎi", spanish: "¿Tú causo?" },
+    question: { thai: "คุณทำให้ไหม", es: "khun tham-hâi mǎi", spanish: "¿Tú causas?" },
     answer: { thai: "ทำให้", es: "tham-hâi", spanish: "causar" }
   },
   {
@@ -498,14 +498,14 @@ var TOP1000_WORDS = [
     rank: 71, thai: "ต่อ", es: "dtɔ̂ɔ", spanish: "continuar", english: "to continue", rtgs: "", cefr: null, freq: 71, notes: "",
     category: "verbos", tone: "f",
     phrase: { thai: "ฉันต่อ", es: "chǎn dtɔ̂ɔ", spanish: "Yo continuo" },
-    question: { thai: "คุณต่อไหม", es: "khun dtɔ̂ɔ mǎi", spanish: "¿Tú continuo?" },
+    question: { thai: "คุณต่อไหม", es: "khun dtɔ̂ɔ mǎi", spanish: "¿Tú continúas?" },
     answer: { thai: "ต่อ", es: "dtɔ̂ɔ", spanish: "continuar" }
   },
   {
     rank: 72, thai: "ลง", es: "long", spanish: "bajar", english: "to go down", rtgs: "", cefr: null, freq: 72, notes: "",
     category: "verbos", tone: "m",
     phrase: { thai: "ฉันลง", es: "chǎn long", spanish: "Yo bajo" },
-    question: { thai: "คุณลงไหม", es: "khun long mǎi", spanish: "¿Tú bajo?" },
+    question: { thai: "คุณลงไหม", es: "khun long mǎi", spanish: "¿Tú bajas?" },
     answer: { thai: "ลง", es: "long", spanish: "bajar" }
   },
   {
@@ -546,8 +546,8 @@ var TOP1000_WORDS = [
   {
     rank: 78, thai: "อาจ", es: "àat", spanish: "poder ser", english: "might", rtgs: "", cefr: null, freq: 78, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันอาจ", es: "chǎn àat", spanish: "Yo poder so" },
-    question: { thai: "คุณอาจไหม", es: "khun àat mǎi", spanish: "¿Tú poder so?" },
+    phrase: { thai: "ฉันอาจ", es: "chǎn àat", spanish: "Yo puedo" },
+    question: { thai: "คุณอาจไหม", es: "khun àat mǎi", spanish: "¿Tú puedes?" },
     answer: { thai: "อาจ", es: "àat", spanish: "poder ser" }
   },
   {
@@ -574,8 +574,8 @@ var TOP1000_WORDS = [
   {
     rank: 82, thai: "ถูก", es: "thùuk", spanish: "ser + pasiva / correcto", english: "passive", rtgs: "", cefr: null, freq: 82, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันถูก", es: "chǎn thùuk", spanish: "Yo ser + pasiva" },
-    question: { thai: "คุณถูกไหม", es: "khun thùuk mǎi", spanish: "¿Tú ser + pasiva?" },
+    phrase: { thai: "ฉันถูก", es: "chǎn thùuk", spanish: "Yo soy (pasiva)" },
+    question: { thai: "คุณถูกไหม", es: "khun thùuk mǎi", spanish: "¿Tú eres (pasiva)?" },
     answer: { thai: "ถูก", es: "thùuk", spanish: "ser + pasiva / correcto" }
   },
   {
@@ -784,8 +784,8 @@ var TOP1000_WORDS = [
   {
     rank: 112, thai: "ทราบ", es: "sâap", spanish: "saber (info)", english: "to know", rtgs: "", cefr: null, freq: 112, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันทราบ", es: "chǎn sâap", spanish: "Yo saber (info)" },
-    question: { thai: "คุณทราบไหม", es: "khun sâap mǎi", spanish: "¿Tú saber (info)?" },
+    phrase: { thai: "ฉันทราบ", es: "chǎn sâap", spanish: "Yo sé (info)" },
+    question: { thai: "คุณทราบไหม", es: "khun sâap mǎi", spanish: "¿Tú sabes (info)?" },
     answer: { thai: "ทราบ", es: "sâap", spanish: "saber (info)" }
   },
   {
@@ -1050,8 +1050,8 @@ var TOP1000_WORDS = [
   {
     rank: 150, thai: "น่า", es: "nâa", spanish: "dar (sensación)", english: "worth -ing", rtgs: "", cefr: null, freq: 150, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันน่า", es: "chǎn nâa", spanish: "Yo dar (sensación)" },
-    question: { thai: "คุณน่าไหม", es: "khun nâa mǎi", spanish: "¿Tú dar (sensación)?" },
+    phrase: { thai: "ฉันน่า", es: "chǎn nâa", spanish: "Yo doy (sensación)" },
+    question: { thai: "คุณน่าไหม", es: "khun nâa mǎi", spanish: "¿Tú das (sensación)?" },
     answer: { thai: "น่า", es: "nâa", spanish: "dar (sensación)" }
   },
   {
@@ -1127,8 +1127,8 @@ var TOP1000_WORDS = [
   {
     rank: 161, thai: "ควร", es: "khruan", spanish: "deber (consejo)", english: "should", rtgs: "", cefr: null, freq: 161, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันควร", es: "chǎn khruan", spanish: "Yo deber (consejo)" },
-    question: { thai: "คุณควรไหม", es: "khun khruan mǎi", spanish: "¿Tú deber (consejo)?" },
+    phrase: { thai: "ฉันควร", es: "chǎn khruan", spanish: "Yo debo (consejo)" },
+    question: { thai: "คุณควรไหม", es: "khun khruan mǎi", spanish: "¿Tú debes (consejo)?" },
     answer: { thai: "ควร", es: "khruan", spanish: "deber (consejo)" }
   },
   {
@@ -1309,8 +1309,8 @@ var TOP1000_WORDS = [
   {
     rank: 187, thai: "รัก", es: "rák", spanish: "amar", english: "to love", rtgs: "", cefr: null, freq: 187, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันรัก", es: "chǎn rák", spanish: "Yo amar" },
-    question: { thai: "คุณรักไหม", es: "khun rák mǎi", spanish: "¿Tú amar?" },
+    phrase: { thai: "ฉันรัก", es: "chǎn rák", spanish: "Yo amo" },
+    question: { thai: "คุณรักไหม", es: "khun rák mǎi", spanish: "¿Tú amas?" },
     answer: { thai: "รัก", es: "rák", spanish: "amar" }
   },
   {
@@ -1428,8 +1428,8 @@ var TOP1000_WORDS = [
   {
     rank: 204, thai: "ทรง", es: "soŋ", spanish: "realzar (verbo real)", english: "royal verb", rtgs: "", cefr: null, freq: 204, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันทรง", es: "chǎn soŋ", spanish: "Yo realzar (verbo real)" },
-    question: { thai: "คุณทรงไหม", es: "khun soŋ mǎi", spanish: "¿Tú realzar (verbo real)?" },
+    phrase: { thai: "ฉันทรง", es: "chǎn soŋ", spanish: "Yo realzo (verbo real)" },
+    question: { thai: "คุณทรงไหม", es: "khun soŋ mǎi", spanish: "¿Tú realzas (verbo real)?" },
     answer: { thai: "ทรง", es: "soŋ", spanish: "realzar (verbo real)" }
   },
   {
@@ -1526,8 +1526,8 @@ var TOP1000_WORDS = [
   {
     rank: 218, thai: "กระทำ", es: "kratham", spanish: "hacer (formal)", english: "to do", rtgs: "", cefr: null, freq: 218, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันกระทำ", es: "chǎn kratham", spanish: "Yo hacer (formal)" },
-    question: { thai: "คุณกระทำไหม", es: "khun kratham mǎi", spanish: "¿Tú hacer (formal)?" },
+    phrase: { thai: "ฉันกระทำ", es: "chǎn kratham", spanish: "Yo hago (formal)" },
+    question: { thai: "คุณกระทำไหม", es: "khun kratham mǎi", spanish: "¿Tú haces (formal)?" },
     answer: { thai: "กระทำ", es: "kratham", spanish: "hacer (formal)" }
   },
   {
@@ -1771,8 +1771,8 @@ var TOP1000_WORDS = [
   {
     rank: 253, thai: "อ่าน", es: "àan", spanish: "leer", english: "to read", rtgs: "", cefr: null, freq: 253, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันอ่าน", es: "chǎn àan", spanish: "Yo leer" },
-    question: { thai: "คุณอ่านไหม", es: "khun àan mǎi", spanish: "¿Tú leer?" },
+    phrase: { thai: "ฉันอ่าน", es: "chǎn àan", spanish: "Yo leo" },
+    question: { thai: "คุณอ่านไหม", es: "khun àan mǎi", spanish: "¿Tú lees?" },
     answer: { thai: "อ่าน", es: "àan", spanish: "leer" }
   },
   {
@@ -1953,8 +1953,8 @@ var TOP1000_WORDS = [
   {
     rank: 279, thai: "ศึกษา", es: "sǔeksǎa", spanish: "estudiar (formal)", english: "to study", rtgs: "", cefr: null, freq: 279, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันศึกษา", es: "chǎn sǔeksǎa", spanish: "Yo estudiar (formal)" },
-    question: { thai: "คุณศึกษาไหม", es: "khun sǔeksǎa mǎi", spanish: "¿Tú estudiar (formal)?" },
+    phrase: { thai: "ฉันศึกษา", es: "chǎn sǔeksǎa", spanish: "Yo estudio (formal)" },
+    question: { thai: "คุณศึกษาไหม", es: "khun sǔeksǎa mǎi", spanish: "¿Tú estudias (formal)?" },
     answer: { thai: "ศึกษา", es: "sǔeksǎa", spanish: "estudiar (formal)" }
   },
   {
@@ -2086,15 +2086,15 @@ var TOP1000_WORDS = [
   {
     rank: 298, thai: "เล่า", es: "lâo", spanish: "contar (historia)", english: "to tell", rtgs: "", cefr: null, freq: 298, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันเล่า", es: "chǎn lâo", spanish: "Yo contar (historia)" },
-    question: { thai: "คุณเล่าไหม", es: "khun lâo mǎi", spanish: "¿Tú contar (historia)?" },
+    phrase: { thai: "ฉันเล่า", es: "chǎn lâo", spanish: "Yo cuento (historia)" },
+    question: { thai: "คุณเล่าไหม", es: "khun lâo mǎi", spanish: "¿Tú cuentas (historia)?" },
     answer: { thai: "เล่า", es: "lâo", spanish: "contar (historia)" }
   },
   {
     rank: 299, thai: "เก็บ", es: "kèp", spanish: "guardar", english: "to keep", rtgs: "", cefr: null, freq: 299, notes: "",
     category: "verbos", tone: "l",
     phrase: { thai: "ฉันเก็บ", es: "chǎn kèp", spanish: "Yo guardo" },
-    question: { thai: "คุณเก็บไหม", es: "khun kèp mǎi", spanish: "¿Tú guardo?" },
+    question: { thai: "คุณเก็บไหม", es: "khun kèp mǎi", spanish: "¿Tú guardas?" },
     answer: { thai: "เก็บ", es: "kèp", spanish: "guardar" }
   },
   {
@@ -2401,8 +2401,8 @@ var TOP1000_WORDS = [
   {
     rank: 343, thai: "เปลี่ยนแปลง", es: "plìan-plɛɛŋ", spanish: "cambiar (estado)", english: "to transform", rtgs: "", cefr: null, freq: 343, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันเปลี่ยนแปลง", es: "chǎn plìan-plɛɛŋ", spanish: "Yo cambiar (estado)" },
-    question: { thai: "คุณเปลี่ยนแปลงไหม", es: "khun plìan-plɛɛŋ mǎi", spanish: "¿Tú cambiar (estado)?" },
+    phrase: { thai: "ฉันเปลี่ยนแปลง", es: "chǎn plìan-plɛɛŋ", spanish: "Yo cambio (estado)" },
+    question: { thai: "คุณเปลี่ยนแปลงไหม", es: "khun plìan-plɛɛŋ mǎi", spanish: "¿Tú cambias (estado)?" },
     answer: { thai: "เปลี่ยนแปลง", es: "plìan-plɛɛŋ", spanish: "cambiar (estado)" }
   },
   {
@@ -2618,8 +2618,8 @@ var TOP1000_WORDS = [
   {
     rank: 374, thai: "ยืน", es: "yɯɯn", spanish: "estar de pie", english: "to stand", rtgs: "", cefr: null, freq: 374, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันยืน", es: "chǎn yɯɯn", spanish: "Yo estar de pie" },
-    question: { thai: "คุณยืนไหม", es: "khun yɯɯn mǎi", spanish: "¿Tú estar de pie?" },
+    phrase: { thai: "ฉันยืน", es: "chǎn yɯɯn", spanish: "Yo estoy de pie" },
+    question: { thai: "คุณยืนไหม", es: "khun yɯɯn mǎi", spanish: "¿Tú estás de pie?" },
     answer: { thai: "ยืน", es: "yɯɯn", spanish: "estar de pie" }
   },
   {
@@ -2849,8 +2849,8 @@ var TOP1000_WORDS = [
   {
     rank: 407, thai: "อาศัย", es: "aasǎai", spanish: "vivir en", english: "to live at", rtgs: "", cefr: null, freq: 407, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันอาศัย", es: "chǎn aasǎai", spanish: "Yo vivir en" },
-    question: { thai: "คุณอาศัยไหม", es: "khun aasǎai mǎi", spanish: "¿Tú vivir en?" },
+    phrase: { thai: "ฉันอาศัย", es: "chǎn aasǎai", spanish: "Yo vivo en" },
+    question: { thai: "คุณอาศัยไหม", es: "khun aasǎai mǎi", spanish: "¿Tú vives en?" },
     answer: { thai: "อาศัย", es: "aasǎai", spanish: "vivir en" }
   },
   {
@@ -3431,7 +3431,7 @@ var TOP1000_WORDS = [
     rank: 490, thai: "อาจจะ", es: "àat-jà", spanish: "podría", english: "might", rtgs: "", cefr: null, freq: 490, notes: "",
     category: "verbos", tone: "l",
     phrase: { thai: "ฉันอาจจะ", es: "chǎn àat-jà", spanish: "Yo podría" },
-    question: { thai: "คุณอาจจะไหม", es: "khun àat-jà mǎi", spanish: "¿Tú podría?" },
+    question: { thai: "คุณอาจจะไหม", es: "khun àat-jà mǎi", spanish: "¿Tú podrías?" },
     answer: { thai: "อาจจะ", es: "àat-jà", spanish: "podría" }
   },
   {
@@ -3528,7 +3528,7 @@ var TOP1000_WORDS = [
   {
     rank: 504, thai: "ปรับ", es: "bpràp", spanish: "ajustar/multa", english: "adjust/fine", rtgs: "", cefr: null, freq: 504, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันปรับ", es: "chǎn bpràp", spanish: "Yo ajustar/multa" },
+    phrase: { thai: "ฉันปรับ", es: "chǎn bpràp", spanish: "Yo ajusto/multo" },
     question: { thai: "คุณปรับไหม", es: "khun bpràp mǎi", spanish: "¿ajustar/multa?" },
     answer: { thai: "ปรับ", es: "bpràp", spanish: "ajustar/multa" }
   },
@@ -3542,7 +3542,7 @@ var TOP1000_WORDS = [
   {
     rank: 506, thai: "หยุด", es: "yùt", spanish: "parar/detener", english: "stop", rtgs: "", cefr: null, freq: 506, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันหยุด", es: "chǎn yùt", spanish: "Yo parar/detener" },
+    phrase: { thai: "ฉันหยุด", es: "chǎn yùt", spanish: "Yo paro/detengo" },
     question: { thai: "คุณหยุดไหม", es: "khun yùt mǎi", spanish: "¿parar/detener?" },
     answer: { thai: "หยุด", es: "yùt", spanish: "parar/detener" }
   },
@@ -3556,21 +3556,21 @@ var TOP1000_WORDS = [
   {
     rank: 508, thai: "แก้", es: "gâae", spanish: "arreglar/corregir", english: "fix/correct", rtgs: "", cefr: null, freq: 508, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันแก้", es: "chǎn gâae", spanish: "Yo arreglar/corregir" },
+    phrase: { thai: "ฉันแก้", es: "chǎn gâae", spanish: "Yo arreglo/corrijo" },
     question: { thai: "คุณแก้ไหม", es: "khun gâae mǎi", spanish: "¿arreglar/corregir?" },
     answer: { thai: "แก้", es: "gâae", spanish: "arreglar/corregir" }
   },
   {
     rank: 509, thai: "ปกครอง", es: "bpòk-khrong", spanish: "gobernar", english: "govern", rtgs: "", cefr: null, freq: 509, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันปกครอง", es: "chǎn bpòk-khrong", spanish: "Yo gobernar" },
+    phrase: { thai: "ฉันปกครอง", es: "chǎn bpòk-khrong", spanish: "Yo gobierno" },
     question: { thai: "คุณปกครองไหม", es: "khun bpòk-khrong mǎi", spanish: "¿gobernar?" },
     answer: { thai: "ปกครอง", es: "bpòk-khrong", spanish: "gobernar" }
   },
   {
     rank: 510, thai: "พัก", es: "phák", spanish: "descansar", english: "rest", rtgs: "", cefr: null, freq: 510, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันพัก", es: "chǎn phák", spanish: "Yo descansar" },
+    phrase: { thai: "ฉันพัก", es: "chǎn phák", spanish: "Yo descanso" },
     question: { thai: "คุณพักไหม", es: "khun phák mǎi", spanish: "¿descansar?" },
     answer: { thai: "พัก", es: "phák", spanish: "descansar" }
   },
@@ -3584,7 +3584,7 @@ var TOP1000_WORDS = [
   {
     rank: 512, thai: "ทำให้", es: "tam-hâi", spanish: "hacer que", english: "make", rtgs: "", cefr: null, freq: 512, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันทำให้", es: "chǎn tam-hâi", spanish: "Yo hacer que" },
+    phrase: { thai: "ฉันทำให้", es: "chǎn tam-hâi", spanish: "Yo hago que" },
     question: { thai: "คุณทำให้ไหม", es: "khun tam-hâi mǎi", spanish: "¿hacer que?" },
     answer: { thai: "ทำให้", es: "tam-hâi", spanish: "hacer que" }
   },
@@ -3605,7 +3605,7 @@ var TOP1000_WORDS = [
   {
     rank: 515, thai: "หา", es: "hǎa", spanish: "buscar", english: "look for", rtgs: "", cefr: null, freq: 515, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันหา", es: "chǎn hǎa", spanish: "Yo buscar" },
+    phrase: { thai: "ฉันหา", es: "chǎn hǎa", spanish: "Yo busco" },
     question: { thai: "คุณหาไหม", es: "khun hǎa mǎi", spanish: "¿buscar?" },
     answer: { thai: "หา", es: "hǎa", spanish: "buscar" }
   },
@@ -3675,7 +3675,7 @@ var TOP1000_WORDS = [
   {
     rank: 525, thai: "เกิด", es: "gèet", spanish: "nacer/suceder", english: "born/happen", rtgs: "", cefr: null, freq: 525, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันเกิด", es: "chǎn gèet", spanish: "Yo nacer/suceder" },
+    phrase: { thai: "ฉันเกิด", es: "chǎn gèet", spanish: "Yo nazco/sucedo" },
     question: { thai: "คุณเกิดไหม", es: "khun gèet mǎi", spanish: "¿nacer/suceder?" },
     answer: { thai: "เกิด", es: "gèet", spanish: "nacer/suceder" }
   },
@@ -3689,7 +3689,7 @@ var TOP1000_WORDS = [
   {
     rank: 527, thai: "ต้อง", es: "dtôong", spanish: "deber/necesitar", english: "must", rtgs: "", cefr: null, freq: 527, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันต้อง", es: "chǎn dtôong", spanish: "Yo deber/necesitar" },
+    phrase: { thai: "ฉันต้อง", es: "chǎn dtôong", spanish: "Yo debo/necesito" },
     question: { thai: "คุณต้องไหม", es: "khun dtôong mǎi", spanish: "¿deber/necesitar?" },
     answer: { thai: "ต้อง", es: "dtôong", spanish: "deber/necesitar" }
   },
@@ -3710,7 +3710,7 @@ var TOP1000_WORDS = [
   {
     rank: 530, thai: "เกิน", es: "gəən", spanish: "exceder", english: "exceed", rtgs: "", cefr: null, freq: 530, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันเกิน", es: "chǎn gəən", spanish: "Yo exceder" },
+    phrase: { thai: "ฉันเกิน", es: "chǎn gəən", spanish: "Yo excedo" },
     question: { thai: "คุณเกินไหม", es: "khun gəən mǎi", spanish: "¿exceder?" },
     answer: { thai: "เกิน", es: "gəən", spanish: "exceder" }
   },
@@ -3724,7 +3724,7 @@ var TOP1000_WORDS = [
   {
     rank: 532, thai: "เห็น", es: "hěn", spanish: "ver", english: "see", rtgs: "", cefr: null, freq: 532, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันเห็น", es: "chǎn hěn", spanish: "Yo ver" },
+    phrase: { thai: "ฉันเห็น", es: "chǎn hěn", spanish: "Yo veo" },
     question: { thai: "คุณเห็นไหม", es: "khun hěn mǎi", spanish: "¿ver?" },
     answer: { thai: "เห็น", es: "hěn", spanish: "ver" }
   },
@@ -3738,7 +3738,7 @@ var TOP1000_WORDS = [
   {
     rank: 534, thai: "ออก", es: "òok", spanish: "salir", english: "exit", rtgs: "", cefr: null, freq: 534, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันออก", es: "chǎn òok", spanish: "Yo salir" },
+    phrase: { thai: "ฉันออก", es: "chǎn òok", spanish: "Yo salgo" },
     question: { thai: "คุณออกไหม", es: "khun òok mǎi", spanish: "¿salir?" },
     answer: { thai: "ออก", es: "òok", spanish: "salir" }
   },
@@ -3780,7 +3780,7 @@ var TOP1000_WORDS = [
   {
     rank: 540, thai: "พบ", es: "póp", spanish: "encontrar", english: "find/meet", rtgs: "", cefr: null, freq: 540, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันพบ", es: "chǎn póp", spanish: "Yo encontrar" },
+    phrase: { thai: "ฉันพบ", es: "chǎn póp", spanish: "Yo encuentro" },
     question: { thai: "คุณพบไหม", es: "khun póp mǎi", spanish: "¿encontrar?" },
     answer: { thai: "พบ", es: "póp", spanish: "encontrar" }
   },
@@ -3822,7 +3822,7 @@ var TOP1000_WORDS = [
   {
     rank: 546, thai: "มีอยู่", es: "mii-yùu", spanish: "existir/haber", english: "exist", rtgs: "", cefr: null, freq: 546, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันมีอยู่", es: "chǎn mii-yùu", spanish: "Yo existir/haber" },
+    phrase: { thai: "ฉันมีอยู่", es: "chǎn mii-yùu", spanish: "Yo existo/hay" },
     question: { thai: "คุณมีอยู่ไหม", es: "khun mii-yùu mǎi", spanish: "¿existir/haber?" },
     answer: { thai: "มีอยู่", es: "mii-yùu", spanish: "existir/haber" }
   },
@@ -3843,7 +3843,7 @@ var TOP1000_WORDS = [
   {
     rank: 549, thai: "ขึ้น", es: "kêun", spanish: "subir", english: "rise", rtgs: "", cefr: null, freq: 549, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันขึ้น", es: "chǎn kêun", spanish: "Yo subir" },
+    phrase: { thai: "ฉันขึ้น", es: "chǎn kêun", spanish: "Yo subo" },
     question: { thai: "คุณขึ้นไหม", es: "khun kêun mǎi", spanish: "¿subir?" },
     answer: { thai: "ขึ้น", es: "kêun", spanish: "subir" }
   },
@@ -3857,28 +3857,28 @@ var TOP1000_WORDS = [
   {
     rank: 551, thai: "คิด", es: "khít", spanish: "pensar", english: "think", rtgs: "", cefr: null, freq: 551, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันคิด", es: "chǎn khít", spanish: "Yo pensar" },
+    phrase: { thai: "ฉันคิด", es: "chǎn khít", spanish: "Yo pienso" },
     question: { thai: "คุณคิดไหม", es: "khun khít mǎi", spanish: "¿pensar?" },
     answer: { thai: "คิด", es: "khít", spanish: "pensar" }
   },
   {
     rank: 552, thai: "พูด", es: "pùut", spanish: "hablar", english: "speak", rtgs: "", cefr: null, freq: 552, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันพูด", es: "chǎn pùut", spanish: "Yo hablar" },
+    phrase: { thai: "ฉันพูด", es: "chǎn pùut", spanish: "Yo hablo" },
     question: { thai: "คุณพูดไหม", es: "khun pùut mǎi", spanish: "¿hablar?" },
     answer: { thai: "พูด", es: "pùut", spanish: "hablar" }
   },
   {
     rank: 553, thai: "ส่ง", es: "sòong", spanish: "enviar", english: "send", rtgs: "", cefr: null, freq: 553, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันส่ง", es: "chǎn sòong", spanish: "Yo enviar" },
+    phrase: { thai: "ฉันส่ง", es: "chǎn sòong", spanish: "Yo envío" },
     question: { thai: "คุณส่งไหม", es: "khun sòong mǎi", spanish: "¿enviar?" },
     answer: { thai: "ส่ง", es: "sòong", spanish: "enviar" }
   },
   {
     rank: 554, thai: "อ่าน", es: "àan", spanish: "leer", english: "read", rtgs: "", cefr: null, freq: 554, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันอ่าน", es: "chǎn àan", spanish: "Yo leer" },
+    phrase: { thai: "ฉันอ่าน", es: "chǎn àan", spanish: "Yo leo" },
     question: { thai: "คุณอ่านไหม", es: "khun àan mǎi", spanish: "¿leer?" },
     answer: { thai: "อ่าน", es: "àan", spanish: "leer" }
   },
@@ -3906,7 +3906,7 @@ var TOP1000_WORDS = [
   {
     rank: 558, thai: "รู้", es: "rúu", spanish: "saber/conocer", english: "know", rtgs: "", cefr: null, freq: 558, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันรู้", es: "chǎn rúu", spanish: "Yo saber/conocer" },
+    phrase: { thai: "ฉันรู้", es: "chǎn rúu", spanish: "Yo sé/conozco" },
     question: { thai: "คุณรู้ไหม", es: "khun rúu mǎi", spanish: "¿saber/conocer?" },
     answer: { thai: "รู้", es: "rúu", spanish: "saber/conocer" }
   },
@@ -3934,7 +3934,7 @@ var TOP1000_WORDS = [
   {
     rank: 562, thai: "กลับ", es: "glàp", spanish: "volver/contrario", english: "return/back", rtgs: "", cefr: null, freq: 562, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันกลับ", es: "chǎn glàp", spanish: "Yo volver/contrario" },
+    phrase: { thai: "ฉันกลับ", es: "chǎn glàp", spanish: "Yo vuelvo" },
     question: { thai: "คุณกลับไหม", es: "khun glàp mǎi", spanish: "¿volver/contrario?" },
     answer: { thai: "กลับ", es: "glàp", spanish: "volver/contrario" }
   },
@@ -4095,49 +4095,49 @@ var TOP1000_WORDS = [
   {
     rank: 585, thai: "กิน", es: "gin", spanish: "comer", english: "eat", rtgs: "", cefr: null, freq: 585, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันกิน", es: "chǎn gin", spanish: "Yo comer" },
+    phrase: { thai: "ฉันกิน", es: "chǎn gin", spanish: "Yo como" },
     question: { thai: "คุณกินไหม", es: "khun gin mǎi", spanish: "¿comer?" },
     answer: { thai: "กิน", es: "gin", spanish: "comer" }
   },
   {
     rank: 586, thai: "ดื่ม", es: "dùuem", spanish: "beber", english: "drink", rtgs: "", cefr: null, freq: 586, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันดื่ม", es: "chǎn dùuem", spanish: "Yo beber" },
+    phrase: { thai: "ฉันดื่ม", es: "chǎn dùuem", spanish: "Yo bebo" },
     question: { thai: "คุณดื่มไหม", es: "khun dùuem mǎi", spanish: "¿beber?" },
     answer: { thai: "ดื่ม", es: "dùuem", spanish: "beber" }
   },
   {
     rank: 587, thai: "ทำ", es: "tam", spanish: "hacer", english: "do/make", rtgs: "", cefr: null, freq: 587, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันทำ", es: "chǎn tam", spanish: "Yo hacer" },
+    phrase: { thai: "ฉันทำ", es: "chǎn tam", spanish: "Yo hago" },
     question: { thai: "คุณทำไหม", es: "khun tam mǎi", spanish: "¿hacer?" },
     answer: { thai: "ทำ", es: "tam", spanish: "hacer" }
   },
   {
     rank: 588, thai: "รัก", es: "rák", spanish: "amar", english: "love", rtgs: "", cefr: null, freq: 588, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันรัก", es: "chǎn rák", spanish: "Yo amar" },
+    phrase: { thai: "ฉันรัก", es: "chǎn rák", spanish: "Yo amo" },
     question: { thai: "คุณรักไหม", es: "khun rák mǎi", spanish: "¿amar?" },
     answer: { thai: "รัก", es: "rák", spanish: "amar" }
   },
   {
     rank: 589, thai: "เล่น", es: "lên", spanish: "jugar", english: "play", rtgs: "", cefr: null, freq: 589, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันเล่น", es: "chǎn lên", spanish: "Yo jugar" },
+    phrase: { thai: "ฉันเล่น", es: "chǎn lên", spanish: "Yo juego" },
     question: { thai: "คุณเล่นไหม", es: "khun lên mǎi", spanish: "¿jugar?" },
     answer: { thai: "เล่น", es: "lên", spanish: "jugar" }
   },
   {
     rank: 590, thai: "นอน", es: "non", spanish: "dormir", english: "sleep", rtgs: "", cefr: null, freq: 590, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันนอน", es: "chǎn non", spanish: "Yo dormir" },
+    phrase: { thai: "ฉันนอน", es: "chǎn non", spanish: "Yo duermo" },
     question: { thai: "คุณนอนไหม", es: "khun non mǎi", spanish: "¿dormir?" },
     answer: { thai: "นอน", es: "non", spanish: "dormir" }
   },
   {
     rank: 591, thai: "ตื่น", es: "dtùean", spanish: "despertar", english: "wake up", rtgs: "", cefr: null, freq: 591, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันตื่น", es: "chǎn dtùean", spanish: "Yo despertar" },
+    phrase: { thai: "ฉันตื่น", es: "chǎn dtùean", spanish: "Yo despierto" },
     question: { thai: "คุณตื่นไหม", es: "khun dtùean mǎi", spanish: "¿despertar?" },
     answer: { thai: "ตื่น", es: "dtùean", spanish: "despertar" }
   },
@@ -4158,203 +4158,203 @@ var TOP1000_WORDS = [
   {
     rank: 594, thai: "ยืน", es: "yǔuen", spanish: "estar de pie", english: "stand", rtgs: "", cefr: null, freq: 594, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันยืน", es: "chǎn yǔuen", spanish: "Yo estar de pie" },
+    phrase: { thai: "ฉันยืน", es: "chǎn yǔuen", spanish: "Yo estoy de pie" },
     question: { thai: "คุณยืนไหม", es: "khun yǔuen mǎi", spanish: "¿estar de pie?" },
     answer: { thai: "ยืน", es: "yǔuen", spanish: "estar de pie" }
   },
   {
     rank: 595, thai: "เดิน", es: "dooen", spanish: "caminar", english: "walk", rtgs: "", cefr: null, freq: 595, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันเดิน", es: "chǎn dooen", spanish: "Yo caminar" },
+    phrase: { thai: "ฉันเดิน", es: "chǎn dooen", spanish: "Yo camino" },
     question: { thai: "คุณเดินไหม", es: "khun dooen mǎi", spanish: "¿caminar?" },
     answer: { thai: "เดิน", es: "dooen", spanish: "caminar" }
   },
   {
     rank: 596, thai: "วิ่ง", es: "wîng", spanish: "correr", english: "run", rtgs: "", cefr: null, freq: 596, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันวิ่ง", es: "chǎn wîng", spanish: "Yo correr" },
+    phrase: { thai: "ฉันวิ่ง", es: "chǎn wîng", spanish: "Yo corro" },
     question: { thai: "คุณวิ่งไหม", es: "khun wîng mǎi", spanish: "¿correr?" },
     answer: { thai: "วิ่ง", es: "wîng", spanish: "correr" }
   },
   {
     rank: 597, thai: "ขับ", es: "khàp", spanish: "conducir", english: "drive", rtgs: "", cefr: null, freq: 597, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันขับ", es: "chǎn khàp", spanish: "Yo conducir" },
+    phrase: { thai: "ฉันขับ", es: "chǎn khàp", spanish: "Yo conduzco" },
     question: { thai: "คุณขับไหม", es: "khun khàp mǎi", spanish: "¿conducir?" },
     answer: { thai: "ขับ", es: "khàp", spanish: "conducir" }
   },
   {
     rank: 598, thai: "จอด", es: "jòt", spanish: "estacionar", english: "park", rtgs: "", cefr: null, freq: 598, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันจอด", es: "chǎn jòt", spanish: "Yo estacionar" },
+    phrase: { thai: "ฉันจอด", es: "chǎn jòt", spanish: "Yo estaciono" },
     question: { thai: "คุณจอดไหม", es: "khun jòt mǎi", spanish: "¿estacionar?" },
     answer: { thai: "จอด", es: "jòt", spanish: "estacionar" }
   },
   {
     rank: 599, thai: "ซื้อ", es: "súeu", spanish: "comprar", english: "buy", rtgs: "", cefr: null, freq: 599, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันซื้อ", es: "chǎn súeu", spanish: "Yo comprar" },
+    phrase: { thai: "ฉันซื้อ", es: "chǎn súeu", spanish: "Yo compro" },
     question: { thai: "คุณซื้อไหม", es: "khun súeu mǎi", spanish: "¿comprar?" },
     answer: { thai: "ซื้อ", es: "súeu", spanish: "comprar" }
   },
   {
     rank: 600, thai: "ขาย", es: "kǎai", spanish: "vender", english: "sell", rtgs: "", cefr: null, freq: 600, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันขาย", es: "chǎn kǎai", spanish: "Yo vender" },
+    phrase: { thai: "ฉันขาย", es: "chǎn kǎai", spanish: "Yo vendo" },
     question: { thai: "คุณขายไหม", es: "khun kǎai mǎi", spanish: "¿vender?" },
     answer: { thai: "ขาย", es: "kǎai", spanish: "vender" }
   },
   {
     rank: 601, thai: "จ่าย", es: "jàai", spanish: "pagar", english: "pay", rtgs: "", cefr: null, freq: 601, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันจ่าย", es: "chǎn jàai", spanish: "Yo pagar" },
+    phrase: { thai: "ฉันจ่าย", es: "chǎn jàai", spanish: "Yo pago" },
     question: { thai: "คุณจ่ายไหม", es: "khun jàai mǎi", spanish: "¿pagar?" },
     answer: { thai: "จ่าย", es: "jàai", spanish: "pagar" }
   },
   {
     rank: 602, thai: "ให้", es: "hâi", spanish: "dar", english: "give", rtgs: "", cefr: null, freq: 602, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันให้", es: "chǎn hâi", spanish: "Yo dar" },
+    phrase: { thai: "ฉันให้", es: "chǎn hâi", spanish: "Yo doy" },
     question: { thai: "คุณให้ไหม", es: "khun hâi mǎi", spanish: "¿dar?" },
     answer: { thai: "ให้", es: "hâi", spanish: "dar" }
   },
   {
     rank: 603, thai: "รับ", es: "ráp", spanish: "recibir", english: "receive", rtgs: "", cefr: null, freq: 603, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันรับ", es: "chǎn ráp", spanish: "Yo recibir" },
+    phrase: { thai: "ฉันรับ", es: "chǎn ráp", spanish: "Yo recibo" },
     question: { thai: "คุณรับไหม", es: "khun ráp mǎi", spanish: "¿recibir?" },
     answer: { thai: "รับ", es: "ráp", spanish: "recibir" }
   },
   {
     rank: 604, thai: "เปิด", es: "bpèet", spanish: "abrir", english: "open", rtgs: "", cefr: null, freq: 604, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันเปิด", es: "chǎn bpèet", spanish: "Yo abrir" },
+    phrase: { thai: "ฉันเปิด", es: "chǎn bpèet", spanish: "Yo abro" },
     question: { thai: "คุณเปิดไหม", es: "khun bpèet mǎi", spanish: "¿abrir?" },
     answer: { thai: "เปิด", es: "bpèet", spanish: "abrir" }
   },
   {
     rank: 605, thai: "ปิด", es: "bpìt", spanish: "cerrar", english: "close", rtgs: "", cefr: null, freq: 605, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันปิด", es: "chǎn bpìt", spanish: "Yo cerrar" },
+    phrase: { thai: "ฉันปิด", es: "chǎn bpìt", spanish: "Yo cierro" },
     question: { thai: "คุณปิดไหม", es: "khun bpìt mǎi", spanish: "¿cerrar?" },
     answer: { thai: "ปิด", es: "bpìt", spanish: "cerrar" }
   },
   {
     rank: 606, thai: "เขียน", es: "khǐan", spanish: "escribir", english: "write", rtgs: "", cefr: null, freq: 606, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันเขียน", es: "chǎn khǐan", spanish: "Yo escribir" },
+    phrase: { thai: "ฉันเขียน", es: "chǎn khǐan", spanish: "Yo escribo" },
     question: { thai: "คุณเขียนไหม", es: "khun khǐan mǎi", spanish: "¿escribir?" },
     answer: { thai: "เขียน", es: "khǐan", spanish: "escribir" }
   },
   {
     rank: 607, thai: "วาด", es: "wâat", spanish: "dibujar", english: "draw", rtgs: "", cefr: null, freq: 607, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันวาด", es: "chǎn wâat", spanish: "Yo dibujar" },
+    phrase: { thai: "ฉันวาด", es: "chǎn wâat", spanish: "Yo dibujo" },
     question: { thai: "คุณวาดไหม", es: "khun wâat mǎi", spanish: "¿dibujar?" },
     answer: { thai: "วาด", es: "wâat", spanish: "dibujar" }
   },
   {
     rank: 608, thai: "ฟัง", es: "fang", spanish: "escuchar", english: "listen", rtgs: "", cefr: null, freq: 608, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันฟัง", es: "chǎn fang", spanish: "Yo escuchar" },
+    phrase: { thai: "ฉันฟัง", es: "chǎn fang", spanish: "Yo escucho" },
     question: { thai: "คุณฟังไหม", es: "khun fang mǎi", spanish: "¿escuchar?" },
     answer: { thai: "ฟัง", es: "fang", spanish: "escuchar" }
   },
   {
     rank: 609, thai: "มอง", es: "mong", spanish: "mirar", english: "look", rtgs: "", cefr: null, freq: 609, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันมอง", es: "chǎn mong", spanish: "Yo mirar" },
+    phrase: { thai: "ฉันมอง", es: "chǎn mong", spanish: "Yo miro" },
     question: { thai: "คุณมองไหม", es: "khun mong mǎi", spanish: "¿mirar?" },
     answer: { thai: "มอง", es: "mong", spanish: "mirar" }
   },
   {
     rank: 610, thai: "ดม", es: "dom", spanish: "oler", english: "smell", rtgs: "", cefr: null, freq: 610, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันดม", es: "chǎn dom", spanish: "Yo oler" },
+    phrase: { thai: "ฉันดม", es: "chǎn dom", spanish: "Yo huelo" },
     question: { thai: "คุณดมไหม", es: "khun dom mǎi", spanish: "¿oler?" },
     answer: { thai: "ดม", es: "dom", spanish: "oler" }
   },
   {
     rank: 611, thai: "ลิ้ม", es: "lím", spanish: "degustar", english: "taste", rtgs: "", cefr: null, freq: 611, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันลิ้ม", es: "chǎn lím", spanish: "Yo degustar" },
+    phrase: { thai: "ฉันลิ้ม", es: "chǎn lím", spanish: "Yo degusto" },
     question: { thai: "คุณลิ้มไหม", es: "khun lím mǎi", spanish: "¿degustar?" },
     answer: { thai: "ลิ้ม", es: "lím", spanish: "degustar" }
   },
   {
     rank: 612, thai: "สัมผัส", es: "sǎm-phàt", spanish: "tocar", english: "touch", rtgs: "", cefr: null, freq: 612, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันสัมผัส", es: "chǎn sǎm-phàt", spanish: "Yo tocar" },
+    phrase: { thai: "ฉันสัมผัส", es: "chǎn sǎm-phàt", spanish: "Yo toco" },
     question: { thai: "คุณสัมผัสไหม", es: "khun sǎm-phàt mǎi", spanish: "¿tocar?" },
     answer: { thai: "สัมผัส", es: "sǎm-phàt", spanish: "tocar" }
   },
   {
     rank: 613, thai: "เอา", es: "ao", spanish: "tomar/querer", english: "take/want", rtgs: "", cefr: null, freq: 613, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันเอา", es: "chǎn ao", spanish: "Yo tomar/querer" },
+    phrase: { thai: "ฉันเอา", es: "chǎn ao", spanish: "Yo tomo/quiero" },
     question: { thai: "คุณเอาไหม", es: "khun ao mǎi", spanish: "¿tomar/querer?" },
     answer: { thai: "เอา", es: "ao", spanish: "tomar/querer" }
   },
   {
     rank: 614, thai: "หยิบ", es: "yìp", spanish: "coger (de la mano)", english: "pick up", rtgs: "", cefr: null, freq: 614, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันหยิบ", es: "chǎn yìp", spanish: "Yo coger (de la mano)" },
+    phrase: { thai: "ฉันหยิบ", es: "chǎn yìp", spanish: "Yo cojo (de la mano)" },
     question: { thai: "คุณหยิบไหม", es: "khun yìp mǎi", spanish: "¿coger (de la mano)?" },
     answer: { thai: "หยิบ", es: "yìp", spanish: "coger (de la mano)" }
   },
   {
     rank: 615, thai: "จับ", es: "jàp", spanish: "agarrar", english: "grasp", rtgs: "", cefr: null, freq: 615, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันจับ", es: "chǎn jàp", spanish: "Yo agarrar" },
+    phrase: { thai: "ฉันจับ", es: "chǎn jàp", spanish: "Yo agarro" },
     question: { thai: "คุณจับไหม", es: "khun jàp mǎi", spanish: "¿agarrar?" },
     answer: { thai: "จับ", es: "jàp", spanish: "agarrar" }
   },
   {
     rank: 616, thai: "ถือ", es: "thǔue", spanish: "sostener", english: "hold", rtgs: "", cefr: null, freq: 616, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันถือ", es: "chǎn thǔue", spanish: "Yo sostener" },
+    phrase: { thai: "ฉันถือ", es: "chǎn thǔue", spanish: "Yo sostengo" },
     question: { thai: "คุณถือไหม", es: "khun thǔue mǎi", spanish: "¿sostener?" },
     answer: { thai: "ถือ", es: "thǔue", spanish: "sostener" }
   },
   {
     rank: 617, thai: "ปล่อย", es: "blòi", spanish: "soltar", english: "release", rtgs: "", cefr: null, freq: 617, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันปล่อย", es: "chǎn blòi", spanish: "Yo soltar" },
+    phrase: { thai: "ฉันปล่อย", es: "chǎn blòi", spanish: "Yo suelto" },
     question: { thai: "คุณปล่อยไหม", es: "khun blòi mǎi", spanish: "¿soltar?" },
     answer: { thai: "ปล่อย", es: "blòi", spanish: "soltar" }
   },
   {
     rank: 618, thai: "โยน", es: "yoon", spanish: "lanzar", english: "throw", rtgs: "", cefr: null, freq: 618, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันโยน", es: "chǎn yoon", spanish: "Yo lanzar" },
+    phrase: { thai: "ฉันโยน", es: "chǎn yoon", spanish: "Yo lanzo" },
     question: { thai: "คุณโยนไหม", es: "khun yoon mǎi", spanish: "¿lanzar?" },
     answer: { thai: "โยน", es: "yoon", spanish: "lanzar" }
   },
   {
     rank: 619, thai: "เตะ", es: "té", spanish: "patear", english: "kick", rtgs: "", cefr: null, freq: 619, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันเตะ", es: "chǎn té", spanish: "Yo patear" },
+    phrase: { thai: "ฉันเตะ", es: "chǎn té", spanish: "Yo pateo" },
     question: { thai: "คุณเตะไหม", es: "khun té mǎi", spanish: "¿patear?" },
     answer: { thai: "เตะ", es: "té", spanish: "patear" }
   },
   {
     rank: 620, thai: "ต่อย", es: "dtòi", spanish: "golpear (puño)", english: "punch", rtgs: "", cefr: null, freq: 620, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันต่อย", es: "chǎn dtòi", spanish: "Yo golpear (puño)" },
+    phrase: { thai: "ฉันต่อย", es: "chǎn dtòi", spanish: "Yo golpeo (puño)" },
     question: { thai: "คุณต่อยไหม", es: "khun dtòi mǎi", spanish: "¿golpear (puño)?" },
     answer: { thai: "ต่อย", es: "dtòi", spanish: "golpear (puño)" }
   },
   {
     rank: 621, thai: "ชก", es: "chók", spanish: "boxear/golpear", english: "box/punch", rtgs: "", cefr: null, freq: 621, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันชก", es: "chǎn chók", spanish: "Yo boxear/golpear" },
+    phrase: { thai: "ฉันชก", es: "chǎn chók", spanish: "Yo boxeo" },
     question: { thai: "คุณชกไหม", es: "khun chók mǎi", spanish: "¿boxear/golpear?" },
     answer: { thai: "ชก", es: "chók", spanish: "boxear/golpear" }
   },
   {
     rank: 622, thai: "ตบ", es: "dtòp", spanish: "abofetear", english: "slap", rtgs: "", cefr: null, freq: 622, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันตบ", es: "chǎn dtòp", spanish: "Yo abofetear" },
+    phrase: { thai: "ฉันตบ", es: "chǎn dtòp", spanish: "Yo abofeteo" },
     question: { thai: "คุณตบไหม", es: "khun dtòp mǎi", spanish: "¿abofetear?" },
     answer: { thai: "ตบ", es: "dtòp", spanish: "abofetear" }
   },
@@ -4368,42 +4368,42 @@ var TOP1000_WORDS = [
   {
     rank: 624, thai: "กัด", es: "gàt", spanish: "morder", english: "bite", rtgs: "", cefr: null, freq: 624, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันกัด", es: "chǎn gàt", spanish: "Yo morder" },
+    phrase: { thai: "ฉันกัด", es: "chǎn gàt", spanish: "Yo muerdo" },
     question: { thai: "คุณกัดไหม", es: "khun gàt mǎi", spanish: "¿morder?" },
     answer: { thai: "กัด", es: "gàt", spanish: "morder" }
   },
   {
     rank: 625, thai: "เคี้ยว", es: "kíao", spanish: "masticar", english: "chew", rtgs: "", cefr: null, freq: 625, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันเคี้ยว", es: "chǎn kíao", spanish: "Yo masticar" },
+    phrase: { thai: "ฉันเคี้ยว", es: "chǎn kíao", spanish: "Yo mastico" },
     question: { thai: "คุณเคี้ยวไหม", es: "khun kíao mǎi", spanish: "¿masticar?" },
     answer: { thai: "เคี้ยว", es: "kíao", spanish: "masticar" }
   },
   {
     rank: 626, thai: "ดูด", es: "dùut", spanish: "chupar", english: "suck", rtgs: "", cefr: null, freq: 626, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันดูด", es: "chǎn dùut", spanish: "Yo chupar" },
+    phrase: { thai: "ฉันดูด", es: "chǎn dùut", spanish: "Yo chupo" },
     question: { thai: "คุณดูดไหม", es: "khun dùut mǎi", spanish: "¿chupar?" },
     answer: { thai: "ดูด", es: "dùut", spanish: "chupar" }
   },
   {
     rank: 627, thai: "หายใจ", es: "hǎai-jai", spanish: "respirar", english: "breathe", rtgs: "", cefr: null, freq: 627, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันหายใจ", es: "chǎn hǎai-jai", spanish: "Yo respirar" },
+    phrase: { thai: "ฉันหายใจ", es: "chǎn hǎai-jai", spanish: "Yo respiro" },
     question: { thai: "คุณหายใจไหม", es: "khun hǎai-jai mǎi", spanish: "¿respirar?" },
     answer: { thai: "หายใจ", es: "hǎai-jai", spanish: "respirar" }
   },
   {
     rank: 628, thai: "หาว", es: "hǎao", spanish: "bostezar", english: "yawn", rtgs: "", cefr: null, freq: 628, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันหาว", es: "chǎn hǎao", spanish: "Yo bostezar" },
+    phrase: { thai: "ฉันหาว", es: "chǎn hǎao", spanish: "Yo bostezo" },
     question: { thai: "คุณหาวไหม", es: "khun hǎao mǎi", spanish: "¿bostezar?" },
     answer: { thai: "หาว", es: "hǎao", spanish: "bostezar" }
   },
   {
     rank: 629, thai: "จาม", es: "jaam", spanish: "estornudar", english: "sneeze", rtgs: "", cefr: null, freq: 629, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันจาม", es: "chǎn jaam", spanish: "Yo estornudar" },
+    phrase: { thai: "ฉันจาม", es: "chǎn jaam", spanish: "Yo estornudo" },
     question: { thai: "คุณจามไหม", es: "khun jaam mǎi", spanish: "¿estornudar?" },
     answer: { thai: "จาม", es: "jaam", spanish: "estornudar" }
   },
@@ -6748,21 +6748,21 @@ var TOP1000_WORDS = [
   {
     rank: 964, thai: "สำรวจ", es: "sǎm-rùuat", spanish: "inspeccionar", english: "survey", rtgs: "", cefr: null, freq: 964, notes: "",
     category: "verbos", tone: "r",
-    phrase: { thai: "ฉันสำรวจ", es: "chǎn sǎm-rùuat", spanish: "Yo inspeccionar" },
+    phrase: { thai: "ฉันสำรวจ", es: "chǎn sǎm-rùuat", spanish: "Yo inspecciono" },
     question: { thai: "คุณสำรวจไหม", es: "khun sǎm-rùuat mǎi", spanish: "¿inspeccionar?" },
     answer: { thai: "สำรวจ", es: "sǎm-rùuat", spanish: "inspeccionar" }
   },
   {
     rank: 965, thai: "แตก", es: "dtàaek", spanish: "romper", english: "break", rtgs: "", cefr: null, freq: 965, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันแตก", es: "chǎn dtàaek", spanish: "Yo romper" },
+    phrase: { thai: "ฉันแตก", es: "chǎn dtàaek", spanish: "Yo rompo" },
     question: { thai: "คุณแตกไหม", es: "khun dtàaek mǎi", spanish: "¿romper?" },
     answer: { thai: "แตก", es: "dtàaek", spanish: "romper" }
   },
   {
     rank: 966, thai: "เชิญ", es: "chəəi", spanish: "invitar", english: "invite", rtgs: "", cefr: null, freq: 966, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันเชิญ", es: "chǎn chəəi", spanish: "Yo invitar" },
+    phrase: { thai: "ฉันเชิญ", es: "chǎn chəəi", spanish: "Yo invito" },
     question: { thai: "คุณเชิญไหม", es: "khun chəəi mǎi", spanish: "¿invitar?" },
     answer: { thai: "เชิญ", es: "chəəi", spanish: "invitar" }
   },
@@ -6804,7 +6804,7 @@ var TOP1000_WORDS = [
   {
     rank: 972, thai: "กลัว", es: "glua", spanish: "temer", english: "fear", rtgs: "", cefr: null, freq: 972, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันกลัว", es: "chǎn glua", spanish: "Yo temer" },
+    phrase: { thai: "ฉันกลัว", es: "chǎn glua", spanish: "Yo temo" },
     question: { thai: "คุณกลัวไหม", es: "khun glua mǎi", spanish: "¿temer?" },
     answer: { thai: "กลัว", es: "glua", spanish: "temer" }
   },
@@ -6818,7 +6818,7 @@ var TOP1000_WORDS = [
   {
     rank: 974, thai: "ช่วยเหลือ", es: "chúai-luea", spanish: "ayudar (formal)", english: "help (formal)", rtgs: "", cefr: null, freq: 974, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันช่วยเหลือ", es: "chǎn chûai-lǔea", spanish: "Yo ayudar (formal)" },
+    phrase: { thai: "ฉันช่วยเหลือ", es: "chǎn chûai-lǔea", spanish: "Yo ayudo (formal)" },
     question: { thai: "คุณช่วยเหลือไหม", es: "khun chûai-lǔea mǎi", spanish: "¿ayudar (formal)?" },
     answer: { thai: "ช่วยเหลือ", es: "chûai-lǔea", spanish: "ayudar (formal)" }
   },
@@ -6839,7 +6839,7 @@ var TOP1000_WORDS = [
   {
     rank: 977, thai: "จำ", es: "jam", spanish: "recordar", english: "remember", rtgs: "", cefr: null, freq: 977, notes: "",
     category: "verbos", tone: "m",
-    phrase: { thai: "ฉันจำ", es: "chǎn jam", spanish: "Yo recordar" },
+    phrase: { thai: "ฉันจำ", es: "chǎn jam", spanish: "Yo recuerdo" },
     question: { thai: "คุณจำไหม", es: "khun jam mǎi", spanish: "¿recordar?" },
     answer: { thai: "จำ", es: "jam", spanish: "recordar" }
   },
@@ -6860,35 +6860,35 @@ var TOP1000_WORDS = [
   {
     rank: 980, thai: "นึก", es: "nûek", spanish: "pensar (para sí)", english: "think to oneself", rtgs: "", cefr: null, freq: 980, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันนึก", es: "chǎn núek", spanish: "Yo pensar (para sí)" },
+    phrase: { thai: "ฉันนึก", es: "chǎn núek", spanish: "Yo pienso (para sí)" },
     question: { thai: "คุณนึกไหม", es: "khun núek mǎi", spanish: "¿pensar (para sí)?" },
     answer: { thai: "นึก", es: "núek", spanish: "pensar (para sí)" }
   },
   {
     rank: 981, thai: "นับ", es: "nâp", spanish: "contar", english: "count", rtgs: "", cefr: null, freq: 981, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันนับ", es: "chǎn náp", spanish: "Yo contar" },
+    phrase: { thai: "ฉันนับ", es: "chǎn náp", spanish: "Yo cuento" },
     question: { thai: "คุณนับไหม", es: "khun náp mǎi", spanish: "¿contar?" },
     answer: { thai: "นับ", es: "náp", spanish: "contar" }
   },
   {
     rank: 982, thai: "ร้อง", es: "rông", spanish: "cantar/gritar", english: "sing/shout", rtgs: "", cefr: null, freq: 982, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันร้อง", es: "chǎn róng", spanish: "Yo cantar/gritar" },
+    phrase: { thai: "ฉันร้อง", es: "chǎn róng", spanish: "Yo canto/grito" },
     question: { thai: "คุณร้องไหม", es: "khun róng mǎi", spanish: "¿cantar/gritar?" },
     answer: { thai: "ร้อง", es: "róng", spanish: "cantar/gritar" }
   },
   {
     rank: 983, thai: "ตก", es: "tòk", spanish: "caer", english: "fall", rtgs: "", cefr: null, freq: 983, notes: "",
     category: "verbos", tone: "l",
-    phrase: { thai: "ฉันตก", es: "chǎn tòk", spanish: "Yo caer" },
+    phrase: { thai: "ฉันตก", es: "chǎn tòk", spanish: "Yo caigo" },
     question: { thai: "คุณตกไหม", es: "khun tòk mǎi", spanish: "¿caer?" },
     answer: { thai: "ตก", es: "tòk", spanish: "caer" }
   },
   {
     rank: 984, thai: "แบ่ง", es: "báeng", spanish: "dividir", english: "divide", rtgs: "", cefr: null, freq: 984, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันแบ่ง", es: "chǎn bàeng", spanish: "Yo dividir" },
+    phrase: { thai: "ฉันแบ่ง", es: "chǎn bàeng", spanish: "Yo divido" },
     question: { thai: "คุณแบ่งไหม", es: "khun bàeng mǎi", spanish: "¿dividir?" },
     answer: { thai: "แบ่ง", es: "bàeng", spanish: "dividir" }
   },
@@ -6902,7 +6902,7 @@ var TOP1000_WORDS = [
   {
     rank: 986, thai: "เน้น", es: "nêen", spanish: "enfatizar", english: "emphasize", rtgs: "", cefr: null, freq: 986, notes: "",
     category: "verbos", tone: "h",
-    phrase: { thai: "ฉันเน้น", es: "chǎn nêen", spanish: "Yo enfatizar" },
+    phrase: { thai: "ฉันเน้น", es: "chǎn nêen", spanish: "Yo enfatizo" },
     question: { thai: "คุณเน้นไหม", es: "khun nêen mǎi", spanish: "¿enfatizar?" },
     answer: { thai: "เน้น", es: "nêen", spanish: "enfatizar" }
   },
@@ -6979,9 +6979,9 @@ var TOP1000_WORDS = [
   {
     rank: 997, thai: "เหรอ", es: "rǎeo", spanish: "partícula interrogativa", english: "question particle", rtgs: "", cefr: null, freq: 997, notes: "",
     category: "expresiones", tone: "r",
-    phrase: { thai: "เหรอ", es: "rǎeo", spanish: "partícula interrogativa" },
-    question: { thai: "เหรอไหม", es: "rǎeo mǎi", spanish: "¿partícula interrogativa?" },
-    answer: { thai: "เหรอ", es: "rǎeo", spanish: "partícula interrogativa" }
+    phrase: { thai: "ไม่สบายเหรอ", es: "mâi sà-baai rǎeo", spanish: "¿Estás enfermo?" },
+    question: { thai: "คุณไม่สบายเหรอ", es: "khun mâi sà-baai rǎeo", spanish: "¿Estás enfermo tú?" },
+    answer: { thai: "ไม่เป็นอะไร", es: "mâi bpen a-rai", spanish: "No es nada" }
   },
   {
     rank: 998, thai: "แน่", es: "náae", spanish: "seguro/definitivo", english: "certain", rtgs: "", cefr: null, freq: 998, notes: "",
@@ -7000,7 +7000,7 @@ var TOP1000_WORDS = [
   {
     rank: 1000, thai: "แยก", es: "yáaek", spanish: "separar", english: "separate", rtgs: "", cefr: null, freq: 1000, notes: "",
     category: "verbos", tone: "f",
-    phrase: { thai: "ฉันแยก", es: "chǎn yâaek", spanish: "Yo separar" },
+    phrase: { thai: "ฉันแยก", es: "chǎn yâaek", spanish: "Yo separo" },
     question: { thai: "คุณแยกไหม", es: "khun yâaek mǎi", spanish: "¿separar?" },
     answer: { thai: "แยก", es: "yâaek", spanish: "separar" }
   },

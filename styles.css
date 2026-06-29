@@ -1,5 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { overscroll-behavior-y: none; }
+body.fp-open { overflow: hidden; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #1a1a2e;
@@ -241,6 +242,10 @@ input, select, textarea { font-size: 16px; }
     right: 0;
     bottom: 0;
     max-width: 100%;
+    max-height: 70vh;
+    max-height: 70dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: 18px 18px 0 0;
     padding: 16px 16px calc(env(safe-area-inset-bottom) + 16px);
     z-index: 100;
@@ -258,6 +263,16 @@ input, select, textarea { font-size: 16px; }
     margin: 0 auto 12px;
   }
   @keyframes fp-slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  /* Backdrop for filter bottom sheet */
+  body.fp-open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+    animation: fp-fade 0.2s ease-out;
+  }
+  @keyframes fp-fade { from { opacity: 0; } to { opacity: 1; } }
 
   /* Diff button — Apple HIG 44pt minimum hit target */
   .diff-btn { width: 40px; height: 40px; font-size: 22px; top: 12px; right: 12px; }
@@ -279,6 +294,73 @@ input, select, textarea { font-size: 16px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===================================================================
+   MOBILE OVERRIDES ROUND 2 — per-mode polish (≤720px)
+   =================================================================== */
+@media (max-width: 720px) {
+  /* Card mode — tighter padding, smaller min-height */
+  .card-container { min-height: 380px; margin-bottom: 10px; }
+  .card-container.card-conv { min-height: 560px; max-width: 100%; }
+  .card-face { padding: 16px 14px; }
+  .thai-word { font-size: 2.4rem; }
+  .translation { font-size: 1.6rem; }
+  .phonetic { font-size: 1.05rem; }
+  .pair-thai { font-size: 1.6rem; }
+
+  /* Top 1000 — horizontal chip bar + 16px search input */
+  .top1000-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    border-bottom: none;
+    margin-bottom: 8px;
+  }
+  .top1000-tabs::-webkit-scrollbar { display: none; }
+  .top1000-tab { flex-shrink: 0; min-height: 38px; padding: 7px 12px; }
+  .top1000-bar { gap: 8px; flex-wrap: wrap; }
+  .top1000-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    min-width: 0;
+  }
+  .top1000-chips::-webkit-scrollbar { display: none; }
+  .top1000-chip { flex-shrink: 0; padding: 7px 12px; min-height: 34px; }
+  .top1000-search { flex-basis: 100%; min-width: 100%; order: -1; margin-bottom: 4px; }
+  .top1000-search input { font-size: 16px; padding: 10px 14px; }
+  .top1000-card { padding: 12px; }
+  .t1-thai { font-size: 1.4rem !important; }
+  .t1-line { font-size: 0.85rem; }
+  .t1-line-thai { font-size: 0.92rem; }
+
+  /* Tones — slightly bigger count for readability */
+  .tone-card .tc-count { font-size: 0.72rem; }
+  .tone-card .tc-symbol { font-size: 1.7rem; }
+  .tones-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Matrix — bigger buttons, single column on narrow */
+  .matrix-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .matrix-col { min-width: 70px; }
+  .matrix-controls button { padding: 12px 14px; min-height: 44px; }
+
+  /* Shadowing cards — single column on narrow */
+  .sh-line { min-height: 50px; padding: 12px 14px; }
+  .sh-list { grid-template-columns: 1fr; }
+
+  /* Questions — 1 col on narrow */
+  .questions-grid { grid-template-columns: 1fr; }
+
+  /* Dashboard — 2 cols compact */
+  .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  /* Conversation card back — allow scroll within viewport */
+  .card-container.card-conv .card-back { padding-top: 14px; }
 }
 
 /* Conversation back: top-align so scrolling shows all content */

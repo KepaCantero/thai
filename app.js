@@ -100,6 +100,7 @@ function toggleFilterPanel() {
   $('filterPanel').style.display = filterPanelOpen ? '' : 'none';
   $('filterToggle').classList.toggle('open', filterPanelOpen);
   $('filterToggle').innerHTML = (filterPanelOpen ? '&#9650; ' : '&#9776; ') + 'Filters';
+  document.body.classList.toggle('fp-open', filterPanelOpen);
   if (filterPanelOpen) buildFilterPanel();
 }
 
