@@ -137,6 +137,8 @@ function renderStudyScreen() {
     '</div>';
 
   bindCardStageTap();
+  // Audio at the start: auto-play when card appears (al principio)
+  setTimeout(playSrsPhrase, 200);
 }
 
 function renderBottomBar(card, kind, intervals, hidden) {
@@ -347,11 +349,63 @@ function rateCurrent(rating) {
   var deckKey = item.deckKey || srsCurrent.deckKey;
   var deck = SRS_DECKS[deckKey];
   var cardId = deck.idOf(item.card);
-  recordRating(deckKey, cardId, rating);
+  var intervals = previewIntervals(item.cardState);
+  var nextState = recordRating(deckKey, cardId, rating);
   srsCurrent.sessionStats.reviewed++;
   if (item.isNew && rating >= 3) srsCurrent.sessionStats.learned++;
   vibrate(rating === 1 ? 30 : 10);
-  advanceCard();
+  // Visual feedback: show scheduled interval before advancing
+  showSrsToast('→ ' + intervals[rating], rating);
+  // Anki-style learning steps: if the card is still in 'learn' state after
+  // rating (Again/Hard on a new or learning card, or a lapsed review card),
+  // reinsert it into the queue a few positions ahead so it reappears within
+  // this session. Skip when the card graduates to 'review' or when we have
+  // already shown it too many times (prevents infinite loops).
+  if (nextState && nextState.state === 'learn') {
+    var presentations = (item.presentations || 1) + 1;
+    if (presentations <= 5) {
+      var offset = reinsertOffset(nextState);
+      var insertAt = Math.min(srsCurrent.idx + offset, srsCurrent.queue.length);
+      var reinsertItem = {
+        card: item.card,
+        cardState: nextState,
+        isNew: false,
+        isLearning: true,
+        deckKey: item.deckKey,
+        presentations: presentations
+      };
+      srsCurrent.queue.splice(insertAt, 0, reinsertItem);
+    }
+  }
+  setTimeout(advanceCard, 380);
+}
+
+// How many positions ahead to reinsert a learning card, based on its scheduled
+// interval. Approximate — assumes ~10s per card so the card reappears close to
+// its true due time without holding up the session.
+function reinsertOffset(nextState) {
+  var now = Math.floor(Date.now() / 1000);
+  var sec = nextState.due - now;
+  if (sec <= 90) return 4;    // Again (1min): ~4 cards
+  if (sec <= 600) return 8;   // Hard / lapse (5–10min): ~8 cards
+  return 12;                   // Long learn step: ~12 cards
+}
+
+function showSrsToast(msg, rating) {
+  var existing = document.getElementById('srsToast');
+  if (existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.id = 'srsToast';
+  toast.className = 'srs-toast srs-toast-r' + (rating || 3);
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  // force reflow then animate in
+  void toast.offsetWidth;
+  toast.classList.add('srs-toast-show');
+  setTimeout(function() {
+    toast.classList.remove('srs-toast-show');
+    setTimeout(function() { if (toast.parentNode) toast.remove(); }, 200);
+  }, 700);
 }
 
 function advanceCard() {

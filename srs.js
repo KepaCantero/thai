@@ -257,6 +257,25 @@ function recordRating(deckKey, cardId, rating) {
   return next;
 }
 
+
+// Lookup a card by its thai string across decks that have a top-level `thai` field
+// (palabras, frases). Returns { deckKey, cardId } or null. Used by Cards mode
+// to feed SRS ratings without a hard dependency on the Cards-mode card shape.
+function findSrsCardByThai(thai) {
+  if (!thai || typeof SRS_DECKS === 'undefined') return null;
+  var deckKeys = ['palabras', 'frases'];
+  for (var i = 0; i < deckKeys.length; i++) {
+    var dk = deckKeys[i];
+    var deck = SRS_DECKS[dk];
+    if (!deck) continue;
+    var src = deck.source();
+    for (var j = 0; j < src.length; j++) {
+      if (src[j].thai === thai) return { deckKey: dk, cardId: deck.idOf(src[j]) };
+    }
+  }
+  return null;
+}
+
 // --- Daily stats ---
 function getTodayStr() {
   var d = new Date();

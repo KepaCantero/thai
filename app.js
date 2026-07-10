@@ -471,9 +471,18 @@ function jumpPlayAll(newIdx) {
 // --- Scoring ---
 function markCard(knew) {
   if (!deck.length) return;
-  var key = deck[idx].thai || deck[idx].q_thai || (deck[idx].w1 && deck[idx].w1.thai);
+  var card = deck[idx];
+  var key = card.thai || card.q_thai || (card.w1 && card.w1.thai);
   if (knew) { known.add(key); unknown.delete(key); haptic(10); }
   else { unknown.add(key); known.delete(key); haptic(20); }
+  // Feed SRS: if this card exists in an SRS deck (palabras/frases), record a
+  // rating so it gets scheduled. ✓ = Bien (3), ✗ = Otra vez (1). Silent —
+  // the user sees the effect in Estudiar mode. Falls through cleanly when the
+  // card isn't in any SRS deck (lesson-only vocab, pairs, conversations).
+  if (key && typeof findSrsCardByThai === 'function') {
+    var match = findSrsCardByThai(card.thai || (card.w1 && card.w1.thai));
+    if (match) recordRating(match.deckKey, match.cardId, knew ? 3 : 1);
+  }
   updateStats();
   nextCard();
 }
