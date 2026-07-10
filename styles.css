@@ -1430,3 +1430,71 @@ button:disabled { opacity: 0.4; cursor: default; }
 
   /* Audio bar stays in flow on mobile (already at top, no change needed) */
 }
+
+/* ===================================================================
+   ROUND 4 — Professional polish for iPhone 16 (≤720px)
+   Source-order: this block wins all cascade ties.
+   A) vertical space  B) tap targets + typography  C) feedback  D) affordance
+   =================================================================== */
+
+/* C1. Snappier flip everywhere */
+.card { transition: transform 0.25s ease; }
+
+@media (max-width: 720px) {
+  /* --- A. Vertical space: scope body padding to cards mode only --- */
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important; }
+  body.mode-cards { padding-bottom: calc(72px + 160px + env(safe-area-inset-bottom)) !important; }
+
+  /* Compact audio-bar — single tight row */
+  .audio-bar { padding: 6px 10px; gap: 6px; margin-bottom: 8px; }
+  .audio-bar button { padding: 8px 12px; min-height: 38px; font-size: 0.78rem; }
+
+  /* Compact cards-bottom */
+  .cards-bottom { padding: 6px 10px calc(env(safe-area-inset-bottom) + 6px); gap: 4px; }
+
+  /* searchBar only in cards mode (not dashboard) */
+  body:not(.mode-cards) .search-bar { display: none !important; }
+
+  /* --- B. Tap targets ≥38px (HIG-aware compromise) --- */
+  .filter-toggle { padding: 9px 14px; min-height: 38px; }
+  .filter-chip { padding: 7px 10px 7px 12px; min-height: 36px; }
+  .fp-clear, .fp-done { padding: 9px 16px; min-height: 38px; }
+  .fp-opt { padding: 8px 13px; min-height: 36px; }
+  .tab { padding: 9px 14px; min-height: 40px; }
+  .top1000-tab { min-height: 42px; padding: 8px 12px; }
+
+  /* --- B. Legible typography (≥0.7rem = 11.2px) --- */
+  .q-card .qc-topic, .q-card .qc-tense, .q-card .qc-src { font-size: 0.7rem; padding: 2px 7px; }
+  .q-card .qc-qa-label { font-size: 0.7rem; }
+  .dash-card .dc-type-badge { font-size: 0.68rem; padding: 2px 6px; }
+  .dash-card .dc-qa-label { font-size: 0.7rem; }
+  .dash-card .dc-tone { font-size: 0.72rem; }
+  .dash-card .dc-phonetic { font-size: 0.78rem; }
+  .dash-card .dc-es { font-size: 0.72rem; }
+  .wb-ph { font-size: 0.7rem; }
+  .wb-s { font-size: 0.68rem; }
+
+  /* --- C2. Tap feedback on non-button elements --- */
+  .card-container:active .card:not(.flipped) { transform: scale(0.985); }
+  .dash-card:active, .q-card:active, .tone-card:active,
+  .tone-item:active, .sh-line:active, .top1000-chip:active,
+  .filter-chip:active, .tab:active, .mode-tab:active,
+  .fp-opt:active, .pair-btn:active {
+    transform: scale(0.96); opacity: 0.88; transition: all 0.08s;
+  }
+  .diff-btn:active, .diff-btn-bottom:active { transform: scale(0.88); }
+
+  /* --- D. Scroll affordance: fade right edge --- */
+  .mode-tabs {
+    -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, black 88%, transparent 100%);
+  }
+  .top1000-tabs {
+    -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  }
+  .tabs {
+    -webkit-mask-image: linear-gradient(to right, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, black 92%, transparent 100%);
+  }
+}

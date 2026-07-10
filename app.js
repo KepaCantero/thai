@@ -438,7 +438,8 @@ function buildQuestionsDeck() {
 // Strip leading "to " from English-style verb for natural sentence generation.
 
 
-function flipCard() { $('card').classList.toggle('flipped'); if (!running) playAudio(); }
+function haptic(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} }
+function flipCard() { $('card').classList.toggle('flipped'); haptic(8); if (!running) playAudio(); }
 
 // Attach click handler (not inline onclick, more reliable during Play All)
 document.addEventListener('DOMContentLoaded', function() {
@@ -471,8 +472,8 @@ function jumpPlayAll(newIdx) {
 function markCard(knew) {
   if (!deck.length) return;
   var key = deck[idx].thai || deck[idx].q_thai || (deck[idx].w1 && deck[idx].w1.thai);
-  if (knew) { known.add(key); unknown.delete(key); }
-  else { unknown.add(key); known.delete(key); }
+  if (knew) { known.add(key); unknown.delete(key); haptic(10); }
+  else { unknown.add(key); known.delete(key); haptic(20); }
   updateStats();
   nextCard();
 }
@@ -493,6 +494,7 @@ function toggleDifficult() {
   if (!key) return;
   var removing = difficult.has(key);
   if (removing) difficult.delete(key); else difficult.add(key);
+  haptic(12);
   saveDifficult();
   buildLessonTabs(); // refresh count on the ★ Difíciles tab
   if (activeLesson === 'dificiles' && removing) {
