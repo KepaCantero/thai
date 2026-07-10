@@ -7004,6 +7004,63 @@ var TOP1000_WORDS = [
     question: { thai: "คุณแยกไหม", es: "khun yâaek mǎi", spanish: "¿separar?" },
     answer: { thai: "แยก", es: "yâaek", spanish: "separar" }
   },
+  // Ranks 1001-1008: common words needed by TOP1000_PHRASES but originally missing
+  {
+    rank: 1001, thai: "สวัสดี", es: "sà-wàt-dii", spanish: "hola", english: "hello", rtgs: "", cefr: null, freq: 1001, notes: "Saludo formal. Se usa con ครับ (hombre) o ค่ะ (mujer).",
+    category: "fórmulas", tone: "m",
+    phrase: { thai: "สวัสดีครับ", es: "sà-wàt-dii khráp", spanish: "Hola (hombre)" },
+    question: { thai: "สวัสดี", es: "sà-wàt-dii", spanish: "Hola" },
+    answer: { thai: "สวัสดีค่ะ", es: "sà-wàt-dii khâ", spanish: "Hola (mujer)" }
+  },
+  {
+    rank: 1002, thai: "สบาย", es: "sà-baai", spanish: "bien / cómodo", english: "well / comfortable", rtgs: "", cefr: null, freq: 1002, notes: "Adjetivo. En saludo: สบายดี = estar bien.",
+    category: "adjetivos", tone: "m",
+    phrase: { thai: "สบายดี", es: "sà-baai-dii", spanish: "Estar bien" },
+    question: { thai: "สบายไหม", es: "sà-baai mǎi", spanish: "¿Estás bien?" },
+    answer: { thai: "สบาย", es: "sà-baai", spanish: "Bien" }
+  },
+  {
+    rank: 1003, thai: "ขอบคุณ", es: "kàwp-khun", spanish: "gracias", english: "thank you", rtgs: "", cefr: null, freq: 1003, notes: "Fórmula de agradecimiento. ขอบ se pronuncia kàwp (asimilación tonal).",
+    category: "fórmulas", tone: "m",
+    phrase: { thai: "ขอบคุณมาก", es: "kàwp-khun mâak", spanish: "Muchas gracias" },
+    question: { thai: "ขอบคุณ", es: "kàwp-khun", spanish: "Gracias" },
+    answer: { thai: "ยินดี", es: "yin-dii", spanish: "De nada" }
+  },
+  {
+    rank: 1004, thai: "ไร", es: "rai", spanish: "cosa / nada", english: "thing / nothing", rtgs: "", cefr: null, freq: 1004, notes: "Aparece sobre todo en ไม่เป็นไร (no importa). Formalmente อะไร (a-rài).",
+    category: "pronombres", tone: "m",
+    phrase: { thai: "ไม่เป็นไร", es: "mâi bpen rai", spanish: "No importa" },
+    question: { thai: "เป็นไรไหม", es: "bpen rai mǎi", spanish: "¿Pasa algo?" },
+    answer: { thai: "ไม่เป็นไร", es: "mâi bpen rai", spanish: "No pasa nada" }
+  },
+  {
+    rank: 1005, thai: "เท่าไหร่", es: "tâo-rài", spanish: "cuánto", english: "how much", rtgs: "", cefr: null, freq: 1005, notes: "Pronombre interrogativo de cantidad. Variante coloquial: อั้น (an).",
+    category: "preguntas", tone: "l",
+    phrase: { thai: "ราคาเท่าไหร่", es: "raa-khaa tâo-rài", spanish: "¿Cuánto cuesta?" },
+    question: { thai: "กี่บาท", es: "kìi bàat", spanish: "¿Cuántos baht?" },
+    answer: { thai: "สิบบาท", es: "sìp bàat", spanish: "Diez baht" }
+  },
+  {
+    rank: 1006, thai: "อร่อย", es: "a-ròi", spanish: "rico / delicioso", english: "delicious", rtgs: "", cefr: null, freq: 1006, notes: "Adjetivo para comida. Colloquial: แม่น (mên) en el norte.",
+    category: "adjetivos", tone: "l",
+    phrase: { thai: "อร่อยมาก", es: "a-ròi mâak", spanish: "Muy rico" },
+    question: { thai: "อร่อยไหม", es: "a-ròi mǎi", spanish: "¿Está rico?" },
+    answer: { thai: "อร่อย", es: "a-ròi", spanish: "Rico" }
+  },
+  {
+    rank: 1007, thai: "กรุงเทพ", es: "grung-thêep", spanish: "Bangkok", english: "Bangkok", rtgs: "", cefr: null, freq: 1007, notes: "Nombre corto de la capital. Nombre completo ceremonial: กรุงเทพมหานคร.",
+    category: "nombres", tone: "l",
+    phrase: { thai: "อยู่กรุงเทพ", es: "yùu grung-thêep", spanish: "Estar en Bangkok" },
+    question: { thai: "ไปกรุงเทพไหม", es: "bpai grung-thêep mǎi", spanish: "¿Vas a Bangkok?" },
+    answer: { thai: "กรุงเทพ", es: "grung-thêep", spanish: "Bangkok" }
+  },
+  {
+    rank: 1008, thai: "คัน", es: "khan", spanish: "clasificador (coches/paraguas)", english: "classifier for vehicles", rtgs: "", cefr: null, freq: 1008, notes: "Clasificador para vehículos, paraguas y palos. Sustantivo: mango.",
+    category: "clasificadores", tone: "m",
+    phrase: { thai: "รถคันนี้", es: "rót kan níi", spanish: "Este coche" },
+    question: { thai: "กี่คัน", es: "kìi kan", spanish: "¿Cuántos vehículos?" },
+    answer: { thai: "สองคัน", es: "sǎwng kan", spanish: "Dos" }
+  },
 ];
 
 // ============================================================
@@ -7146,21 +7203,21 @@ var TOP1000_STRUCTURES = [
 // ===== Banco de frases (target: 2000+, seed: 15) =====
 // Cada frase: { id, thai, rtgs, spanish, english, newWords:[rank], structureId, note }
 var TOP1000_PHRASES = [
-  { id: 1, thai: "สวัสดีครับ", rtgs: "sà-wàt-dii khráp", spanish: "Hola (hombre)", english: "Hello (male)", newWords: [88], structureId: 7, note: "Saludo formal masculino." },
-  { id: 2, thai: "สวัสดีค่ะ", rtgs: "sà-wàt-dii khâ", spanish: "Hola (mujer)", english: "Hello (female)", newWords: [88], structureId: 7, note: "Saludo formal femenino." },
-  { id: 3, thai: "คุณสบายดีไหม", rtgs: "khun sà-baai-dii mǎi", spanish: "¿Estás bien?", english: "Are you well?", newWords: [88, 12], structureId: 1, note: "Saludo casual '¿cómo estás?'." },
-  { id: 4, thai: "ขอบคุณมาก", rtgs: "kàwp-khun mâak", spanish: "Muchas gracias", english: "Thank you very much", newWords: [22], structureId: null, note: "Respuesta cortés común." },
-  { id: 5, thai: "ไม่เป็นไร", rtgs: "mâi bpen rai", spanish: "No hay de qué / No importa", english: "Never mind / You're welcome", newWords: [2, 3], structureId: 2, note: "Doble uso: disculpa leve o respuesta a 'gracias'." },
-  { id: 6, thai: "ผมไม่เข้าใจ", rtgs: "pǒm mâi kâo-jai", spanish: "No entiendo", english: "I don't understand", newWords: [3, 15], structureId: 2, note: "Frase de supervivencia para extranjeros." },
-  { id: 7, thai: "พูดช้าลงได้ไหม", rtgs: "pùut cháa long dâai mǎi", spanish: "¿Puedes hablar más despacio?", english: "Can you speak slower?", newWords: [142, 87], structureId: 5, note: "Súper útil con nativos que hablan rápido." },
-  { id: 8, thai: "ราคาเท่าไหร่", rtgs: "raa-khaa tâo-rài", spanish: "¿Cuánto cuesta?", english: "How much is it?", newWords: [45], structureId: null, note: "Compra esencial." },
-  { id: 9, thai: "ห้องน้ำอยู่ที่ไหน", rtgs: "hâang-nám yùu thîi nǎi", spanish: "¿Dónde está el baño?", english: "Where is the bathroom?", newWords: [78, 4], structureId: null, note: "Pregunta de ubicación básica." },
-  { id: 10, thai: "อร่อยมาก", rtgs: "a-ròi mâak", spanish: "Muy rico", english: "Very delicious", newWords: [120, 22], structureId: null, note: "Elogio al cocinero o al plato." },
-  { id: 11, thai: "ผมจะไปกรุงเทพ", rtgs: "pǒm jà bpai grung-thêep", spanish: "Iré a Bangkok", english: "I'll go to Bangkok", newWords: [3, 5], structureId: 3, note: "Futuro simple con destino." },
-  { id: 12, thai: "กินข้าวแล้ว", rtgs: "gin kâao láew", spanish: "Ya comí", english: "I've already eaten", newWords: [33, 4], structureId: 4, note: "Acción completada." },
-  { id: 13, thai: "คนนี้ใจดี", rtgs: "khon níi jai-dii", spanish: "Esta persona es amable", english: "This person is kind-hearted", newWords: [12, 88, 22], structureId: null, note: "Demostrativo + sujeto + adjetivo." },
-  { id: 14, thai: "รถคันนี้เร็วกว่า", rtgs: "rót kan níi reo kwàa", spanish: "Este coche es más rápido", english: "This car is faster", newWords: [210, 142], structureId: 8, note: "Comparación con clasificador 'คัน'." },
-  { id: 15, thai: "พรุ่งนี้เจอกัน", rtgs: "prùng-níi joo gan", spanish: "Nos vemos mañana", english: "See you tomorrow", newWords: [5, 22], structureId: null, note: "Despedida casual futura." }
+  { id: 1, thai: "สวัสดีครับ", rtgs: "sà-wàt-dii khráp", spanish: "Hola (hombre)", english: "Hello (male)", newWords: [1001, 170], structureId: 7, note: "Saludo formal masculino." },
+  { id: 2, thai: "สวัสดีค่ะ", rtgs: "sà-wàt-dii khâ", spanish: "Hola (mujer)", english: "Hello (female)", newWords: [1001, 244], structureId: 7, note: "Saludo formal femenino." },
+  { id: 3, thai: "คุณสบายดีไหม", rtgs: "khun sà-baai-dii mǎi", spanish: "¿Estás bien?", english: "Are you well?", newWords: [567, 1002, 768, 344], structureId: 1, note: "Saludo casual '¿cómo estás?'." },
+  { id: 4, thai: "ขอบคุณมาก", rtgs: "kàwp-khun mâak", spanish: "Muchas gracias", english: "Thank you very much", newWords: [1003, 538], structureId: null, note: "Respuesta cortés común." },
+  { id: 5, thai: "ไม่เป็นไร", rtgs: "mâi bpen rai", spanish: "No hay de qué / No importa", english: "Never mind / You're welcome", newWords: [8, 3, 1004], structureId: 2, note: "Doble uso: disculpa leve o respuesta a 'gracias'." },
+  { id: 6, thai: "ผมไม่เข้าใจ", rtgs: "pǒm mâi kâo-jai", spanish: "No entiendo", english: "I don't understand", newWords: [576, 8, 106], structureId: 2, note: "Frase de supervivencia para extranjeros." },
+  { id: 7, thai: "พูดช้าลงได้ไหม", rtgs: "pùut cháa long dâai mǎi", spanish: "¿Puedes hablar más despacio?", english: "Can you speak slower?", newWords: [552, 766, 72, 10, 344], structureId: 5, note: "Súper útil con nativos que hablan rápido." },
+  { id: 8, thai: "ราคาเท่าไหร่", rtgs: "raa-khaa tâo-rài", spanish: "¿Cuánto cuesta?", english: "How much is it?", newWords: [938, 1005], structureId: null, note: "Compra esencial." },
+  { id: 9, thai: "ห้องน้ำอยู่ที่ไหน", rtgs: "hâang-nám yùu thîi nǎi", spanish: "¿Dónde está el baño?", english: "Where is the bathroom?", newWords: [680, 583, 20, 572], structureId: null, note: "Pregunta de ubicación básica." },
+  { id: 10, thai: "อร่อยมาก", rtgs: "a-ròi mâak", spanish: "Muy rico", english: "Very delicious", newWords: [1006, 538], structureId: null, note: "Elogio al cocinero o al plato." },
+  { id: 11, thai: "ผมจะไปกรุงเทพ", rtgs: "pǒm jà bpai grung-thêep", spanish: "Iré a Bangkok", english: "I'll go to Bangkok", newWords: [576, 5, 12, 1007], structureId: 3, note: "Futuro simple con destino." },
+  { id: 12, thai: "กินข้าวแล้ว", rtgs: "gin kâao láew", spanish: "Ya comí", english: "I've already eaten", newWords: [585, 584, 873], structureId: 4, note: "Acción completada." },
+  { id: 13, thai: "คนนี้ใจดี", rtgs: "khon níi jai-dii", spanish: "Esta persona es amable", english: "This person is kind-hearted", newWords: [569, 23, 794], structureId: null, note: "Demostrativo + sujeto + adjetivo." },
+  { id: 14, thai: "รถคันนี้เร็วกว่า", rtgs: "rót kan níi reo kwàa", spanish: "Este coche es más rápido", english: "This car is faster", newWords: [222, 1008, 23, 765, 531], structureId: 8, note: "Comparación con clasificador 'คัน'." },
+  { id: 15, thai: "พรุ่งนี้เจอกัน", rtgs: "prùng-níi joo gan", spanish: "Nos vemos mañana", english: "See you tomorrow", newWords: [839, 439, 22], structureId: null, note: "Despedida casual futura." }
 ];
 
 // ===== Conversaciones (target: muchas, seed: 3) =====
