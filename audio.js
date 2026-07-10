@@ -101,7 +101,62 @@ function speakStatic(text, onDone) {
   if (parts.length > 1) {
     return speakStaticSequence(parts, onDone);
   }
-  return speakStaticSingle(text, onDone);
+  // Exact match first
+  if (AUDIO_MANIFEST[text]) {
+    return speakStaticSingle(text, onDone);
+  }
+  // Fallback: greedily segment into known manifest keys and play as a sequence.
+  // Lets phrases like "รถคันนี้เร็วกว่า" play word-by-word when the full phrase
+  // was never TTS-generated but each word exists individually.
+  var segments = segmentByManifest(text);
+  if (segments && segments.length > 0) {
+    console.log('[audio] static segmented:', text, '→', segments);
+    return speakStaticSequence(segments, onDone);
+  }
+  console.warn('[audio] static: no entry for', JSON.stringify(text));
+  return false;
+}
+
+
+// --- Greedy longest-match segmentation against AUDIO_MANIFEST keys ---
+// Used when a phrase isn't an exact manifest entry. Caches a Set of keys plus
+// the max key length so each position is O(maxLen) lookups.
+var _manifestSet = null;
+var _manifestMaxLen = 0;
+
+function getManifestSet() {
+  if (_manifestSet) return { set: _manifestSet, maxLen: _manifestMaxLen };
+  _manifestSet = new Set();
+  _manifestMaxLen = 0;
+  if (typeof AUDIO_MANIFEST !== 'undefined' && AUDIO_MANIFEST) {
+    Object.keys(AUDIO_MANIFEST).forEach(function(k) {
+      _manifestSet.add(k);
+      if (k.length > _manifestMaxLen) _manifestMaxLen = k.length;
+    });
+  }
+  return { set: _manifestSet, maxLen: _manifestMaxLen };
+}
+
+function segmentByManifest(text) {
+  if (!text) return null;
+  var info = getManifestSet();
+  if (!info.set.size) return null;
+  var segments = [];
+  var pos = 0;
+  while (pos < text.length) {
+    // Whitespace is a segment boundary — skip without consuming a lookup
+    if (/\s/.test(text[pos])) { pos++; continue; }
+    var remaining = text.length - pos;
+    var matched = null;
+    for (var len = Math.min(info.maxLen, remaining); len >= 1; len--) {
+      var sub = text.substr(pos, len);
+      if (info.set.has(sub)) { matched = sub; break; }
+    }
+    if (!matched) return null; // unmapped chunk → let upstream fall through
+    segments.push(matched);
+    pos += matched.length;
+  }
+  return segments;
 }
 
 function speakStaticSingle(text, onDone) {
