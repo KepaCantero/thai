@@ -414,7 +414,24 @@ const DATA = {
     { thai: "ทางแยก", phonetic: "thaang yâaek", es: "tang iâek", tone: "m-h", spanish: "intersection / junction", en: "intersection / junction", category: "direcciones", lesson: 13 },
     { thai: "ตก", phonetic: "dtòk", es: "dtòk", tone: "l", spanish: "to fall", en: "to fall", category: "verbos", lesson: 13 },
     { thai: "ขอ", phonetic: "khɔ̌ɔ", es: "kǒr", tone: "r", spanish: "please / may I request", en: "please / may I request", category: "saludos", lesson: 13 },
-    { thai: "ช่วยผมหน่อยครับ", phonetic: "chûai phǒm nòi khráp", es: "chuái pǒm nòi kráp", tone: "h-r-l-h", spanish: "please help me (male speaker)", en: "please help me (male speaker)", category: "saludos", lesson: 13 }
+    { thai: "ช่วยผมหน่อยครับ", phonetic: "chûai phǒm nòi khráp", es: "chuái pǒm nòi kráp", tone: "h-r-l-h", spanish: "please help me (male speaker)", en: "please help me (male speaker)", category: "saludos", lesson: 13 },
+
+    // --- Lesson 15: Mercado (market / fruit shopping) ---
+    { thai: "มะม่วง", phonetic: "má-mûuang", es: "ma-muang", tone: "h-l", spanish: "mango", en: "mango", category: "comida", lesson: 15 },
+    { thai: "กล้วย", phonetic: "glûuai", es: "kluai", tone: "f", spanish: "banana / plátano", en: "banana", category: "comida", lesson: 15 },
+    { thai: "กิโล", phonetic: "kii-loo", es: "gi-lo", tone: "m-m", spanish: "kilo (abreviatura de kilogramo, uso en mercado)", en: "kilo (short for kilogram, used in market)", category: "sustantivos", lesson: 15 },
+    { thai: "กิโลกรัม", phonetic: "kii-loo-gram", es: "gi-lo-gram", tone: "m-m-m", spanish: "kilogramo (formal)", en: "kilogram (formal)", category: "sustantivos", lesson: 15 },
+
+    // === LESSON 16: CONVERSAR Y RESERVAR — palabras nuevas ===
+    { thai: "ชั่วโมง", phonetic: "chûa-moong", es: "chùa-mong", tone: "l-m", spanish: "hora (60 minutos)", en: "hour", category: "tiempo", lesson: 16 },
+    { thai: "เห็น", phonetic: "hěn", es: "hěn", tone: "l", spanish: "ver", en: "to see", category: "verbos", lesson: 16 },
+    { thai: "ผู้ชาย", phonetic: "phûu-chaai", es: "pûu-chai", tone: "f-m", spanish: "hombre", en: "man", category: "pronombres", lesson: 16 },
+    { thai: "พูดคุย", phonetic: "phûut-khui", es: "pût-kui", tone: "f-m", spanish: "conversar / charlar", en: "to chat", category: "verbos", lesson: 16 },
+    { thai: "กัน", phonetic: "kan", es: "gan", tone: "m", spanish: "juntos / mutuamente", en: "together / each other", category: "adverbios", lesson: 16 },
+    { thai: "ชั้น", phonetic: "chân", es: "chán", tone: "f", spanish: "piso (de un edificio)", en: "floor (building level)", category: "sustantivos", lesson: 16 },
+    { thai: "ถุง", phonetic: "thǔng", es: "tǔng", tone: "r", spanish: "bolsa (de plástico/papel)", en: "bag (plastic/paper)", category: "sustantivos", lesson: 16 },
+    { thai: "ฝาก", phonetic: "fàak", es: "fàak", tone: "l", spanish: "dejar (algo al cuidado de alguien)", en: "to leave (in someone's care)", category: "verbos", lesson: 16 },
+    { thai: "ควาย", phonetic: "khwaai", es: "kuai", tone: "m", spanish: "búfalo de agua", en: "water buffalo", category: "sustantivos", lesson: 16 }
   ],
   phrases: [
     { thai: "สวัสดีครับผม", phonetic: "sà-wàt-dee khráp phǒm", es: "sà-uàt-di kráp pǒm", tone: "l-l-m-h-r", spanish: "hello, I am (male)", category: "saludos", lesson: 1, en: "hello, I am (male)" },
@@ -943,7 +960,21 @@ const DATA = {
     { thai: "เบียร์ขวด", phonetic: "bia-khuàat", es: "bia-kùat", tone: "m-l", spanish: "cerveza de botella", en: "bottled beer", category: "comida", lesson: 14 },
     { thai: "เบียร์ขวดสองขวด", phonetic: "bia-khuàat sǎawng khuàat", es: "bia-kùat sǒng kùat", tone: "m-l-r-l", spanish: "dos cervezas de botella", en: "two bottled beers", category: "comida", lesson: 14 },
     { thai: "เบียร์กระป๋อง", phonetic: "bia-grà-pǒong", es: "bia-gra-pǒng", tone: "m-l-r", spanish: "cerveza de lata", en: "canned beer", category: "comida", lesson: 14 },
-    { thai: "เบียร์กระป๋องสามกระป๋อง", phonetic: "bia-grà-pǒong sǎam grà-pǒong", es: "bia-gra-pǒng sǎm gra-pǒng", tone: "m-l-r-r-l-r", spanish: "tres cervezas de lata", en: "three canned beers", category: "comida", lesson: 14 }
+    { thai: "เบียร์กระป๋องสามกระป๋อง", phonetic: "bia-grà-pǒong sǎam grà-pǒong", es: "bia-gra-pǒng sǎm gra-pǒng", tone: "m-l-r-r-l-r", spanish: "tres cervezas de lata", en: "three canned beers", category: "comida", lesson: 14 },
+
+    // --- Lesson 15: Mercado phrases ---
+    { thai: "เอาอะไรอีก", phonetic: "ao a-rai èek", es: "ao a-rai èk", tone: "m-l-m-l", spanish: "¿algo más? (literal: quieres qué más)", en: "anything else? (lit: want what more)", category: "preguntas", lesson: 15 },
+    { thai: "ผมซื้อทั้งหมด", phonetic: "phǒm súue tháng-mòt", es: "pǒm súe tang-mot", tone: "r-h-f-l", spanish: "lo compro todo (hombre)", en: "I'll buy all of it (male)", category: "comida", lesson: 15 },
+    { thai: "เอากี่กิโล", phonetic: "ao gìi kii-loo", es: "ao kì gi-lo", tone: "m-l-m-m", spanish: "¿cuántos kilos quieres?", en: "how many kilos do you want?", category: "preguntas", lesson: 15 },
+    { thai: "เอาเท่าไหร่", phonetic: "ao thâo-rài", es: "ao tao-rǎi", tone: "m-f-l", spanish: "¿cuánto quieres? (cantidad)", en: "how much do you want? (quantity)", category: "preguntas", lesson: 15 },
+    { thai: "หนึ่งร้อยบาท", phonetic: "nùeng rɔ́ɔy bàat", es: "nùng rói bàt", tone: "l-f-l", spanish: "cien baht (100 ฿)", en: "one hundred baht (100 ฿)", category: "números", lesson: 15 },
+    { thai: "เจ็ดสิบบาท", phonetic: "jèt sìp bàat", es: "chèt sìp bàt", tone: "l-l-l", spanish: "setenta baht (70 ฿)", en: "seventy baht (70 ฿)", category: "números", lesson: 15 },
+
+    // --- Lesson 16: phrases ---
+    { thai: "ฝากกระเป๋า", phonetic: "fàak gra-pǎw", es: "fàak gra-bpao", tone: "l-l-r", spanish: "dejar el bolso (al cuidado de alguien)", en: "to leave the bag (in someone's care)", category: "conversación", lesson: 16 },
+    { thai: "พูดคุยกัน", phonetic: "phûut-khui kan", es: "pût-kui gan", tone: "f-m-m", spanish: "conversar juntos", en: "to chat with each other", category: "conversación", lesson: 16 },
+    { thai: "เขาพูดอะไร", phonetic: "khǎo phûut a-rai", es: "kǎo pût à-rai", tone: "r-f-l-m", spanish: "¿qué dice él?", en: "what is he saying?", category: "conversación", lesson: 16 },
+    { thai: "คนขายรถ", phonetic: "khon khǎai rót", es: "kon kǎi rót", tone: "m-r-h", spanish: "vendedor de coches", en: "car salesman", category: "conversación", lesson: 16 }
   ],
   conversations: [
     // Saludos
@@ -1238,7 +1269,14 @@ const DATA = {
     // Lesson 11 — และ
     { q_thai: "ข้าวและไก่หรือข้าวและปลา", q_phonetic: "khâaw læ gài rǔeu khâaw læ plaa", q_es: "kâo lae gài rúe kâo lae bpla", q_tone: "f-l-l-r-l-f-l-l-f-l-m", q_spanish: "Rice and chicken, or rice and fish?", q_en: "Rice and chicken, or rice and fish?", a_thai: "ข้าวและไก่ครับ", a_phonetic: "khâaw læ gài khráp", a_es: "kâo lae gài kráp", a_tone: "f-l-l-h", a_spanish: "Rice and chicken", a_en: "Rice and chicken", category: "preposiciones", lesson: 11 },
     // Lesson 13 — ช่วยผมหน่อยครับ
-    { q_thai: "ช่วยผมหน่อยครับได้ไหม", q_phonetic: "chûai phǒm nòi khráp dâai măi", q_es: "chuái pǒm nòi kráp dâi mǎi", q_tone: "h-r-l-h-f-r", q_spanish: "Please help me, can you?", q_en: "Please help me, can you?", a_thai: "ได้ครับ ช่วยอะไรดี", a_phonetic: "dâai khráp, chûai a-rai dii", a_es: "dâi kráp, chuái a-rai di", a_tone: "f-h, h-l-m-m", a_spanish: "Yes, help with what?", a_en: "Yes, help with what?", category: "saludos", lesson: 13 }
+    { q_thai: "ช่วยผมหน่อยครับได้ไหม", q_phonetic: "chûai phǒm nòi khráp dâai măi", q_es: "chuái pǒm nòi kráp dâi mǎi", q_tone: "h-r-l-h-f-r", q_spanish: "Please help me, can you?", q_en: "Please help me, can you?", a_thai: "ได้ครับ ช่วยอะไรดี", a_phonetic: "dâai khráp, chûai a-rai dii", a_es: "dâi kráp, chuái a-rai di", a_tone: "f-h, h-l-m-m", a_spanish: "Yes, help with what?", a_en: "Yes, help with what?", category: "saludos", lesson: 13 },
+
+    // --- Lesson 15: Mercado (market shopping) ---
+    { q_thai: "เอาอะไรอีกไหมครับ", q_phonetic: "ao a-rai èek mǎi khráp", q_es: "ao a-rai èk mǎi kráp", q_tone: "m-l-m-l-r-h", q_spanish: "¿Quiere algo más? (vendedor → cliente, hombre)", q_en: "Anything else? (vendor → customer, male)", a_thai: "ไม่เอาแล้วครับ", a_phonetic: "mâi ao lɛ́ɛo khráp", a_es: "mâi ao léo kráp", a_tone: "f-m-f-h", a_spanish: "No, nada más", a_en: "No, nothing else", category: "comida", lesson: 15 },
+    { q_thai: "เอากี่กิโลครับ", q_phonetic: "ao gìi kii-loo khráp", q_es: "ao kì gi-lo kráp", q_tone: "m-l-m-m-h", q_spanish: "¿Cuántos kilos quiere?", q_en: "How many kilos do you want?", a_thai: "เอาสองกิโลครับ", a_phonetic: "ao sǎawng kii-loo khráp", a_es: "ao sǒng gi-lo kráp", a_tone: "m-r-m-m-h", a_spanish: "Dos kilos, por favor", a_en: "Two kilos, please", category: "comida", lesson: 15 },
+    { q_thai: "มะม่วงกิโลละเท่าไหร่", q_phonetic: "má-mûuang kii-loo là thâo-rài", q_es: "ma-muang gi-lo là tao-rǎi", q_tone: "h-l-m-m-f-f-l", q_spanish: "¿A cuánto está el kilo de mango?", q_en: "How much per kilo of mango?", a_thai: "เจ็ดสิบบาทครับ", a_phonetic: "jèt sìp bàat khráp", a_es: "chèt sìp bàt kráp", a_tone: "l-l-l-h", a_spanish: "Setenta baht", a_en: "Seventy baht", category: "números", lesson: 15 },
+    { q_thai: "กล้วยเท่าไหร่ครับ", q_phonetic: "glûuai thâo-rài khráp", q_es: "kluai tao-rǎi kráp", q_tone: "f-f-l-h", q_spanish: "¿Cuánto cuesta el plátano?", q_en: "How much is the banana?", a_thai: "หนึ่งร้อยบาทครับ", a_phonetic: "nùeng rɔ́ɔy bàat khráp", a_es: "nùng rói bàt kráp", a_tone: "l-f-l-h", a_spanish: "Cien baht", a_en: "One hundred baht", category: "números", lesson: 15 },
+    { q_thai: "เอาทั้งหมดไหมครับ", q_phonetic: "ao tháng-mòt mǎi khráp", q_es: "ao tang-mot mǎi kráp", q_tone: "m-f-l-r-h", q_spanish: "¿Se lo lleva todo?", q_en: "Will you take all of it?", a_thai: "ครับ ผมซื้อทั้งหมด", a_phonetic: "khráp, phǒm súue tháng-mòt", a_es: "kráp, pǒm súe tang-mot", a_tone: "h-r-h-f-l", a_spanish: "Sí, lo compro todo", a_en: "Yes, I'll buy all of it", category: "comida", lesson: 15 }
   ],
   janus: [
     {
