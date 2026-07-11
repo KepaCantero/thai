@@ -55,7 +55,7 @@ var TOP1000_WORDS = [
   },
   {
     rank: 8, thai: "ไม่", es: "mâi", spanish: "no", english: "not", rtgs: "", cefr: null, freq: 8, notes: "",
-    category: "adverbios", tone: "h",
+    category: "adverbios", tone: "f",
     phrase: { thai: "ฉันไม่ไป", es: "chǎn mâi bpai", spanish: "No voy" },
     question: { thai: "คุณไปไหม", es: "khun bpai mǎi", spanish: "¿Vas?" },
     answer: { thai: "ไม่ไป", es: "mâi bpai", spanish: "No voy" }
@@ -139,7 +139,7 @@ var TOP1000_WORDS = [
   },
   {
     rank: 20, thai: "อยู่", es: "yùu", spanish: "estar (ubicarse)", english: "to be at", rtgs: "", cefr: null, freq: 20, notes: "",
-    category: "verbos", tone: "n",
+    category: "verbos", tone: "l",
     phrase: { thai: "ฉันอยู่", es: "chǎn yùu", spanish: "Yo estoy (ubicarse)" },
     question: { thai: "คุณอยู่ไหม", es: "khun yùu mǎi", spanish: "¿Tú estás (ubicarse)?" },
     answer: { thai: "อยู่", es: "yùu", spanish: "estar (ubicarse)" }
@@ -202,7 +202,7 @@ var TOP1000_WORDS = [
   },
   {
     rank: 29, thai: "ด้วย", es: "dûai", spanish: "también / con", english: "also", rtgs: "", cefr: null, freq: 29, notes: "",
-    category: "adverbios", tone: "n",
+    category: "adverbios", tone: "f",
         phrase: { thai: "ฉันอยากไปด้วย", es: "chǎn yàak bpai dûuai", spanish: "yo también quiero ir", en: "I also want to go" },
     question: { thai: "คุณอยากไปด้วยไหม", es: "khun yàak bpai dûuai mǎi", spanish: "¿Quieres ir también?", en: "Do you also want to go?" },
     answer: { thai: "อยากไปด้วย", es: "yàak bpai dûuai", spanish: "sí, quiero ir también", en: "yes, I want to go too" }
@@ -223,7 +223,7 @@ var TOP1000_WORDS = [
   },
   {
     rank: 32, thai: "ผู้", es: "phûu", spanish: "persona (prefijo)", english: "person prefix", rtgs: "", cefr: null, freq: 32, notes: "",
-    category: "pronombres", tone: "r",
+    category: "pronombres", tone: "f",
     phrase: { thai: "ผู้ชาย", es: "phûu-chaai", spanish: "hombre (persona masculina)", en: "man (male person)" },
     question: { thai: "ผู้คือใคร", es: "phûu khuu khrai", spanish: "¿Quién es persona (prefijo)?" },
     answer: { thai: "ผู้", es: "phûu", spanish: "persona (prefijo)" }
@@ -467,7 +467,7 @@ var TOP1000_WORDS = [
     answer: { thai: "ชอบมาก", es: "chôop mâak", spanish: "sí, mucho", en: "yes, a lot" }
   },
   {
-    rank: 67, thai: "มัน", es: "man", spanish: "ello / ello", english: "it", rtgs: "", cefr: null, freq: 67, notes: "",
+    rank: 67, thai: "มัน", es: "man", spanish: "ello / cosa", english: "it", rtgs: "", cefr: null, freq: 67, notes: "",
     category: "pronombres", tone: "m",
     phrase: { thai: "มันอร่อย", es: "man a-ròi", spanish: "está delicioso", en: "it is delicious" },
     question: { thai: "มันคือใคร", es: "man khuu khrai", spanish: "¿Quién es ello?" },
@@ -2287,7 +2287,7 @@ var TOP1000_WORDS = [
     answer: { thai: "มีอาการ", es: "mii aagaa", spanish: "Sí, hay" }
   },
   {
-    rank: 327, thai: "เกิน", es: "gəən", spanish: "demasiado", english: "too much", rtgs: "", cefr: null, freq: 327, notes: "",
+    rank: 327, thai: "เกิน", es: "gəən", spanish: "exceder / demasiado", english: "exceed / too much", rtgs: "", cefr: null, freq: 327, notes: "Como verbo: exceder. Como 'demasiado' solo se usa en V + เกินไป (ej: กินเกินไป = comer demasiado).",
     category: "adverbios", tone: "m",
         phrase: { thai: "แพงเกินไป", es: "phaang gəən bpai", spanish: "demasiado caro", en: "too expensive" },
     question: { thai: "ราคาเป็นอย่างไร", es: "raa-khaa pen yàang rai", spanish: "¿Cómo es el precio?", en: "How is the price?" },
@@ -3092,7 +3092,7 @@ var TOP1000_WORDS = [
     answer: { thai: "มีเขต", es: "mii khèt", spanish: "Sí, hay" }
   },
   {
-    rank: 442, thai: "สาย", es: "sǎai", spanish: "línea / tarde", english: "line", rtgs: "", cefr: null, freq: 442, notes: "",
+    rank: 442, thai: "สาย", es: "sǎai", spanish: "línea / tarde", english: "line / late morning", rtgs: "", cefr: null, freq: 442, notes: "También: สายตา = perezoso, สายลม = brisa.",
     category: "sustantivos", tone: "r",
     phrase: { thai: "สายดี", es: "sǎai dii", spanish: "línea / tarde bueno" },
     question: { thai: "มีสายไหม", es: "mii sǎai mǎi", spanish: "¿Hay línea?" },
@@ -7179,7 +7179,7 @@ var TOP1000_STRUCTURES = [
     examples: [
       { thai: "สวัสดีครับ", rtgs: "sà-wàt-dii khráp", spanish: "Hola (hombre)", english: "Hello (male speaker)" },
       { thai: "ขอบคุณค่ะ", rtgs: "kàwp-khun khâ", spanish: "Gracias (mujer)", english: "Thank you (female speaker)" },
-      { thai: "ไม่เป็นไรครับ", rtgs: "mâi bpen rai khráp", spanish: "No hay de qué (hombre)", english: "No problem (male)" },
+      { thai: "ไม่เป็นไรครับ", rtgs: "mâi bpen rai khráp", spanish: "No hay problema (hombre)", english: "No problem (male)" },
       { thai: "เข้าใจแล้วค่ะ", rtgs: "kâo-jai láew khâ", spanish: "Ya entiendo (mujer)", english: "I understand now (female)" },
       { thai: "ครับ ๆ", rtgs: "khráp khráp", spanish: "Sí, sí (hombre)", english: "Yes, yes (male)" }
     ]
@@ -7207,7 +7207,7 @@ var TOP1000_PHRASES = [
   { id: 2, thai: "สวัสดีค่ะ", rtgs: "sà-wàt-dii khâ", spanish: "Hola (mujer)", english: "Hello (female)", newWords: [1001, 244], structureId: 7, note: "Saludo formal femenino." },
   { id: 3, thai: "คุณสบายดีไหม", rtgs: "khun sà-baai-dii mǎi", spanish: "¿Estás bien?", english: "Are you well?", newWords: [567, 1002, 768, 344], structureId: 1, note: "Saludo casual '¿cómo estás?'." },
   { id: 4, thai: "ขอบคุณมาก", rtgs: "kàwp-khun mâak", spanish: "Muchas gracias", english: "Thank you very much", newWords: [1003, 538], structureId: null, note: "Respuesta cortés común." },
-  { id: 5, thai: "ไม่เป็นไร", rtgs: "mâi bpen rai", spanish: "No hay de qué / No importa", english: "Never mind / You're welcome", newWords: [8, 3, 1004], structureId: 2, note: "Doble uso: disculpa leve o respuesta a 'gracias'." },
+  { id: 5, thai: "ไม่เป็นไร", rtgs: "mâi bpen rai", spanish: "No te preocupes / No pasa nada / De nada", english: "Never mind / No worries / You're welcome", newWords: [8, 3, 1004], structureId: 2, note: "Doble uso: disculpa leve ('no te preocupes') o respuesta a 'gracias' ('de nada')." },
   { id: 6, thai: "ผมไม่เข้าใจ", rtgs: "pǒm mâi kâo-jai", spanish: "No entiendo", english: "I don't understand", newWords: [576, 8, 106], structureId: 2, note: "Frase de supervivencia para extranjeros." },
   { id: 7, thai: "พูดช้าลงได้ไหม", rtgs: "pùut cháa long dâai mǎi", spanish: "¿Puedes hablar más despacio?", english: "Can you speak slower?", newWords: [552, 766, 72, 10, 344], structureId: 5, note: "Súper útil con nativos que hablan rápido." },
   { id: 8, thai: "ราคาเท่าไหร่", rtgs: "raa-khaa tâo-rài", spanish: "¿Cuánto cuesta?", english: "How much is it?", newWords: [938, 1005], structureId: null, note: "Compra esencial." },
