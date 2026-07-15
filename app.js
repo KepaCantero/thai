@@ -13,13 +13,17 @@ var filterPanelOpen = false;
 var PLAY_REPS = 4, REPEAT_GAP = 2000, CARD_GAP = 3000;
 var running = false, paused = false, playTimeout = null, playResumeFn = null;
 
+// Set to true to include entries marked verified:false (pending teacher review).
+var SHOW_UNVERIFIED = true;
+function isVerifiedEntry(c) { return SHOW_UNVERIFIED || c.verified !== false; }
+
 // --- Get all categories ---
 function getCategories() {
   var cats = [], seen = {};
   DATA.words.forEach(function(w) { if (!seen[w.category]) { seen[w.category] = true; cats.push(w.category); } });
   DATA.phrases.forEach(function(p) { if (!seen[p.category]) { seen[p.category] = true; cats.push(p.category); } });
   if (DATA.conversations) {
-    DATA.conversations.forEach(function(c) { if (!seen[c.category]) { seen[c.category] = true; cats.push(c.category); } });
+    DATA.conversations.forEach(function(c) { if (isVerifiedEntry(c) && !seen[c.category]) { seen[c.category] = true; cats.push(c.category); } });
   }
   return cats;
 }
@@ -30,7 +34,7 @@ function buildLessonTabs() {
   DATA.words.forEach(function(w) { var l = w.lesson || 1; if (!seen[l]) { seen[l] = true; allLessons.push(l); } });
   DATA.phrases.forEach(function(p) { var l = p.lesson || 1; if (!seen[l]) { seen[l] = true; allLessons.push(l); } });
   if (DATA.conversations) {
-    DATA.conversations.forEach(function(c) { var l = c.lesson || 1; if (!seen[l]) { seen[l] = true; allLessons.push(l); } });
+    DATA.conversations.forEach(function(c) { if (!isVerifiedEntry(c)) return; var l = c.lesson || 1; if (!seen[l]) { seen[l] = true; allLessons.push(l); } });
   }
   allLessons.sort(function(a, b) { return a - b; });
 
@@ -38,6 +42,10 @@ function buildLessonTabs() {
   allLessons.forEach(function(l) { tabs.push({ key: String(l), label: 'Lesson ' + l }); });
   tabs.push({ key: 'youtube', label: 'YouTube' });
   tabs.push({ key: 'dificiles', label: '★ Difíciles (' + difficult.size + ')' });
+  if (typeof SHOW_UNVERIFIED !== 'undefined' && SHOW_UNVERIFIED) {
+    var pilotCount = (DATA.conversations || []).filter(function(c) { return c.verified === false; }).length;
+    tabs.push({ key: 'pilot', label: '🎬 Pilot (' + pilotCount + ')' });
+  }
 
   $('lessonTabs').innerHTML = tabs.map(function(t) {
     return '<button class="tab ' + (activeLesson === t.key ? 'active' : '') + '" onclick="setLesson(\'' + t.key + '\')">' + t.label + '</button>';
@@ -251,7 +259,8 @@ function buildDeck() {
   var items = [];
   var youtubeOnly = activeLesson === 'youtube';
   var dificilesOnly = activeLesson === 'dificiles';
-  var lessonNum = (activeLesson === 'all' || youtubeOnly || dificilesOnly) ? null : parseInt(activeLesson);
+  var pilotOnly = activeLesson === 'pilot';
+  var lessonNum = (activeLesson === 'all' || youtubeOnly || dificilesOnly || pilotOnly) ? null : parseInt(activeLesson);
   var isTone = activeCategory.startsWith('tone:');
   var isPares = activeCategory === 'pares';
   var isPractica = activeCategory === 'practica';
@@ -262,6 +271,7 @@ function buildDeck() {
   function matchLesson(item) {
     if (youtubeOnly) return item.category === 'youtube';
     if (dificilesOnly) return true; // membership filter applied at call sites
+    if (pilotOnly) return item.verified === false;
     return !lessonNum || (item.lesson || 1) === lessonNum;
   }
   function matchCategory(item) { return cat === 'all' || item.category === cat; }
@@ -345,6 +355,7 @@ function buildDeck() {
 
   if (DATA.conversations && (type === 'all' || type === 'conversations')) {
     DATA.conversations.filter(function(c) {
+      if (!isVerifiedEntry(c)) return false;
       if (!matchLesson(c)) return false;
       if (!matchSearch(c)) return false;
       if (isTone) return matchTone(c.q_tone) || matchTone(c.a_tone);
@@ -706,6 +717,7 @@ var MODES = [
   { key: 'matrix',     icon: '&#129518;', label: 'Matrix',     cls: 'matrix' },
   { key: 'tones',      icon: '&#127925;', label: 'Tones',      cls: 'tones' },
   { key: 'top1000',    icon: '&#127919;', label: 'Top 1000',   cls: 'top1000' },
+  { key: 'alphabet',   icon: '&#128292;', label: 'Alphabet',   cls: 'alphabet' },
   { key: 'srs',        icon: '&#9851;&#65039;', label: 'Estudiar', cls: 'srs' }
 ];
 
@@ -724,6 +736,13 @@ function setMode(mode) {
   if (typeof shPlaying !== 'undefined' && shPlaying) stopShPlay();
   if (filterPanelOpen) toggleFilterPanel();
 
+  // Leaving Top 1000 (where SRS may be mounted inline) → restore normal host styling.
+  // Also drops any in-flight inline SRS session UI so it doesn't leak across modes.
+  if (currentMode === 'top1000' && mode !== 'top1000' && typeof unmountSrsInline === 'function') {
+    unmountSrsInline();
+    if (typeof srsCurrent !== 'undefined') srsCurrent = null;
+  }
+
   // Update state
   currentMode = mode;
   dashboardMode = (mode === 'dashboard');
@@ -741,6 +760,7 @@ function setMode(mode) {
   $('matrixView').style.display = (mode === 'matrix') ? 'flex' : 'none';
   $('tonesView').style.display = (mode === 'tones') ? 'flex' : 'none';
   $('top1000View').style.display = (mode === 'top1000') ? 'flex' : 'none';
+  $('alphabetView').style.display = (mode === 'alphabet') ? 'flex' : 'none';
   $('srsView').style.display = (mode === 'srs') ? 'flex' : 'none';
 
   // Filters + search only relevant in cards/dashboard
@@ -775,6 +795,9 @@ function setMode(mode) {
       (typeof TOP1000_STRUCTURES !== 'undefined' ? TOP1000_STRUCTURES.length : 0) + ' struct · ' +
       (typeof TOP1000_PHRASES !== 'undefined' ? TOP1000_PHRASES.length : 0) + ' phrases';
     if (typeof renderTop1000 === 'function') renderTop1000();
+  } else if (mode === 'alphabet') {
+    $('progress').textContent = 'Alfabeto tailandés';
+    if (typeof renderAlphabetView === 'function') renderAlphabetView();
   } else if (mode === 'srs') {
     var s = (typeof loadSrsStats === 'function') ? loadSrsStats() : null;
     $('progress').textContent = s ? ('SRS · ' + (s.reviewed||0) + ' hoy') : 'SRS';
@@ -957,20 +980,26 @@ function renderQCard(item, i) {
       '</div>' : '');
 
   // Back side: Q on top, A on bottom (Thai + phonetic + ES phonetic).
-  function thaiBlock(label, thai, phonetic, es) {
+  // Each block has its own 🔊 button so the user can hear Q and A independently
+  // without flipping the card or triggering the combined Q→A playback.
+  function playBtn(which) {
+    if (typeof speakText !== 'function') return '';
+    return '<button class="qc-play-btn" onclick="event.stopPropagation();playQAudio(' + i + ',\'' + which + '\')" title="Reproducir ' + (which === 'q' ? 'pregunta' : 'respuesta') + '" aria-label="Reproducir">🔊</button>';
+  }
+  function thaiBlock(label, thai, phonetic, es, which) {
     if (!thai) return '<div class="qc-block">' +
       '<div class="qc-qa-label">' + label + '</div>' +
       '<div class="qc-empty">—</div></div>';
     return '<div class="qc-block">' +
-      '<div class="qc-qa-label">' + label + '</div>' +
+      '<div class="qc-qa-label">' + label + playBtn(which) + '</div>' +
       '<div class="qc-thai">' + thai + '</div>' +
       (phonetic ? '<div class="qc-phonetic">' + phonetic + '</div>' : '') +
       (es ? '<div class="qc-es">ES: ' + es + '</div>' : '') +
     '</div>';
   }
-  var backHtml = thaiBlock('Pregunta', item.q_thai, item.q_phonetic, item.q_es) +
+  var backHtml = thaiBlock('Pregunta', item.q_thai, item.q_phonetic, item.q_es, 'q') +
     (item.q_thai && typeof renderWB === 'function' ? '<div class="qc-wb">' + renderWB(item.q_thai) + '</div>' : '') +
-    (item.a_thai ? '<div class="qc-sep"></div>' + thaiBlock('Respuesta', item.a_thai, item.a_phonetic, item.a_es) : '') +
+    (item.a_thai ? '<div class="qc-sep"></div>' + thaiBlock('Respuesta', item.a_thai, item.a_phonetic, item.a_es, 'a') : '') +
     (item.a_thai && typeof renderWB === 'function' ? '<div class="qc-wb">' + renderWB(item.a_thai) + '</div>' : '');
 
   return '<div class="q-card' + (qFlipped[i] ? ' flipped' : '') + '" data-idx="' + i + '" onclick="qCardClick(this, ' + i + ')">' +
@@ -1001,6 +1030,18 @@ function qCardClick(el, i) {
   } else if (qThai) {
     speakText(qThai);
   }
+}
+
+
+// Play just the Q or just the A from a Q&A card. Triggered by the 🔊 buttons
+// inside renderQCard; those buttons call event.stopPropagation() so the card
+// does not flip and the combined Q→A playback in qCardClick does not fire.
+function playQAudio(i, which) {
+  var item = qDeck[i];
+  if (!item || typeof speakText !== 'function') return;
+  if (typeof stopCurrentAudio === 'function') stopCurrentAudio();
+  var txt = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
+  if (txt) speakText(txt);
 }
 
 function dashCardClick(el, i) {

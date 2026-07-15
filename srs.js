@@ -13,6 +13,7 @@ var SRS_LAPSE_SEC = 600;          // 10 min relearning
 var SRS_DAY_SEC = 86400;
 
 var SRS_DECKS = {
+  // --- Top 1000 decks (nested under Top 1000 → Estudiar) ---
   palabras: {
     key: 'palabras',
     label: 'Palabras',
@@ -36,6 +37,38 @@ var SRS_DECKS = {
     source: function() { return (typeof TOP1000_PHRASES !== 'undefined') ? TOP1000_PHRASES : []; },
     idOf: function(c) { return c.id; },
     kind: 'phrase'
+  },
+
+  // --- Lessons decks (top-level Estudiar mode) ---
+  // Schema comes from DATA.* — words/phrases have {thai, phonetic, es, tone, spanish, en, category, lesson}.
+  // Questions are Q&A pairs derived from DATA.conversations ({q_thai, q_es, q_spanish, a_thai, a_es, a_spanish, lesson}).
+  'lec-palabras': {
+    key: 'lec-palabras',
+    label: 'Palabras (lecciones)',
+    icon: '📘',
+    source: function() { return (typeof DATA !== 'undefined' && DATA.words) ? DATA.words : []; },
+    idOf: function(c) { return c.thai; },
+    kind: 'lesson-word'
+  },
+  'lec-frases': {
+    key: 'lec-frases',
+    label: 'Frases (lecciones)',
+    icon: '📗',
+    source: function() { return (typeof DATA !== 'undefined' && DATA.phrases) ? DATA.phrases : []; },
+    idOf: function(c) { return c.thai; },
+    kind: 'lesson-phrase'
+  },
+  'lec-preguntas': {
+    key: 'lec-preguntas',
+    label: 'Preguntas (lecciones)',
+    icon: '❓',
+    source: function() {
+      if (typeof DATA === 'undefined' || !DATA.conversations) return [];
+      var showUnverified = (typeof SHOW_UNVERIFIED !== 'undefined') ? SHOW_UNVERIFIED : false;
+      return showUnverified ? DATA.conversations : DATA.conversations.filter(function(c) { return c.verified !== false; });
+    },
+    idOf: function(c) { return (c.q_thai || '') + '||' + (c.a_thai || ''); },
+    kind: 'lesson-question'
   }
 };
 
@@ -53,7 +86,10 @@ function loadSrsState() {
 }
 
 function freshSrsState() {
-  return { palabras: {}, estructuras: {}, frases: {} };
+  return {
+    palabras: {}, estructuras: {}, frases: {},
+    'lec-palabras': {}, 'lec-frases': {}, 'lec-preguntas': {}
+  };
 }
 
 function saveSrsState() {
@@ -162,9 +198,92 @@ function buildSession(deckKey) {
   return queue;
 }
 
-// --- SM-2 scheduling ---
-// rating: 1=Again, 2=Hard, 3=Good, 4=Easy
+// --- Engine dispatch ---
+// rating: 1=Again, 2=Hard, 3=Good, 4=Easy (matches FSRS.Rating exactly)
+// FSRS (ts-fsrs v5.4.1) loads async from CDN as window.FSRS. When available,
+// it's the default engine. SM-2 is the fallback for offline / CDN failure /
+// runtime errors so the app always works.
+
+var FSRS_SCHEDULER = null;
+var FSRS_TRIED = false;
+
+function getFsrsScheduler() {
+  if (FSRS_TRIED) return FSRS_SCHEDULER;
+  FSRS_TRIED = true;
+  if (typeof FSRS === 'undefined') return null;
+  try {
+    FSRS_SCHEDULER = FSRS.fsrs(FSRS.generatorParameters({}));
+    console.info('[srs] FSRS engine active (ts-fsrs)');
+    return FSRS_SCHEDULER;
+  } catch (e) {
+    console.warn('[srs] FSRS init failed, using SM-2:', e);
+    return null;
+  }
+}
+
+// My state shape → FSRS Card. Tolerates legacy SM-2 data by approximating
+// stability from ivl and difficulty from ef (one-time soft migration).
+function toFsrsCard(prevState, now) {
+  var card = FSRS.createEmptyCard(new Date(now * 1000));
+  if (!prevState || prevState.state === 'new') return card;
+  card.stability = prevState.s !== undefined
+    ? prevState.s
+    : Math.max(0.4, prevState.ivl || 1);
+  card.difficulty = prevState.d !== undefined
+    ? prevState.d
+    : Math.min(10, Math.max(1, 10 - (prevState.ef || 2.5) * 3 + 5));
+  card.elapsed_days = prevState.elapsedDays || 0;
+  card.scheduled_days = prevState.scheduledDays || prevState.ivl || 0;
+  card.reps = prevState.reps || 0;
+  card.lapses = prevState.lapses || 0;
+  card.state = prevState.state === 'learn' ? FSRS.State.Learning : FSRS.State.Review;
+  card.due = new Date((prevState.due || now) * 1000);
+  if (prevState.lastReview) card.last_review = new Date(prevState.lastReview * 1000);
+  return card;
+}
+
+// FSRS Card → my state shape. FSRS Relearning collapses to 'learn' so the
+// existing UI / session reinsertion logic keeps working without changes.
+function fromFsrsCard(card, prevEf, now) {
+  var stateStr = 'review';
+  if (card.state === FSRS.State.New) stateStr = 'new';
+  else if (card.state === FSRS.State.Learning || card.state === FSRS.State.Relearning) stateStr = 'learn';
+  var dueSec = Math.floor(new Date(card.due).getTime() / 1000);
+  return {
+    engine: 'fsrs',
+    ef: prevEf || 2.5, // retained for display compat; FSRS ignores it
+    ivl: card.scheduled_days || Math.max(0.01, (dueSec - now) / SRS_DAY_SEC),
+    due: dueSec,
+    reps: card.reps,
+    lapses: card.lapses,
+    state: stateStr,
+    s: card.stability,
+    d: card.difficulty,
+    lastReview: now,
+    elapsedDays: card.elapsed_days,
+    scheduledDays: card.scheduled_days
+  };
+}
+
+function scheduleNextFSRS(prevState, rating, now, scheduler) {
+  var card = toFsrsCard(prevState, now);
+  var result = scheduler.next(card, new Date(now * 1000), rating);
+  return fromFsrsCard(result.card, prevState && prevState.ef, now);
+}
+
 function scheduleNext(prevState, rating, now) {
+  now = now || Math.floor(Date.now() / 1000);
+  var scheduler = getFsrsScheduler();
+  if (scheduler) {
+    try { return scheduleNextFSRS(prevState, rating, now, scheduler); }
+    catch (e) { console.warn('[srs] FSRS scheduling failed, falling back to SM-2:', e); }
+  }
+  return scheduleNextSM2(prevState, rating, now);
+}
+
+// --- SM-2 scheduling (fallback engine) ---
+// rating: 1=Again, 2=Hard, 3=Good, 4=Easy
+function scheduleNextSM2(prevState, rating, now) {
   now = now || Math.floor(Date.now() / 1000);
   var cs = prevState ? Object.assign({}, prevState) : { ef: 2.5, ivl: 0, due: now, reps: 0, lapses: 0, state: 'new' };
   var isNew = (cs.state === 'new');
@@ -261,9 +380,14 @@ function recordRating(deckKey, cardId, rating) {
 // Lookup a card by its thai string across decks that have a top-level `thai` field
 // (palabras, frases). Returns { deckKey, cardId } or null. Used by Cards mode
 // to feed SRS ratings without a hard dependency on the Cards-mode card shape.
+// Lookup a card by its thai string across decks that have a top-level `thai` field.
+// Returns { deckKey, cardId } or null. Used by Cards mode to feed SRS ratings
+// without a hard dependency on the Cards-mode card shape.
+// Preference order: lesson decks first (cards-mode content is lesson-based),
+// then Top 1000 decks as a fallback.
 function findSrsCardByThai(thai) {
   if (!thai || typeof SRS_DECKS === 'undefined') return null;
-  var deckKeys = ['palabras', 'frases'];
+  var deckKeys = ['lec-palabras', 'lec-frases', 'palabras', 'frases'];
   for (var i = 0; i < deckKeys.length; i++) {
     var dk = deckKeys[i];
     var deck = SRS_DECKS[dk];

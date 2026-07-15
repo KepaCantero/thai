@@ -8,7 +8,56 @@
 
 var srsCurrent = null; // { deckKey, queue, idx, sessionStart, sessionStats, revealed }
 
+// Host-container awareness — lets the same SRS UI mount either in the top-level
+// #srsView (Lessons SRS) or inline inside #top1000View (Top 1000 → Estudiar sub-tab).
+// srsDeckKeys restricts which decks the picker shows (null = all).
+var srsHostId = 'srsView';
+var srsOnExit = null;     // callback when user exits inline SRS (restores parent view)
+var srsDeckKeys = null;   // null = all SRS_DECKS, array = restrict to these keys
+
+function getActiveSrsDeckKeys() {
+  return srsDeckKeys || Object.keys(SRS_DECKS);
+}
+
+function mountSrsInline(hostId, onExit, deckKeys) {
+  if (srsHostId !== hostId) {
+    var old = document.getElementById(srsHostId);
+    if (old) old.classList.remove('srs-host');
+  }
+  srsHostId = hostId;
+  srsOnExit = onExit || null;
+  srsDeckKeys = deckKeys || null;
+  var host = document.getElementById(hostId);
+  if (host) host.classList.add('srs-host');
+}
+
+function unmountSrsInline() {
+  var host = document.getElementById(srsHostId);
+  if (host) host.classList.remove('srs-host');
+  srsHostId = 'srsView';
+  srsOnExit = null;
+  srsDeckKeys = null;
+}
+
+// Go back to the deck picker (or the inline host's parent view if mounted inline).
+function srsGoHome() {
+  if (srsOnExit) {
+    var cb = srsOnExit;
+    unmountSrsInline();
+    cb();
+  } else {
+    renderSrsView();
+  }
+}
+
+// Top-level SRS mode shows the LESSONS decks (palabras/frases/preguntas from DATA.*).
+// The Top 1000 → Estudiar sub-tab calls mountSrsInline() with a different host
+// and a Top-1000-only deck filter (see top1000-ui.js).
+var SRS_LESSON_DECK_KEYS = ['lec-palabras', 'lec-frases', 'lec-preguntas'];
+var SRS_TOP1000_DECK_KEYS = ['palabras', 'estructuras', 'frases'];
+
 function renderSrsView() {
+  mountSrsInline('srsView', null, SRS_LESSON_DECK_KEYS);
   var view = $('srsView');
   if (!view) return;
   view.innerHTML = renderDeckPicker();
@@ -21,19 +70,27 @@ function renderDeckPicker() {
   var stats = loadSrsStats();
   var totalDue = 0;
   var totalNew = 0;
+  var keys = getActiveSrsDeckKeys();
+  var firstKey = null;
 
-  var decks = Object.keys(SRS_DECKS).map(function(key) {
+  var decks = keys.map(function(key) {
     var d = SRS_DECKS[key];
+    if (!d) return '';
+    if (!firstKey) firstKey = key;
     var s = getDeckStats(key);
     totalDue += s.due;
     totalNew += s.new;
     return renderDeckCard(d, s);
   }).join('');
 
+  var subtitle = (srsHostId === 'top1000View')
+    ? 'Repetición espaciada · Top 1000'
+    : 'Repetición espaciada · Lecciones';
+
   var quick = '<div class="srs-quick">' +
     (totalDue > 0
       ? '<button class="srs-cta-primary" onclick="startMixedSession()">▶ Estudiar todo (' + totalDue + ' due)</button>'
-      : '<button class="srs-cta-primary" onclick="startSrsSession(\'palabras\')">▶ Empezar con Palabras</button>') +
+      : '<button class="srs-cta-primary" onclick="startSrsSession(\'' + firstKey + '\')">▶ Empezar</button>') +
     '</div>';
 
   var today = '<div class="srs-today">' +
@@ -46,7 +103,7 @@ function renderDeckPicker() {
   return '<div class="srs-screen srs-deck-picker">' +
     '<header class="srs-header">' +
       '<h1 class="srs-title">Estudiar</h1>' +
-      '<p class="srs-subtitle">Repetición espaciada · Top 1000</p>' +
+      '<p class="srs-subtitle">' + subtitle + '</p>' +
     '</header>' +
     today +
     quick +
@@ -102,7 +159,7 @@ function startSrsSession(deckKey, opts) {
 }
 
 function renderStudyScreen() {
-  var view = $('srsView');
+  var view = $(srsHostId);
   var item = srsCurrent.queue[srsCurrent.idx];
   var total = srsCurrent.queue.length;
   var pos = srsCurrent.idx + 1;
@@ -162,6 +219,9 @@ function getCardPhraseThai(card, kind) {
     var ex = card.examples && card.examples[0];
     return ex && ex.thai;
   }
+  if (kind === 'lesson-word') return card.thai;
+  if (kind === 'lesson-phrase') return card.thai;
+  if (kind === 'lesson-question') return card.q_thai || card.a_thai;
   return null;
 }
 
@@ -178,6 +238,9 @@ function renderSrsCardFront(card, kind, item) {
   if (kind === 'word') { front = renderWordFront(card); back = renderWordBack(card); }
   else if (kind === 'structure') { front = renderStructureFront(card); back = renderStructureBack(card); }
   else if (kind === 'phrase') { front = renderPhraseFront(card); back = renderPhraseBack(card); }
+  else if (kind === 'lesson-word') { front = renderLessonWordFront(card); back = renderLessonWordBack(card); }
+  else if (kind === 'lesson-phrase') { front = renderLessonPhraseFront(card); back = renderLessonPhraseBack(card); }
+  else if (kind === 'lesson-question') { front = renderLessonQuestionFront(card); back = renderLessonQuestionBack(card); }
   var tagText = item.isNew ? 'NUEVA' : (item.isLearning ? 'APRENDIENDO' : 'REVISIÓN');
   var tagKind = item.isNew ? 'new' : (item.isLearning ? 'learn' : 'review');
   return '<div class="srs-card" id="srsCard" data-kind="' + kind + '" data-tag="' + tagKind + '">' +
@@ -285,6 +348,80 @@ function renderPhraseBack(p) {
   '</div>' +
   (p.note ? '<div class="srs-section"><div class="srs-section-text srs-note">' + p.note + '</div></div>' : '') +
   structTag;
+}
+
+
+// --- LESSON WORD cards (DATA.words schema) ---
+function renderLessonWordFront(w) {
+  var tone = (typeof renderTone === 'function' && w.tone) ? renderTone(w.tone) : '';
+  return '<div class="srs-card-type">PALABRA · LECCIÓN ' + (w.lesson || 1) + '</div>' +
+    '<div class="srs-thai-big">' + w.thai + '</div>' +
+    '<div class="srs-phonetic-es">' + (w.es || '') + '</div>' +
+    (tone ? '<div class="srs-tone-row">' + tone + '</div>' : '') +
+    '<div class="srs-card-hint">Toca para revelar ↻</div>';
+}
+
+function renderLessonWordBack(w) {
+  var tone = (typeof renderTone === 'function' && w.tone) ? renderTone(w.tone) : '';
+  var head = '<div class="srs-back-head">' +
+    '<div class="srs-thai-med">' + w.thai + ' ' + speakBtn(w.thai) + '</div>' +
+    '<div class="srs-phonetic-es">' + (w.es || '') + '</div>' +
+    (tone ? '<div class="srs-tone-row">' + tone + '</div>' : '') +
+  '</div>';
+  var meaning = '<div class="srs-meaning">' +
+    '<div class="srs-meaning-es">' + (w.spanish || '') + '</div>' +
+    (w.en ? '<div class="srs-meaning-en">' + w.en + '</div>' : '') +
+  '</div>';
+  var cat = w.category ? '<div class="srs-struct-ref">Categoría: ' + w.category + '</div>' : '';
+  return head + meaning + cat;
+}
+
+// --- LESSON PHRASE cards (DATA.phrases schema) ---
+function renderLessonPhraseFront(p) {
+  var tone = (typeof renderTone === 'function' && p.tone) ? renderTone(p.tone) : '';
+  return '<div class="srs-card-type">FRASE · LECCIÓN ' + (p.lesson || 1) + '</div>' +
+    '<div class="srs-thai-med">' + p.thai + '</div>' +
+    '<div class="srs-phonetic-es">' + (p.es || '') + '</div>' +
+    (tone ? '<div class="srs-tone-row">' + tone + '</div>' : '') +
+    '<div class="srs-card-hint">Toca para traducir ↻</div>';
+}
+
+function renderLessonPhraseBack(p) {
+  var tone = (typeof renderTone === 'function' && p.tone) ? renderTone(p.tone) : '';
+  return '<div class="srs-back-head">' +
+    '<div class="srs-thai-med">' + p.thai + ' ' + speakBtn(p.thai) + '</div>' +
+    '<div class="srs-phonetic-es">' + (p.es || '') + '</div>' +
+    (tone ? '<div class="srs-tone-row">' + tone + '</div>' : '') +
+  '</div>' +
+  '<div class="srs-meaning">' +
+    '<div class="srs-meaning-es">' + (p.spanish || '') + '</div>' +
+    (p.en ? '<div class="srs-meaning-en">' + p.en + '</div>' : '') +
+  '</div>' +
+  (p.category ? '<div class="srs-struct-ref">Categoría: ' + p.category + '</div>' : '');
+}
+
+// --- LESSON QUESTION cards (DATA.conversations Q&A schema) ---
+function renderLessonQuestionFront(q) {
+  return '<div class="srs-card-type">PREGUNTA · LECCIÓN ' + (q.lesson || 1) + '</div>' +
+    '<div class="srs-question-label">Pregunta</div>' +
+    '<div class="srs-thai-med">' + q.q_thai + '</div>' +
+    '<div class="srs-phonetic-es">' + (q.q_es || '') + '</div>' +
+    '<div class="srs-card-hint">Toca para ver respuesta ↻</div>';
+}
+
+function renderLessonQuestionBack(q) {
+  return '<div class="srs-back-head">' +
+    '<div class="srs-question-label">Pregunta</div>' +
+    '<div class="srs-thai-med">' + q.q_thai + ' ' + speakBtn(q.q_thai) + '</div>' +
+    '<div class="srs-phonetic-es">' + (q.q_es || '') + '</div>' +
+    '<div class="srs-meaning-es srs-mini">' + (q.q_spanish || '') + '</div>' +
+  '</div>' +
+  '<div class="srs-section srs-answer-block">' +
+    '<div class="srs-question-label">Respuesta</div>' +
+    '<div class="srs-thai-med">' + q.a_thai + ' ' + speakBtn(q.a_thai) + '</div>' +
+    '<div class="srs-phonetic-es">' + (q.a_es || '') + '</div>' +
+    '<div class="srs-meaning-es srs-mini">' + (q.a_spanish || '') + '</div>' +
+  '</div>';
 }
 
 // --- Helpers ---
@@ -430,7 +567,7 @@ function exitSrsSession() {
   var elapsed = Math.floor((Date.now() - srsCurrent.sessionStart) / 1000);
   bumpSrsStats(srsCurrent.sessionStats.reviewed, srsCurrent.sessionStats.learned, elapsed);
   srsCurrent = null;
-  renderSrsView();
+  srsGoHome();
 }
 
 function finishSession() {
@@ -440,7 +577,7 @@ function finishSession() {
   var learned = srsCurrent.sessionStats.learned;
   var reviewed = srsCurrent.sessionStats.reviewed;
   srsCurrent = null;
-  var view = $('srsView');
+  var view = $(srsHostId);
   view.innerHTML =
     '<div class="srs-screen srs-done">' +
       '<div class="srs-done-check">✓</div>' +
@@ -451,19 +588,19 @@ function finishSession() {
         '<div class="srs-done-stat"><span class="num">' + formatDuration(elapsed) + '</span><span class="lbl">tiempo</span></div>' +
       '</div>' +
       '<div class="srs-done-today">Hoy llevas ' + (stats.reviewed || 0) + ' repasadas en ' + formatDuration(stats.timeSec || 0) + '</div>' +
-      '<button class="srs-cta-primary" onclick="renderSrsView()">Volver a mazos</button>' +
+      '<button class="srs-cta-primary" onclick="srsGoHome()">Volver a mazos</button>' +
     '</div>';
 }
 
 function renderSessionEmpty(deckKey) {
   var d = SRS_DECKS[deckKey];
-  var view = $('srsView');
+  var view = $(srsHostId);
   view.innerHTML =
     '<div class="srs-screen srs-done">' +
       '<div class="srs-done-check">✓</div>' +
       '<h2 class="srs-done-title">' + (d ? d.label : 'Mazo') + ' al día</h2>' +
       '<div class="srs-done-sub">No hay cartas que repasar ahora.</div>' +
-      '<button class="srs-cta-primary" onclick="renderSrsView()">Volver</button>' +
+      '<button class="srs-cta-primary" onclick="srsGoHome()">Volver</button>' +
     '</div>';
 }
 
@@ -471,8 +608,9 @@ function renderSessionEmpty(deckKey) {
 // Mixed session (study all 3 decks at once)
 // ============================================================
 function startMixedSession() {
+  var keys = getActiveSrsDeckKeys();
   var all = [];
-  Object.keys(SRS_DECKS).forEach(function(key) {
+  keys.forEach(function(key) {
     var q = buildSession(key);
     q.forEach(function(item) { all.push({ deckKey: key, card: item.card, cardState: item.cardState, isNew: item.isNew }); });
   });
@@ -481,7 +619,7 @@ function startMixedSession() {
     var ra = priorityRank(a), rb = priorityRank(b);
     return ra - rb;
   });
-  if (!all.length) { renderSessionEmpty('palabras'); return; }
+  if (!all.length) { renderSessionEmpty(keys[0]); return; }
   srsCurrent = {
     deckKey: all[0].deckKey,
     mixed: true,
@@ -516,8 +654,8 @@ function vibrate(ms) {
 }
 
 function confirmResetAll() {
-  if (!confirm('¿Reiniciar todo el progreso SRS? Esto borra todas las programaciones de cartas.')) return;
-  Object.keys(SRS_DECKS).forEach(function(key) { resetSrsDeck(key); });
+  if (!confirm('¿Reiniciar todo el progreso SRS de este contexto? Esto borra las programaciones de cartas de los mazos visibles.')) return;
+  getActiveSrsDeckKeys().forEach(function(key) { resetSrsDeck(key); });
   try { localStorage.removeItem('thai_srs_stats'); } catch (e) {}
-  renderSrsView();
+  srsGoHome();
 }

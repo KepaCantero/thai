@@ -543,7 +543,10 @@ button:disabled { opacity: 0.4; cursor: default; }
 .q-card .qc-topic { color: #4ecdc4; background: #4ecdc422; }
 .q-card .qc-tense { color: #ffd166; background: #ffd16622; }
 .q-card .qc-src { color: #aaa; background: #88888822; }
-.q-card .qc-qa-label { font-size: 0.58rem; color: #e94560; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; }
+.q-card .qc-qa-label { font-size: 0.58rem; color: #e94560; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.q-card .qc-play-btn { background: none; border: 0; color: #4ecdc4; font-size: 0.85rem; padding: 0; cursor: pointer; line-height: 1; opacity: 0.85; -webkit-tap-highlight-color: transparent; }
+.q-card .qc-play-btn:hover { opacity: 1; }
+.q-card .qc-play-btn:active { transform: scale(0.9); }
 .q-card .qc-prompt { font-size: 0.86rem; color: #53a8b6; margin-bottom: 6px; line-height: 1.25; font-style: italic; }
 .q-card .qc-thai { font-size: 1.15rem; color: #fff; margin-bottom: 2px; word-break: break-all; line-height: 1.2; }
 .q-card .qc-thai.qc-empty { color: #555; font-style: italic; font-size: 0.8rem; }
@@ -755,10 +758,16 @@ button:disabled { opacity: 0.4; cursor: default; }
 /* --- Phrase rows --- */
 .top1000-card.t1-phrase-row { padding: 12px 14px; }
 .t1-phrase-meta { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #252550; }
-.t1-phrase-meta-word { display: inline-block; background: #1e1e3f; color: #ffd166; padding: 1px 6px; border-radius: 4px; margin: 1px 2px; font-size: 0.78rem; }
 .t1-phrase-meta-struct { color: #b088f9; font-style: italic; font-size: 0.78rem; }
-.t1-line-en { color: #888; font-size: 0.8rem; font-style: italic; }
+.t1-line-en { color: #c8c8d8; font-size: 0.92rem; }
 .t1-note { color: #aaa; font-size: 0.78rem; margin-top: 4px; font-style: italic; }
+.t1-phrase-words { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.t1-phrase-word { display: inline-flex; flex-direction: column; background: #1e1e3f; padding: 4px 8px; border-radius: 6px; font-size: 0.78rem; min-width: 80px; }
+.t1-phrase-word-thai { color: #fff; font-size: 1rem; font-weight: 500; }
+.t1-phrase-word-es { color: #ffd166; font-size: 0.78rem; }
+.t1-phrase-word-en { color: #95e1d3; font-size: 0.78rem; font-style: italic; }
+.t1-phrase-word-unknown { background: #2a1e1e; opacity: 0.7; }
+.t1-phrase-word-unknown .t1-phrase-word-thai { color: #888; font-size: 0.85rem; font-weight: 400; }
 
 /* --- Conversation cards --- */
 .top1000-convo-list { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 800px; }
@@ -774,7 +783,9 @@ button:disabled { opacity: 0.4; cursor: default; }
    SRS — Anki-style spaced repetition (mobile-first, iPhone 16)
    =================================================================== */
 
-.srs-view {
+/* CSS variables scoped to any SRS host (top-level #srsView or inline #top1000View). */
+.srs-view,
+.srs-host {
   --srs-bg: #0d1b36;
   --srs-surface: #1a2540;
   --srs-surface-2: #1e1e3f;
@@ -786,7 +797,18 @@ button:disabled { opacity: 0.4; cursor: default; }
   --srs-hard: #ffa94d;
   --srs-good: #4ecdc4;
   --srs-easy: #95e1d3;
+}
 
+/* When SRS is mounted inline inside #top1000View, repaint the host background so
+   the dark SRS canvas fills the viewport under the (temporarily replaced) tabs. */
+.top1000-view.srs-host {
+  background: var(--srs-bg);
+  color: #fff;
+  padding: 0;
+  max-width: none;
+}
+
+.srs-view {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -1148,6 +1170,28 @@ button:disabled { opacity: 0.4; cursor: default; }
   font-style: italic;
 }
 
+/* Lesson Q&A cards (lesson-question kind) */
+.srs-question-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--srs-warn);
+  margin-bottom: 4px;
+}
+
+.srs-answer-block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--srs-border);
+}
+
+.srs-mini {
+  font-size: 0.92rem;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
 .srs-speak {
   display: inline-flex;
   align-items: center;
@@ -1466,6 +1510,7 @@ button:disabled { opacity: 0.4; cursor: default; }
   /* --- B. Legible typography (≥0.7rem = 11.2px) --- */
   .q-card .qc-topic, .q-card .qc-tense, .q-card .qc-src { font-size: 0.7rem; padding: 2px 7px; }
   .q-card .qc-qa-label { font-size: 0.7rem; }
+  .q-card .qc-play-btn { font-size: 1rem; padding: 4px 6px; opacity: 1; }
   .dash-card .dc-type-badge { font-size: 0.68rem; padding: 2px 6px; }
   .dash-card .dc-qa-label { font-size: 0.7rem; }
   .dash-card .dc-tone { font-size: 0.72rem; }
@@ -1498,3 +1543,44 @@ button:disabled { opacity: 0.4; cursor: default; }
     mask-image: linear-gradient(to right, black 92%, transparent 100%);
   }
 }
+
+/* --- Alphabet section --- */
+.alpha-view { padding: 16px; overflow-y: auto; }
+.alpha-wrap { max-width: 1200px; margin: 0 auto; }
+.alpha-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+.alpha-tabs { display: flex; gap: 6px; }
+.alpha-tab { background: #1e1e3f; color: #c8c8d8; border: 1px solid #252550; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.88rem; }
+.alpha-tab.active { background: #ffd166; color: #1e1e3f; border-color: #ffd166; font-weight: 600; }
+.alpha-hint { color: #888; font-size: 0.78rem; font-style: italic; }
+.alpha-chips { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.alpha-chip { background: #1e1e3f; color: #c8c8d8; border: 1px solid #252550; padding: 5px 12px; border-radius: 14px; cursor: pointer; font-size: 0.78rem; }
+.alpha-chip.active { background: #b088f9; color: #fff; border-color: #b088f9; }
+.alpha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.alpha-card { background: #15152a; border: 1px solid #252550; border-radius: 10px; padding: 14px; position: relative; }
+.alpha-card.alpha-obsolete { opacity: 0.6; }
+.alpha-cls-high { border-left: 4px solid #ff6b6b; }
+.alpha-cls-mid { border-left: 4px solid #95e1d3; }
+.alpha-cls-low { border-left: 4px solid #74c0fc; }
+.alpha-rank { position: absolute; top: 8px; right: 10px; color: #555; font-size: 0.72rem; }
+.alpha-class { font-size: 0.68rem; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 8px; font-weight: 600; }
+.alpha-class.high { background: #ff6b6b22; color: #ff6b6b; }
+.alpha-class.mid { background: #95e1d322; color: #95e1d3; }
+.alpha-class.low { background: #74c0fc22; color: #74c0fc; }
+.alpha-thai-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.alpha-thai { font-size: 2.6rem; color: #fff; line-height: 1; font-weight: 500; }
+.alpha-emoji { font-size: 2.4rem; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.alpha-card.alpha-vowel .alpha-thai, .alpha-card.alpha-tone .alpha-thai { font-size: 2rem; }
+.alpha-play { background: #ffd166; color: #1e1e3f; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 0.85rem; }
+.alpha-mini { background: transparent; color: #ffd166; border: 1px solid #ffd16666; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; font-size: 0.65rem; padding: 0; }
+.alpha-sound { color: #ffd166; font-size: 0.95rem; font-weight: 600; }
+.alpha-soundlike { color: #888; font-size: 0.78rem; font-style: italic; margin-bottom: 8px; }
+.alpha-word { background: #1e1e3f; border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; }
+.alpha-word-thai { color: #fff; font-size: 1.1rem; }
+.alpha-word-rtgs { color: #ffd166; font-size: 0.78rem; }
+.alpha-word-en { color: #95e1d3; font-size: 0.78rem; font-style: italic; }
+.alpha-trick { font-size: 0.78rem; color: #c8c8d8; line-height: 1.4; border-top: 1px dashed #252550; padding-top: 8px; }
+.alpha-trick-label { color: #b088f9; font-weight: 600; }
+.alpha-tone-sym { font-size: 2rem; color: #fff; text-align: center; }
+.alpha-tone-name { color: #ffd166; text-align: center; font-size: 1rem; font-weight: 600; margin: 4px 0; }
+.alpha-tone-thai { color: #fff; text-align: center; font-size: 1.2rem; margin: 4px 0; }
+.alpha-tone-rtgs { color: #b088f9; text-align: center; font-size: 0.78rem; font-style: italic; margin-bottom: 6px; }

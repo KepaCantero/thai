@@ -5,11 +5,59 @@
 
 var top1000Filter = { tab: 'palabras', category: 'all', search: '' };
 
+// Word dictionary for phrase segmentation (built once, cached)
+var TOP1000_WORD_BY_THAI = null;
+var TOP1000_WORD_MAXLEN = 0;
+function getTop1000WordDict() {
+  if (!TOP1000_WORD_BY_THAI) {
+    TOP1000_WORD_BY_THAI = {};
+    TOP1000_WORDS.forEach(function(w) {
+      if (!TOP1000_WORD_BY_THAI[w.thai]) TOP1000_WORD_BY_THAI[w.thai] = w;
+      if (w.thai.length > TOP1000_WORD_MAXLEN) TOP1000_WORD_MAXLEN = w.thai.length;
+    });
+  }
+  return TOP1000_WORD_BY_THAI;
+}
+function segmentPhraseThai(thai) {
+  var dict = getTop1000WordDict();
+  var segments = [];
+  var parts = thai.split(/\s+/);
+  for (var pi = 0; pi < parts.length; pi++) {
+    var p = parts[pi];
+    if (!p) continue;
+    if (dict[p]) { segments.push(dict[p]); continue; }
+    var i = 0;
+    while (i < p.length) {
+      var matched = null;
+      var max = Math.min(TOP1000_WORD_MAXLEN, p.length - i);
+      for (var len = max; len >= 1; len--) {
+        var sub = p.substring(i, i + len);
+        if (dict[sub]) { matched = dict[sub]; break; }
+      }
+      if (matched) { segments.push(matched); i += matched.thai.length; }
+      else { segments.push({ thai: p.charAt(i), _unknown: true }); i++; }
+    }
+  }
+  return segments;
+}
+
 var TOP1000_TABS = [
   { key: 'palabras',       label: 'Palabras',       count: function() { return TOP1000_WORDS.length; } },
   { key: 'estructuras',    label: 'Estructuras',    count: function() { return TOP1000_STRUCTURES.length; } },
   { key: 'frases',         label: 'Frases',         count: function() { return TOP1000_PHRASES.length; } },
-  { key: 'conversaciones', label: 'Conversaciones', count: function() { return TOP1000_CONVERSATIONS.length; } }
+  { key: 'conversaciones', label: 'Conversaciones', count: function() { return TOP1000_CONVERSATIONS.length; } },
+  {
+    key: 'estudiar',
+    label: 'Estudiar',
+    count: function() {
+      if (typeof getDeckStats !== 'function') return 0;
+      var due = 0;
+      ['palabras', 'estructuras', 'frases'].forEach(function(k) {
+        try { due += getDeckStats(k).due; } catch (e) {}
+      });
+      return due;
+    }
+  }
 ];
 
 function renderTop1000() {
@@ -19,8 +67,12 @@ function renderTop1000() {
   // Sub-tabs
   var tabs = '<div class="top1000-tabs">' + TOP1000_TABS.map(function(t) {
     var active = top1000Filter.tab === t.key ? ' active' : '';
+    var count = t.count();
+    var countLabel = (t.key === 'estudiar')
+      ? (count > 0 ? '(' + count + ' due)' : '✓')
+      : '(' + count + ')';
     return '<button class="top1000-tab' + active + '" onclick="setTop1000Tab(\'' + t.key + '\')">' +
-      t.label + ' <span class="top1000-tab-count">(' + t.count() + ')</span></button>';
+      t.label + ' <span class="top1000-tab-count">' + countLabel + '</span></button>';
   }).join('') + '</div>';
 
   // Dispatch to active tab renderer
@@ -29,12 +81,42 @@ function renderTop1000() {
   else if (top1000Filter.tab === 'estructuras') body = renderTop1000Structures();
   else if (top1000Filter.tab === 'frases') body = renderTop1000Phrases();
   else if (top1000Filter.tab === 'conversaciones') body = renderTop1000Conversations();
-  else body = '';
+  else if (top1000Filter.tab === 'estudiar') {
+    body = renderTop1000StudyBody();
+  } else body = '';
 
   view.innerHTML = tabs + body;
 }
 
+// Top 1000 → Estudiar sub-tab body. Mounts the SRS UI inline in #top1000View
+// with a Top-1000-only deck filter. When the user starts a session, the SRS
+// engine overwrites #top1000View with the full-screen study UI; on exit, the
+// srsOnExit callback restores this sub-tab.
+function renderTop1000StudyBody() {
+  if (typeof mountSrsInline !== 'function' || typeof renderDeckPicker !== 'function') {
+    return '<div class="top1000-empty">SRS no disponible.</div>';
+  }
+  mountSrsInline('top1000View', function() { setTop1000Tab('estudiar'); }, SRS_TOP1000_DECK_KEYS);
+  return renderDeckPicker();
+}
+
+// Top 1000 → Estudiar sub-tab body. Mounts the SRS UI inline in #top1000View
+// with a Top-1000-only deck filter. When the user starts a session, the SRS
+// engine overwrites #top1000View with the full-screen study UI; on exit, the
+// srsOnExit callback restores this sub-tab.
+function renderTop1000StudyBody() {
+  if (typeof mountSrsInline !== 'function' || typeof renderDeckPicker !== 'function') {
+    return '<div class="top1000-empty">SRS no disponible.</div>';
+  }
+  mountSrsInline('top1000View', function() { setTop1000Tab('estudiar'); }, SRS_TOP1000_DECK_KEYS);
+  return renderDeckPicker();
+}
+
 function setTop1000Tab(tab) {
+  // Leaving the inline SRS sub-tab → restore the parent view's normal styling.
+  if (top1000Filter.tab === 'estudiar' && tab !== 'estudiar' && typeof unmountSrsInline === 'function') {
+    unmountSrsInline();
+  }
   top1000Filter.tab = tab;
   top1000Filter.category = 'all';
   top1000Filter.search = '';
@@ -64,7 +146,7 @@ function renderTop1000Words() {
   });
 
   var search = '<div class="top1000-search">' +
-    '<input type="text" placeholder="Buscar (thai/español)..." value="' + (top1000Filter.search||'').replace(/"/g,'&quot;') + '" ' +
+    '<input type="text" placeholder="Search (thai/english)..." value="' + (top1000Filter.search||'').replace(/"/g,'&quot;') + '" ' +
     'oninput="setTop1000Search(this.value)"></div>';
 
   var header = '<div class="top1000-bar">' +
@@ -96,25 +178,25 @@ function renderTop1000Card(w) {
     '</div>' +
     '<div class="t1-es">' + (w.es || '') + '</div>' +
     (tone ? '<div class="t1-tone">' + tone + '</div>' : '') +
-    '<div class="t1-es-meaning">' + w.spanish + '</div>' +
+    '<div class="t1-es-meaning">' + (w.english || '') + '</div>' +
     '<div class="t1-detail">' +
       '<div class="t1-section">' +
         '<div class="t1-label">Frase <button class="t1-mini-play" onclick="event.stopPropagation();top1000Speak(\'' + q(w.phrase.thai) + '\')" title="Reproducir">▶</button></div>' +
         '<div class="t1-line"><span class="t1-line-thai">' + w.phrase.thai + '</span></div>' +
         '<div class="t1-line"><span class="t1-line-es">' + w.phrase.es + '</span></div>' +
-        '<div class="t1-line"><span class="t1-line-es-meaning">' + w.phrase.spanish + '</span></div>' +
+        '<div class="t1-line"><span class="t1-line-es-meaning">' + (w.phrase.en || '') + '</span></div>' +
       '</div>' +
       '<div class="t1-section">' +
         '<div class="t1-label">Pregunta <button class="t1-mini-play" onclick="event.stopPropagation();top1000Speak(\'' + q(w.question.thai) + '\')" title="Reproducir">▶</button></div>' +
         '<div class="t1-line"><span class="t1-line-thai">' + w.question.thai + '</span></div>' +
         '<div class="t1-line"><span class="t1-line-es">' + w.question.es + '</span></div>' +
-        '<div class="t1-line"><span class="t1-line-es-meaning">' + w.question.spanish + '</span></div>' +
+        '<div class="t1-line"><span class="t1-line-es-meaning">' + (w.question.en || '') + '</span></div>' +
       '</div>' +
       '<div class="t1-section">' +
         '<div class="t1-label">Respuesta <button class="t1-mini-play" onclick="event.stopPropagation();top1000Speak(\'' + q(w.answer.thai) + '\')" title="Reproducir">▶</button></div>' +
         '<div class="t1-line"><span class="t1-line-thai">' + w.answer.thai + '</span></div>' +
         '<div class="t1-line"><span class="t1-line-es">' + w.answer.es + '</span></div>' +
-        '<div class="t1-line"><span class="t1-line-es-meaning">' + w.answer.spanish + '</span></div>' +
+        '<div class="t1-line"><span class="t1-line-es-meaning">' + (w.answer.en || '') + '</span></div>' +
       '</div>' +
     '</div>' +
   '</div>';
@@ -216,10 +298,17 @@ function renderTop1000Phrases() {
 
 function renderTop1000PhraseRow(p) {
   function q(str) { return (str||'').replace(/'/g,"\\'"); }
-  var words = (p.newWords || []).map(function(r) {
-    var w = TOP1000_WORDS.find(function(x){return x.rank===r;});
-    return w ? '<span class="t1-phrase-meta-word">' + w.thai + '</span>' : '';
-  }).join(' ');
+  var segments = (typeof TOP1000_PHRASE_SEGMENTS !== 'undefined' && TOP1000_PHRASE_SEGMENTS[p.id]) || segmentPhraseThai(p.thai);
+  var wordsHtml = segments.map(function(s) {
+    var en = s.en || s.english || '';
+    var es = s.es || '';
+    var cls = 't1-phrase-word' + (en ? '' : ' t1-phrase-word-unknown');
+    return '<span class="' + cls + '">' +
+      '<span class="t1-phrase-word-thai">' + s.thai + '</span> ' +
+      '<span class="t1-phrase-word-es">' + es + '</span>' +
+      '<span class="t1-phrase-word-en">' + en + '</span>' +
+    '</span>';
+  }).join('');
   var struct = p.structureId ? TOP1000_STRUCTURES.find(function(s){return s.id===p.structureId;}) : null;
   var structTag = struct ? '<span class="t1-phrase-meta-struct">#' + struct.id + ' ' + struct.name + '</span>' : '';
 
@@ -227,11 +316,10 @@ function renderTop1000PhraseRow(p) {
     '<div class="t1-rank">#' + p.id + '</div>' +
     '<div class="t1-line"><span class="t1-line-thai">' + p.thai + ' ' +
       '<button class="t1-mini-play" onclick="event.stopPropagation();top1000Speak(\'' + q(p.thai) + '\')">▶</button></span></div>' +
-    '<div class="t1-line"><span class="t1-line-es">' + p.rtgs + '</span></div>' +
-    '<div class="t1-line"><span class="t1-line-es-meaning">' + p.spanish + '</span></div>' +
-    '<div class="t1-line"><span class="t1-line-en">' + p.english + '</span></div>' +
+    '<div class="t1-line"><span class="t1-line-es">' + (p.rtgs || '') + '</span></div>' +
+    '<div class="t1-line"><span class="t1-line-en">' + (p.english || '') + '</span></div>' +
     '<div class="t1-phrase-meta">' +
-      (words ? '<div class="t1-label">Palabras: ' + words + '</div>' : '') +
+      (wordsHtml ? '<div class="t1-label">Palabras:</div><div class="t1-phrase-words">' + wordsHtml + '</div>' : '') +
       (structTag ? '<div class="t1-label">Estructura: ' + structTag + '</div>' : '') +
       (p.note ? '<div class="t1-line t1-note">' + p.note + '</div>' : '') +
     '</div>' +
