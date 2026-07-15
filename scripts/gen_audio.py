@@ -43,9 +43,12 @@ def collect_strings():
             s = s.replace('\\"', '"').replace("\\\\", "\\").strip()
             if not s:
                 continue
-            # Require first non-space char to be Thai — filters out English
-            # glosses with embedded Thai words (etymology notes etc.)
-            if not THAI_RE.match(s[0]):
+            # Require the string to contain Thai, and to START with Thai or a
+            # digit (so "1 อาทิตย์มีกี่วันคะ" is included). Filters out English
+            # glosses with embedded Thai words (etymology notes etc.).
+            if not THAI_RE.search(s):
+                continue
+            if not (THAI_RE.match(s[0]) or (s[0].isdigit() and THAI_RE.search(s))):
                 continue
             if len(s) > MAX_LEN:
                 s = s[:MAX_LEN]
