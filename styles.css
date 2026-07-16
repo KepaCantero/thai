@@ -467,7 +467,17 @@ button:disabled { opacity: 0.4; cursor: default; }
 }
 .dash-card .dc-diff-btn:hover { background: #e9456033; transform: scale(1.15); }
 .dash-card .dc-diff-btn.dc-diff-on { background: #e94560; color: #fff; border-color: #e94560; }
-.dash-card .dc-qa-label { font-size: 0.58rem; color: #e94560; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 1px; }
+.dash-card .dc-del-btn { position: absolute; top: 4px; left: 6px; z-index: 5; background: rgba(233,69,96,0.15); border: 0; color: #e94560; font-size: 0.8rem; padding: 3px 6px; border-radius: 8px; cursor: pointer; line-height: 1; opacity: 0; transition: opacity 0.2s; -webkit-tap-highlight-color: transparent; }
+.dash-card:hover .dc-del-btn { opacity: 0.85; }
+.dash-card.flipped .dc-del-btn { opacity: 0.85; }
+.dash-card.pilot-only .dc-del-btn { opacity: 0.95; }
+.dash-card .dc-del-btn:active { transform: scale(0.9); }
+.dash-card .dc-qa-label { font-size: 0.58rem; color: #e94560; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 1px; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.dash-card .dc-play-btn { background: none; border: 0; color: #4ecdc4; font-size: 0.9rem; padding: 0; cursor: pointer; line-height: 1; opacity: 0.85; -webkit-tap-highlight-color: transparent; }
+.dash-card .dc-play-btn:hover { opacity: 1; }
+.dash-card .dc-play-btn:active { transform: scale(0.9); }
+.dash-card.pilot-only { cursor: default; }
+.dash-card.pilot-only:hover { transform: none; border-color: #252550; box-shadow: none; }
 .dash-card .dc-sep { width: 80%; height: 1px; background: #333; margin: 4px auto; }
 .dash-card.dash-conv { border-color: #252550; }
 .dash-card.dash-conv:hover { border-color: #ff6bff; box-shadow: 0 4px 16px rgba(255,107,255,0.15); }
@@ -547,6 +557,11 @@ button:disabled { opacity: 0.4; cursor: default; }
 .q-card .qc-play-btn { background: none; border: 0; color: #4ecdc4; font-size: 0.85rem; padding: 0; cursor: pointer; line-height: 1; opacity: 0.85; -webkit-tap-highlight-color: transparent; }
 .q-card .qc-play-btn:hover { opacity: 1; }
 .q-card .qc-play-btn:active { transform: scale(0.9); }
+.q-card .qc-del-btn { position: absolute; top: 4px; left: 6px; background: rgba(233,69,96,0.15); border: 0; color: #e94560; font-size: 0.8rem; padding: 3px 6px; border-radius: 8px; cursor: pointer; line-height: 1; opacity: 0; transition: opacity 0.2s; -webkit-tap-highlight-color: transparent; }
+.q-card:hover .qc-del-btn { opacity: 0.85; }
+.q-card.flipped .qc-del-btn { opacity: 0.85; }
+.q-card.pilot-only .qc-del-btn { opacity: 0.95; }
+.q-card .qc-del-btn:active { transform: scale(0.9); }
 .q-card .qc-prompt { font-size: 0.86rem; color: #53a8b6; margin-bottom: 6px; line-height: 1.25; font-style: italic; }
 .q-card .qc-thai { font-size: 1.15rem; color: #fff; margin-bottom: 2px; word-break: break-all; line-height: 1.2; }
 .q-card .qc-thai.qc-empty { color: #555; font-style: italic; font-size: 0.8rem; }
@@ -1511,6 +1526,8 @@ button:disabled { opacity: 0.4; cursor: default; }
   .q-card .qc-topic, .q-card .qc-tense, .q-card .qc-src { font-size: 0.7rem; padding: 2px 7px; }
   .q-card .qc-qa-label { font-size: 0.7rem; }
   .q-card .qc-play-btn { font-size: 1rem; padding: 4px 6px; opacity: 1; }
+  .q-card .qc-del-btn { font-size: 0.95rem; padding: 5px 8px; opacity: 0.95; }
+  .dash-card .dc-del-btn { font-size: 0.95rem; padding: 5px 8px; opacity: 0.95; }
   .dash-card .dc-type-badge { font-size: 0.68rem; padding: 2px 6px; }
   .dash-card .dc-qa-label { font-size: 0.7rem; }
   .dash-card .dc-tone { font-size: 0.72rem; }

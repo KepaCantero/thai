@@ -354,8 +354,12 @@ function buildDeck() {
   }
 
   if (DATA.conversations && (type === 'all' || type === 'conversations')) {
+    var deletedKeys = {};
+    try { JSON.parse(localStorage.getItem('thai_deleted_qa') || '[]').forEach(function(k){ deletedKeys[k] = 1; }); } catch (e) {}
     DATA.conversations.filter(function(c) {
       if (!isVerifiedEntry(c)) return false;
+      var dkey = (c.q_thai || '') + '||' + (c.a_thai || '');
+      if (deletedKeys[dkey]) return false;
       if (!matchLesson(c)) return false;
       if (!matchSearch(c)) return false;
       if (isTone) return matchTone(c.q_tone) || matchTone(c.a_tone);
@@ -421,8 +425,13 @@ function buildQuestionsDeck() {
   }
 
   // 1. Existing conversations — proper Q&A pairs.
+  // Skip cards the user deleted via the 🗑️ button (persisted in localStorage).
+  var deleted = {};
+  try { JSON.parse(localStorage.getItem('thai_deleted_qa') || '[]').forEach(function(k){ deleted[k] = 1; }); } catch (e) {}
   (DATA.conversations || []).forEach(function(c) {
     if ((c.lesson || 1) > maxL) return;
+    var dkey = (c.q_thai || '') + '||' + (c.a_thai || '');
+    if (deleted[dkey]) return;
     push({
       type: 'qa',
       source: 'conversación',
@@ -853,8 +862,38 @@ function renderDashConversation(item, i) {
   var qTone = renderTone(item.q_tone, item.highlightTone);
   var aTone = renderTone(item.a_tone, item.highlightTone);
   var convEn = CONV_EN[item.q_thai] || {};
+  // Pilot cards (verified:false): show only the back, no flip, no autoplay.
+  // Two 🔊 buttons let the user play Q or A independently — clicking the
+  // card body does nothing so text selection / copy doesn't trigger audio.
+  if (item.verified === false) {
+    function pilotPlayBtn(which) {
+      if (typeof speakText !== 'function') return '';
+      return '<button class="dc-play-btn" onclick="event.stopPropagation();playConvAudio(' + i + ',\'' + which + '\')" title="Reproducir ' + (which === 'q' ? 'pregunta' : 'respuesta') + '" aria-label="Reproducir">🔊</button>';
+    }
+    return '<div class="dash-card dash-conv pilot-only" data-idx="' + i + '">' +
+      diffBtnHtml(item, i) +
+      '<button class="dc-del-btn" onclick="event.stopPropagation();deleteQCard(' + i + ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
+      '<div class="dc-type-badge conv">C</div>' +
+      '<div class="dc-body">' +
+        '<div class="dc-qa-label">Q' + pilotPlayBtn('q') + '</div>' +
+        '<div class="dc-thai">' + item.q_thai + '</div>' +
+        '<div class="dc-phonetic">' + item.q_phonetic + '</div>' +
+        (qTone ? '<div class="dc-tone">' + qTone + '</div>' : '') +
+        '<div class="dc-translation">' + (convEn.q || item.q_spanish) + '</div>' +
+        '<div class="dc-wb">' + renderWB(item.q_thai) + '</div>' +
+        '<div class="dc-sep"></div>' +
+        '<div class="dc-qa-label">A' + pilotPlayBtn('a') + '</div>' +
+        '<div class="dc-thai">' + item.a_thai + '</div>' +
+        '<div class="dc-phonetic">' + item.a_phonetic + '</div>' +
+        (aTone ? '<div class="dc-tone">' + aTone + '</div>' : '') +
+        '<div class="dc-translation">' + (convEn.a || item.a_spanish) + '</div>' +
+        '<div class="dc-wb">' + renderWB(item.a_thai) + '</div>' +
+      '</div>' +
+    '</div>';
+  }
   return '<div class="dash-card dash-conv" data-idx="' + i + '" onclick="dashCardClick(this, ' + i + ')">' +
     diffBtnHtml(item, i) +
+    '<button class="dc-del-btn" onclick="event.stopPropagation();deleteQCard(' + i + ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
     '<div class="dc-play-icon">▶</div>' +
     '<div class="dc-type-badge conv">C</div>' +
     '<div class="dc-front">' +
@@ -878,6 +917,17 @@ function renderDashConversation(item, i) {
       '<div class="dc-wb">' + renderWB(item.a_thai) + '</div>' +
     '</div>' +
   '</div>';
+}
+
+// Play just the Q or just the A from a conversation dashboard card.
+// Triggered by the 🔊 buttons in pilot cards; stopPropagation prevents any
+// parent handler from firing.
+function playConvAudio(i, which) {
+  var item = deck[i];
+  if (!item || typeof speakText !== 'function') return;
+  if (typeof stopCurrentAudio === 'function') stopCurrentAudio();
+  var txt = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
+  if (txt) speakText(txt);
 }
 
 function renderDashPair(item, i) {
@@ -1002,14 +1052,20 @@ function renderQCard(item, i) {
     (item.a_thai ? '<div class="qc-sep"></div>' + thaiBlock('Respuesta', item.a_thai, item.a_phonetic, item.a_es, 'a') : '') +
     (item.a_thai && typeof renderWB === 'function' ? '<div class="qc-wb">' + renderWB(item.a_thai) + '</div>' : '');
 
-  return '<div class="q-card' + (qFlipped[i] ? ' flipped' : '') + '" data-idx="' + i + '" onclick="qCardClick(this, ' + i + ')">' +
-    '<div class="qc-play-icon">▶</div>' +
+  // In Pilot mode we show only the Thai side (no flip, no Spanish front).
+  // Elsewhere the card flips between Spanish (front) and Thai (back).
+  var pilotMode = activeLesson === 'pilot';
+  var cardClass = 'q-card' + (pilotMode ? ' flipped pilot-only' : (qFlipped[i] ? ' flipped' : ''));
+  var onclick = pilotMode ? '' : ' onclick="qCardClick(this, ' + i + ')"';
+  return '<div class="' + cardClass + '" data-idx="' + i + '"' + onclick + '>' +
+    (pilotMode ? '' : '<div class="qc-play-icon">▶</div>') +
+    '<button class="qc-del-btn" onclick="event.stopPropagation();deleteQCard(' + i + ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
     '<div class="qc-badges">' +
       (topicTxt ? '<span class="qc-topic">' + topicTxt + '</span>' : '') +
       (tenseTxt ? '<span class="qc-tense">' + tenseTxt + '</span>' : '') +
       (srcTxt ? '<span class="qc-src">' + srcTxt + '</span>' : '') +
     '</div>' +
-    '<div class="qc-front">' + frontHtml + '</div>' +
+    (pilotMode ? '' : '<div class="qc-front">' + frontHtml + '</div>') +
     '<div class="qc-back">' + backHtml + '</div>' +
   '</div>';
 }
@@ -1044,7 +1100,26 @@ function playQAudio(i, which) {
   if (txt) speakText(txt);
 }
 
+
+// Mark a Q&A card as deleted (persisted in localStorage so reload keeps it
+// hidden). The original data.js entry is not modified — only filtered out of
+// the runtime deck. To restore, the user clears thai_deleted_qa in devtools.
+function deleteQCard(i) {
+  var item = currentMode === 'questions' ? qDeck[i] : deck[i];
+  if (!item) return;
+  if (!confirm('¿Eliminar esta tarjeta? Se ocultará en futuras sesiones.')) return;
+  var key = (item.q_thai || '') + '||' + (item.a_thai || '');
+  var list;
+  try { list = JSON.parse(localStorage.getItem('thai_deleted_qa') || '[]'); } catch (e) { list = []; }
+  if (list.indexOf(key) === -1) list.push(key);
+  localStorage.setItem('thai_deleted_qa', JSON.stringify(list));
+  if (typeof haptic === 'function') haptic(15);
+  if (currentMode === 'questions') renderQuestions(); else renderDashboard();
+}
+
 function dashCardClick(el, i) {
+  // Pilot cards render without onclick, but defend in case of bubbling.
+  if (deck[i] && deck[i].verified === false) return;
   if (running) {
     stopPlayAll();
     el.classList.remove('flipped');
