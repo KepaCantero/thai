@@ -1,19 +1,28 @@
-// Spike 5c PR1: tests for the cards module pure-logic half.
+// Spike 5c PR1+PR2: tests for the cards module.
 //
-// Setup pattern: state is manipulated via the real typed setters (no mocks),
-// cthai plays store is reset between tests (mocked in-memory because the test
+// PR1 covers the pure-logic half (buildDeck, buildQuestionsDeck, cthai
+// analytics, cardKey). PR2 adds DOM/rendering/scoring/FSM coverage. Setup
+// pattern: state is manipulated via the real typed setters (no mocks), cthai
+// plays store is reset between tests (mocked in-memory because the test
 // environment is node, not jsdom), and createCardsModule is fed in-memory
-// deps via makeModule(). This mirrors the tones module test style.
+// deps via makeModule(). PR2 tests inject a CardsDom spy object so the
+// rendering/FSM functions can be exercised without a real document.
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Test environment is node (vitest.config.ts) so the real cthaiPlaysStore
-// would no-op every write. Stub it with an in-memory map.
+// would no-op every write. Stub it with an in-memory map. difficultStore is
+// stubbed the same way so toggleDifficult / isDifficult round-trip in tests.
 let cthaiPlaysState: Record<string, { q?: number; a?: number }> = {};
+let difficultState: string[] = [];
 vi.mock('../../persistence/stores', () => ({
   cthaiPlaysStore: {
     get: () => cthaiPlaysState,
     set: (v: typeof cthaiPlaysState) => { cthaiPlaysState = v; },
+  },
+  difficultStore: {
+    get: () => difficultState,
+    set: (v: string[]) => { difficultState = v; },
   },
 }));
 
@@ -22,10 +31,17 @@ import {
   setActiveLesson,
   setActiveType,
   setSearchQuery,
+  setDeck,
+  setIdx,
+  clearKnown,
 } from '../../state';
 import { cthaiPlaysStore } from '../../persistence/stores';
-import type { Conversation, DataShape } from '../../types';
-import { createCardsModule, type CardsModuleDeps } from './module';
+import type { Card, Conversation, DataShape } from '../../types';
+import {
+  createCardsModule,
+  type CardsDom,
+  type CardsModuleDeps,
+} from './module';
 
 beforeEach(() => {
   setActiveLesson('all');
@@ -33,6 +49,11 @@ beforeEach(() => {
   setActiveType('all');
   setSearchQuery('');
   cthaiPlaysState = {};
+  // PR2: reset deck + scoring state so tests don't leak across cases.
+  setDeck([]);
+  setIdx(0);
+  clearKnown();
+  difficultState = [];
 });
 
 function makeData(overrides: Partial<DataShape> = {}): DataShape {
@@ -89,8 +110,93 @@ function makeModule(overrides: Partial<CardsModuleDeps> = {}) {
     ],
     getDeletedQaKeys: () => new Set<string>(),
     getShowUnverified: () => true,
+    // PR2 default stubs — overridable per-test. PR1 tests don't touch the DOM
+    // surface, so a no-op object suffices.
+    dom: makeNoopDom(),
+    playAudioItem: () => {},
+    speakText: () => {},
+    stopCurrentAudio: () => {},
+    renderTone: () => '',
+    renderWB: () => '',
+    getEn: (item: Card) =>
+      (item as { spanish?: string }).spanish ??
+      (item as { q_spanish?: string }).q_spanish ??
+      '',
+    setTimeout: () => 0,
+    clearTimeout: () => {},
     ...overrides,
   });
+}
+
+/** No-op CardsDom for PR1 tests that never touch rendering. */
+function makeNoopDom(): CardsDom {
+  return {
+    setFront: () => {},
+    setBack: () => {},
+    setPhraseHint: () => {},
+    setCardFlipped: () => {},
+    setCardTypeClass: () => {},
+    setProgress: () => {},
+    setStats: () => {},
+    setEmptyHint: () => {},
+    setDiffBtnState: () => {},
+    setPlayBtn: () => {},
+    setPlayIndicator: () => {},
+    setPlayProgress: () => {},
+  };
+}
+
+/**
+ * PR2 helper: build a CardsDom backed by vi.fn() spies and return both the
+ * adapter and the spies record so tests can assert call args.
+ */
+function makeSpyDom(): { dom: CardsDom; spies: Record<string, ReturnType<typeof vi.fn>> } {
+  const spies = {
+    setFront: vi.fn(),
+    setBack: vi.fn(),
+    setPhraseHint: vi.fn(),
+    setCardFlipped: vi.fn(),
+    setCardTypeClass: vi.fn(),
+    setProgress: vi.fn(),
+    setStats: vi.fn(),
+    setEmptyHint: vi.fn(),
+    setDiffBtnState: vi.fn(),
+    setPlayBtn: vi.fn(),
+    setPlayIndicator: vi.fn(),
+    setPlayProgress: vi.fn(),
+  };
+  return { dom: spies as unknown as CardsDom, spies };
+}
+
+/**
+ * Fake timer bag that captures scheduled callbacks for synchronous FSM tests.
+ * runAll() flushes the queue in insertion order. Tests assert against
+ * pendingCount() and the spy calls on the deps they passed in.
+ */
+function makeFakeTimers(): {
+  setTimeout: (fn: () => void, ms: number) => number;
+  clearTimeout: (id: number | undefined) => void;
+  runAll: () => void;
+  pendingCount: () => number;
+} {
+  let next = 1;
+  const queue = new Map<number, () => void>();
+  return {
+    setTimeout: (fn, _ms) => {
+      const id = next++;
+      queue.set(id, fn);
+      return id;
+    },
+    clearTimeout: (id) => {
+      if (id != null) queue.delete(id);
+    },
+    runAll: () => {
+      const fns = [...queue.values()];
+      queue.clear();
+      fns.forEach((f) => f());
+    },
+    pendingCount: () => queue.size,
+  };
 }
 
 describe('createCardsModule — buildDeck', () => {
@@ -284,5 +390,253 @@ describe('createCardsModule — misc', () => {
     m.getThaiFreqMap();
     m.getThaiFreqMap();
     expect(wordsSpy).toHaveBeenCalledTimes(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// PR2 — showCard / rendering
+// ---------------------------------------------------------------------------
+
+describe('createCardsModule — showCard rendering', () => {
+  it('showCard on empty deck clears the face and writes "0 / 0" progress', () => {
+    const { dom, spies } = makeSpyDom();
+    const m = makeModule({ dom });
+    setDeck([]);
+    m.showCard();
+    expect(spies.setProgress).toHaveBeenCalledWith('0 / 0');
+    expect(spies.setStats).toHaveBeenCalledWith('');
+    // Empty path clears the back face.
+    expect(spies.setBack).toHaveBeenCalledWith(
+      expect.objectContaining({ word: '', phonetic: '' }),
+    );
+  });
+
+  it('showCard for a conversation card sets the conversation type class', () => {
+    const { dom, spies } = makeSpyDom();
+    const m = makeModule({
+      dom,
+      renderTone: () => '<tone>',
+      renderWB: () => '<wb>',
+      getEn: () => 'q -> a',
+    });
+    const conv = makeData().conversations[0] as unknown as Card;
+    conv.type = 'conversation';
+    setDeck([conv]);
+    setIdx(0);
+    m.showCard();
+    expect(spies.setCardTypeClass).toHaveBeenCalledWith('conversation');
+    expect(spies.setPhraseHint).toHaveBeenCalledWith('Conversation');
+    // Front shows the Q label prefixed.
+    expect(spies.setFront).toHaveBeenCalledWith(
+      expect.objectContaining({ word: '<span class="qa-label">Q</span>ไปไหน' }),
+    );
+  });
+
+  it('showCard for a pair card sets the pair type class and uses composite thai', () => {
+    const { dom, spies } = makeSpyDom();
+    const m = makeModule({
+      dom,
+      renderTone: () => '<t>',
+      renderWB: () => '',
+      getEn: () => 'dog / horse',
+    });
+    // Build a pair card with w1/w2 resolved (as buildDeck does).
+    const data = makeData();
+    const pair = {
+      type: 'pair',
+      w1: data.words[0],
+      w2: data.words[1],
+      note: 'r vs h',
+      category: 'tones',
+      thai: 'หมา / ม้า',
+    } as unknown as Card;
+    setDeck([pair]);
+    setIdx(0);
+    m.showCard();
+    expect(spies.setCardTypeClass).toHaveBeenCalledWith('pair');
+    expect(spies.setPhraseHint).toHaveBeenCalledWith('Tone Pair');
+    // Front html includes both thai words.
+    expect(spies.setFront).toHaveBeenCalledWith(
+      expect.objectContaining({ word: expect.stringContaining('หมา') }),
+    );
+    const frontCall = spies.setFront.mock.calls[0][0];
+    expect(frontCall.word).toContain('ม้า');
+    expect(frontCall.word).toContain('vs');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// PR2 — scoring
+// ---------------------------------------------------------------------------
+
+describe('createCardsModule — scoring', () => {
+  it('markCard(true) records known, fires onScoreCard, advances idx', () => {
+    const onScoreCard = vi.fn();
+    const { dom, spies } = makeSpyDom();
+    const m = makeModule({ dom, onScoreCard, renderTone: () => '', getEn: () => 'dog' });
+    const card = { type: 'word', thai: 'หมา', spanish: 'perro' } as unknown as Card;
+    const card2 = { ...card, thai: 'ม้า' } as unknown as Card;
+    setDeck([card, card2]);
+    setIdx(0);
+    m.markCard(true);
+    // The SRS hook received the card's thai.
+    expect(onScoreCard).toHaveBeenCalledWith('หมา', true);
+    // markCard calls nextCard at the end -> idx advances from 0 to 1, which
+    // causes showCard (called by nextCard) to write progress "2 / 2".
+    expect(spies.setProgress).toHaveBeenLastCalledWith('2 / 2');
+  });
+
+  it('toggleDifficult flips the difficult state for the current card key', () => {
+    const { dom, spies } = makeSpyDom();
+    const m = makeModule({ dom });
+    const card = { type: 'word', thai: 'หมา' } as unknown as Card;
+    setDeck([card]);
+    setIdx(0);
+    // Initially off.
+    m.updateDifficultBtn();
+    expect(spies.setDiffBtnState).toHaveBeenLastCalledWith(false);
+    // Toggle on.
+    m.toggleDifficult();
+    m.updateDifficultBtn();
+    expect(spies.setDiffBtnState).toHaveBeenLastCalledWith(true);
+    // Toggle back off.
+    m.toggleDifficult();
+    m.updateDifficultBtn();
+    expect(spies.setDiffBtnState).toHaveBeenLastCalledWith(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// PR2 — Play All FSM
+// ---------------------------------------------------------------------------
+
+describe('createCardsModule — Play All FSM', () => {
+  it('startPlayAll sets running, renders the pause button, schedules playRepeat', () => {
+    const { dom, spies } = makeSpyDom();
+    const timers = makeFakeTimers();
+    const playAudioItem = vi.fn((_item: Card, onDone?: () => void) => {
+      // Immediately fire onDone so the FSM schedules the next rep.
+      if (onDone) onDone();
+    });
+    const m = makeModule({
+      dom,
+      setTimeout: timers.setTimeout,
+      clearTimeout: timers.clearTimeout,
+      playAudioItem,
+    });
+    const card = { type: 'word', thai: 'หมา', spanish: 'perro' } as unknown as Card;
+    setDeck([card]);
+    setIdx(0);
+
+    m.startPlayAll(0);
+    // Running flag flipped, button shows pause.
+    expect(spies.setPlayBtn).toHaveBeenCalledWith('pause');
+    // Indicator shows rep 1/4.
+    expect(spies.setPlayIndicator).toHaveBeenCalledWith('rep 1/4 — repeat!');
+    // Audio was invoked.
+    expect(playAudioItem).toHaveBeenCalled();
+    // Because playAudioItem fired onDone synchronously, the FSM scheduled the
+    // next rep via setTimeout — one timer pending.
+    expect(timers.pendingCount()).toBe(1);
+  });
+
+  it('stopPlayAll clears running, the timer, and resets the play button', () => {
+    const { dom, spies } = makeSpyDom();
+    const timers = makeFakeTimers();
+    const playAudioItem = vi.fn();
+    const m = makeModule({
+      dom,
+      setTimeout: timers.setTimeout,
+      clearTimeout: timers.clearTimeout,
+      playAudioItem,
+    });
+    const card = { type: 'word', thai: 'หมา' } as unknown as Card;
+    setDeck([card]);
+    setIdx(0);
+    m.startPlayAll(0);
+    expect(timers.pendingCount()).toBe(0); // no onDone -> no timer from playRepeat
+    m.stopPlayAll();
+    // Button reset to play.
+    expect(spies.setPlayBtn).toHaveBeenLastCalledWith('play');
+    // Indicator + progress cleared.
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('');
+    expect(spies.setPlayProgress).toHaveBeenLastCalledWith('');
+  });
+
+  it('pausePlayAll then resumePlayAll flips paused and runs the saved resume fn', () => {
+    const { dom, spies } = makeSpyDom();
+    const timers = makeFakeTimers();
+    // playAudioItem captures onDone without firing — we drive it manually so
+    // we can observe the pause/resume transition.
+    let capturedOnDone: (() => void) | null = null;
+    const playAudioItem = vi.fn((_item: Card, onDone?: () => void) => {
+      capturedOnDone = onDone ?? null;
+    });
+    const m = makeModule({
+      dom,
+      setTimeout: timers.setTimeout,
+      clearTimeout: timers.clearTimeout,
+      playAudioItem,
+    });
+    const card = { type: 'word', thai: 'หมา' } as unknown as Card;
+    setDeck([card]);
+    setIdx(0);
+
+    m.startPlayAll(0);
+    expect(spies.setPlayBtn).toHaveBeenLastCalledWith('pause');
+    // Fire the audio completion -> FSM schedules the next rep via setTimeout.
+    expect(capturedOnDone).not.toBeNull();
+    capturedOnDone!();
+    expect(timers.pendingCount()).toBe(1);
+
+    // Pause: pending timer cleared, button shows resume, indicator says paused.
+    m.pausePlayAll();
+    expect(timers.pendingCount()).toBe(0);
+    expect(spies.setPlayBtn).toHaveBeenLastCalledWith('resume');
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('⏸ paused');
+
+    // Resume runs the saved resume fn, which re-enters playRepeat(rep+1).
+    m.resumePlayAll();
+    expect(spies.setPlayBtn).toHaveBeenLastCalledWith('pause');
+    // playRepeat(rep+1) = rep 2 fired another indicator write.
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('rep 2/4 — repeat!');
+  });
+
+  it('playRepeat after PLAY_REPS schedules regularPlayAll(idx+1) via CARD_GAP', () => {
+    const { dom, spies } = makeSpyDom();
+    const timers = makeFakeTimers();
+    // Fire onDone synchronously so each rep chains immediately.
+    const playAudioItem = vi.fn((_item: Card, onDone?: () => void) => {
+      if (onDone) onDone();
+    });
+    const m = makeModule({
+      dom,
+      setTimeout: timers.setTimeout,
+      clearTimeout: timers.clearTimeout,
+      playAudioItem,
+    });
+    const c1 = { type: 'word', thai: 'หมา' } as unknown as Card;
+    const c2 = { type: 'word', thai: 'ม้า' } as unknown as Card;
+    setDeck([c1, c2]);
+    setIdx(0);
+
+    m.startPlayAll(0);
+    // Each rep fires onDone synchronously, which schedules the next rep via
+    // REPEAT_GAP. runAll() snapshots and drains pending timers in one wave;
+    // new timers added during execution land in a fresh queue. So each
+    // runAll() advances exactly one rep.
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('rep 1/4 — repeat!');
+    timers.runAll(); // -> rep 2/4
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('rep 2/4 — repeat!');
+    timers.runAll(); // -> rep 3/4
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('rep 3/4 — repeat!');
+    timers.runAll(); // -> rep 4/4
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('rep 4/4 — repeat!');
+    timers.runAll(); // rep > PLAY_REPS -> "next...", schedules regularPlayAll(1)
+    expect(spies.setPlayIndicator).toHaveBeenLastCalledWith('next...');
+    // Flush the CARD_GAP timer -> regularPlayAll(1) renders card 2 and writes
+    // progress "2 / 2".
+    timers.runAll();
+    expect(spies.setPlayProgress).toHaveBeenLastCalledWith('2 / 2');
   });
 });
