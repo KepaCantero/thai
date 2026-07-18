@@ -7,6 +7,10 @@ try {
 } catch (e) {}
 var dashboardMode = false, shadowingMode = false, matrixMode = false, tonesMode = false, questionsMode = false;
 var currentMode = 'cards';
+// Top-level scope: 'lecciones' | 'top1000' | 'comprehensive'. Filters the whole
+// app down to one content source. Hidden scopes (no cards) are omitted from the menu.
+var activeScope = 'lecciones';
+try { activeScope = localStorage.getItem('thai_scope') || 'lecciones'; } catch (e) {}
 var activeToneSel = null; // selected tone in Tones mode view (null = all)
 var filterPanelOpen = false;
 
@@ -730,8 +734,106 @@ var MODES = [
   { key: 'srs',        icon: '&#9851;&#65039;', label: 'Estudiar', cls: 'srs' }
 ];
 
+function buildScopeTabs() {
+  var scopes = [];
+  if (DATA.words && DATA.words.length) {
+    var lessonCount = DATA.words.length + (DATA.phrases ? DATA.phrases.length : 0);
+    scopes.push({
+      key: 'lecciones', icon: '&#128218;',
+      label: 'Lecciones', sub: lessonCount + ' entradas'
+    });
+  }
+  if (typeof TOP1000_WORDS !== 'undefined' && TOP1000_WORDS.length) {
+    var topN = TOP1000_WORDS.length;
+    scopes.push({
+      key: 'top1000', icon: '&#127919;',
+      label: 'Top 1000', sub: topN + ' palabras'
+    });
+  }
+  var pilotN = (DATA.conversations || []).filter(function (c) { return c.verified === false; }).length;
+  if (pilotN > 0) {
+    scopes.push({
+      key: 'comprehensive', icon: '&#127916;',
+      label: 'Comprehensible Thai', sub: pilotN + ' diálogos'
+    });
+  }
+  if (!scopes.some(function (s) { return s.key === activeScope; }) && scopes.length) {
+    activeScope = scopes[0].key;
+  }
+  $('scopeTabs').innerHTML = scopes.map(function (s) {
+    var active = activeScope === s.key ? ' active' : '';
+    return '<button class="scope-tab' + active + '" onclick="setScope(\'' + s.key + '\')">' +
+      '<span class="scope-icon">' + s.icon + '</span>' +
+      '<span class="scope-label-wrap">' +
+        '<span class="scope-label">' + s.label + '</span>' +
+        '<span class="scope-sub">' + s.sub + '</span>' +
+      '</span>' +
+    '</button>';
+  }).join('');
+}
+
+function setScope(scope) {
+  var isFirstApply = (scope === activeScope && !setScope._applied);
+  activeScope = scope;
+  setScope._applied = true;
+  try { localStorage.setItem('thai_scope', scope); } catch (e) {}
+  buildScopeTabs();
+  // Lesson tabs only exist inside the Lecciones scope.
+  $('lessonTabs').style.display = (scope === 'lecciones') ? '' : 'none';
+
+  if (scope === 'top1000') {
+    if (activeLesson === 'pilot') activeLesson = 'all';
+    setMode('top1000');
+    return;
+  }
+
+  if (scope === 'comprehensive') {
+    activeLesson = 'pilot';
+    // Reset type/category filters so conversations (pilot) aren't blocked.
+    activeType = 'all';
+    activeCategory = 'all';
+    searchQuery = '';
+    var si = $('searchInput'); if (si) si.value = '';
+    // Snap to an allowed mode if the current one isn't available here.
+    if (currentMode !== 'cards' && currentMode !== 'dashboard' && currentMode !== 'srs') {
+      currentMode = 'dashboard';
+    }
+    buildModeTabs();
+    // Rebuild the deck with the pilot filter before rendering, otherwise
+    // showCard/renderDashboard would reuse a stale deck from the previous scope.
+    rebuild();
+    setMode(currentMode);
+    return;
+  }
+
+  // Lecciones
+  if (activeLesson === 'pilot') activeLesson = 'all';
+  if (currentMode === 'top1000') currentMode = 'cards';
+  buildLessonTabs();
+  buildModeTabs();
+  rebuild();
+  setMode(currentMode);
+}
+
 function buildModeTabs() {
-  $('modeTabs').innerHTML = MODES.map(function(m) {
+  // Filter modes by active scope so each section only offers relevant tools.
+  var allowed;
+  if (activeScope === 'top1000') {
+    allowed = { top1000: true, cards: true, dashboard: true, srs: true };
+  } else if (activeScope === 'comprehensive') {
+    allowed = { cards: true, dashboard: true, srs: true };
+  } else {
+    allowed = null; // lecciones → all modes
+  }
+  var visible = allowed
+    ? MODES.filter(function (m) { return allowed[m.key]; })
+    : MODES;
+  // If current mode is not allowed in this scope, snap to a valid one.
+  if (!visible.some(function (m) { return m.key === currentMode; })) {
+    var fallback = visible[0];
+    if (fallback) currentMode = fallback.key;
+  }
+  $('modeTabs').innerHTML = visible.map(function (m) {
     var active = currentMode === m.key ? ' active' : '';
     return '<button class="mode-tab ' + m.cls + active + '" onclick="setMode(\'' + m.key + '\')">' +
       '<span class="mt-icon">' + m.icon + '</span>' + m.label + '</button>';
@@ -777,8 +879,8 @@ function setMode(mode) {
   $('filterBar').style.display = showFilters ? '' : 'none';
   $('searchBar').style.display = showFilters ? '' : 'none';
   $('audioBar').style.display = showFilters ? '' : 'none';
-  // Lesson tabs always visible (scope is global)
-  $('lessonTabs').style.display = '';
+  // Lesson tabs only exist inside the Lecciones scope.
+  $('lessonTabs').style.display = (activeScope === 'lecciones') ? '' : 'none';
 
   buildModeTabs();
 
@@ -1898,6 +2000,7 @@ function stopTonesPlay() {
 
 // --- Init ---
 buildLessonTabs();
+buildScopeTabs();
 buildModeTabs();
 buildFilterChips();
 deck = buildDeck();
@@ -1905,3 +2008,9 @@ if (activeLesson === 'dificiles') deck = deck.filter(function(it) { return diffi
 $('progress').textContent = deck.length + ' cards';
 showCard();
 updatePlayBtn();
+// Apply initial scope (restore last-used section; defaults to 'lecciones').
+if (activeScope === 'top1000') {
+  setScope('top1000');
+} else if (activeScope === 'comprehensive') {
+  setScope('comprehensive');
+}
