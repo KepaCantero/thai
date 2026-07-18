@@ -467,13 +467,22 @@ function buildQuestionsDeck() {
 function haptic(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} }
 function flipCard() { $('card').classList.toggle('flipped'); haptic(8); if (!running) playAudio(); }
 
-// Attach click handler (not inline onclick, more reliable during Play All)
-document.addEventListener('DOMContentLoaded', function() {
-  var cc = $('cardContainer');
-  if (cc) cc.addEventListener('click', function(e) { flipCard(); });
-  var ttsSel = $('ttsSelect');
-  if (ttsSel && typeof AUDIO_ENGINE !== 'undefined') ttsSel.value = AUDIO_ENGINE;
-  document.body.classList.toggle('mode-cards', currentMode === 'cards');
+// Attach click handler (not inline onclick, more reliable during Play All).
+// Phase 2: this listener was originally on DOMContentLoaded. The four data
+// files (data.js, top1000*.js, audio-manifest.js) were migrated to JSON
+// fetched lazily by src/core/data/loader.ts, so the DOM may be ready before
+// the data globals are populated. The TS entry point dispatches
+// 'thai-data-ready' after loadAllData() resolves — wait for that.
+window.addEventListener('thai-data-ready', function() {
+  try {
+    var cc = $('cardContainer');
+    if (cc) cc.addEventListener('click', function(e) { flipCard(); });
+    var ttsSel = $('ttsSelect');
+    if (ttsSel && typeof AUDIO_ENGINE !== 'undefined') ttsSel.value = AUDIO_ENGINE;
+    document.body.classList.toggle('mode-cards', currentMode === 'cards');
+  } catch (e) {
+    console.error('[app] boot failed:', e);
+  }
 });
 function nextCard() {
   if (!deck.length) return;
