@@ -285,6 +285,41 @@ export interface Card {
 }
 
 // ============================================================================
+// QaItem — Q&A deck item built from conversations for Questions mode
+// ============================================================================
+
+export type QaTopic =
+  | 'futuro'
+  | 'querer'
+  | 'gustar'
+  | 'negación'
+  | 'progresivo'
+  | 'pasado'
+  | 'pregunta sí/no'
+  | 'pregunta dónde'
+  | 'pregunta qué'
+  | 'pregunta cuánto'
+  | 'presente'
+  | string;
+
+export interface QaItem {
+  type: 'qa';
+  source: string;
+  topic: Category;
+  tense: QaTopic;
+  q_thai: Thai;
+  q_phonetic: Phonetic;
+  q_es: EsPhonetic;
+  q_en: English;
+  q_spanish: Spanish;
+  a_thai: Thai;
+  a_phonetic: Phonetic;
+  a_es: EsPhonetic;
+  a_en: English;
+  a_spanish: Spanish;
+}
+
+// ============================================================================
 // Mode / Scope / Filter — UI navigation state
 // ============================================================================
 
