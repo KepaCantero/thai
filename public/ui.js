@@ -675,7 +675,7 @@ function buildWordDict() {
     'เหลี่ยมผืนผ้า': { ph: 'lìeam-phrǔen-phâa', en: 'rectangle' },
     'ผืนผ้า': { ph: 'phrǔen-phâa', en: 'rectangular shape' },
     'มุม': { ph: 'mum', en: 'corner / angle' },
-    // Animals (pilot)
+    // Animals (cthai)
     'สัตว์': { ph: 'sàt', en: 'animal' },
     'กระต่าย': { ph: 'grà-dtàai', en: 'rabbit' },
     'ช้าง': { ph: 'cháang', en: 'elephant' },

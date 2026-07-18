@@ -17,13 +17,13 @@ export const scopeStore = defineStore<Scope>('thai_scope', 'lecciones');
 // --- app.js: deleted Q&A ids ----------------------------------------------
 export const deletedQaStore = defineStore<string[]>('thai_deleted_qa', []);
 
-// --- app.js: pilot play counts per card id --------------------------------
-export interface PilotPlayCount {
+// --- app.js: cthai play counts per card id --------------------------------
+export interface CthaiPlayCount {
   q?: number;
   a?: number;
 }
-export const pilotPlaysStore = defineStore<Record<string, PilotPlayCount>>(
-  'thai_pilot_plays_v1',
+export const cthaiPlaysStore = defineStore<Record<string, CthaiPlayCount>>(
+  'thai_cthai_plays_v1',
   {}
 );
 

@@ -47,8 +47,8 @@ function buildLessonTabs() {
   tabs.push({ key: 'youtube', label: 'YouTube' });
   tabs.push({ key: 'dificiles', label: '★ Difíciles (' + difficult.size + ')' });
   if (typeof SHOW_UNVERIFIED !== 'undefined' && SHOW_UNVERIFIED) {
-    var pilotCount = (DATA.conversations || []).filter(function(c) { return c.verified === false; }).length;
-    tabs.push({ key: 'pilot', label: '🎬 Pilot (' + pilotCount + ')' });
+    var cthaiCount = (DATA.conversations || []).filter(function(c) { return c.verified === false; }).length;
+    tabs.push({ key: 'cthai', label: '🎬 C.Thai (' + cthaiCount + ')' });
   }
 
   $('lessonTabs').innerHTML = tabs.map(function(t) {
@@ -263,8 +263,8 @@ function buildDeck() {
   var items = [];
   var youtubeOnly = activeLesson === 'youtube';
   var dificilesOnly = activeLesson === 'dificiles';
-  var pilotOnly = activeLesson === 'pilot';
-  var lessonNum = (activeLesson === 'all' || youtubeOnly || dificilesOnly || pilotOnly) ? null : parseInt(activeLesson);
+  var cthaiOnly = activeLesson === 'cthai';
+  var lessonNum = (activeLesson === 'all' || youtubeOnly || dificilesOnly || cthaiOnly) ? null : parseInt(activeLesson);
   var isTone = activeCategory.startsWith('tone:');
   var isPares = activeCategory === 'pares';
   var isPractica = activeCategory === 'practica';
@@ -275,7 +275,7 @@ function buildDeck() {
   function matchLesson(item) {
     if (youtubeOnly) return item.category === 'youtube';
     if (dificilesOnly) return true; // membership filter applied at call sites
-    if (pilotOnly) return item.verified === false;
+    if (cthaiOnly) return item.verified === false;
     return !lessonNum || (item.lesson || 1) === lessonNum;
   }
   function matchCategory(item) { return cat === 'all' || item.category === cat; }
@@ -377,8 +377,8 @@ function buildDeck() {
     var wordMap = {};
     DATA.words.forEach(function(w) { wordMap[w.thai] = w; });
     DATA.pairs.filter(function(p) {
-      // Pilot scope: pairs are not pilot content — skip them entirely.
-      if (activeLesson === 'pilot') return false;
+      // cthai scope: pairs are not cthai content — skip them entirely.
+      if (activeLesson === 'cthai') return false;
       if (searchQuery) {
         var w1 = wordMap[p.w1], w2 = wordMap[p.w2];
         var pairItem = { spanish: (w1 && w1.spanish) + ' ' + (w2 && w2.spanish), note: p.note };
@@ -752,11 +752,11 @@ function buildScopeTabs() {
       label: 'Top 1000', sub: topN + ' palabras'
     });
   }
-  var pilotN = (DATA.conversations || []).filter(function (c) { return c.verified === false; }).length;
-  if (pilotN > 0) {
+  var cthaiN = (DATA.conversations || []).filter(function (c) { return c.verified === false; }).length;
+  if (cthaiN > 0) {
     scopes.push({
       key: 'comprehensive', icon: '&#127916;',
-      label: 'Comprehensible Thai', sub: pilotN + ' diálogos'
+      label: 'Comprehensible Thai', sub: cthaiN + ' diálogos'
     });
   }
   if (!scopes.some(function (s) { return s.key === activeScope; }) && scopes.length) {
@@ -784,14 +784,14 @@ function setScope(scope) {
   $('lessonTabs').style.display = (scope === 'lecciones') ? '' : 'none';
 
   if (scope === 'top1000') {
-    if (activeLesson === 'pilot') activeLesson = 'all';
+    if (activeLesson === 'cthai') activeLesson = 'all';
     setMode('top1000');
     return;
   }
 
   if (scope === 'comprehensive') {
-    activeLesson = 'pilot';
-    // Reset type/category filters so conversations (pilot) aren't blocked.
+    activeLesson = 'cthai';
+    // Reset type/category filters so conversations (cthai) aren't blocked.
     activeType = 'all';
     activeCategory = 'all';
     searchQuery = '';
@@ -801,7 +801,7 @@ function setScope(scope) {
       currentMode = 'dashboard';
     }
     buildModeTabs();
-    // Rebuild the deck with the pilot filter before rendering, otherwise
+    // Rebuild the deck with the cthai filter before rendering, otherwise
     // showCard/renderDashboard would reuse a stale deck from the previous scope.
     rebuild();
     setMode(currentMode);
@@ -809,7 +809,7 @@ function setScope(scope) {
   }
 
   // Lecciones
-  if (activeLesson === 'pilot') activeLesson = 'all';
+  if (activeLesson === 'cthai') activeLesson = 'all';
   if (currentMode === 'top1000') currentMode = 'cards';
   buildLessonTabs();
   buildModeTabs();
@@ -921,30 +921,30 @@ function setMode(mode) {
   }
 }
 
-// --- Pilot mode: per-card play counts, frequency rank, grouping ---
-var PILOT_PLAY_KEY = 'thai_pilot_plays_v1';
-var PILOT_THRESHOLD = 10;
-var pilotPlays = loadPilotPlays();
+// --- cthai mode: per-card play counts, frequency rank, grouping ---
+var CTHAI_PLAY_KEY = 'thai_cthai_plays_v1';
+var CTHAI_THRESHOLD = 10;
+var cthaiPlays = loadCthaiPlays();
 
-function loadPilotPlays() {
-  try { return JSON.parse(localStorage.getItem(PILOT_PLAY_KEY) || '{}') || {}; }
+function loadCthaiPlays() {
+  try { return JSON.parse(localStorage.getItem(CTHAI_PLAY_KEY) || '{}') || {}; }
   catch (e) { return {}; }
 }
-function savePilotPlays() {
-  try { localStorage.setItem(PILOT_PLAY_KEY, JSON.stringify(pilotPlays)); } catch (e) {}
+function saveCthaiPlays() {
+  try { localStorage.setItem(CTHAI_PLAY_KEY, JSON.stringify(cthaiPlays)); } catch (e) {}
 }
-function pilotCardId(item) {
+function cthaiCardId(item) {
   return (item.source || 'nosrc') + '||' + (item.q_thai || '') + '||' + (item.a_thai || '');
 }
-function pilotPlaysOf(item) {
-  return pilotPlays[pilotCardId(item)] || { q: 0, a: 0 };
+function cthaiPlaysOf(item) {
+  return cthaiPlays[cthaiCardId(item)] || { q: 0, a: 0 };
 }
-function pilotCardDone(item) {
-  var p = pilotPlaysOf(item);
-  return (p.q || 0) >= PILOT_THRESHOLD && (p.a || 0) >= PILOT_THRESHOLD;
+function cthaiCardDone(item) {
+  var p = cthaiPlaysOf(item);
+  return (p.q || 0) >= CTHAI_THRESHOLD && (p.a || 0) >= CTHAI_THRESHOLD;
 }
-function pilotCountPlays(item, which) {
-  return Math.min((pilotPlaysOf(item)[which] || 0), PILOT_THRESHOLD);
+function cthaiCountPlays(item, which) {
+  return Math.min((cthaiPlaysOf(item)[which] || 0), CTHAI_THRESHOLD);
 }
 var _thaiFreqMap = null;
 function getThaiFreqMap() {
@@ -958,7 +958,7 @@ function getThaiFreqMap() {
   return _thaiFreqMap;
 }
 // Lower rank = more frequent word = easier card. Cards using rare words get higher ranks.
-function pilotCardFreqRank(item) {
+function cthaiCardFreqRank(item) {
   var fm = getThaiFreqMap();
   var text = (item.q_thai || '') + (item.a_thai || '');
   var minRank = Infinity;
@@ -977,10 +977,10 @@ function renderDashboard() {
     grid.innerHTML = '<p style="color:#888;grid-column:1/-1;text-align:center;padding:40px 0">No cards for this filter</p>';
     return;
   }
-  if (activeLesson === 'pilot') {
+  if (activeLesson === 'cthai') {
     // Groups stack vertically — switch off the 150px card grid.
     grid.style.display = 'block';
-    grid.innerHTML = renderPilotGroups(deck);
+    grid.innerHTML = renderCthaiGroups(deck);
     return;
   }
   grid.style.display = 'grid';
@@ -996,7 +996,7 @@ function renderDashboard() {
 }
 
 
-function renderPilotGroups(cards) {
+function renderCthaiGroups(cards) {
   // Group by source, preserving first-seen order.
   var order = [], groups = {};
   cards.forEach(function (item, idx) {
@@ -1007,12 +1007,12 @@ function renderPilotGroups(cards) {
 
   // Overall progress counter
   var totalDone = 0;
-  cards.forEach(function (it) { if (pilotCardDone(it)) totalDone++; });
+  cards.forEach(function (it) { if (cthaiCardDone(it)) totalDone++; });
   var pct = cards.length ? Math.round(100 * totalDone / cards.length) : 0;
-  var html = '<div class="pilot-progress">' +
-    '<div class="pilot-progress-text"><b>' + totalDone + '/' + cards.length + '</b> tarjetas completadas ' +
-    '<span class="pilot-progress-sub">(≥' + PILOT_THRESHOLD + ' Q y ≥' + PILOT_THRESHOLD + ' A)</span></div>' +
-    '<div class="pilot-progress-bar"><div style="width:' + pct + '%"></div></div>' +
+  var html = '<div class="cthai-progress">' +
+    '<div class="cthai-progress-text"><b>' + totalDone + '/' + cards.length + '</b> tarjetas completadas ' +
+    '<span class="cthai-progress-sub">(≥' + CTHAI_THRESHOLD + ' Q y ≥' + CTHAI_THRESHOLD + ' A)</span></div>' +
+    '<div class="cthai-progress-bar"><div style="width:' + pct + '%"></div></div>' +
     '</div>';
 
   // Each group: sort cards by frequency rank (most-frequent words first), show
@@ -1020,18 +1020,18 @@ function renderPilotGroups(cards) {
   // green when every card in the group is complete.
   order.forEach(function (src) {
     var g = groups[src];
-    g.sort(function (a, b) { return pilotCardFreqRank(a.item) - pilotCardFreqRank(b.item); });
+    g.sort(function (a, b) { return cthaiCardFreqRank(a.item) - cthaiCardFreqRank(b.item); });
     var gDone = 0;
-    g.forEach(function (x) { if (pilotCardDone(x.item)) gDone++; });
+    g.forEach(function (x) { if (cthaiCardDone(x.item)) gDone++; });
     var gComplete = gDone === g.length;
     var label = src.replace(/^cthai:/, '').replace(/^./, function (c) { return c.toUpperCase(); }).replace(/_/g, ' ');
-    html += '<div class="pilot-group' + (gComplete ? ' pilot-group-done' : '') + '"' +
+    html += '<div class="cthai-group' + (gComplete ? ' cthai-group-done' : '') + '"' +
       (gComplete ? '' : ' data-collapsed="false"') + '>' +
-      '<div class="pilot-group-header">' +
-        '<span class="pilot-group-title">' + label + '</span>' +
-        '<span class="pilot-group-count">' + gDone + '/' + g.length + '</span>' +
+      '<div class="cthai-group-header">' +
+        '<span class="cthai-group-title">' + label + '</span>' +
+        '<span class="cthai-group-count">' + gDone + '/' + g.length + '</span>' +
       '</div>' +
-      '<div class="pilot-group-grid">' +
+      '<div class="cthai-group-grid">' +
         g.map(function (x) { return renderDashConversation(x.item, x.idx); }).join('') +
       '</div>' +
     '</div>';
@@ -1066,33 +1066,33 @@ function renderDashConversation(item, i) {
   var qTone = renderTone(item.q_tone, item.highlightTone);
   var aTone = renderTone(item.a_tone, item.highlightTone);
   var convEn = CONV_EN[item.q_thai] || {};
-  // Pilot cards (verified:false): show only the back, no flip, no autoplay.
+  // cthai cards (verified:false): show only the back, no flip, no autoplay.
   // Two 🔊 buttons let the user play Q or A independently — clicking the
   // card body does nothing so text selection / copy doesn't trigger audio.
   if (item.verified === false) {
-    var pDone = pilotCardDone(item);
-    var pQ = pilotCountPlays(item, 'q');
-    var pA = pilotCountPlays(item, 'a');
-    function pilotPlayBtn(which) {
+    var pDone = cthaiCardDone(item);
+    var pQ = cthaiCountPlays(item, 'q');
+    var pA = cthaiCountPlays(item, 'a');
+    function cthaiPlayBtn(which) {
       if (typeof speakText !== 'function') return '';
       return '<button class="dc-play-btn" data-which="' + which + '" onclick="event.stopPropagation();playConvAudio(' + i + ',\'' + which + '\')" title="Reproducir ' + (which === 'q' ? 'pregunta' : 'respuesta') + '" aria-label="Reproducir">🔊</button>';
     }
-    function pilotCounter(n) {
-      return '<span class="dc-play-count' + (n >= PILOT_THRESHOLD ? ' dc-play-count-done' : '') + '">' + n + '/' + PILOT_THRESHOLD + '</span>';
+    function cthaiCounter(n) {
+      return '<span class="dc-play-count' + (n >= CTHAI_THRESHOLD ? ' dc-play-count-done' : '') + '">' + n + '/' + CTHAI_THRESHOLD + '</span>';
     }
-    return '<div class="dash-card dash-conv pilot-only' + (pDone ? ' pilot-done' : '') + '" data-idx="' + i + '">' +
+    return '<div class="dash-card dash-conv cthai-only' + (pDone ? ' cthai-done' : '') + '" data-idx="' + i + '">' +
       diffBtnHtml(item, i) +
       '<button class="dc-del-btn" onclick="event.stopPropagation();deleteQCard(' + i + ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
       '<div class="dc-type-badge conv">C</div>' +
       '<div class="dc-body">' +
-        '<div class="dc-qa-label">Q' + pilotCounter(pQ) + pilotPlayBtn('q') + '</div>' +
+        '<div class="dc-qa-label">Q' + cthaiCounter(pQ) + cthaiPlayBtn('q') + '</div>' +
         '<div class="dc-thai">' + item.q_thai + '</div>' +
         '<div class="dc-phonetic">' + item.q_phonetic + '</div>' +
         (qTone ? '<div class="dc-tone">' + qTone + '</div>' : '') +
         '<div class="dc-translation">' + (convEn.q || item.q_spanish) + '</div>' +
         '<div class="dc-wb">' + renderWB(item.q_thai) + '</div>' +
         '<div class="dc-sep"></div>' +
-        '<div class="dc-qa-label">A' + pilotCounter(pA) + pilotPlayBtn('a') + '</div>' +
+        '<div class="dc-qa-label">A' + cthaiCounter(pA) + cthaiPlayBtn('a') + '</div>' +
         '<div class="dc-thai">' + item.a_thai + '</div>' +
         '<div class="dc-phonetic">' + item.a_phonetic + '</div>' +
         (aTone ? '<div class="dc-tone">' + aTone + '</div>' : '') +
@@ -1130,7 +1130,7 @@ function renderDashConversation(item, i) {
 }
 
 // Play just the Q or just the A from a conversation dashboard card.
-// Triggered by the 🔊 buttons in pilot cards; stopPropagation prevents any
+// Triggered by the 🔊 buttons in cthai cards; stopPropagation prevents any
 // parent handler from firing.
 function playConvAudio(i, which) {
   var item = deck[i];
@@ -1139,14 +1139,14 @@ function playConvAudio(i, which) {
   var txt = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
   if (txt) {
     if (item.verified === false) {
-      var id = pilotCardId(item);
-      pilotPlays[id] = pilotPlays[id] || { q: 0, a: 0 };
-      pilotPlays[id][which] = (pilotPlays[id][which] || 0) + 1;
-      savePilotPlays();
+      var id = cthaiCardId(item);
+      cthaiPlays[id] = cthaiPlays[id] || { q: 0, a: 0 };
+      cthaiPlays[id][which] = (cthaiPlays[id][which] || 0) + 1;
+      saveCthaiPlays();
     }
     speakText(txt);
   }
-  if (item.verified === false && activeLesson === 'pilot') {
+  if (item.verified === false && activeLesson === 'cthai') {
     // Re-render so colors/counters update; focus the button that was clicked.
     var btn = document.activeElement;
     renderDashboard();
@@ -1279,20 +1279,20 @@ function renderQCard(item, i) {
     (item.a_thai ? '<div class="qc-sep"></div>' + thaiBlock('Respuesta', item.a_thai, item.a_phonetic, item.a_es, 'a') : '') +
     (item.a_thai && typeof renderWB === 'function' ? '<div class="qc-wb">' + renderWB(item.a_thai) + '</div>' : '');
 
-  // In Pilot mode we show only the Thai side (no flip, no Spanish front).
+  // In cthai mode we show only the Thai side (no flip, no Spanish front).
   // Elsewhere the card flips between Spanish (front) and Thai (back).
-  var pilotMode = activeLesson === 'pilot';
-  var cardClass = 'q-card' + (pilotMode ? ' flipped pilot-only' : (qFlipped[i] ? ' flipped' : ''));
-  var onclick = pilotMode ? '' : ' onclick="qCardClick(this, ' + i + ')"';
+  var cthaiMode = activeLesson === 'cthai';
+  var cardClass = 'q-card' + (cthaiMode ? ' flipped cthai-only' : (qFlipped[i] ? ' flipped' : ''));
+  var onclick = cthaiMode ? '' : ' onclick="qCardClick(this, ' + i + ')"';
   return '<div class="' + cardClass + '" data-idx="' + i + '"' + onclick + '>' +
-    (pilotMode ? '' : '<div class="qc-play-icon">▶</div>') +
+    (cthaiMode ? '' : '<div class="qc-play-icon">▶</div>') +
     '<button class="qc-del-btn" onclick="event.stopPropagation();deleteQCard(' + i + ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
     '<div class="qc-badges">' +
       (topicTxt ? '<span class="qc-topic">' + topicTxt + '</span>' : '') +
       (tenseTxt ? '<span class="qc-tense">' + tenseTxt + '</span>' : '') +
       (srcTxt ? '<span class="qc-src">' + srcTxt + '</span>' : '') +
     '</div>' +
-    (pilotMode ? '' : '<div class="qc-front">' + frontHtml + '</div>') +
+    (cthaiMode ? '' : '<div class="qc-front">' + frontHtml + '</div>') +
     '<div class="qc-back">' + backHtml + '</div>' +
   '</div>';
 }
@@ -1345,7 +1345,7 @@ function deleteQCard(i) {
 }
 
 function dashCardClick(el, i) {
-  // Pilot cards render without onclick, but defend in case of bubbling.
+  // cthai cards render without onclick, but defend in case of bubbling.
   if (deck[i] && deck[i].verified === false) return;
   if (running) {
     stopPlayAll();

@@ -29,5 +29,5 @@
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
-  "exclude": ["node_modules", "dist", "pilot", "audio", "coverage"]
+  "exclude": ["node_modules", "dist", "data/cthai/qa", "audio", "coverage"]
 }

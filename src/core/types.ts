@@ -106,7 +106,7 @@ export interface Conversation extends ConversationSide {
   category: Category;
   lesson: Lesson;
   /**
-   * false = pending native-teacher review (Comprehensible Thai pilot).
+   * false = pending native-teacher review (Comprehensible Thai cthai section).
    * Absent / true = reviewed. See isVerifiedEntry in app.js.
    */
   verified?: boolean;
