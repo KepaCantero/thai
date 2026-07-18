@@ -298,7 +298,8 @@ export type ModeKey =
   | 'shadowing'
   | 'questions'
   | 'srs'
-  | 'top1000';
+  | 'top1000'
+  | 'alphabet';
 
 export interface ModeDescriptor {
   key: ModeKey;

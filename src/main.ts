@@ -12,9 +12,21 @@
 import { loadAllData } from './core/data/loader';
 import { wireLegacyTones } from './core/modes/tones/legacyBridge';
 import { wireLegacyAlphabet } from './core/modes/alphabet/legacyBridge';
+import { installStateBridge } from './core/state';
 
 if (typeof document !== 'undefined') {
   const boot = async () => {
+    // Phase 2: install the typed state bridge BEFORE loading data. Legacy
+    // top-level `var` declarations in public/app.js have already run by now
+    // (module scripts are deferred), so their initial values seed the typed
+    // state, and the descriptors we install proxy all subsequent reads /
+    // writes through to src/core/state/*.
+    try {
+      installStateBridge();
+    } catch (e) {
+      console.error('[state] bridge install failed:', e);
+    }
+
     // Phase 2: fetch the four data JSON bundles (app, top1000, top1000
     // segments, audio manifest) and install them on window.* before any
     // legacy boot code runs. The legacy DOMContentLoaded listener in

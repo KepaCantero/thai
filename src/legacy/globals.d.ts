@@ -10,10 +10,13 @@
 
 import type {
   AudioManifest,
+  Card,
   Category,
   DataShape,
   English,
   JanusPart,
+  ModeKey,
+  Scope,
   ShadowingConversation,
   Top1000Category,
   Top1000PhraseSegmentMap,
@@ -62,6 +65,28 @@ declare global {
 
   // --- public/audio-manifest.js ---
   const AUDIO_MANIFEST: AudioManifest;
+
+  // --- Phase 2 state bridge (src/core/state/*) -----------------------------
+  // These top-level `var` declarations in public/app.js are mirrored onto
+  // window via installStateBridge(). They are typed here so TS files that
+  // still reference the legacy globals compile. New code should prefer the
+  // typed getters/setters from src/core/state.
+  const currentMode: ModeKey;
+  var filterPanelOpen: boolean;
+  var deck: Card[];
+  var idx: number;
+  var activeLesson: string;
+  var activeCategory: string;
+  var activeType: 'all' | 'word' | 'phrase' | 'conversation';
+  var searchQuery: string;
+  var activeScope: Scope;
+  var running: boolean;
+  var paused: boolean;
+  var playTimeout: number | null;
+  var playResumeFn: (() => void) | null;
+  var known: Set<string>;
+  var unknown: Set<string>;
+  var difficult: Set<string>;
 }
 
 // Empty export to make this file a module (required for `declare global`).
