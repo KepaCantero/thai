@@ -146,5 +146,10 @@
 <script src="srs-ui.js"></script>
 <script src="ui.js"></script>
 <script src="app.js"></script>
+<!-- Spike 6: TS entry point. Loaded as a module so it runs after the legacy
+     classic scripts above have populated window.App. Each mode bridge is
+     isolated in try/catch inside main.ts so a TS-side failure cannot break
+     the legacy app. -->
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>
