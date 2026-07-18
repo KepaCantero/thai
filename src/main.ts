@@ -10,14 +10,15 @@
 // authoritative for the un-migrated modes.
 
 import { wireLegacyTones } from './core/modes/tones/legacyBridge';
+import { wireLegacyAlphabet } from './core/modes/alphabet/legacyBridge';
 
 if (typeof document !== 'undefined') {
   const boot = () => {
-    try {
-      wireLegacyTones();
-    } catch (e) {
-      console.error('[boot] failed to wire legacy tones module', e);
-    }
+    const wire = (name: string, fn: () => unknown) => {
+      try { fn(); } catch (e) { console.error('[boot] failed to wire ' + name, e); }
+    };
+    wire('tones', wireLegacyTones);
+    wire('alphabet', wireLegacyAlphabet);
   };
 
   if (document.readyState === 'loading') {
