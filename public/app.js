@@ -377,6 +377,8 @@ function buildDeck() {
     var wordMap = {};
     DATA.words.forEach(function(w) { wordMap[w.thai] = w; });
     DATA.pairs.filter(function(p) {
+      // Pilot scope: pairs are not pilot content — skip them entirely.
+      if (activeLesson === 'pilot') return false;
       if (searchQuery) {
         var w1 = wordMap[p.w1], w2 = wordMap[p.w2];
         var pairItem = { spanish: (w1 && w1.spanish) + ' ' + (w2 && w2.spanish), note: p.note };
@@ -919,14 +921,69 @@ function setMode(mode) {
   }
 }
 
+// --- Pilot mode: per-card play counts, frequency rank, grouping ---
+var PILOT_PLAY_KEY = 'thai_pilot_plays_v1';
+var PILOT_THRESHOLD = 10;
+var pilotPlays = loadPilotPlays();
+
+function loadPilotPlays() {
+  try { return JSON.parse(localStorage.getItem(PILOT_PLAY_KEY) || '{}') || {}; }
+  catch (e) { return {}; }
+}
+function savePilotPlays() {
+  try { localStorage.setItem(PILOT_PLAY_KEY, JSON.stringify(pilotPlays)); } catch (e) {}
+}
+function pilotCardId(item) {
+  return (item.source || 'nosrc') + '||' + (item.q_thai || '') + '||' + (item.a_thai || '');
+}
+function pilotPlaysOf(item) {
+  return pilotPlays[pilotCardId(item)] || { q: 0, a: 0 };
+}
+function pilotCardDone(item) {
+  var p = pilotPlaysOf(item);
+  return (p.q || 0) >= PILOT_THRESHOLD && (p.a || 0) >= PILOT_THRESHOLD;
+}
+function pilotCountPlays(item, which) {
+  return Math.min((pilotPlaysOf(item)[which] || 0), PILOT_THRESHOLD);
+}
+var _thaiFreqMap = null;
+function getThaiFreqMap() {
+  if (_thaiFreqMap) return _thaiFreqMap;
+  _thaiFreqMap = {};
+  if (typeof TOP1000_WORDS !== 'undefined') {
+    TOP1000_WORDS.forEach(function (w) {
+      if (w.thai && w.rank && !_thaiFreqMap[w.thai]) _thaiFreqMap[w.thai] = w.rank;
+    });
+  }
+  return _thaiFreqMap;
+}
+// Lower rank = more frequent word = easier card. Cards using rare words get higher ranks.
+function pilotCardFreqRank(item) {
+  var fm = getThaiFreqMap();
+  var text = (item.q_thai || '') + (item.a_thai || '');
+  var minRank = Infinity;
+  for (var word in fm) {
+    if (text.indexOf(word) !== -1 && fm[word] < minRank) minRank = fm[word];
+  }
+  return minRank === Infinity ? 9999 : minRank;
+}
+
 function renderDashboard() {
   var grid = $('dashboardGrid');
   deck = buildDeck();
   if (activeLesson === 'dificiles') deck = deck.filter(function(it) { return difficult.has(cardKey(it)); });
   if (!deck.length) {
+    grid.style.display = 'grid';
     grid.innerHTML = '<p style="color:#888;grid-column:1/-1;text-align:center;padding:40px 0">No cards for this filter</p>';
     return;
   }
+  if (activeLesson === 'pilot') {
+    // Groups stack vertically — switch off the 150px card grid.
+    grid.style.display = 'block';
+    grid.innerHTML = renderPilotGroups(deck);
+    return;
+  }
+  grid.style.display = 'grid';
   grid.innerHTML = deck.map(function(item, i) {
     if (item.type === 'conversation') {
       return renderDashConversation(item, i);
@@ -936,6 +993,51 @@ function renderDashboard() {
     }
     return renderDashWordPhrase(item, i);
   }).join('');
+}
+
+
+function renderPilotGroups(cards) {
+  // Group by source, preserving first-seen order.
+  var order = [], groups = {};
+  cards.forEach(function (item, idx) {
+    var src = item.source || 'otros';
+    if (!groups[src]) { groups[src] = []; order.push(src); }
+    groups[src].push({ item: item, idx: idx });
+  });
+
+  // Overall progress counter
+  var totalDone = 0;
+  cards.forEach(function (it) { if (pilotCardDone(it)) totalDone++; });
+  var pct = cards.length ? Math.round(100 * totalDone / cards.length) : 0;
+  var html = '<div class="pilot-progress">' +
+    '<div class="pilot-progress-text"><b>' + totalDone + '/' + cards.length + '</b> tarjetas completadas ' +
+    '<span class="pilot-progress-sub">(≥' + PILOT_THRESHOLD + ' Q y ≥' + PILOT_THRESHOLD + ' A)</span></div>' +
+    '<div class="pilot-progress-bar"><div style="width:' + pct + '%"></div></div>' +
+    '</div>';
+
+  // Each group: sort cards by frequency rank (most-frequent words first), show
+  // a header with per-group counter, then a grid of cards. Group header turns
+  // green when every card in the group is complete.
+  order.forEach(function (src) {
+    var g = groups[src];
+    g.sort(function (a, b) { return pilotCardFreqRank(a.item) - pilotCardFreqRank(b.item); });
+    var gDone = 0;
+    g.forEach(function (x) { if (pilotCardDone(x.item)) gDone++; });
+    var gComplete = gDone === g.length;
+    var label = src.replace(/^cthai:/, '').replace(/^./, function (c) { return c.toUpperCase(); }).replace(/_/g, ' ');
+    html += '<div class="pilot-group' + (gComplete ? ' pilot-group-done' : '') + '"' +
+      (gComplete ? '' : ' data-collapsed="false"') + '>' +
+      '<div class="pilot-group-header">' +
+        '<span class="pilot-group-title">' + label + '</span>' +
+        '<span class="pilot-group-count">' + gDone + '/' + g.length + '</span>' +
+      '</div>' +
+      '<div class="pilot-group-grid">' +
+        g.map(function (x) { return renderDashConversation(x.item, x.idx); }).join('') +
+      '</div>' +
+    '</div>';
+  });
+
+  return html;
 }
 
 function renderDashWordPhrase(item, i) {
@@ -968,23 +1070,29 @@ function renderDashConversation(item, i) {
   // Two 🔊 buttons let the user play Q or A independently — clicking the
   // card body does nothing so text selection / copy doesn't trigger audio.
   if (item.verified === false) {
+    var pDone = pilotCardDone(item);
+    var pQ = pilotCountPlays(item, 'q');
+    var pA = pilotCountPlays(item, 'a');
     function pilotPlayBtn(which) {
       if (typeof speakText !== 'function') return '';
-      return '<button class="dc-play-btn" onclick="event.stopPropagation();playConvAudio(' + i + ',\'' + which + '\')" title="Reproducir ' + (which === 'q' ? 'pregunta' : 'respuesta') + '" aria-label="Reproducir">🔊</button>';
+      return '<button class="dc-play-btn" data-which="' + which + '" onclick="event.stopPropagation();playConvAudio(' + i + ',\'' + which + '\')" title="Reproducir ' + (which === 'q' ? 'pregunta' : 'respuesta') + '" aria-label="Reproducir">🔊</button>';
     }
-    return '<div class="dash-card dash-conv pilot-only" data-idx="' + i + '">' +
+    function pilotCounter(n) {
+      return '<span class="dc-play-count' + (n >= PILOT_THRESHOLD ? ' dc-play-count-done' : '') + '">' + n + '/' + PILOT_THRESHOLD + '</span>';
+    }
+    return '<div class="dash-card dash-conv pilot-only' + (pDone ? ' pilot-done' : '') + '" data-idx="' + i + '">' +
       diffBtnHtml(item, i) +
       '<button class="dc-del-btn" onclick="event.stopPropagation();deleteQCard(' + i + ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
       '<div class="dc-type-badge conv">C</div>' +
       '<div class="dc-body">' +
-        '<div class="dc-qa-label">Q' + pilotPlayBtn('q') + '</div>' +
+        '<div class="dc-qa-label">Q' + pilotCounter(pQ) + pilotPlayBtn('q') + '</div>' +
         '<div class="dc-thai">' + item.q_thai + '</div>' +
         '<div class="dc-phonetic">' + item.q_phonetic + '</div>' +
         (qTone ? '<div class="dc-tone">' + qTone + '</div>' : '') +
         '<div class="dc-translation">' + (convEn.q || item.q_spanish) + '</div>' +
         '<div class="dc-wb">' + renderWB(item.q_thai) + '</div>' +
         '<div class="dc-sep"></div>' +
-        '<div class="dc-qa-label">A' + pilotPlayBtn('a') + '</div>' +
+        '<div class="dc-qa-label">A' + pilotCounter(pA) + pilotPlayBtn('a') + '</div>' +
         '<div class="dc-thai">' + item.a_thai + '</div>' +
         '<div class="dc-phonetic">' + item.a_phonetic + '</div>' +
         (aTone ? '<div class="dc-tone">' + aTone + '</div>' : '') +
@@ -1029,7 +1137,24 @@ function playConvAudio(i, which) {
   if (!item || typeof speakText !== 'function') return;
   if (typeof stopCurrentAudio === 'function') stopCurrentAudio();
   var txt = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
-  if (txt) speakText(txt);
+  if (txt) {
+    if (item.verified === false) {
+      var id = pilotCardId(item);
+      pilotPlays[id] = pilotPlays[id] || { q: 0, a: 0 };
+      pilotPlays[id][which] = (pilotPlays[id][which] || 0) + 1;
+      savePilotPlays();
+    }
+    speakText(txt);
+  }
+  if (item.verified === false && activeLesson === 'pilot') {
+    // Re-render so colors/counters update; focus the button that was clicked.
+    var btn = document.activeElement;
+    renderDashboard();
+    if (btn && btn.classList.contains('dc-play-btn')) {
+      var restored = document.querySelector('.dash-card[data-idx="' + i + '"] .dc-play-btn[data-which="' + which + '"]');
+      if (restored) restored.focus();
+    }
+  }
 }
 
 function renderDashPair(item, i) {
