@@ -13,6 +13,7 @@ import { loadAllData } from './core/data/loader';
 import { wireLegacyTones } from './core/modes/tones/legacyBridge';
 import { wireLegacyAlphabet } from './core/modes/alphabet/legacyBridge';
 import { wireLegacyCards } from './core/modes/cards/legacyBridge';
+import { wireLegacyQuestions } from './core/modes/questions/legacyBridge';
 import { installStateBridge } from './core/state';
 
 if (typeof document !== 'undefined') {
@@ -48,6 +49,7 @@ if (typeof document !== 'undefined') {
     wire('tones', wireLegacyTones);
     wire('alphabet', wireLegacyAlphabet);
     wire('cards', wireLegacyCards);
+    wire('questions', wireLegacyQuestions);
   };
 
   if (document.readyState === 'loading') {
