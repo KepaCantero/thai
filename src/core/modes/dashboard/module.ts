@@ -605,7 +605,7 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     if (text) {
       deps.bumpCthaiPlay(item, which);
       deps.speakText(text);
-      const src = ((item as unknown as { source?: string }).source) || 'nosrc';
+      const src = item.source || 'nosrc';
       const entryId = src + '||' + (item.q_thai || '') + '||' + (item.a_thai || '');
       gameBus.emit({ type: 'conv:play', source: src, entryId });
     }

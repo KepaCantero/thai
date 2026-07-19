@@ -297,6 +297,8 @@ export interface Card {
   a_spanish?: Conversation['a_spanish'];
   a_en?: Conversation['a_en'];
   verified?: boolean;
+  /** Source tag from Conversation; CT cards have `cthai:<key>`. */
+  source?: string;
   /**
    * Tone to highlight when rendering the card's tone markers. Set by
    * buildDeck() when the active filter is `tone:X` so renderTone() can

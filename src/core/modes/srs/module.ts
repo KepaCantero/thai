@@ -166,6 +166,8 @@ export interface AnyCard {
   a_thai?: string;
   a_es?: string;
   a_spanish?: string;
+  /** CT source tag (`cthai:<key>`). Lets isCthaiEntry() read AnyCard directly. */
+  source?: string;
   verified?: boolean;
   [k: string]: unknown;
 }
@@ -456,11 +458,10 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
           const convs = data.conversations as unknown as AnyCard[];
           return showUnverified
             ? convs
-            : convs.filter((c) => !isCthaiEntry(c as unknown as Conversation));
+            : convs.filter((c) => !isCthaiEntry(c));
         },
         idOf: (c) => {
-          const conv = c as unknown as Conversation;
-          return (conv.q_thai || '') + '||' + (conv.a_thai || '');
+          return (c.q_thai || '') + '||' + (c.a_thai || '');
         },
         kind: 'lesson-question',
       },
@@ -471,13 +472,10 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
         source: () => {
           const data = deps.getData();
           if (!data || !data.conversations) return [];
-          return data.conversations.filter(
-            (c) => isCthaiEntry(c as unknown as Conversation),
-          ) as unknown as AnyCard[];
+          return data.conversations.filter((c) => isCthaiEntry(c)) as unknown as AnyCard[];
         },
         idOf: (c) => {
-          const conv = c as unknown as Conversation;
-          return (conv.q_thai || '') + '||' + (conv.a_thai || '');
+          return (c.q_thai || '') + '||' + (c.a_thai || '');
         },
         kind: 'lesson-question',
       },
