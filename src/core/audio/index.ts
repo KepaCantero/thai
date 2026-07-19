@@ -14,3 +14,8 @@ export { createStaticBackend } from './staticBackend';
 export type { StaticBackendOptions } from './staticBackend';
 export { isValidEngine } from './types';
 export type { AudioBackend, AudioEngine, AudioGateway } from './types';
+export { getAudioText } from './item';
+export type { AudioItem, AudioItemConversation, AudioItemPair, AudioItemWord } from './item';
+export { createAudioWiring } from './wiring';
+export type { AudioWiring } from './wiring';
+export { wireLegacyAudio } from './legacyBridge';

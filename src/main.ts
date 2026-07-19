@@ -17,6 +17,11 @@ import { wireLegacyQuestions } from './core/modes/questions/legacyBridge';
 import { wireLegacyTop1000 } from './core/modes/top1000/legacyBridge';
 import { wireLegacyMatrix } from './core/modes/matrix/legacyBridge';
 import { wireLegacyShadowing } from './core/modes/shadowing/legacyBridge';
+import { wireLegacySrs } from './core/modes/srs/legacyBridge';
+import { wireLegacyDashboard } from './core/modes/dashboard/legacyBridge';
+import { wireLegacyAudio } from './core/audio/legacyBridge';
+import { wireLegacyFormat } from './core/format/legacyBridge';
+import { wireLegacyRender } from './core/render/legacyBridge';
 import { installStateBridge } from './core/state';
 
 if (typeof document !== 'undefined') {
@@ -49,6 +54,17 @@ if (typeof document !== 'undefined') {
     const wire = (name: string, fn: () => unknown) => {
       try { fn(); } catch (e) { console.error('[boot] failed to wire ' + name, e); }
     };
+    // Audio is a leaf dependency for every mode bridge — install it first so
+    // window.speakText / window.stopCurrentAudio / window.playAudioItem
+    // exist before any mode reads them. public/audio.js is gone (Spike 6);
+    // this wiring replaces it.
+    wire('audio', wireLegacyAudio);
+    // Format (renderTone/getEn/THAI_EN/CONV_EN/...) and render (word-breakdown)
+    // are leaf dependencies for every mode bridge — install them before any
+    // mode reads from window. public/config.js + public/ui.js are gone
+    // (Spike 5h); these wirings replace them.
+    wire('format', wireLegacyFormat);
+    wire('render', wireLegacyRender);
     wire('tones', wireLegacyTones);
     wire('alphabet', wireLegacyAlphabet);
     wire('cards', wireLegacyCards);
@@ -56,6 +72,8 @@ if (typeof document !== 'undefined') {
     wire('top1000', wireLegacyTop1000);
     wire('matrix', wireLegacyMatrix);
     wire('shadowing', wireLegacyShadowing);
+    wire('srs', wireLegacySrs);
+    wire('dashboard', wireLegacyDashboard);
   };
 
   if (document.readyState === 'loading') {

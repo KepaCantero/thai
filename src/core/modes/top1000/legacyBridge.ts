@@ -1,30 +1,19 @@
-// Spike 5e: bridge between the typed Top1000Module and the legacy global
-// scripts in public/top1000-ui.js + public/srs-ui.js. Runs during boot
+// Spike 5e: bridge between the typed Top1000Module and the still-legacy
+// global scripts in public/top1000-ui.js + public/app.js. Runs during boot
 // (after data load, after the cards bridge installs). Constructs a
-// Top1000Module with adapters for the legacy globals, then overrides:
-//   - window.renderTop1000
-//   - window.setTop1000Tab
-//   - window.setTop1000Cat
-//   - window.setTop1000Search
-//   - window.top1000Speak
-//   - window.renderTop1000Words / Structures / Phrases / Conversations /
-//     StudyBody (so any legacy caller — and the duplicate declaration at
-//     top1000-ui.js:107 — resolves to the typed implementation)
-//   - window.segmentPhraseThai / getTop1000WordDict (called by app.js)
+// Top1000Module with adapters, then overrides window.renderTop1000 etc.
+// so every legacy caller (setMode, inline onclick handlers) lands in the
+// typed implementation.
 //
-// SRS coupling is preserved as-is: the module looks up mountSrsInline /
-// unmountSrsInline / renderDeckPicker / getDeckStats / SRS_TOP1000_DECK_KEYS
-// via window lazily, so a future srs extraction can simply install the
-// typed versions on window and the top1000 module picks them up.
-//
-// The legacy function declarations in top1000-ui.js are not deleted —
-// overwriting window.* is enough because top-level function declarations
-// in classic scripts resolve to properties on the global object, and
-// legacy bare-identifier call sites resolve against window at call time.
+// SRS coupling (Spike 5h): resolved directly against the typed SrsModule
+// exported from ../srs/legacyBridge. The lookup is lazy because the SRS
+// bridge runs after this one in main.ts.
 
 import { getTop1000, getTop1000Segments } from '../../data/loader';
 import { createTop1000Module } from './module';
 import type { Top1000Module } from './module';
+import { getSrsModule } from '../srs/legacyBridge';
+import { renderTone as typedRenderTone } from '../../format';
 
 let top1000Module: Top1000Module | undefined;
 
@@ -37,32 +26,28 @@ export function wireLegacyTop1000(): Top1000Module {
     speakText: (text: string) => {
       if (typeof w.speakText === 'function') w.speakText(text);
     },
-    renderTone: (tone: string) =>
-      typeof w.renderTone === 'function' ? w.renderTone(tone) : '',
+    renderTone: (tone: string) => typedRenderTone(tone),
     mountSrsInline: (
       hostId: string,
       onExit: () => void,
       deckKeys: string[],
     ) => {
-      if (typeof w.mountSrsInline === 'function')
-        w.mountSrsInline(hostId, onExit, deckKeys);
+      getSrsModule()?.mountSrsInline(hostId, onExit, deckKeys);
     },
     unmountSrsInline: () => {
-      if (typeof w.unmountSrsInline === 'function') w.unmountSrsInline();
+      getSrsModule()?.unmountSrsInline();
     },
-    renderDeckPicker: () =>
-      typeof w.renderDeckPicker === 'function' ? w.renderDeckPicker() : '',
+    renderDeckPicker: () => getSrsModule()?.renderDeckPicker() ?? '',
     getDeckStats: (deckKey: string) => {
-      if (typeof w.getDeckStats === 'function') {
-        try {
-          return w.getDeckStats(deckKey);
-        } catch {
-          return undefined;
-        }
+      const srs = getSrsModule();
+      if (!srs) return undefined;
+      try {
+        return srs.getDeckStats(deckKey as any);
+      } catch {
+        return undefined;
       }
-      return undefined;
     },
-    srsTop1000DeckKeys: w.SRS_TOP1000_DECK_KEYS,
+    srsTop1000DeckKeys: ['palabras', 'estructuras', 'frases'],
     dom: {
       setViewHtml: (html: string) => {
         const el = document.getElementById('top1000View');
@@ -73,18 +58,11 @@ export function wireLegacyTop1000(): Top1000Module {
 
   top1000Module = createTop1000Module(deps);
 
-  // Override the legacy global surface. Every legacy caller (setMode in
-  // app.js:919, inline onclick handlers emitted by the card renderers) goes
-  // through these.
   w.renderTop1000 = top1000Module.renderTop1000;
   w.setTop1000Tab = top1000Module.setTop1000Tab;
   w.setTop1000Cat = top1000Module.setTop1000Cat;
   w.setTop1000Search = top1000Module.setTop1000Search;
   w.top1000Speak = top1000Module.top1000Speak;
-
-  // Per-tab renderers — exported so tests can call them directly, and so
-  // the duplicate `renderTop1000StudyBody` declaration at top1000-ui.js:107
-  // is overridden by this single typed implementation.
   w.renderTop1000Words = top1000Module.renderTop1000Words;
   w.renderTop1000Structures = top1000Module.renderTop1000Structures;
   w.renderTop1000Phrases = top1000Module.renderTop1000Phrases;

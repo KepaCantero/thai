@@ -21,6 +21,8 @@ import { createCardsModule } from './module';
 import type { CardsDom, CardsModule, CardsModuleDeps } from './module';
 import { getAppData, getTop1000 } from '../../data/loader';
 import { cthaiPlaysStore, deletedQaStore } from '../../persistence/stores';
+import { getEn as typedGetEn, renderTone as typedRenderTone } from '../../format';
+import { renderWB as typedRenderWB } from '../../render';
 import type { Card } from '../../types';
 
 let cardsModule: CardsModule | undefined;
@@ -217,11 +219,13 @@ export function wireLegacyCards(): CardsModule {
     speakText: (text, onDone) => w.speakText(text, onDone),
     stopCurrentAudio: () => w.stopCurrentAudio(),
 
-    // config.js globals (renderTone at config.js:179, getEn at config.js:169)
-    // and ui.js renderWB at ui.js:845.
-    renderTone: (toneStr, highlight) => w.renderTone(toneStr, highlight),
-    renderWB: (thai) => w.renderWB(thai),
-    getEn: (item) => w.getEn(item),
+    // Format/render are typed imports now (Spike 5h). The window.* surface
+    // is still seeded by wireLegacyFormat / wireLegacyRender for any
+    // not-yet-migrated caller, but the cards module reads the typed
+    // implementations directly so behavior is independent of boot order.
+    renderTone: (toneStr, highlight) => typedRenderTone(toneStr, highlight),
+    renderWB: (thai) => typedRenderWB(thai),
+    getEn: (item) => typedGetEn(item),
 
     // SRS feedback hook. Mirrors app.js:517-520: look up the card in any SRS
     // deck, then record a rating (3 for known, 1 for unknown). Silent when the

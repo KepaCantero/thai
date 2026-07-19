@@ -23,10 +23,30 @@ import type {
   AudioManifest,
   DataShape,
   JanusPart,
+  ShadowingConversation,
   Top1000Category,
   Top1000PhraseSegmentMap,
   Top1000Word,
 } from '../types';
+
+// ---------------------------------------------------------------------------
+// Alphabet — declared here (not in types.ts) because the bridge in
+// src/core/modes/alphabet/legacyBridge.ts already defines a compatible
+// AlphaLegacyConsonant interface; this loader-side type is intentionally a
+// permissive shape that the bridge casts to its stricter local type.
+// ---------------------------------------------------------------------------
+export interface AlphabetConsonant {
+  i: number;
+  thai: string;
+  emoji?: string;
+  sound: string;
+  soundLike: string;
+  cls: string;
+  word: { thai: string; rtgs?: string; en: string };
+  mnemonic?: { visual?: string; full?: string; story?: string };
+  obsolete?: boolean;
+  [extra: string]: unknown;
+}
 
 // ---------------------------------------------------------------------------
 // Types — bundle shapes
@@ -100,6 +120,8 @@ let pronouns: PronounsBundle | undefined;
 let top1000: Top1000Bundle | undefined;
 let top1000Segments: Top1000PhraseSegmentMap | undefined;
 let audioManifest: AudioManifest | undefined;
+let shadowing: ShadowingConversation[] | undefined;
+let alphabet: AlphabetConsonant[] | undefined;
 
 // ---------------------------------------------------------------------------
 // Public entry point
@@ -113,6 +135,8 @@ export async function loadAllData(): Promise<void> {
     loadTop1000(),
     loadTop1000Segments(),
     loadAudioManifest(),
+    loadShadowing(),
+    loadAlphabet(),
   ]);
 }
 
@@ -197,6 +221,23 @@ async function loadAudioManifest(): Promise<void> {
   (window as unknown as { AUDIO_MANIFEST: AudioManifest }).AUDIO_MANIFEST = audioManifest;
 }
 
+async function loadShadowing(): Promise<void> {
+  if (shadowing) return;
+  const r = await fetch('/data/shadowing.json');
+  if (!r.ok) throw new Error(`shadowing.json HTTP ${r.status}`);
+  shadowing = (await r.json()) as ShadowingConversation[];
+  (window as unknown as { SHADOWING: ShadowingConversation[] }).SHADOWING = shadowing;
+}
+
+async function loadAlphabet(): Promise<void> {
+  if (alphabet) return;
+  const r = await fetch('/data/alphabet.json');
+  if (!r.ok) throw new Error(`alphabet.json HTTP ${r.status}`);
+  alphabet = (await r.json()) as AlphabetConsonant[];
+  (window as unknown as { ALPHABET_CONSONANTS: AlphabetConsonant[] }).ALPHABET_CONSONANTS =
+    alphabet;
+}
+
 // ---------------------------------------------------------------------------
 // Test/debug accessors — not used by production code. Lets unit tests
 // (or a future typed consumer) read the loaded data without going through
@@ -208,3 +249,5 @@ export function getPronouns(): PronounsBundle | undefined { return pronouns; }
 export function getTop1000(): Top1000Bundle | undefined { return top1000; }
 export function getTop1000Segments(): Top1000PhraseSegmentMap | undefined { return top1000Segments; }
 export function getAudioManifest(): AudioManifest | undefined { return audioManifest; }
+export function getShadowing(): ShadowingConversation[] | undefined { return shadowing; }
+export function getAlphabet(): AlphabetConsonant[] | undefined { return alphabet; }

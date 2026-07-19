@@ -11,6 +11,7 @@
 
 import { createTonesModule } from './module';
 import type { TonesModule } from './module';
+import { renderTone as typedRenderTone, THAI_EN, TONES } from '../../format';
 
 export function wireLegacyTones(): TonesModule {
   const w = window as unknown as Record<string, any>;
@@ -26,10 +27,10 @@ export function wireLegacyTones(): TonesModule {
 
   const mod = createTonesModule({
     getData: () => w.DATA,
-    getTones: () => w.TONES,
-    getThaiEn: () => w.THAI_EN || {},
+    getTones: () => TONES,
+    getThaiEn: () => THAI_EN,
     getActiveLesson: () => (w.activeLesson ?? 'all'),
-    renderTone: (s, h) => (typeof w.renderTone === 'function' ? w.renderTone(s, h) : ''),
+    renderTone: (s, h) => typedRenderTone(s, h),
     speakText: (t, onDone) => {
       if (typeof w.speakText === 'function') w.speakText(t, onDone);
       else if (onDone) onDone();

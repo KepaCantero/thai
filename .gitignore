@@ -17,3 +17,10 @@ dist/
 # Editor
 .vscode/
 .idea/
+
+# Python tooling
+__pycache__/
+*.pyc
+
+# Local backups
+*.bak

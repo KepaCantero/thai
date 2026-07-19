@@ -18,6 +18,7 @@
 
 import { createQuestionsModule } from './module';
 import type { QuestionsModule } from './module';
+import { renderWB as typedRenderWB } from '../../render';
 
 let questionsModule: QuestionsModule | undefined;
 
@@ -36,8 +37,7 @@ export function wireLegacyQuestions(): QuestionsModule {
     stopCurrentAudio: () => {
       if (typeof w.stopCurrentAudio === 'function') w.stopCurrentAudio();
     },
-    renderWB: (thai: string) =>
-      typeof w.renderWB === 'function' ? w.renderWB(thai) : '',
+    renderWB: (thai: string) => typedRenderWB(thai),
     haptic: (ms: number) => {
       if (typeof w.haptic === 'function') w.haptic(ms);
     },

@@ -5,6 +5,7 @@
 
 import { createAlphaModule } from './module';
 import type { AlphaModule, AlphaConsonant, AlphaMnMode } from './module';
+import { getAlphabet } from '../../data/loader';
 
 export interface AlphaLegacyConsonant {
   i: number;
@@ -22,7 +23,7 @@ export function wireLegacyAlphabet(): AlphaModule {
   const w = window as unknown as Record<string, any>;
 
   const mod = createAlphaModule({
-    getConsonants: () => (w.ALPHABET_CONSONANTS ?? []) as AlphaConsonant[],
+    getConsonants: () => (getAlphabet() ?? w.ALPHABET_CONSONANTS ?? []) as AlphaConsonant[],
     getModes: () => (w.ALPHA_MN_MODES ?? [
       { id: 'visual', label: 'Visual' },
       { id: 'full', label: 'Completo' },

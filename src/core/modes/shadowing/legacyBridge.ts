@@ -13,6 +13,8 @@
 import { createShadowingModule } from './module';
 import type { ShadowingModule } from './module';
 import type { ShadowingConversation } from '../../types';
+import { getShadowing } from '../../data/loader';
+import { renderTone as typedRenderTone } from '../../format';
 
 let shadowingModule: ShadowingModule | undefined;
 
@@ -21,7 +23,7 @@ export function wireLegacyShadowing(): ShadowingModule {
 
   const deps = {
     shadowing: (): ShadowingConversation[] => {
-      const arr = w.SHADOWING;
+      const arr = getShadowing() ?? w.SHADOWING;
       return Array.isArray(arr) ? arr : [];
     },
     speakText: (text: string, onDone?: () => void) => {
@@ -31,10 +33,7 @@ export function wireLegacyShadowing(): ShadowingModule {
     stopCurrentAudio: () => {
       if (typeof w.stopCurrentAudio === 'function') w.stopCurrentAudio();
     },
-    renderTone: (toneStr: string | undefined) => {
-      if (typeof w.renderTone === 'function') return w.renderTone(toneStr);
-      return toneStr || '';
-    },
+    renderTone: (toneStr: string | undefined) => typedRenderTone(toneStr),
     dom: {
       setListHtml: (html: string) => {
         const el = document.getElementById('shList');
