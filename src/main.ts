@@ -39,9 +39,10 @@ if (typeof document !== 'undefined') {
 
     // Phase 2: fetch the four data JSON bundles (app, top1000, top1000
     // segments, audio manifest) and install them on window.* before any
-    // legacy boot code runs. The legacy DOMContentLoaded listener in
-    // public/app.js was retargeted to 'thai-data-ready' so it waits for
-    // this signal — see loader.ts for the identity-caching contract.
+    // legacy boot code runs. The legacy init listener in app.js waits for
+    // 'thai-data-ready' (dispatched below, AFTER all bridges are wired so
+    // init-time calls to setScope → setMode → renderTop1000/renderDashboard/
+    // etc. resolve to typed implementations).
     try {
       await loadAllData();
     } catch (e) {
@@ -49,7 +50,6 @@ if (typeof document !== 'undefined') {
       // Fall through and dispatch anyway so the legacy app can render its
       // own degraded state instead of hanging on a blank page.
     }
-    window.dispatchEvent(new Event('thai-data-ready'));
 
     const wire = (name: string, fn: () => unknown) => {
       try { fn(); } catch (e) { console.error('[boot] failed to wire ' + name, e); }
@@ -74,6 +74,12 @@ if (typeof document !== 'undefined') {
     wire('shadowing', wireLegacyShadowing);
     wire('srs', wireLegacySrs);
     wire('dashboard', wireLegacyDashboard);
+
+    // Dispatch 'thai-data-ready' AFTER all bridges have wired so the
+    // legacy init listener in app.js can safely call setScope → setMode →
+    // renderTop1000/renderDashboard/etc. (each bridge has installed its
+    // typed implementation on window.* by this point).
+    window.dispatchEvent(new Event('thai-data-ready'));
   };
 
   if (document.readyState === 'loading') {
