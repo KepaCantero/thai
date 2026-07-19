@@ -5,6 +5,15 @@
 // haven't fully modeled yet (SRS internals) are kept as opaque JSON — tight
 // types arrive when the mode that owns them is migrated.
 
+import type { PlayerState } from '../state/player';
+import {
+  freshDailyQuestsInitialState,
+  type DailyQuestsState,
+} from '../state/quests';
+import {
+  defaultTitlesInitialState,
+  type TitlesState,
+} from '../state/titles';
 import type { Scope } from '../types';
 import { defineNamespacedStore, defineStore } from './repository';
 
@@ -69,3 +78,64 @@ export const srsStatsStore = defineStore<SrsStats>('thai_srs_stats', {
 
 // --- app.js shadowing: per-conversation line timestamps -------------------
 export const shTimesStore = defineNamespacedStore<number[]>('sh_times_', []);
+
+// --- Solo Leveling: player state + XP log ----------------------------------
+//
+// One store for the whole player record — atomic updates when XP, stats and
+// streak all change in a single review event. Versioned (`v: 1`) so future
+// schema changes can migrate in place without nuking the player's progress.
+export interface PlayerStatePayload extends PlayerState {
+  v: 1;
+}
+
+export const playerStore = defineStore<PlayerStatePayload>('thai_player_v1', {
+  v: 1,
+  rank: 'E',
+  tier: 1,
+  xp: 0,
+  totalXp: 0,
+  stats: {
+    vocab: 0,
+    grammar: 0,
+    pronunciation: 0,
+    listening: 0,
+    reading: 0,
+  },
+  streak: 0,
+  longestStreak: 0,
+  lastActiveDate: '',
+});
+
+export interface XpLogEntry {
+  ts: number; // Date.now() at award time
+  amount: number; // XP awarded (always > 0)
+  source: string; // game event type, e.g. 'srs:review' / 'card:known'
+  stat?: string; // which stat also bumped (if any)
+}
+
+// Ring buffer capped at 200 entries — keeps the log useful for the Status
+// Window "recent activity" feed without bloating localStorage.
+export const xpLogStore = defineStore<XpLogEntry[]>('thai_xp_log_v1', []);
+
+// --- Solo Leveling Phase 5: Daily Quests window ----------------------------
+//
+// Versioned (`v: 1`). The store ships with a placeholder initial state
+// (`date: ''`) so the engine's first-boot rollover populates today's quests.
+export const dailyQuestsStore = defineStore<DailyQuestsState>(
+  'thai_daily_quests_v1',
+  freshDailyQuestsInitialState(),
+);
+
+// --- Solo Leveling Phase 6: SFX enable/disable toggle -----------------------
+export const sfxEnabledStore = defineStore<boolean>('thai_sfx_enabled_v1', true);
+
+// --- Solo Leveling Phase 7: Titles -----------------------------------------
+//
+// Versioned (`v: 1`). Lifetime accumulators (lifetimeKnown, ...) only ever
+// bump UP — they survive prestige / streak resets so the player never loses
+// title credit for past effort. `unlocked` is the chronological unlock order;
+// `activeTitle` is what the player chose to display.
+export const titlesStore = defineStore<TitlesState>(
+  'thai_titles_v1',
+  defaultTitlesInitialState(),
+);
