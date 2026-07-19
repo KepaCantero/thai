@@ -529,6 +529,41 @@ input, select, textarea { font-size: 16px; }
 .tone-note { font-size: 0.9rem; color: #999; margin-top: 4px; }
 .translation { font-size: 2.2rem; color: #53a8b6; text-align: center; line-height: 1.2; }
 .card-phonetic { font-size: 1.1rem; color: #999; margin-top: 8px; font-style: italic; }
+
+/* Allow text selection (copy) inside card content across cards, dashboard, SRS.
+   Container/user-select:none stays on the parent so tap-to-flip still works. */
+.card-face .thai,
+.card-face .phonetic,
+.card-face .es-phonetic,
+.card-face .translation,
+.card-face .card-phonetic,
+.card-face .note,
+.dash-card .dc-thai,
+.dash-card .dc-phonetic,
+.dash-card .dc-es,
+.dash-card .dc-tone,
+.dash-card .dc-translation,
+.srs-card-stage .thai,
+.srs-card-stage .phonetic,
+.srs-card-stage .es-phonetic,
+.srs-card-stage .translation,
+.srs-card-stage .card-phonetic,
+.srs-card-stage .note,
+.srs-card-stage .srs-card-prompt,
+.srs-card-stage .srs-card-answer,
+.srs-card-stage .srs-thai-big,
+.srs-card-stage .srs-thai-med,
+.srs-card-stage .srs-phonetic-es,
+.srs-card-stage .srs-meaning,
+.srs-card-stage .srs-meaning-es,
+.srs-card-stage .srs-meaning-en,
+.srs-card-stage .srs-example-thai,
+.srs-card-stage .srs-example-es,
+.srs-card-stage .srs-tone-row {
+  -webkit-user-select: text;
+  user-select: text;
+  cursor: text;
+}
 .card-tone { font-size: 1rem; color: #ffd166; margin-top: 6px; }
 .hint { font-size: 0.85rem; color: #555; margin-top: 14px; }
 
