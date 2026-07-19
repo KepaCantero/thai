@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-phrú-hàt-sà-bor-dee khâ",
       "a_es": "uan-nî uan-prú-hàt-sa-bo-di ká",
       "a_tone": "m-h-m-m-h-l-l-l-l-m-h",
-      "q_spanish": "Hoy es jueves.",
+      "a_spanish": "Hoy es jueves.",
       "a_en": "Today is Thursday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "kin hâwt-dòk khâ",
       "a_es": "kin hot-dok ká",
       "a_tone": "m-l-l-h",
-      "q_spanish": "Come perritos calientes.",
+      "a_spanish": "Come perritos calientes.",
       "a_en": "Eats hotdogs.",
       "category": "comida"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "mâi chôop khâ chôop phǒn-lá-mâi bprìao khâ",
       "a_es": "mâi chop ká chop pon-la-mái príao ká",
       "a_tone": "m-h-h-h-h-h-h-h-h",
-      "q_spanish": "No, prefiere frutas ácidas.",
+      "a_spanish": "No, prefiere frutas ácidas.",
       "a_en": "No, prefers sour fruit.",
       "category": "sabores"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "kin khâ tâa mâi mii mét",
       "a_es": "kin ká tâa mâi mi met",
       "a_tone": "m-h-h-m-m-m-h",
-      "q_spanish": "Sí, si no tienen pepitas.",
+      "a_spanish": "Sí, si no tienen pepitas.",
       "a_en": "Yes, if no seeds.",
       "category": "comida"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "chôop mâak khâ",
       "a_es": "chop má ká",
       "a_tone": "h-h-h-h",
-      "q_spanish": "Le gusta mucho.",
+      "a_spanish": "Le gusta mucho.",
       "a_en": "Likes very much.",
       "category": "comida"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "mâi kin khâ",
       "a_es": "mâi kin ká",
       "a_tone": "m-m-h",
-      "q_spanish": "No come.",
+      "a_spanish": "No come.",
       "a_en": "Doesn't eat.",
       "category": "comida"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "chôop khâ dtàe mâi ao lǔeaa mǔu khâ",
       "a_es": "chop ká tae mâi ao lüa mu ká",
       "a_tone": "h-h-h-h-m-m-m-h-m-m-h",
-      "q_spanish": "Le gusta, pero sin sangre.",
+      "a_spanish": "Le gusta, pero sin sangre.",
       "a_en": "Likes, but no blood.",
       "category": "comida"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "mâi kin khâ",
       "a_es": "mâi kin ká",
       "a_tone": "m-m-h",
-      "q_spanish": "No come.",
+      "a_spanish": "No come.",
       "a_en": "Doesn't eat.",
       "category": "comida"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "kin khâ",
       "a_es": "kin ká",
       "a_tone": "m-h",
-      "q_spanish": "Sí come.",
+      "a_spanish": "Sí come.",
       "a_en": "Yes, eats.",
       "category": "comida"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "duu nai google khâ",
       "a_es": "du nai google ká",
       "a_tone": "m-m-m-m-h",
-      "q_spanish": "Busca en Google.",
+      "a_spanish": "Busca en Google.",
       "a_en": "Looks on Google.",
       "category": "rutina"
     }

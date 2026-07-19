@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-phrú-hàt-sà-bor-dee khâ",
       "a_es": "uan-nî uan-prú-hàt-sa-bo-di ká",
       "a_tone": "m-h-m-m-h-l-l-l-l-m-h",
-      "q_spanish": "Hoy es jueves.",
+      "a_spanish": "Hoy es jueves.",
       "a_en": "Today is Thursday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "sǎam-sìp-hòk ong-saa see-see-at khâ",
       "a_es": "sam-sìp-hok ong-sa si-si-at ká",
       "a_tone": "h-h-l-l-m-m-l-l-l-h",
-      "q_spanish": "36 grados.",
+      "a_spanish": "36 grados.",
       "a_en": "36 degrees.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "mâi dâai òok-gam-lang-gaai sǒng pee khâ",
       "a_es": "mâi dai ok-gam-lang-gai song pe ká",
       "a_tone": "m-m-l-l-l-l-m-l-m-h",
-      "q_spanish": "2 años sin ejercicio.",
+      "a_spanish": "2 años sin ejercicio.",
       "a_en": "2 years.",
       "category": "numeros"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "hâa chûa-moong khâ",
       "a_es": "há chua-mong ká",
       "a_tone": "h-m-m-h",
-      "q_spanish": "5 horas.",
+      "a_spanish": "5 horas.",
       "a_en": "5 hours.",
       "category": "numeros"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "rá-bòm khâ",
       "a_es": "ra-bom ká",
       "a_tone": "h-l-h",
-      "q_spanish": "Está adolorida.",
+      "a_spanish": "Está adolorida.",
       "a_en": "Sore.",
       "category": "salud"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "wîng sìp gii-loo-met khráp",
       "a_es": "uing sìp ki-lo-met kráp",
       "a_tone": "m-h-l-m-m-l-h",
-      "q_spanish": "Corre 10 kilómetros.",
+      "a_spanish": "Corre 10 kilómetros.",
       "a_en": "Runs 10 km.",
       "category": "numeros"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "hâa-sìp-hòk gii-loo khráp",
       "a_es": "ha-sìp-hok ki-lo kráp",
       "a_tone": "h-h-l-l-m-l-h",
-      "q_spanish": "56 kilómetros.",
+      "a_spanish": "56 kilómetros.",
       "a_en": "56 km.",
       "category": "numeros"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "sìi-sìp-paet chûa-moong khâ",
       "a_es": "sì-sìp-pèt chua-mong ká",
       "a_tone": "l-l-l-m-m-h",
-      "q_spanish": "48 horas.",
+      "a_spanish": "48 horas.",
       "a_en": "48 hours.",
       "category": "numeros"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "sìi thǔeng hâa chûa-moong khâ",
       "a_es": "sì tung há chua-mong ká",
       "a_tone": "l-h-h-m-m-h",
-      "q_spanish": "4 a 5 horas.",
+      "a_spanish": "4 a 5 horas.",
       "a_en": "4 to 5 hours.",
       "category": "numeros"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "sìp chûa-moong khâ",
       "a_es": "sìp chua-mong ká",
       "a_tone": "l-m-m-h",
-      "q_spanish": "10 horas.",
+      "a_spanish": "10 horas.",
       "a_en": "10 hours.",
       "category": "numeros"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "khuuan yùu sǎai-glaang khâ",
       "a_es": "kun iu sai-glang ká",
       "a_tone": "h-m-m-h-h-h",
-      "q_spanish": "Debe ser moderado.",
+      "a_spanish": "Debe ser moderado.",
       "a_en": "Should be moderate.",
       "category": "salud"
     }

@@ -24,16 +24,16 @@
       "q_phonetic": "wan thîi tào-rài khâ",
       "q_es": "uan tî tao-rái ká",
       "q_tone": "m-f-h-h-h",
-      "q_spanish": "¿A cuántos estamos?",
-      "q_en": "What's today's date?",
+      "q_spanish": "Día 1.",
+      "q_en": "1st.",
       "a_thai": "วันที่ 1 ค่ะ",
       "a_phonetic": "wan thîi nùeng khâ",
       "a_es": "uan tî neng ká",
       "a_tone": "m-f-h-h-h",
-      "q_spanish": "Día 1.",
-      "q_en": "1st.",
-      "a_es_note": "first",
-      "category": "numeros"
+      "a_spanish": "Día 1.",
+      "a_en": "1st.",
+      "category": "numeros",
+      "a_es_note": "first"
     },
     {
       "source": "cthai:square_rectangle_objects_in_home",

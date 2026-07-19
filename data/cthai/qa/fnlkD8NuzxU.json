@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-phút khâ",
       "a_es": "uan-nî uan-pút kâ",
       "a_tone": "m-h-m-m-f",
-      "q_spanish": "Hoy es miércoles.",
+      "a_spanish": "Hoy es miércoles.",
       "a_en": "Today is Wednesday.",
       "category": "tiempo"
     },
@@ -23,14 +23,14 @@
       "q_thai": "วันที่เท่าไหร่คะ",
       "q_phonetic": "wan-thîi thâo-rài khâ",
       "q_es": "uan-tî tao-rài ká",
-      "q_tone": "m-f-f-r-h",
+      "q_tone": "m-f-l-m-f",
       "q_spanish": "¿A cuántos estamos?",
       "q_en": "What's the date?",
       "a_thai": "วันที่ 5 ค่ะ",
       "a_phonetic": "wan-thîi hâa khâ",
       "a_es": "uan-tî ha kâ",
-      "q_tone": "m-f-l-m-f",
-      "q_spanish": "A 5.",
+      "a_tone": "",
+      "a_spanish": "A 5.",
       "a_en": "The 5th.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "duean mo-ka-raa-khom khâ",
       "a_es": "düan mo-ka-ra-kom kâ",
       "a_tone": "m-m-m-m-m-m-f",
-      "q_spanish": "Enero.",
+      "a_spanish": "Enero.",
       "a_en": "January.",
       "category": "tiempo"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "khui rʉeang aa-rom khâ",
       "a_es": "kui rüang a-rom kâ",
       "a_tone": "m-m-m-m-m-f",
-      "q_spanish": "De las emociones.",
+      "a_spanish": "De las emociones.",
       "a_en": "Emotions.",
       "category": "conversacion"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "rao yím khâ",
       "a_es": "rao yim kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "Sonreímos.",
+      "a_spanish": "Sonreímos.",
       "a_en": "We smile.",
       "category": "verbos"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "rao ráawng-hâi khâ",
       "a_es": "rao rong-âi kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Lloramos.",
+      "a_spanish": "Lloramos.",
       "a_en": "We cry.",
       "category": "verbos"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "dtaawn dâai gin aa-hǎan a-ràai khâ",
       "a_es": "don dai kin a-han a-râi kâ",
       "a_tone": "m-m-m-m-m-m-m-f",
-      "q_spanish": "Cuando comemos algo rico.",
+      "a_spanish": "Cuando comemos algo rico.",
       "a_en": "When eating delicious food.",
       "category": "comida"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "dii-jai mâak khâ",
       "a_es": "di-yai mak kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "Muy contento.",
+      "a_spanish": "Muy contento.",
       "a_en": "Very happy.",
       "category": "conversacion"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "taa dtoo khâ",
       "a_es": "ta to kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "Ojos grandes.",
+      "a_spanish": "Ojos grandes.",
       "a_en": "Eyes wide.",
       "category": "cuerpo"
     },
@@ -150,15 +150,15 @@
       "source": "cthai:emotions_happy_sad_angry_lottery_smile_cry",
       "q_thai": "ทำไมครูเรียมโกรธคะ",
       "q_phonetic": "tham-mai khruu-riam gròot khâ",
-      "q_es": "tam-mâi krú-riam grot ká",
+      "q_es": "pro ror rot nan kâ",
       "q_tone": "m-m-m-m-m-h",
       "q_spanish": "¿Por qué se enfadó Kru Riam?",
       "q_en": "Why was Kru Riam angry?",
       "a_thai": "เพราะรอรถนานค่ะ",
       "a_phonetic": "phráw ráaw rót naan khâ",
-      "q_es": "pro ror rot nan kâ",
+      "a_es": "",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Porque esperó el coche mucho rato.",
+      "a_spanish": "Porque esperó el coche mucho rato.",
       "a_en": "Because waited for car long time.",
       "category": "conversacion"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "sǎam aa-rom khâ",
       "a_es": "sam a-rom kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "3 emociones.",
+      "a_spanish": "3 emociones.",
       "a_en": "Three emotions.",
       "category": "numeros"
     },
@@ -190,7 +190,7 @@
       "a_phonetic": "mâi sǔue khâ",
       "a_es": "mâi sǔe kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No compra.",
+      "a_spanish": "No compra.",
       "a_en": "Doesn't buy.",
       "category": "conversacion"
     }

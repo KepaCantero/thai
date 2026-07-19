@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-phút khâ",
       "a_es": "uan-nî uan-pút kâ",
       "a_tone": "m-h-m-m-f",
-      "q_spanish": "Hoy es miércoles.",
+      "a_spanish": "Hoy es miércoles.",
       "a_en": "Today is Wednesday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "wan-thîi yii-sìp-sǎong khâ",
       "a_es": "uan-tî yi-sìp-song kâ",
       "a_tone": "m-f-l-m-f",
-      "q_spanish": "A 22.",
+      "a_spanish": "A 22.",
       "a_en": "The 22nd.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "gin haem-bəe-gəe khâ",
       "a_es": "kin ham-be-ger kâ",
       "a_tone": "m-m-m-m-m-f",
-      "q_spanish": "Hamburguesa.",
+      "a_spanish": "Hamburguesa.",
       "a_en": "Hamburger.",
       "category": "comida"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "gin sǒm-tam khâ",
       "a_es": "kin som-tam kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Som tam (ensalada de papaya).",
+      "a_spanish": "Som tam (ensalada de papaya).",
       "a_en": "Som tam (papaya salad).",
       "category": "comida"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "bpùuat tháawng khâ",
       "a_es": "buat tong kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "Sí, le dolió.",
+      "a_spanish": "Sí, le dolió.",
       "a_en": "Yes, stomachache.",
       "category": "salud"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "yùu a-mee-rí-gaa khâ",
       "a_es": "iu a-me-ri-ga kâ",
       "a_tone": "m-m-m-m-m-m-f",
-      "q_spanish": "En América.",
+      "a_spanish": "En América.",
       "a_en": "In America.",
       "category": "direcciones"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "mâi mii khâ",
       "a_es": "mâi mi kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No tiene.",
+      "a_spanish": "No tiene.",
       "a_en": "No.",
       "category": "sustantivos"
     },
@@ -118,15 +118,15 @@
       "source": "cthai:bathroom_toilet_paper_spray_hose_som_tam_hamburger",
       "q_thai": "ห้องน้ำอเมริกาใช้อะไรคะ",
       "q_phonetic": "hâawng-náam a-mee-rí-gaa chái a-rai khâ",
-      "q_es": "jong-nam a-me-ri-ga châi à-rai ká",
+      "q_es": "châi tish-chu kâ",
       "q_tone": "m-m-m-m-m-m-m-l-m-h",
       "q_spanish": "¿Qué usa el baño en América?",
       "q_en": "What do American bathrooms use?",
       "a_thai": "ใช้ทิชชู่ค่ะ",
       "a_phonetic": "chái thít-chùu khâ",
-      "q_es": "châi tish-chu kâ",
+      "a_es": "",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Papel higiénico.",
+      "a_spanish": "Papel higiénico.",
       "a_en": "Toilet paper.",
       "category": "sustantivos"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "mâi mii khâ",
       "a_es": "mâi mi kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No tiene.",
+      "a_spanish": "No tiene.",
       "a_en": "No.",
       "category": "conversacion"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "mâi mii khâ",
       "a_es": "mâi mi kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No tiene.",
+      "a_spanish": "No tiene.",
       "a_en": "No.",
       "category": "conversacion"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "ráawng rîak khon khâ",
       "a_es": "rong riak kon kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Llama a alguien.",
+      "a_spanish": "Llama a alguien.",
       "a_en": "Calls for help.",
       "category": "verbos"
     },
@@ -190,7 +190,7 @@
       "a_phonetic": "gin thîi bprà-thêet thai khâ",
       "a_es": "kin tî pra-tet tai kâ",
       "a_tone": "m-m-m-m-m-m-m-f",
-      "q_spanish": "En Tailandia.",
+      "a_spanish": "En Tailandia.",
       "a_en": "In Thailand.",
       "category": "direcciones"
     }

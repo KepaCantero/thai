@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-jan khâ",
       "a_es": "uan-nî uan-chan ká",
       "a_tone": "m-h-m-m-h",
-      "q_spanish": "Hoy es lunes.",
+      "a_spanish": "Hoy es lunes.",
       "a_en": "Today is Monday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "wan-nîi wan thîi sìp-sìi khâ",
       "a_es": "uan-nî uan tî sìp-sì ká",
       "a_tone": "m-h-m-f-l-l-h",
-      "q_spanish": "Hoy es 14.",
+      "a_spanish": "Hoy es 14.",
       "a_en": "Today is the 14th.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "mâi chôop duu khâ duu nâi mâak khâ",
       "a_es": "mâi chop du ká du noi má ká",
       "a_tone": "m-h-m-m-h-m-m-m-h",
-      "q_spanish": "No le gusta, ve pocas.",
+      "a_spanish": "No le gusta, ve pocas.",
       "a_en": "Doesn't like, rarely watches.",
       "category": "rutina"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "chôop nǎng rǔeang laa-laa-laen khâ",
       "a_es": "chop nang rüang la-la-len ká",
       "a_tone": "h-l-h-l-m-m-l-m-h",
-      "q_spanish": "Le gusta La La Land.",
+      "a_spanish": "Le gusta La La Land.",
       "a_en": "Likes La La Land.",
       "category": "sustantivos"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "dâai nák-sà-daeng phǔu-yǐng yâawt-yîam khâ",
       "a_es": "dai nak-sa-deng pü-ying iot-îam ká",
       "a_tone": "m-h-l-l-h-h-h-l-l-h",
-      "q_spanish": "Mejor actriz.",
+      "a_spanish": "Mejor actriz.",
       "a_en": "Best actress.",
       "category": "sustantivos"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "chôop wít-nǐi hiu-sà-dtən khâ",
       "a_es": "chop uit-nî hiu-sa-dən ká",
       "a_tone": "h-h-m-m-m-l-m-h",
-      "q_spanish": "Le gusta Whitney Houston.",
+      "a_spanish": "Le gusta Whitney Houston.",
       "a_en": "Likes Whitney Houston.",
       "category": "sustantivos"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "yàak lêen pen khon bâa khâ",
       "a_es": "yak len pen kon bá ká",
       "a_tone": "m-h-m-m-m-m-h",
-      "q_spanish": "Quiere ser una persona loca.",
+      "a_spanish": "Quiere ser una persona loca.",
       "a_en": "Wants to play a crazy person.",
       "category": "sustantivos"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "yàak pen nák-sà-daeng lá-khən wee-thǐi khâ",
       "a_es": "yak pen nak-sa-deng la-kən ue-tî ká",
       "a_tone": "m-h-m-l-l-h-m-m-m-m-h",
-      "q_spanish": "Quiere ser actriz de teatro.",
+      "a_spanish": "Quiere ser actriz de teatro.",
       "a_en": "Wants to be a stage actress.",
       "category": "rutina"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "lêen pia-noo gèng khâ",
       "a_es": "len pia-no gèng ká",
       "a_tone": "m-m-m-m-m-h",
-      "q_spanish": "Toca bien el piano.",
+      "a_spanish": "Toca bien el piano.",
       "a_en": "Plays piano well.",
       "category": "verbos"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "chôop nǎng rǔeang the-fifth-element khâ",
       "a_es": "chop nang rüang de-fifth-element ká",
       "a_tone": "h-l-h-l-m-m-m-m-h",
-      "q_spanish": "Le gusta The Fifth Element.",
+      "a_spanish": "Le gusta The Fifth Element.",
       "a_en": "Likes The Fifth Element.",
       "category": "sustantivos"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "duu hâa khráng khâ",
       "a_es": "du há kran ká",
       "a_tone": "m-h-m-h",
-      "q_spanish": "5 veces.",
+      "a_spanish": "5 veces.",
       "a_en": "5 times.",
       "category": "numeros"
     }

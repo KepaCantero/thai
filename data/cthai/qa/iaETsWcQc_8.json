@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-phûk khâ",
       "a_es": "uan-nî uan-púk ká",
       "a_tone": "m-h-m-h-h",
-      "q_spanish": "Hoy es miércoles.",
+      "a_spanish": "Hoy es miércoles.",
       "a_en": "Today is Wednesday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "wan-nîi wan thîi sǎam khâ",
       "a_es": "uan-nî uan tî sam ká",
       "a_tone": "m-h-m-f-h-h",
-      "q_spanish": "Hoy es 3.",
+      "a_spanish": "Hoy es 3.",
       "a_en": "Today is the 3rd.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "dǔean phrǔet-sà-jì-gaa-yon khâ",
       "a_es": "düan prüt-sa-chi-ga-ion ká",
       "a_tone": "h-h-l-l-l-m-m-m-m-h",
-      "q_spanish": "Noviembre.",
+      "a_spanish": "Noviembre.",
       "a_en": "November.",
       "category": "tiempo"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "kin khâ",
       "a_es": "kin ká",
       "a_tone": "m-h",
-      "q_spanish": "Sí come.",
+      "a_spanish": "Sí come.",
       "a_en": "Yes, eats.",
       "category": "comida"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "kin khâ",
       "a_es": "kin ká",
       "a_tone": "m-h",
-      "q_spanish": "Sí come.",
+      "a_spanish": "Sí come.",
       "a_en": "Yes, eats.",
       "category": "comida"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "mâi chôop kin khâ",
       "a_es": "mâi chop kin ká",
       "a_tone": "m-h-m-m-h",
-      "q_spanish": "No le gustan.",
+      "a_spanish": "No le gustan.",
       "a_en": "Doesn't like.",
       "category": "sabores"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "chôop kin khâ",
       "a_es": "chop kin ká",
       "a_tone": "h-m-m-h",
-      "q_spanish": "Sí le gustan.",
+      "a_spanish": "Sí le gustan.",
       "a_en": "Yes, likes.",
       "category": "sabores"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "mâi chôop kin khâ",
       "a_es": "mâi chop kin ká",
       "a_tone": "m-h-m-m-h",
-      "q_spanish": "No le gustan.",
+      "a_spanish": "No le gustan.",
       "a_en": "Doesn't like.",
       "category": "sabores"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "mâi kin khâ",
       "a_es": "mâi kin ká",
       "a_tone": "m-m-h",
-      "q_spanish": "No come.",
+      "a_spanish": "No come.",
       "a_en": "No, doesn't eat.",
       "category": "comida"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "mâi kin khâ",
       "a_es": "mâi kin ká",
       "a_tone": "m-m-h",
-      "q_spanish": "No come.",
+      "a_spanish": "No come.",
       "a_en": "No, doesn't eat.",
       "category": "comida"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "mâi chôop khâ",
       "a_es": "mâi chop ká",
       "a_tone": "m-h-h",
-      "q_spanish": "No le gustan.",
+      "a_spanish": "No le gustan.",
       "a_en": "Doesn't like.",
       "category": "sabores"
     },
@@ -190,7 +190,7 @@
       "a_phonetic": "chôop kin khâ",
       "a_es": "chop kin ká",
       "a_tone": "h-m-m-h",
-      "q_spanish": "Sí le gustan.",
+      "a_spanish": "Sí le gustan.",
       "a_en": "Yes, likes.",
       "category": "sabores"
     },
@@ -206,7 +206,7 @@
       "a_phonetic": "kin khâ",
       "a_es": "kin ká",
       "a_tone": "m-h",
-      "q_spanish": "Sí come.",
+      "a_spanish": "Sí come.",
       "a_en": "Yes, eats.",
       "category": "comida"
     }

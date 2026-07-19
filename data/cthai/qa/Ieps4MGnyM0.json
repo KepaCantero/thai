@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-aa-thít khâ",
       "a_es": "uan-nî uan-a-tít ká",
       "a_tone": "m-h-m-m-h-h",
-      "q_spanish": "Hoy es domingo.",
+      "a_spanish": "Hoy es domingo.",
       "a_en": "Today is Sunday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "wan-nîi wan thîi yîi-sìp-hòk khâ",
       "a_es": "uan-nî uan tî yî-sìp-hok ká",
       "a_tone": "m-h-m-f-h-h-l-h",
-      "q_spanish": "Hoy es 26.",
+      "a_spanish": "Hoy es 26.",
       "a_en": "Today is the 26th.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "ling chôop kin glûuay khâ",
       "a_es": "ling chop kin glú-uai ká",
       "a_tone": "m-h-m-m-m-h-h",
-      "q_spanish": "Le gusta el plátano.",
+      "a_spanish": "Le gusta el plátano.",
       "a_en": "Likes bananas.",
       "category": "animales"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "pang-gwǐn chôop kin plaa khâ",
       "a_es": "pan-guín chop kin pla ká",
       "a_tone": "m-h-m-m-m-m-m-h",
-      "q_spanish": "Le gusta el pescado.",
+      "a_spanish": "Le gusta el pescado.",
       "a_en": "Likes fish.",
       "category": "animales"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "mmaeo chôop kin nom khâ",
       "a_es": "meo chop kin nom ká",
       "a_tone": "h-m-h-m-m-m-h",
-      "q_spanish": "Le gusta la leche.",
+      "a_spanish": "Le gusta la leche.",
       "a_en": "Likes milk.",
       "category": "animales"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "sǐng-too chôop kin nǔea khâ",
       "a_es": "sing-to chop kin nüa ká",
       "a_tone": "h-m-m-m-h-m-m-m-h",
-      "q_spanish": "Le gusta la carne.",
+      "a_spanish": "Le gusta la carne.",
       "a_en": "Likes meat.",
       "category": "animales"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "grà-tàai chôop kin khlaa-em-thòt khâ",
       "a_es": "gra-tai chop kin klai-em-thot ká",
       "a_tone": "l-h-m-h-m-m-m-m-m-l-h",
-      "q_spanish": "Le gusta la zanahoria.",
+      "a_spanish": "Le gusta la zanahoria.",
       "a_en": "Likes carrots.",
       "category": "animales"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "gkae chôop kin yâa khâ",
       "a_es": "kae chop kin yá ká",
       "a_tone": "h-h-m-m-m-m-h",
-      "q_spanish": "Le gusta la hierba.",
+      "a_spanish": "Le gusta la hierba.",
       "a_en": "Likes grass.",
       "category": "animales"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "mâi kin khâ",
       "a_es": "mâi kin ká",
       "a_tone": "m-m-h",
-      "q_spanish": "No come.",
+      "a_spanish": "No come.",
       "a_en": "No, doesn't eat.",
       "category": "animales"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "mâi kin khâ",
       "a_es": "mâi kin ká",
       "a_tone": "m-m-h",
-      "q_spanish": "No come.",
+      "a_spanish": "No come.",
       "a_en": "No, doesn't eat.",
       "category": "animales"
     }

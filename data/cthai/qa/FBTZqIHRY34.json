@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-ang-khaan khâ",
       "a_es": "uan-nî uan-ang-kan kâ",
       "a_tone": "m-h-m-m-m-f",
-      "q_spanish": "Hoy es martes.",
+      "a_spanish": "Hoy es martes.",
       "a_en": "Today is Tuesday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "wan-thîi gâao khâ",
       "a_es": "uan-tî gao kâ",
       "a_tone": "m-f-l-m-f",
-      "q_spanish": "A 9.",
+      "a_spanish": "A 9.",
       "a_en": "The 9th.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "duean sǐng-hǎa-khom khâ",
       "a_es": "düan sing-ha-kom kâ",
       "a_tone": "m-m-m-m-m-m-f",
-      "q_spanish": "Agosto.",
+      "a_spanish": "Agosto.",
       "a_en": "August.",
       "category": "tiempo"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "aa-yǔ sìp-sǎam-pii-sìp-hâa pii khâ",
       "a_es": "a-iú sìp-sam-ha pii kâ",
       "a_tone": "m-m-m-m-m-f",
-      "q_spanish": "13-15 años.",
+      "a_spanish": "13-15 años.",
       "a_en": "13-15 years old.",
       "category": "numeros"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "yàak lên fút-bbon khâ",
       "a_es": "yak len fut-bon kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Fútbol.",
+      "a_spanish": "Fútbol.",
       "a_en": "Football.",
       "category": "verbos"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "dtoo pai thîi bâan phʉuean khâ",
       "a_es": "to pai tî ban püean kâ",
       "a_tone": "m-m-m-m-m-m-f",
-      "q_spanish": "Llama a casa del amigo.",
+      "a_spanish": "Llama a casa del amigo.",
       "a_en": "Calls friend's house.",
       "category": "direcciones"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "phûue-chaai aa-yǔ sìi-sìp pii khâ",
       "a_es": "püe-châi a-iú sì-sìp pi kâ",
       "a_tone": "m-m-m-m-m-m-m-f",
-      "q_spanish": "Un hombre de 40 años.",
+      "a_spanish": "Un hombre de 40 años.",
       "a_en": "A 40-year-old man.",
       "category": "numeros"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "sǐang mâi dii khâ",
       "a_es": "sîang mâi di kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "Voz grosera.",
+      "a_spanish": "Voz grosera.",
       "a_en": "Not nice voice.",
       "category": "conversacion"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "mâi mii khrai yùu bâan khâ",
       "a_es": "mâi mi krâi yü ban kâ",
       "a_tone": "m-m-m-m-m-m-f",
-      "q_spanish": "No hay nadie en casa.",
+      "a_spanish": "No hay nadie en casa.",
       "a_en": "Nobody home.",
       "category": "conversacion"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "kít wâa bpen phǐi khâ",
       "a_es": "kit ua pen pî kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "Cree que fue un fantasma.",
+      "a_spanish": "Cree que fue un fantasma.",
       "a_en": "Thinks it's a ghost.",
       "category": "conversacion"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "mii dtàae phûue-yǐng khâ",
       "a_es": "mi tae püe-ying kâ",
       "a_tone": "m-m-m-m-m-f",
-      "q_spanish": "Solo mujeres.",
+      "a_spanish": "Solo mujeres.",
       "a_en": "Only women.",
       "category": "pronombres"
     }

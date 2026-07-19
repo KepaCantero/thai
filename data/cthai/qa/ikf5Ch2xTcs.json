@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-jan khâ",
       "a_es": "uan-nî uan-chan ká",
       "a_tone": "m-h-m-m-h",
-      "q_spanish": "Hoy es lunes.",
+      "a_spanish": "Hoy es lunes.",
       "a_en": "Today is Monday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "wan-nîi wan thîi yîi-sìp-jèt khâ",
       "a_es": "uan-nî uan tî yî-sìp-chèt ká",
       "a_tone": "m-h-m-f-h-h-l-h",
-      "q_spanish": "Hoy es 27.",
+      "a_spanish": "Hoy es 27.",
       "a_en": "Today is the 27th.",
       "category": "numeros"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "dtam-rùuat tham ngaan thîi sà-thǎa-nii dtam-rùuat khâ",
       "a_es": "tam-rúat tam ngan tî sa-ta-nî tam-rúat ká",
       "a_tone": "m-h-h-m-m-m-f-l-h-h-m-h-h",
-      "q_spanish": "Trabajan en la comisaría.",
+      "a_spanish": "Trabajan en la comisaría.",
       "a_en": "At the police station.",
       "category": "direcciones"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "mǎaw tham ngaan thîi roong-phá-yaa-baan khâ",
       "a_es": "mao tam ngan tî rong-pa-ia-ban ká",
       "a_tone": "h-m-m-m-m-f-m-m-m-m-m-h",
-      "q_spanish": "Trabajan en el hospital.",
+      "a_spanish": "Trabajan en el hospital.",
       "a_en": "At the hospital.",
       "category": "direcciones"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "chàng dtàt phǒm tham ngaan thîi ráan dtàt phǒm khâ",
       "a_es": "chang tat pom tam ngan tî ran tat pom ká",
       "a_tone": "h-m-l-m-m-m-m-m-f-m-m-l-m-m-h",
-      "q_spanish": "Trabaja en la barbería.",
+      "a_spanish": "Trabaja en la barbería.",
       "a_en": "At the barbershop.",
       "category": "direcciones"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "nák-dtàp phləəng tham ngaan thîi sà-thǎa-nii dtàp phləəng khâ",
       "a_es": "nak-dap pleeng tam ngan tî sa-ta-nî dap pleeng ká",
       "a_tone": "h-l-l-m-m-m-m-m-f-l-h-h-l-m-m-h",
-      "q_spanish": "Trabajan en la estación de bomberos.",
+      "a_spanish": "Trabajan en la estación de bomberos.",
       "a_en": "At the fire station.",
       "category": "direcciones"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "khruu tham ngaan thîi roong-riian khâ",
       "a_es": "krú tam ngan tî rong-ri-an ká",
       "a_tone": "m-m-m-m-m-f-m-m-m-h",
-      "q_spanish": "Trabajan en la escuela.",
+      "a_spanish": "Trabajan en la escuela.",
       "a_en": "At school.",
       "category": "direcciones"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "phâaw-khruua tham ngaan thîi hǎng-khruua khâ",
       "a_es": "pao-krua tam ngan tî hong-krua ká",
       "a_tone": "h-m-m-m-m-m-f-h-m-m-h",
-      "q_spanish": "Trabaja en la cocina.",
+      "a_spanish": "Trabaja en la cocina.",
       "a_en": "In the kitchen.",
       "category": "direcciones"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "mii hòk aa-chîip khâ",
       "a_es": "mi hok a-chîp ká",
       "a_tone": "m-l-m-h",
-      "q_spanish": "6 profesiones.",
+      "a_spanish": "6 profesiones.",
       "a_en": "6 professions.",
       "category": "numeros"
     }

@@ -38,17 +38,16 @@
       "source": "cthai:spicy_food_chili_reliefs",
       "q_thai": "ครูฟ้ากินอะไรตอนเช้าคะ",
       "q_phonetic": "khruu-fâa gin a-rai dtawn-cháo khâ",
-      "q_es": "krú-fâa kin à-rai don-cháo ká",
+      "q_es": "kin som-dam kâ",
       "q_tone": "m-m-m-m-m-m-l-m-m-l-m-f",
+      "q_spanish": "¿Qué come Kru Fa por la mañana?",
+      "q_en": "What does Kru Fa eat in the morning?",
       "a_thai": "กินส้มตำค่ะ",
       "a_phonetic": "gin sǒm-dtǎm khâ",
-      "q_es": "kin som-dam kâ",
       "a_tone": "m-m-m-l-m-f",
-      "q_spanish": "Come ensalada de papaya.",
-      "q_en": "Som tam (papaya salad).",
-      "category": "comida",
-      "q_spanish": "¿Qué come Kru Fa por la mañana?",
-      "q_en": "What does Kru Fa eat in the morning?"
+      "a_spanish": "Como som tam.",
+      "a_en": "I eat som tam.",
+      "category": "comida"
     },
     {
       "source": "cthai:spicy_food_chili_reliefs",

@@ -14,7 +14,7 @@
       "a_phonetic": "wan-nîi wan-jan khâ",
       "a_es": "uan-nî uan-yan kâ",
       "a_tone": "m-h-m-m-m-f",
-      "q_spanish": "Hoy es lunes.",
+      "a_spanish": "Hoy es lunes.",
       "a_en": "Today is Monday.",
       "category": "tiempo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "nawn saam-sǎam-sìp khâ",
       "a_es": "non sam-sam-sìp kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "A las 3:30.",
+      "a_spanish": "A las 3:30.",
       "a_en": "At 3:30.",
       "category": "rutina"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "nawn hòk chûua-moong khâ",
       "a_es": "non hok chu-a-mong kâ",
       "a_tone": "m-m-m-m-f",
-      "q_spanish": "6 horas.",
+      "a_spanish": "6 horas.",
       "a_en": "6 hours.",
       "category": "rutina"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "mâi dii khâ",
       "a_es": "mâi di kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No es bueno.",
+      "a_spanish": "No es bueno.",
       "a_en": "Not good.",
       "category": "salud"
     },
@@ -70,15 +70,15 @@
       "source": "cthai:healthy_unhealthy_food_habits_sleep_smoking_durian",
       "q_thai": "ควรนอนกี่โมงคะ",
       "q_phonetic": "khuan nawn gìi moong khâ",
-      "q_es": "kuan non kì mong ká",
-      "q_tone": "m-m-m-m-h",
+      "q_es": "non kaon song-sìp mong ká",
+      "q_tone": "m-m-m-m-m-m-f",
       "q_spanish": "¿A qué hora hay que dormir?",
       "q_en": "When should one sleep?",
       "a_thai": "นอนก่อน 22:00 น. ค่ะ",
       "a_phonetic": "nawn gàawn sǎawng-sìp moong khâ",
-      "q_es": "non kaon song-sìp mong ká",
-      "q_tone": "m-m-m-m-m-m-f",
-      "q_spanish": "Antes de las 22:00.",
+      "a_es": "",
+      "a_tone": "",
+      "a_spanish": "Antes de las 22:00.",
       "a_en": "Before 10 PM.",
       "category": "rutina"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "mâi dii khâ mii khoo-lèet-saa-thəe khâ",
       "a_es": "mâi di kâ mi ko-le-sa-te kâ",
       "a_tone": "m-m-f-m-m-m-m-f",
-      "q_spanish": "No, tiene colesterol.",
+      "a_spanish": "No, tiene colesterol.",
       "a_en": "No, has cholesterol.",
       "category": "salud"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "dii khâ mii wí-taa-min khâ",
       "a_es": "di kâ mi ui-ta-min kâ",
       "a_tone": "m-f-m-m-m-f",
-      "q_spanish": "Sí, tiene vitaminas.",
+      "a_spanish": "Sí, tiene vitaminas.",
       "a_en": "Yes, has vitamins.",
       "category": "salud"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "mâi dii gàp bpàawt khâ",
       "a_es": "mâi di gap pao kâ",
       "a_tone": "m-m-m-m-m-f",
-      "q_spanish": "Daña los pulmones.",
+      "a_spanish": "Daña los pulmones.",
       "a_en": "Bad for lungs.",
       "category": "salud"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "mâi dii khâ",
       "a_es": "mâi di kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No.",
+      "a_spanish": "No.",
       "a_en": "Not good.",
       "category": "salud"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "gin nìt-nàai dii khâ gin yəe mâi dii khâ",
       "a_es": "kin nit-noi di kâ kin ie mâi di kâ",
       "a_tone": "m-m-m-m-f-m-m-m-f",
-      "q_spanish": "Un poco sí, mucho no.",
+      "a_spanish": "Un poco sí, mucho no.",
       "a_en": "A little yes, too much no.",
       "category": "salud"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "nùeng kâaeo dii khâ",
       "a_es": "nung kaeo di kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "1 vaso está bien.",
+      "a_spanish": "1 vaso está bien.",
       "a_en": "1 cup is okay.",
       "category": "numeros"
     },
@@ -190,7 +190,7 @@
       "a_phonetic": "mâi dii khâ",
       "a_es": "mâi di kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No está bien.",
+      "a_spanish": "No está bien.",
       "a_en": "Not good.",
       "category": "salud"
     }

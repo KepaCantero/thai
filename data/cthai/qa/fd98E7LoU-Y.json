@@ -14,7 +14,7 @@
       "a_phonetic": "chái thîi taa khâ",
       "a_es": "châi tî ta kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En los ojos.",
+      "a_spanish": "En los ojos.",
       "a_en": "On the eyes.",
       "category": "cuerpo"
     },
@@ -30,7 +30,7 @@
       "a_phonetic": "chái thîi hǔu khâ",
       "a_es": "châi tî u kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En los oídos.",
+      "a_spanish": "En los oídos.",
       "a_en": "On the ears.",
       "category": "cuerpo"
     },
@@ -46,7 +46,7 @@
       "a_phonetic": "chái thîi bpàak khâ",
       "a_es": "châi tî pak kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En la boca.",
+      "a_spanish": "En la boca.",
       "a_en": "On the mouth.",
       "category": "cuerpo"
     },
@@ -62,7 +62,7 @@
       "a_phonetic": "chái thîi phǒm khâ",
       "a_es": "châi tî pom kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En el pelo.",
+      "a_spanish": "En el pelo.",
       "a_en": "On the hair.",
       "category": "cuerpo"
     },
@@ -78,7 +78,7 @@
       "a_phonetic": "chái thîi fan khâ",
       "a_es": "châi tî fan kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En los dientes.",
+      "a_spanish": "En los dientes.",
       "a_en": "On the teeth.",
       "category": "cuerpo"
     },
@@ -94,7 +94,7 @@
       "a_phonetic": "chái thîi taa khâ",
       "a_es": "châi tî ta kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En los ojos.",
+      "a_spanish": "En los ojos.",
       "a_en": "On the eyes.",
       "category": "cuerpo"
     },
@@ -110,7 +110,7 @@
       "a_phonetic": "chái thîi hǔu khâ",
       "a_es": "châi tî u kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En los oídos.",
+      "a_spanish": "En los oídos.",
       "a_en": "On the ears.",
       "category": "cuerpo"
     },
@@ -126,7 +126,7 @@
       "a_phonetic": "chái khûu gàp bpraaeng-sǐi-fan khâ",
       "a_es": "châi ku gap preng-sî-fan kâ",
       "a_tone": "m-m-m-m-m-m-m-m-f",
-      "q_spanish": "Con el cepillo de dientes.",
+      "a_spanish": "Con el cepillo de dientes.",
       "a_en": "With the toothbrush.",
       "category": "sustantivos"
     },
@@ -142,7 +142,7 @@
       "a_phonetic": "chái thîi phǒm khâ",
       "a_es": "châi tî pom kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En el pelo.",
+      "a_spanish": "En el pelo.",
       "a_en": "On the hair.",
       "category": "cuerpo"
     },
@@ -158,7 +158,7 @@
       "a_phonetic": "chái thîi taa khâ",
       "a_es": "châi tî ta kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En los ojos.",
+      "a_spanish": "En los ojos.",
       "a_en": "On the eyes.",
       "category": "cuerpo"
     },
@@ -174,7 +174,7 @@
       "a_phonetic": "chái thîi hǔa khâ",
       "a_es": "châi tî u-a kâ",
       "a_tone": "m-m-m-f",
-      "q_spanish": "En la cabeza.",
+      "a_spanish": "En la cabeza.",
       "a_en": "On the head.",
       "category": "cuerpo"
     },
@@ -190,7 +190,7 @@
       "a_phonetic": "mâi mii khâ",
       "a_es": "mâi mi kâ",
       "a_tone": "m-m-f",
-      "q_spanish": "No tiene.",
+      "a_spanish": "No tiene.",
       "a_en": "No.",
       "category": "conversacion"
     }

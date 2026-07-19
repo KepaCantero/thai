@@ -30,7 +30,7 @@
       "a_phonetic": "wan thîi yii-sìp-hâa khâ",
       "a_es": "uan tî yi-sip-ha ká",
       "a_tone": "m-f-h-h-h-h-h-h-h",
-      "q_spanish": "Día 25.",
+      "a_spanish": "Día 25.",
       "a_en": "25th.",
       "category": "numeros"
     },
@@ -155,7 +155,7 @@
       "q_spanish": "¿Qué haría si no fuera reina?",
       "q_en": "What to do if not queen?",
       "a_thai": "ครูหญิงอยากถามควีนค่ะ",
-      "a_phonetic": "khruu-yǐng yàak thǎam khwiiin khâ",
+      "a_phonetic": "khruu-yǐing yàak thǎam khwiiin khâ",
       "a_es": "krú-ying yak tam kuiin ká",
       "a_tone": "m-m-m-h-h-h-h-h-m-h-m-m-m-m-h-h-h-h",
       "a_spanish": "Kru Ying quiere preguntar a la reina.",
@@ -213,7 +213,7 @@
     {
       "source": "cthai:afternoon_tea_with_queen_elizabeth_high_tea_questions",
       "q_thai": "ครูหญิงอยากถามควีนอะไรคะ",
-      "q_phonetic": "khruu-yǐng yàak thǎam khwiiin a-rai khâ",
+      "q_phonetic": "khruu-yǐing yàak thǎam khwiiin a-rai khâ",
       "q_es": "krú-ying yak tam kuiin à-rai ká",
       "q_tone": "m-m-m-h-h-h-h-h-m-h-m-m-m-m-h-m-l-m-h",
       "q_spanish": "¿Qué quiere preguntar Kru Ying a la reina?",
