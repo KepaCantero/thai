@@ -12,10 +12,11 @@
       "q_en": "Today is Sunday.",
       "a_thai": "วันนี้วันอาทิตย์ค่ะ",
       "a_phonetic": "wan-nîi wan-aa-thít khâ",
+      "a_es": "uan-nî uan-a-tít kâ",
       "a_tone": "m-h-m-m-h-f",
-      "category": "tiempo",
       "a_spanish": "Hoy es domingo.",
-      "a_en": "Today is Sunday."
+      "a_en": "Today is Sunday.",
+      "category": "tiempo"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -27,10 +28,11 @@
       "q_en": "Today is the 10th.",
       "a_thai": "วันนี้วันที่ 10 ค่ะ",
       "a_phonetic": "wan-nîi wan-thîi sìp khâ",
+      "a_es": "uan-nî uan-tî sìp kâ",
       "a_tone": "m-h-m-f-l-f",
-      "category": "tiempo",
       "a_spanish": "Hoy es 10.",
-      "a_en": "Today is the 10th."
+      "a_en": "Today is the 10th.",
+      "category": "tiempo"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -42,10 +44,11 @@
       "q_en": "It's July.",
       "a_thai": "เดือนกรกฎาคมค่ะ",
       "a_phonetic": "duean ga-ra-gà-daa-khom khâ",
+      "a_es": "düan ga-ra-gà-da-kom kâ",
       "a_tone": "m-l-m-l-l-m-m-f",
-      "category": "tiempo",
       "a_spanish": "Es julio.",
-      "a_en": "It's July."
+      "a_en": "It's July.",
+      "category": "tiempo"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -57,10 +60,11 @@
       "q_en": "It's 2565.",
       "a_thai": "ปี 2565 ค่ะ",
       "a_phonetic": "pii sǒng-phan-hòk-hàa-sìp-hàa khâ",
+      "a_es": "pî song-pan-hok-hà-sip-hà kâ",
       "a_tone": "m-l-m-l-l-m-l-m-f",
-      "category": "tiempo",
       "a_spanish": "Es el año 2565.",
-      "a_en": "It's the year 2565."
+      "a_en": "It's the year 2565.",
+      "category": "tiempo"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -72,10 +76,11 @@
       "q_en": "How many times a year do Thais do the house blessing?",
       "a_thai": "ปีละครั้งค่ะ",
       "a_phonetic": "pii-lá kráng khâ",
+      "a_es": "pî-lá kráng kâ",
       "a_tone": "m-l-m-f",
+      "a_spanish": "Una vez al año.",
       "a_en": "Once a year.",
-      "category": "conversacion",
-      "a_spanish": "Una vez al año."
+      "category": "conversacion"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -87,10 +92,11 @@
       "q_en": "Are Thais afraid of ghosts?",
       "a_thai": "กลัวค่ะ",
       "a_phonetic": "glùua khâ",
+      "a_es": "glùa kâ",
       "a_tone": "l-f",
+      "a_spanish": "Sí, tienen miedo.",
       "a_en": "Yes, they are.",
-      "category": "conversacion",
-      "a_spanish": "Sí, tienen miedo."
+      "category": "conversacion"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -102,10 +108,11 @@
       "q_en": "What is the spirit house?",
       "a_thai": "ศาลพระภูมิเป็นบ้านของเทวดาค่ะ",
       "a_phonetic": "sǎan prá-phuum pen bâan khǎong thee-wá-daa khâ",
+      "a_es": "sǎn prá-pum pen ban kong te-ua-da kâ",
       "a_tone": "l-m-h-m-m-m-m-l-l-m-m-m-f",
+      "a_spanish": "El santuario es la casa de los espíritus guardianes.",
       "a_en": "The spirit house is the home of guardian spirits.",
-      "category": "sustantivos",
-      "a_spanish": "El santuario es la casa de los espíritus guardianes."
+      "category": "sustantivos"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -117,10 +124,11 @@
       "q_en": "Where do you invite monks from for the house blessing?",
       "a_thai": "ต้องไปนิมนต์พระที่วัดค่ะ",
       "a_phonetic": "dtông pai nim-món prá thîi wát khâ",
+      "a_es": "dong pai nim-mon prá tî uát kâ",
       "a_tone": "m-m-m-h-m-m-f-m-f",
+      "a_spanish": "Hay que invitarlos del templo.",
       "a_en": "You invite them from the temple.",
-      "category": "conversacion",
-      "a_spanish": "Hay que invitarlos del templo."
+      "category": "conversacion"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -132,10 +140,11 @@
       "q_en": "How many monks for the house blessing?",
       "a_thai": "ส่วนใหญ่มีพระ 5 รูปหรือ 9 รูปค่ะ",
       "a_phonetic": "sùan-yài mii prá hàa rúup rǔu gàaw rúup khâ",
+      "a_es": "sùan-iài mi prá hà rúp rü kao rúp kâ",
       "a_tone": "l-l-m-m-m-m-l-r-l-m-l-f",
+      "a_spanish": "La mayoría tiene 5 o 9 monjes.",
       "a_en": "Most have 5 or 9 monks.",
-      "category": "numeros",
-      "a_spanish": "La mayoría tiene 5 o 9 monjes."
+      "category": "numeros"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -147,10 +156,11 @@
       "q_en": "What is an asana seat?",
       "a_thai": "อาสนะเป็นเก้าอี้ของพระค่ะ",
       "a_phonetic": "aa-sà-ná pen gâo-îi khǎong prá khâ",
+      "a_es": "a-sà-ná pen gao-îi kong prá kâ",
       "a_tone": "m-l-m-l-m-m-l-l-l-m-m-f",
+      "a_spanish": "Es el asiento del monje.",
       "a_en": "It's the monk's seat.",
-      "category": "sustantivos",
-      "a_spanish": "Es el asiento del monje."
+      "category": "sustantivos"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -162,10 +172,11 @@
       "q_en": "Why are rice noodles served at the blessing?",
       "a_thai": "เพราะเส้นยาวหมายถึงอายุยืนค่ะ",
       "a_phonetic": "phrâo sên yaa mǎai-thǔeng aa-yu yʉun khâ",
+      "a_es": "práo sên iao mǎi-tüeng a-iu iun kâ",
       "a_tone": "m-m-m-m-m-r-l-m-m-m-m-f",
+      "a_spanish": "Los fideos largos simbolizan una larga vida.",
       "a_en": "Long noodles symbolize long life.",
-      "category": "comida",
-      "a_spanish": "Los fideos largos simbolizan una larga vida."
+      "category": "comida"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -177,10 +188,11 @@
       "q_en": "Which dessert means career progress?",
       "a_thai": "ขนมชั้นหมายถึงก้าวหน้าค่ะ",
       "a_phonetic": "khà-nǒm-chán mǎai-thǔeng gâao-nàa khâ",
+      "a_es": "kà-nǒm-chán mǎi-tüeng gao-ná kâ",
       "a_tone": "l-l-m-m-r-l-l-f-l-h-f",
+      "a_spanish": "El dulce en capas significa progreso.",
       "a_en": "Layered dessert means progress.",
-      "category": "comida",
-      "a_spanish": "El dulce en capas significa progreso."
+      "category": "comida"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -192,10 +204,11 @@
       "q_en": "Why is thuay foo served?",
       "a_thai": "ถ้วยฟูหมายถึงเฟื่องฟูค่ะ",
       "a_phonetic": "thùay-fuu mǎai-thǔeng fʉeang-fuu khâ",
+      "a_es": "tuái-fu mǎi-tüeng füang-fu kâ",
       "a_tone": "l-l-m-r-l-l-l-l-m-f",
+      "a_spanish": "Thuay foo significa prosperidad.",
       "a_en": "Thuay foo means prosperity.",
-      "category": "comida",
-      "a_spanish": "Thuay foo significa prosperidad."
+      "category": "comida"
     },
     {
       "source": "cthai:house_blessing_tradition",
@@ -207,10 +220,11 @@
       "q_en": "What is the sacred thread used for?",
       "a_thai": "สายสินพันรอบบ้านเพื่อกันผีค่ะ",
       "a_phonetic": "sǎai-sǐnphan rôop bâan phûea gan phǐi khâ",
+      "a_es": "sǎi-sîn pan rop bân püa gan pîi kâ",
       "a_tone": "l-l-l-m-m-m-m-l-m-l-l-m-f",
+      "a_spanish": "El hilo sagrado se enrolla alrededor de la casa para alejar los fantasmas.",
       "a_en": "The thread is wrapped around the house to keep ghosts out.",
-      "category": "sustantivos",
-      "a_spanish": "El hilo sagrado se enrolla alrededor de la casa para alejar los fantasmas."
+      "category": "sustantivos"
     }
   ]
 }

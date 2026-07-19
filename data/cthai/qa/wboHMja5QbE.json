@@ -239,7 +239,8 @@
       "a_tone": "h-h-l-m-l-m-f",
       "a_spanish": "Elige negro.",
       "a_en": "She picks black.",
-      "category": "colores"
+      "category": "colores",
+      "q_en": "What color does Kru E choose?"
     }
   ]
 }

@@ -29,7 +29,7 @@
       "a_thai": "ผมเป็นพ่อครัวครับ",
       "a_phonetic": "phǒm pen phôo-khrua khráp",
       "a_es": "pom pen pô-krua krap",
-      "q_tone": "h-m-m-m-l-h",
+      "a_tone": "h-m-m-m-l-h",
       "a_spanish": "Soy chef.",
       "a_en": "I'm a chef.",
       "category": "sustantivos"
@@ -61,7 +61,7 @@
       "a_thai": "ผมเป็นนักบินครับ",
       "a_phonetic": "phǒm pen nák-bin khráp",
       "a_es": "pom pen ná-bin krap",
-      "q_tone": "h-m-m-h-h-h",
+      "a_tone": "h-m-m-h-h-h",
       "a_spanish": "Soy piloto.",
       "a_en": "I'm a pilot.",
       "category": "sustantivos"
@@ -77,7 +77,7 @@
       "a_thai": "ผมเป็นหมอครับ",
       "a_phonetic": "phǒm pen mǒo khráp",
       "a_es": "pom pen mǒ krap",
-      "q_tone": "h-m-m-m-h",
+      "a_tone": "h-m-m-m-h",
       "a_spanish": "Soy médico.",
       "a_en": "I'm a doctor.",
       "category": "salud"
@@ -109,7 +109,7 @@
       "a_thai": "ผมเป็นนักธุรกิจครับ",
       "a_phonetic": "phǒm pen nák-thoo-rák-gìt khráp",
       "a_es": "pom pen ná-tu-rá-kit krap",
-      "q_tone": "h-m-m-h-l-l-l-h",
+      "a_tone": "h-m-m-h-l-l-l-h",
       "a_spanish": "Soy empresario.",
       "a_en": "I'm a businessman.",
       "category": "sustantivos"
@@ -173,7 +173,7 @@
       "a_thai": "ผมเป็นช่างเครื่องครับ",
       "a_phonetic": "phǒm pen chàng-khrûeang khráp",
       "a_es": "pom pen chang-krüang krap",
-      "q_tone": "h-m-m-m-l-m-h",
+      "a_tone": "h-m-m-m-l-m-h",
       "a_spanish": "Soy mecánico.",
       "a_en": "I'm a mechanic.",
       "category": "sustantivos"

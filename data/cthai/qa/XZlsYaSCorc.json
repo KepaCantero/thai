@@ -79,7 +79,8 @@
       "a_tone": "h-h-m-h-h-m-h-m-f",
       "a_spanish": "Vende armas.",
       "a_en": "Weapons.",
-      "category": "sustantivos"
+      "category": "sustantivos",
+      "q_en": "What does Tony Stark sell?"
     },
     {
       "source": "cthai:iron_man_movie_plot_thai",
@@ -92,7 +93,7 @@
       "a_thai": "คนไม่ดีที่อัฟกานิสถานค่ะ",
       "a_phonetic": "khon mâi-dii thîi áp-gaa-ní-sà-thǎan khâ",
       "a_es": "kon mâi-di tî ap-ga-ni-sa-tan kâ",
-      "q_tone": "m-m-m-h-h-m-h-f-m-h-m-h-m-m-m-h-m-m-h-m-m-h-m-l-h-m-h-m-f",
+      "a_tone": "m-m-m-h-h-m-h-f-m-h-m-h-m-m-m-h-m-m-h-m-m-h-m-l-h-m-h-m-f",
       "a_spanish": "Gente mala en Afganistán.",
       "a_en": "Bad people in Afghanistan.",
       "category": "direcciones"
@@ -110,7 +111,8 @@
       "a_tone": "m-m-h-m-h-m-h-m-f",
       "a_spanish": "Lo hieren con una bomba.",
       "a_en": "Bombed.",
-      "category": "salud"
+      "category": "salud",
+      "q_en": "What happens to Tony?"
     },
     {
       "source": "cthai:iron_man_movie_plot_thai",
@@ -125,7 +127,8 @@
       "a_tone": "h-h-m-m-m-h-m-f-m-h-m-h-m-h-m-h-m-f",
       "a_spanish": "Le pone un imán en el pecho.",
       "a_en": "Magnet on chest.",
-      "category": "cuerpo"
+      "category": "cuerpo",
+      "q_en": "What does the doctor do to Tony?"
     },
     {
       "source": "cthai:iron_man_movie_plot_thai",
@@ -140,7 +143,8 @@
       "a_tone": "m-m-h-h-m-h-m-h-m-h-m-h-m-f",
       "a_spanish": "Construye una armadura de hierro.",
       "a_en": "Iron suit.",
-      "category": "verbos"
+      "category": "verbos",
+      "q_en": "What does Tony do in the cave?"
     },
     {
       "source": "cthai:iron_man_movie_plot_thai",
@@ -185,7 +189,7 @@
       "a_thai": "เป็นเพื่อนของพ่อโทนี่ค่ะ",
       "a_phonetic": "pen phûean khǎong phâe thoo-nîi khâ",
       "a_es": "pen püan kong pae to-nî kâ",
-      "q_tone": "m-m-m-m-m-h-m-m-m-h-m-m-m-m-m-m-h-m-f",
+      "a_tone": "m-m-m-m-m-h-m-m-m-h-m-m-m-m-m-m-h-m-f",
       "a_spanish": "Amigo del padre de Tony.",
       "a_en": "Friend of Tony's father.",
       "category": "pronombres"
@@ -217,7 +221,7 @@
       "a_thai": "โทนี่สตาร์คค่ะ",
       "a_phonetic": "thoo-nîi sàtâa khâ",
       "a_es": "to-nî sa-tá kâ",
-      "q_tone": "m-m-m-m-m-h-h-m-m-h-m-f",
+      "a_tone": "m-m-m-m-m-h-h-m-m-h-m-f",
       "a_spanish": "Tony Stark.",
       "a_en": "Tony Stark.",
       "category": "pronombres"

@@ -223,7 +223,8 @@
       "a_tone": "h-h-h-h-h-h-h-m-h-m-h-m-h-h-h-h-h",
       "a_spanish": "Enseña a no creerse el mejor.",
       "a_en": "Don't think you're the best.",
-      "category": "conversacion"
+      "category": "conversacion",
+      "q_en": "What does this tale teach?"
     }
   ]
 }

@@ -79,7 +79,8 @@
       "a_tone": "m-l-l-m-m-f",
       "a_en": "Used to inject medicine.",
       "category": "salud",
-      "a_spanish": "Se usa para inyectar medicina."
+      "a_spanish": "Se usa para inyectar medicina.",
+      "a_es": "chái chît ia kâ"
     },
     {
       "source": "cthai:hospital_items_game",
@@ -94,7 +95,8 @@
       "a_tone": "m-l-m-m-l-f",
       "a_en": "Used to clean wounds.",
       "category": "salud",
-      "a_spanish": "Se usa para limpiar heridas."
+      "a_spanish": "Se usa para limpiar heridas.",
+      "a_es": "chái lang plǎe kâ"
     },
     {
       "source": "cthai:hospital_items_game",
@@ -109,7 +111,8 @@
       "a_tone": "m-l-m-l-m-l-m-m-l-m-m-m-f",
       "a_en": "To measure body temperature.",
       "category": "salud",
-      "a_spanish": "Para medir la temperatura corporal."
+      "a_spanish": "Para medir la temperatura corporal.",
+      "a_es": "chái uát un-na-pum rang-gan kâ"
     },
     {
       "source": "cthai:hospital_items_game",
@@ -124,7 +127,8 @@
       "a_tone": "m-l-h-l-m-m-l-l-f",
       "a_en": "To give blood to the patient.",
       "category": "salud",
-      "a_spanish": "Para dar sangre al paciente."
+      "a_spanish": "Para dar sangre al paciente.",
+      "a_es": "chái hai lüat kon buai kâ"
     },
     {
       "source": "cthai:hospital_items_game",
@@ -139,7 +143,8 @@
       "a_tone": "m-m-f-m-f",
       "a_en": "On the bed.",
       "category": "salud",
-      "a_spanish": "Duerme en la cama."
+      "a_spanish": "Duerme en la cama.",
+      "a_es": "non tî tia kâ"
     },
     {
       "source": "cthai:hospital_items_game",
@@ -154,7 +159,8 @@
       "a_tone": "l-l-l-l-h-l-l-l-m-l-l-l-l-r-l-l-m-f",
       "a_en": "The ER is for urgent cases.",
       "category": "salud",
-      "a_spanish": "La sala de emergencias es para casos urgentes."
+      "a_spanish": "La sala de emergencias es para casos urgentes.",
+      "a_es": "hong chùk-chen sǎm-rap kon buai iang reng-duan kâ"
     }
   ]
 }

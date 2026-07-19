@@ -111,7 +111,8 @@
       "a_es": "chak-gra-ian iang baen ká",
       "a_spanish": "El neumático de la bici está pinchado.",
       "a_en": "Bike tire is flat.",
-      "category": "rutina"
+      "category": "rutina",
+      "a_tone": "h-h-m-m-m-l-f"
     },
     {
       "source": "cthai:picture_stories_vocab",
@@ -126,7 +127,8 @@
       "a_es": "pa luk-dok pai tî pao ká",
       "a_spanish": "Lanza dardos a la diana.",
       "a_en": "Throws darts at target.",
-      "category": "verbos"
+      "category": "verbos",
+      "a_tone": "m-h-l-l-m-f-m-h-f"
     },
     {
       "source": "cthai:picture_stories_vocab",
@@ -141,7 +143,8 @@
       "a_es": "tüen sai ká",
       "a_spanish": "Se levantó tarde.",
       "a_en": "Woke up late.",
-      "category": "rutina"
+      "category": "rutina",
+      "a_tone": "h-h-f"
     },
     {
       "source": "cthai:picture_stories_vocab",
@@ -156,7 +159,8 @@
       "a_es": "ha gat sa-mut gan-ban ká",
       "a_spanish": "Muerde el cuaderno de deberes.",
       "a_en": "Bites the homework notebook.",
-      "category": "animales"
+      "category": "animales",
+      "a_tone": "h-h-l-l-m-m-m-f"
     }
   ]
 }

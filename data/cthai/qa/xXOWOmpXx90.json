@@ -141,7 +141,7 @@
       "a_thai": "มีโดนัท เค้ก ช็อกโกแลตค่ะ",
       "a_phonetic": "mii dôe-nát khek chók-kòe-lèet khâ",
       "a_es": "mi do-nat kek chok-ko-let kâ",
-      "q_tone": "m-m-m-m-h-h-m-m-h-h-h-m-h-h-m-h-m-f",
+      "a_tone": "m-m-m-m-h-h-m-m-h-h-h-m-h-h-m-h-m-f",
       "a_spanish": "Dona, pastel, chocolate.",
       "a_en": "Donut, cake, chocolate.",
       "category": "comida"
@@ -173,7 +173,7 @@
       "a_thai": "มีเปรี้ยว หวาน เค็ม เผ็ดค่ะ",
       "a_phonetic": "mii bprìao wǎan khem phèt khâ",
       "a_es": "mi priao uan kem pet kâ",
-      "q_tone": "m-m-h-m-m-h-m-h-m-m-h-m-h-m-f",
+      "a_tone": "m-m-h-m-m-h-m-h-m-m-h-m-h-m-f",
       "a_spanish": "Ácido, dulce, salado, picante.",
       "a_en": "Sour, sweet, salty, spicy.",
       "category": "sabores"
@@ -221,7 +221,7 @@
       "a_thai": "พริกเล็กเผ็ดกว่าค่ะ",
       "a_phonetic": "phrǐk lèk phèt gwaa khâ",
       "a_es": "prik lek pet gua kâ",
-      "q_tone": "h-h-m-h-m-h-h-m-h-m-h-m-f",
+      "a_tone": "h-h-m-h-m-h-h-m-h-m-h-m-f",
       "a_spanish": "El pequeño es más picante.",
       "a_en": "Small one is spicier.",
       "category": "sabores"

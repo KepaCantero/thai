@@ -127,7 +127,8 @@
       "a_tone": "h-h-h-h-h-h-h-h",
       "a_spanish": "Triste y llora.",
       "a_en": "Sad and cries.",
-      "category": "conversacion"
+      "category": "conversacion",
+      "q_en": "How does the queen feel?"
     },
     {
       "source": "cthai:twelve_princes_fairytale_story",

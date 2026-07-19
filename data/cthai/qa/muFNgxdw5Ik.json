@@ -28,7 +28,7 @@
       "q_en": "What's today's date?",
       "a_thai": "วันที่ 1 ค่ะ",
       "a_phonetic": "wan thîi nùeng khâ",
-      "q_es": "uan tî neng ká",
+      "a_es": "uan tî neng ká",
       "a_tone": "m-f-h-h-h-h-h-h",
       "a_spanish": "Día 1.",
       "a_en": "1st.",
@@ -191,7 +191,8 @@
       "a_tone": "m-h-h-h-h-h-m-h-h-h-h",
       "a_spanish": "Gotea agua.",
       "a_en": "Water dripping.",
-      "category": "conversacion"
+      "category": "conversacion",
+      "q_en": "What's wrong with Kru Ae's AC?"
     },
     {
       "source": "cthai:air_conditioner_cleaning_samsung_service_call",
@@ -222,7 +223,8 @@
       "a_tone": "m-m-m-m-h-h-h-m-h-h-h-h",
       "a_spanish": "Condo Next.",
       "a_en": "Next Condo.",
-      "category": "direcciones"
+      "category": "direcciones",
+      "q_en": "What's the name of Kru Ae's condo?"
     }
   ]
 }

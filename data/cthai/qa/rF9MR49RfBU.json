@@ -15,7 +15,8 @@
       "a_tone": "m-h-m-l-m-f",
       "a_en": "Today is Friday.",
       "category": "tiempo",
-      "a_spanish": "Hoy es viernes."
+      "a_spanish": "Hoy es viernes.",
+      "a_es": "uan-nî uan-sùk kâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -30,7 +31,8 @@
       "a_tone": "m-l-m-m-m-m-m-f",
       "a_spanish": "En América.",
       "a_en": "America.",
-      "category": "direcciones"
+      "category": "direcciones",
+      "a_phonetic": "yùu a-mee-rí-gaa khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -45,7 +47,8 @@
       "a_tone": "m-m-m-l-m-l-m-f",
       "a_spanish": "A las 11.",
       "a_en": "11 AM.",
-      "category": "rutina"
+      "category": "rutina",
+      "a_phonetic": "dtùen nawn sìp-èt moong khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -60,7 +63,8 @@
       "a_tone": "m-l-m-l-m-l-m-f",
       "a_spanish": "2 tazas.",
       "a_en": "2 cups.",
-      "category": "rutina"
+      "category": "rutina",
+      "a_phonetic": "dùueam sǒng kàaeo khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -75,7 +79,8 @@
       "a_tone": "m-m-m-m-m-f",
       "a_spanish": "Oler inhalador.",
       "a_en": "Smelling salts.",
-      "category": "salud"
+      "category": "salud",
+      "a_phonetic": "dom yaa-dom khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -90,7 +95,8 @@
       "a_tone": "m-m-m-m-l-m-l-m-l-m-f",
       "a_spanish": "Eucalipto.",
       "a_en": "Eucalyptus.",
-      "category": "sustantivos"
+      "category": "sustantivos",
+      "a_phonetic": "mii yuu-khaa-líp-tàat khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -105,7 +111,8 @@
       "a_tone": "m-m-l-m-m-f",
       "a_spanish": "Limón.",
       "a_en": "Lime.",
-      "category": "comida"
+      "category": "comida",
+      "a_phonetic": "gin má-naao khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -120,7 +127,8 @@
       "a_tone": "m-m-l-m-l-m-f",
       "a_spanish": "Sí, despierta.",
       "a_en": "Yes.",
-      "category": "verbos"
+      "category": "verbos",
+      "a_phonetic": "tham hâi dtùen khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -135,7 +143,8 @@
       "a_tone": "m-m-l-m-l-m-m-f",
       "a_spanish": "Música con volumen alto.",
       "a_en": "Loud music.",
-      "category": "sustantivos"
+      "category": "sustantivos",
+      "a_phonetic": "pleng sǐang dang khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -150,7 +159,8 @@
       "a_tone": "m-m-m-l-m-l-m-f",
       "a_spanish": "Cuentos de fantasmas.",
       "a_en": "Ghost stories.",
-      "category": "conversacion"
+      "category": "conversacion",
+      "a_phonetic": "fang rǔueang phǐi khâ"
     },
     {
       "source": "cthai:staying_awake_driving_coffee_thai_tips",
@@ -165,7 +175,8 @@
       "a_tone": "m-l-m-f",
       "a_spanish": "No.",
       "a_en": "No.",
-      "category": "comida"
+      "category": "comida",
+      "a_phonetic": "mâi dùueam khâ"
     }
   ]
 }

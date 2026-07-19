@@ -143,7 +143,8 @@
       "a_tone": "l-m-l-m-l-m-l-m-l-m-l-m-l-m-l-m-l-m-l-m-l-m-l-m-f",
       "a_spanish": "Salud y seguridad.",
       "a_en": "Health and safety.",
-      "category": "verbos"
+      "category": "verbos",
+      "q_en": "What do people ask Pu Ta for?"
     },
     {
       "source": "cthai:northeastern_thai_spirit_house_pu_ta_shrine_ancestors_forest",

@@ -12,10 +12,11 @@
       "q_en": "Today is Monday.",
       "a_thai": "วันนี้วันจันทร์ค่ะ",
       "a_phonetic": "wan-nîi wan-jan khâ",
+      "a_es": "uan-nî uan-chan kâ",
       "a_tone": "m-h-m-m-f",
-      "category": "tiempo",
       "a_spanish": "Hoy es lunes.",
-      "a_en": "Today is Monday."
+      "a_en": "Today is Monday.",
+      "category": "tiempo"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -27,10 +28,11 @@
       "q_en": "How many provinces does Thailand have?",
       "a_thai": "ประเทศไทยมี 77 จังหวัดค่ะ",
       "a_phonetic": "bprà-thêet-thai mii jèt-sìp-jèt jang-wàt khâ",
+      "a_es": "bpra-têt-tai mi jèt-sìp-jèt yang-uât kâ",
       "a_tone": "l-l-l-f-m-m-l-l-l-l-m-m-h-f",
+      "a_spanish": "Tailandia tiene 77 provincias.",
       "a_en": "Thailand has 77 provinces.",
-      "category": "numeros",
-      "a_spanish": "Tailandia tiene 77 provincias."
+      "category": "numeros"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -42,10 +44,11 @@
       "q_en": "Which province is Kru Puk from?",
       "a_thai": "ครูปุ๊กมาจากชลบุรีค่ะ",
       "a_phonetic": "khruu-bpùk maa jaak chon-bù-rii khâ",
+      "a_es": "krú-bùk ma yak chon-bù-rî kâ",
       "a_tone": "m-m-l-m-m-l-m-m-m-l-m-f",
+      "a_spanish": "Kru Puk viene de Chonburi.",
       "a_en": "Kru Puk is from Chonburi.",
-      "category": "direcciones",
-      "a_spanish": "Kru Puk viene de Chonburi."
+      "category": "direcciones"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -57,10 +60,11 @@
       "q_en": "Can Kru Puk drive?",
       "a_thai": "ขับรถไม่เป็นค่ะ",
       "a_phonetic": "khàp ròt mâi pen khâ",
+      "a_es": "kâp rot mâi pen kâ",
       "a_tone": "l-l-m-l-m-m-f",
+      "a_spanish": "No sabe conducir.",
       "a_en": "She can't drive.",
-      "category": "rutina",
-      "a_spanish": "No sabe conducir."
+      "category": "rutina"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -72,10 +76,11 @@
       "q_en": "Which terminal for the eastern region?",
       "a_thai": "ต้องไปสถานีเอกมัยค่ะ",
       "a_phonetic": "dtông pai sà-thǎa-nii èk-mǎai khâ",
+      "a_es": "dong pai sa-tǎa-nî èk-mǎi kâ",
       "a_tone": "m-m-m-l-l-m-l-l-l-h-f",
+      "a_spanish": "Hay que ir a la terminal Ekkamai.",
       "a_en": "Go to Ekkamai terminal.",
-      "category": "direcciones",
-      "a_spanish": "Hay que ir a la terminal Ekkamai."
+      "category": "direcciones"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -87,10 +92,11 @@
       "q_en": "How many hours from Bangkok to Chanthaburi?",
       "a_thai": "ประมาณ 4 ชั่วโมงค่ะ",
       "a_phonetic": "bprà-maan sii chùua-moong khâ",
+      "a_es": "bpra-man sì chu-mong kâ",
       "a_tone": "l-m-m-l-l-m-l-m-f",
+      "a_spanish": "Aproximadamente 4 horas.",
       "a_en": "About 4 hours.",
-      "category": "tiempo",
-      "a_spanish": "Aproximadamente 4 horas."
+      "category": "tiempo"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -102,10 +108,11 @@
       "q_en": "How much is the fare to Chanthaburi?",
       "a_thai": "ประมาณ 300 บาทค่ะ",
       "a_phonetic": "bprà-maan sǎam-róoy baat khâ",
+      "a_es": "bpra-man sǎm-rói bat kâ",
       "a_tone": "l-m-m-m-l-m-l-m-f",
+      "a_spanish": "Aproximadamente 300 baht.",
       "a_en": "About 300 baht.",
-      "category": "numeros",
-      "a_spanish": "Aproximadamente 300 baht."
+      "category": "numeros"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -117,10 +124,11 @@
       "q_en": "What should you do on public transport?",
       "a_thai": "ต้องไม่พูดเสียงดังค่ะ",
       "a_phonetic": "dtông mâi phùut sǐang dang khâ",
+      "a_es": "dong mâi pùt sîang dan kâ",
       "a_tone": "m-m-m-l-l-m-l-m-m-f",
+      "a_spanish": "No debes hablar fuerte.",
       "a_en": "Don't speak loudly.",
-      "category": "conversacion",
-      "a_spanish": "No debes hablar fuerte."
+      "category": "conversacion"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -132,10 +140,11 @@
       "q_en": "What color do Thais wear on Monday?",
       "a_thai": "วันจันทร์ใส่สีเหลืองค่ะ",
       "a_phonetic": "wan-jan sài sǐi lǔeang khâ",
+      "a_es": "uan-chan sài sîi lüang kâ",
       "a_tone": "m-m-m-l-l-l-l-f",
+      "a_spanish": "Los lunes se viste de amarillo.",
       "a_en": "On Monday they wear yellow.",
-      "category": "colores",
-      "a_spanish": "Los lunes se viste de amarillo."
+      "category": "colores"
     },
     {
       "source": "cthai:bus_travel_thailand",
@@ -147,10 +156,11 @@
       "q_en": "Which month number is August?",
       "a_thai": "เดือนสิงหาคมเป็นเดือนที่ 8 ค่ะ",
       "a_phonetic": "duean sǐng-hǎa-khom pen duean thîi pàet khâ",
+      "a_es": "düan sîng-hǎ-kom pen düan tî pèt kâ",
       "a_tone": "m-l-l-h-l-m-m-m-l-m-f-l-f",
+      "a_spanish": "Agosto es el mes 8.",
       "a_en": "August is the 8th month.",
-      "category": "numeros",
-      "a_spanish": "Agosto es el mes 8."
+      "category": "numeros"
     }
   ]
 }

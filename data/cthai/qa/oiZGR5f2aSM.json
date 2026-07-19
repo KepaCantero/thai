@@ -31,7 +31,8 @@
       "a_tone": "m-l-l-l-l-l-l-m-m-m-m-l-m-f-l-l-f",
       "a_spanish": "Noviembre es el mes 11.",
       "a_en": "November is the 11th month.",
-      "category": "numeros"
+      "category": "numeros",
+      "a_es": "düan prút-sà-chî-ga-ion pen düan tî sìp-èt kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -46,7 +47,8 @@
       "a_tone": "m-m-m-l-m-m-m-l-l-m-f",
       "a_en": "Fridge, TV, and clothes.",
       "category": "sustantivos",
-      "a_spanish": "Hay nevera, TV y ropa."
+      "a_spanish": "Hay nevera, TV y ropa.",
+      "a_es": "mi do-ien ti-uî süa-pá kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -61,7 +63,8 @@
       "a_tone": "m-m-m-l-l-m-m-f-l-l-m-m-f",
       "a_en": "A temple is a place for monks.",
       "category": "sustantivos",
-      "a_spanish": "El templo es el lugar de los monjes."
+      "a_spanish": "El templo es el lugar de los monjes.",
+      "a_es": "uát pen sa-tǎan-tî kong prá kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -76,7 +79,8 @@
       "a_tone": "m-m-m-l-l-l-m-l-l-l-l-m-f",
       "a_en": "Clothes, pants, and lipstick.",
       "category": "sustantivos",
-      "a_spanish": "Ropa, pantalones y lápiz labial."
+      "a_spanish": "Ropa, pantalones y lápiz labial.",
+      "a_es": "mi süa-pá kan-keng líp-sa-dik kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -91,7 +95,8 @@
       "a_tone": "m-m-m-m-m-m-l-m-l-m-f",
       "a_en": "Sand, crabs, fish, coconuts.",
       "category": "animales",
-      "a_spanish": "Hay arena, cangrejos, peces y cocos."
+      "a_spanish": "Hay arena, cangrejos, peces y cocos.",
+      "a_es": "mi sai bú pla lûk má-práo kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -105,7 +110,9 @@
       "a_tone": "m-m-m-m-l-l-m-m-m-f",
       "a_en": "Crabs, fish, shrimp, starfish.",
       "category": "animales",
-      "a_spanish": "Cangrejos, peces, camarones y estrellas de mar."
+      "a_spanish": "Cangrejos, peces, camarones y estrellas de mar.",
+      "a_es": "mi bú pla kung pla-dao kâ",
+      "q_en": "What animals are at the sea?"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -120,7 +127,8 @@
       "a_tone": "m-m-m-m-m-l-m-l-m-m-m-m-m-m-h-f",
       "a_en": "Sand, palm trees, umbrellas, beach chairs.",
       "category": "sustantivos",
-      "a_spanish": "Arena, cocoteros, sombrillas y tumbonas."
+      "a_spanish": "Arena, cocoteros, sombrillas y tumbonas.",
+      "a_es": "mi sai ton má-práo rom gao-îi chai-hât kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -135,7 +143,8 @@
       "a_tone": "m-m-m-h-m-l-m-m-l-m-l-m-f",
       "a_en": "Trees and cool air.",
       "category": "sustantivos",
-      "a_spanish": "Árboles y aire fresco."
+      "a_spanish": "Árboles y aire fresco.",
+      "a_es": "mi ton-mái gap a-kat ien kâ"
     },
     {
       "source": "cthai:places_drawing_game",
@@ -150,7 +159,8 @@
       "a_tone": "m-m-m-m-m-m-l-m-l-m-f",
       "a_en": "Vehicles, pedestrians, bus stops.",
       "category": "direcciones",
-      "a_spanish": "Vehículos, peatones y paradas de autobús."
+      "a_spanish": "Vehículos, peatones y paradas de autobús.",
+      "a_es": "mi rot kon-den bái ro-may kâ"
     }
   ]
 }

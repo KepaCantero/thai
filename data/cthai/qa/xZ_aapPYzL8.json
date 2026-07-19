@@ -45,7 +45,7 @@
       "a_thai": "หงุดหงิดค่ะ",
       "a_phonetic": "hǎng-hǎng-hǐt khâ",
       "a_es": "hang-hang-hit kâ",
-      "q_tone": "h-h-m-h-m-h-m-f",
+      "a_tone": "h-h-m-h-m-h-m-f",
       "a_spanish": "Irritada.",
       "a_en": "Annoyed.",
       "category": "salud"
@@ -61,7 +61,7 @@
       "a_thai": "เพราะเสียงรถบีบแตรค่ะ",
       "a_phonetic": "phráw sǐang rót bìip-btaae khâ",
       "a_es": "pró síang rot bip-tae kâ",
-      "q_tone": "h-m-h-m-h-m-h-h-m-h-m-h-m-h-m-f",
+      "a_tone": "h-m-h-m-h-m-h-h-m-h-m-h-m-h-m-f",
       "a_spanish": "Por el ruido de los cláxones.",
       "a_en": "Horns noise.",
       "category": "salud"
@@ -125,7 +125,7 @@
       "a_thai": "ขับรถเร็วค่ะ",
       "a_phonetic": "khàp rót reo khâ",
       "a_es": "kap rot reo kâ",
-      "q_tone": "h-h-h-m-h-m-h-m-f",
+      "a_tone": "h-h-h-m-h-m-h-m-f",
       "a_spanish": "Conducen rápido.",
       "a_en": "Fast.",
       "category": "verbos"

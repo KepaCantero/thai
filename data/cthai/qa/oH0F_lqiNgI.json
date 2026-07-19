@@ -14,9 +14,8 @@
       "a_phonetic": "wan-nîi wan-sao khâ",
       "a_es": "uan-nî uan-sao kâ",
       "a_tone": "m-h-m-m-f",
-      "q_spanish": "Hoy es sábado.",
-      "q_en": "Today is Saturday.",
       "a_spanish": "Hoy es sábado.",
+      "a_en": "Today is Saturday.",
       "category": "tiempo"
     },
     {
@@ -31,9 +30,8 @@
       "a_phonetic": "yùu sǒng duean lɛ́ɛo khâ",
       "a_es": "iu song düan lêo kâ",
       "a_tone": "m-l-m-l-l-f-f",
-      "q_spanish": "Dos meses.",
-      "a_en": "Two months.",
       "a_spanish": "Dos meses.",
+      "a_en": "Two months.",
       "category": "tiempo"
     },
     {
@@ -48,9 +46,8 @@
       "a_phonetic": "mâi khít-thǔeng khâ",
       "a_es": "mâi kít-tüeng kâ",
       "a_tone": "m-l-l-l-m-f",
-      "q_spanish": "No la extraña.",
-      "a_en": "She doesn't miss it.",
       "a_spanish": "No la extraña.",
+      "a_en": "She doesn't miss it.",
       "category": "conversacion"
     },
     {
@@ -65,9 +62,8 @@
       "a_phonetic": "yàak gin thù-rian khâ",
       "a_es": "iák chin tu-rîan kâ",
       "a_tone": "l-l-m-l-h-m-f",
-      "q_spanish": "Quiere comer durian.",
-      "a_en": "She wants to eat durian.",
       "a_spanish": "Quiere comer durian.",
+      "a_en": "She wants to eat durian.",
       "category": "comida"
     },
     {
@@ -82,9 +78,8 @@
       "a_phonetic": "mii khâ tàae phaeng khâ",
       "a_es": "mi kâ tàe pang kâ",
       "a_tone": "m-f-m-l-m-f",
-      "q_spanish": "Sí, pero es caro.",
-      "a_en": "Yes, but expensive.",
       "a_spanish": "Sí, pero caro.",
+      "a_en": "Yes, but expensive.",
       "category": "comida"
     },
     {
@@ -99,9 +94,8 @@
       "a_phonetic": "mii aa-hǎan phǒn-lá-máai sǔea-phâa khâ",
       "a_es": "mi a-hǎan pon-lá-mái süa-pá kâ",
       "a_tone": "m-m-m-h-m-l-l-h-l-l-m-f",
-      "q_spanish": "Hay comida, fruta y ropa.",
-      "a_en": "There's food, fruit, and clothing.",
       "a_spanish": "Comida, fruta y ropa.",
+      "a_en": "There's food, fruit, and clothing.",
       "category": "sustantivos"
     },
     {
@@ -116,9 +110,8 @@
       "a_phonetic": "mâi mii khâ",
       "a_es": "mâi mi kâ",
       "a_tone": "m-l-m-f",
-      "q_spanish": "No venden.",
-      "a_en": "No.",
       "a_spanish": "No, no venden.",
+      "a_en": "No.",
       "category": "comida"
     },
     {
@@ -131,11 +124,10 @@
       "q_en": "What's on New York sidewalks?",
       "a_thai": "มีหนังสือพิมพ์ฟรีกับเก้าอี้นั่งค่ะ",
       "a_phonetic": "mii náng-sǔue-phím fai gàp gâo-îi nâng khâ",
-      "q_es": "mi nang-süe-pî frai gap gao-î nan kâ",
+      "a_es": "mi nang-süe-pî frai gap gao-î nan kâ",
       "a_tone": "m-m-m-l-l-l-l-m-l-m-l-l-m-l-m-f",
-      "q_spanish": "Hay periódicos gratis y bancas para sentarse.",
-      "a_en": "Free newspapers and benches.",
       "a_spanish": "Periódicos gratis y bancas.",
+      "a_en": "Free newspapers and benches.",
       "category": "sustantivos"
     },
     {
@@ -150,9 +142,8 @@
       "a_phonetic": "dtawn-nîi bàai-moong khâ",
       "a_es": "don-nî bai-mong kâ",
       "a_tone": "m-h-l-m-m-f",
-      "q_spanish": "Es la una de la tarde.",
-      "a_en": "It's 1 PM.",
       "a_spanish": "Es la 1 PM.",
+      "a_en": "It's 1 PM.",
       "category": "tiempo"
     },
     {
@@ -167,9 +158,8 @@
       "a_phonetic": "bprà-maan sii-sìp ong-saa khâ",
       "a_es": "bpra-man sì-sìp ong-sa kâ",
       "a_tone": "l-m-m-l-l-l-l-m-f",
-      "q_spanish": "Aproximadamente 40 grados.",
-      "a_en": "About 40 degrees.",
       "a_spanish": "Unos 40 grados.",
+      "a_en": "About 40 degrees.",
       "category": "tiempo"
     }
   ]
