@@ -16,6 +16,7 @@ import { wireLegacyCards } from './core/modes/cards/legacyBridge';
 import { wireLegacyQuestions } from './core/modes/questions/legacyBridge';
 import { wireLegacyTop1000 } from './core/modes/top1000/legacyBridge';
 import { wireLegacyMatrix } from './core/modes/matrix/legacyBridge';
+import { wireLegacyShadowing } from './core/modes/shadowing/legacyBridge';
 import { installStateBridge } from './core/state';
 
 if (typeof document !== 'undefined') {
@@ -54,6 +55,7 @@ if (typeof document !== 'undefined') {
     wire('questions', wireLegacyQuestions);
     wire('top1000', wireLegacyTop1000);
     wire('matrix', wireLegacyMatrix);
+    wire('shadowing', wireLegacyShadowing);
   };
 
   if (document.readyState === 'loading') {
