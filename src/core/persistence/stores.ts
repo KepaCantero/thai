@@ -12,7 +12,14 @@ import { defineNamespacedStore, defineStore } from './repository';
 export const difficultStore = defineStore<string[]>('thai_difficult', []);
 
 // --- app.js: top-level scope ('lecciones' | 'top1000' | 'comprehensive') ---
-export const scopeStore = defineStore<Scope>('thai_scope', 'lecciones');
+// Legacy app.js reads/writes `thai_scope` as a RAW string (no JSON wrapping):
+//   localStorage.setItem('thai_scope', scope);
+//   activeScope = localStorage.getItem('thai_scope') || 'lecciones';
+// Override the default JSON serialize/deserialize to match.
+export const scopeStore = defineStore<Scope>('thai_scope', 'lecciones', {
+  serialize: (v) => v,
+  deserialize: (raw) => raw as Scope,
+});
 
 // --- app.js: deleted Q&A ids ----------------------------------------------
 export const deletedQaStore = defineStore<string[]>('thai_deleted_qa', []);

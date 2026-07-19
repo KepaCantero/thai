@@ -1,21 +1,26 @@
-var deck = [], idx = 0;
-var activeLesson = 'all', activeCategory = 'all', activeType = 'all', searchQuery = '';
-var known = new Set(), unknown = new Set();
-var difficult = new Set();
+// State vars declared WITHOUT `var` so they become configurable implicit
+// globals. The stateBridge in src/core/state/stateBridge.ts wraps each in an
+// Object.defineProperty accessor (get/set) that proxies through to the typed
+// stores. Browser `var` declarations at script top level are non-configurable,
+// which breaks defineProperty — implicit globals are configurable.
+deck = []; idx = 0;
+activeLesson = 'all'; activeCategory = 'all'; activeType = 'all'; searchQuery = '';
+known = new Set(); unknown = new Set();
+difficult = new Set();
 try {
   JSON.parse(localStorage.getItem('thai_difficult') || '[]').forEach(function(k) { if (k) difficult.add(k); });
 } catch (e) {}
-var dashboardMode = false, shadowingMode = false, matrixMode = false, tonesMode = false, questionsMode = false;
-var currentMode = 'cards';
+dashboardMode = false; shadowingMode = false; matrixMode = false; tonesMode = false; questionsMode = false;
+currentMode = 'cards';
 // Top-level scope: 'lecciones' | 'top1000' | 'comprehensive'. Filters the whole
 // app down to one content source. Hidden scopes (no cards) are omitted from the menu.
-var activeScope = 'lecciones';
+activeScope = 'lecciones';
 try { activeScope = localStorage.getItem('thai_scope') || 'lecciones'; } catch (e) {}
-var activeToneSel = null; // selected tone in Tones mode view (null = all)
-var filterPanelOpen = false;
+activeToneSel = null; // selected tone in Tones mode view (null = all)
+filterPanelOpen = false;
 
 var PLAY_REPS = 4, REPEAT_GAP = 2000, CARD_GAP = 3000;
-var running = false, paused = false, playTimeout = null, playResumeFn = null;
+running = false; paused = false; playTimeout = null; playResumeFn = null;
 
 // Set to true to include entries marked verified:false (pending teacher review).
 var SHOW_UNVERIFIED = true;
