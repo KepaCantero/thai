@@ -362,102 +362,55 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     const convEnA: string = entry.a || '';
     const threshold = deps.getCthaiThreshold();
 
-    // cthai cards (verified:false): show only the back, no flip, no autoplay.
-    // Two 🔊 buttons let the user play Q or A independently.
-    if (item.verified === false) {
-      const pDone = deps.cthaiCardDone(item);
-      const pQ = deps.cthaiCountPlays(item, 'q');
-      const pA = deps.cthaiCountPlays(item, 'a');
-      const cthaiPlayBtn = (which: 'q' | 'a'): string => {
-        if (!deps.hasSpeakText()) return '';
-        return (
-          '<button class="dc-play-btn" data-which="' +
-          which +
-          '" onclick="event.stopPropagation();playConvAudio(' +
-          i +
-          ',\'' +
-          which +
-          '\')" title="Reproducir ' +
-          (which === 'q' ? 'pregunta' : 'respuesta') +
-          '" aria-label="Reproducir">🔊</button>'
-        );
-      };
-      const cthaiCounter = (n: number): string => {
-        return (
-          '<span class="dc-play-count' +
-          (n >= threshold ? ' dc-play-count-done' : '') +
-          '">' +
-          n +
-          '/' +
-          threshold +
-          '</span>'
-        );
-      };
+    // All conversation cards use the same play-buttons + counter UX
+    // (both CT verified===false cards and lesson-tagged verified ones).
+    // No flip, no autoplay: two 🔊 buttons let the user play Q / A on demand,
+    // each click bumps a per-side counter that shows progress toward the
+    // CTHAI_THRESHOLD plays required to mark the card done.
+    const pDone = deps.cthaiCardDone(item);
+    const pQ = deps.cthaiCountPlays(item, 'q');
+    const pA = deps.cthaiCountPlays(item, 'a');
+    const cthaiPlayBtn = (which: 'q' | 'a'): string => {
+      if (!deps.hasSpeakText()) return '';
       return (
-        '<div class="dash-card dash-conv cthai-only' +
-        (pDone ? ' cthai-done' : '') +
-        '" data-idx="' +
+        '<button class="dc-play-btn" data-which="' +
+        which +
+        '" onclick="event.stopPropagation();playConvAudio(' +
         i +
-        '">' +
-        deps.diffBtnHtml(item, i) +
-        '<button class="dc-del-btn" onclick="event.stopPropagation();deleteQCard(' +
-        i +
-        ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
-        '<div class="dc-type-badge conv">C</div>' +
-        '<div class="dc-body">' +
-        '<div class="dc-qa-label">Q' +
-        cthaiCounter(pQ) +
-        cthaiPlayBtn('q') +
-        '</div>' +
-        '<div class="dc-thai">' +
-        (item.q_thai || '') +
-        '</div>' +
-        '<div class="dc-phonetic">' +
-        (item.q_phonetic || '') +
-        '</div>' +
-        (qTone ? '<div class="dc-tone">' + qTone + '</div>' : '') +
-        '<div class="dc-translation">' +
-        (convEnQ || item.q_spanish || '') +
-        '</div>' +
-        '<div class="dc-wb">' +
-        deps.renderWB(item.q_thai) +
-        '</div>' +
-        '<div class="dc-sep"></div>' +
-        '<div class="dc-qa-label">A' +
-        cthaiCounter(pA) +
-        cthaiPlayBtn('a') +
-        '</div>' +
-        '<div class="dc-thai">' +
-        (item.a_thai || '') +
-        '</div>' +
-        '<div class="dc-phonetic">' +
-        (item.a_phonetic || '') +
-        '</div>' +
-        (aTone ? '<div class="dc-tone">' + aTone + '</div>' : '') +
-        '<div class="dc-translation">' +
-        (convEnA || item.a_spanish || '') +
-        '</div>' +
-        '<div class="dc-wb">' +
-        deps.renderWB(item.a_thai) +
-        '</div>' +
-        '</div>' +
-        '</div>'
+        ',\'' +
+        which +
+        '\')" title="Play ' +
+        (which === 'q' ? 'question' : 'answer') +
+        '" aria-label="Play">🔊</button>'
       );
-    }
+    };
+    const cthaiCounter = (n: number): string => {
+      return (
+        '<span class="dc-play-count' +
+        (n >= threshold ? ' dc-play-count-done' : '') +
+        '">' +
+        n +
+        '/' +
+        threshold +
+        '</span>'
+      );
+    };
     return (
-      '<div class="dash-card dash-conv" data-idx="' +
+      '<div class="dash-card dash-conv cthai-only' +
+      (pDone ? ' cthai-done' : '') +
+      '" data-idx="' +
       i +
-      '" onclick="dashCardClick(this, ' +
-      i +
-      ')">' +
+      '">' +
       deps.diffBtnHtml(item, i) +
       '<button class="dc-del-btn" onclick="event.stopPropagation();deleteQCard(' +
       i +
-      ')" title="Eliminar" aria-label="Eliminar">🗑️</button>' +
-      '<div class="dc-play-icon">▶</div>' +
+      ')" title="Delete" aria-label="Delete">🗑️</button>' +
       '<div class="dc-type-badge conv">C</div>' +
-      '<div class="dc-front">' +
-      '<div class="dc-qa-label">Q</div>' +
+      '<div class="dc-body">' +
+      '<div class="dc-qa-label">Q' +
+      cthaiCounter(pQ) +
+      cthaiPlayBtn('q') +
+      '</div>' +
       '<div class="dc-thai">' +
       (item.q_thai || '') +
       '</div>' +
@@ -465,15 +418,6 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       (item.q_phonetic || '') +
       '</div>' +
       (qTone ? '<div class="dc-tone">' + qTone + '</div>' : '') +
-      '</div>' +
-      '<div class="dc-back">' +
-      '<div class="dc-qa-label">Q</div>' +
-      '<div class="dc-thai">' +
-      (item.q_thai || '') +
-      '</div>' +
-      '<div class="dc-phonetic">' +
-      (item.q_phonetic || '') +
-      '</div>' +
       '<div class="dc-translation">' +
       (convEnQ || item.q_spanish || '') +
       '</div>' +
@@ -481,7 +425,10 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       deps.renderWB(item.q_thai) +
       '</div>' +
       '<div class="dc-sep"></div>' +
-      '<div class="dc-qa-label">A</div>' +
+      '<div class="dc-qa-label">A' +
+      cthaiCounter(pA) +
+      cthaiPlayBtn('a') +
+      '</div>' +
       '<div class="dc-thai">' +
       (item.a_thai || '') +
       '</div>' +
@@ -575,9 +522,10 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
   // ----- dashCardClick (app.js L1356-1368) -----------------------------------
 
   function dashCardClick(el: HTMLElement, i: number): void {
-    // cthai cards render without onclick, but defend in case of bubbling.
+    // Conversation cards render without flip onclick (play buttons instead).
+    // Defend in case of bubbling: any card with q_thai is a conversation.
     const deckRef = deps.getDeck();
-    if (deckRef[i] && deckRef[i].verified === false) return;
+    if (deckRef[i] && deckRef[i].q_thai) return;
     if (deps.isRunning()) {
       deps.stopPlayAll();
       el.classList.remove('flipped');
@@ -602,12 +550,12 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     deps.stopCurrentAudio();
     const text = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
     if (text) {
-      if (item.verified === false) {
-        deps.bumpCthaiPlay(item, which);
-      }
+      deps.bumpCthaiPlay(item, which);
       deps.speakText(text);
     }
-    if (item.verified === false && deps.getActiveLesson() === 'cthai') {
+    // Re-render so the counter updates. Focus restoration keeps the
+    // clicked button accessible for keyboard users after re-render.
+    if (item.q_thai) {
       const btn = document.activeElement as HTMLElement | null;
       renderDashboard();
       if (btn && btn.classList.contains('dc-play-btn')) {

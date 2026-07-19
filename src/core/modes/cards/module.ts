@@ -54,6 +54,7 @@ import type {
   Pair,
   QaItem,
 } from '../../types';
+import { isCthaiEntry } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Constants — mirrored verbatim from public/app.js (L17 + L935)
@@ -236,12 +237,12 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
   }
 
   function matchLesson(
-    item: { category?: string; verified?: boolean; lesson?: number },
+    item: { category?: string; source?: string; lesson?: number },
     lf: ReturnType<typeof getLessonFilter>,
   ): boolean {
     if (lf.youtubeOnly) return item.category === 'youtube';
     if (lf.dificilesOnly) return true; // membership applied at call sites
-    if (lf.cthaiOnly) return item.verified === false;
+    if (lf.cthaiOnly) return isCthaiEntry(item);
     return !lf.lessonNum || (item.lesson || 1) === lf.lessonNum;
   }
 
@@ -546,9 +547,11 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
   }
 
   // --- isVerifiedEntry (app.js:21-22) --------------------------------------
+  // Returns true for entries that should appear in non-CT contexts. CT entries
+  // (source-based) are excluded unless SHOW_UNVERIFIED is on.
 
   function isVerifiedEntry(c: Conversation): boolean {
-    return deps.getShowUnverified() || c.verified !== false;
+    return deps.getShowUnverified() || !isCthaiEntry(c);
   }
 
   // --- cthai helpers (app.js:933-978) --------------------------------------

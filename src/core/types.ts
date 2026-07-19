@@ -106,10 +106,25 @@ export interface Conversation extends ConversationSide {
   category: Category;
   lesson: Lesson;
   /**
-   * false = pending native-teacher review (Comprehensible Thai cthai section).
-   * Absent / true = reviewed. See isVerifiedEntry in app.js.
+   * Source tag. CT conversations use `cthai:<tag>` (e.g. `cthai:stationery_shop`).
+   * Used by isCthaiEntry() to detect Comprehensible Thai content. Legacy
+   * non-CT conversations have no source field.
+   */
+  source?: string;
+  /**
+   * Optional review flag. Legacy CT pilot used `verified: false` to mark
+   * unreviewed content; current detection is source-based. Kept for back-compat
+   * with older data exports.
    */
   verified?: boolean;
+}
+
+/**
+ * Detect Comprehensible Thai (CT) entries by their `source` tag.
+ * CT entries have `source: 'cthai:<tag>'`; legacy lesson conversations have none.
+ */
+export function isCthaiEntry(c: { source?: string }): boolean {
+  return !!c.source && c.source.startsWith('cthai:');
 }
 
 // ============================================================================

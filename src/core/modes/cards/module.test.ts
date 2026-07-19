@@ -80,7 +80,7 @@ function makeData(overrides: Partial<DataShape> = {}): DataShape {
         thai: 'cthai-1', phonetic: '', es: '', tone: '',
         q_thai: 'cthai q', q_phonetic: '', q_es: '', q_tone: '', q_spanish: 'q es', q_en: 'q en',
         a_thai: 'cthai a', a_phonetic: '', a_es: '', a_tone: '', a_spanish: 'a es', a_en: 'a en',
-        category: 'youtube', lesson: 0, verified: false, source: 'yt-ABC',
+        category: 'youtube', lesson: 0, source: 'cthai:yt-ABC',
       },
     ],
     pairs: [
@@ -254,33 +254,32 @@ describe('createCardsModule — buildDeck', () => {
     // passes everything, so the deck is non-empty.
     setActiveLesson('dificiles');
     expect(m.buildDeck().length).toBeGreaterThan(0);
-    // cthai: only verified:false entries
+    // cthai: only CT entries (source starts with 'cthai:')
     setActiveLesson('cthai');
     const ct = m.buildDeck();
     expect(ct.length).toBe(1);
-    expect((ct[0] as unknown as { verified?: boolean }).verified).toBe(false);
+    expect((ct[0] as unknown as { source?: string }).source).toBe('cthai:yt-ABC');
   });
 
-  it('cthai: regression — verified===false CT cards appear even when SHOW_UNVERIFIED is false', () => {
+  it('cthai: regression — CT cards appear even when SHOW_UNVERIFIED is false', () => {
     // Regression for the filter-ordering bug at module.ts:~404. Before the
     // fix, isVerifiedEntry(c) ran BEFORE matchLesson(c, lf) — so when
-    // SHOW_UNVERIFIED was false, all CT cards (verified===false by design)
-    // were silently dropped from the cthai deck. The existing cthai case in
-    // the test above slipped through because makeModule defaults
-    // getShowUnverified to true; this test pins the dangerous default-off
-    // path. If isVerifiedEntry is ever re-ordered before matchLesson again,
-    // the deck here would be empty and the assertion would fail.
+    // SHOW_UNVERIFIED was false, all CT cards were silently dropped from the
+    // cthai deck. CT detection is now source-based (`source: 'cthai:*'`),
+    // so this test pins the dangerous default-off path. If isVerifiedEntry
+    // is ever re-ordered before matchLesson again, the deck here would be
+    // empty and the assertion would fail.
     const m = makeModule({ getShowUnverified: () => false });
     setActiveLesson('cthai');
     const ct = m.buildDeck();
     // Deck is non-empty…
     expect(ct.length).toBeGreaterThan(0);
-    // …and every entry is a verified===false conversation (CT contract).
+    // …and every entry is a CT conversation (source-based contract).
     expect(
       ct.every(
         (c) =>
           c.type === 'conversation' &&
-          (c as unknown as { verified?: boolean }).verified === false,
+          (c as unknown as { source?: string }).source?.startsWith('cthai:') === true,
       ),
     ).toBe(true);
   });
@@ -391,7 +390,7 @@ describe('createCardsModule — cthai helpers', () => {
     const id1 = m.cthaiCardId(item);
     const id2 = m.cthaiCardId(item);
     expect(id1).toBe(id2);
-    expect(id1.startsWith('yt-ABC||')).toBe(true);
+    expect(id1.startsWith('cthai:yt-ABC||')).toBe(true);
   });
 
   it('bumpCthaiPlay round-trips through cthaiPlaysStore so cthaiCardDone flips true (regression for 1a60430)', () => {
@@ -428,12 +427,13 @@ describe('createCardsModule — cthai helpers', () => {
 });
 
 describe('createCardsModule — misc', () => {
-  it('isVerifiedEntry honors SHOW_UNVERIFIED flag', () => {
-    const item = { verified: false } as Conversation;
-    expect(makeModule({ getShowUnverified: () => true }).isVerifiedEntry(item)).toBe(true);
-    expect(makeModule({ getShowUnverified: () => false }).isVerifiedEntry(item)).toBe(false);
-    // verified:true passes regardless
-    const ok = { verified: true } as Conversation;
+  it('isVerifiedEntry honors SHOW_UNVERIFIED flag (CT detected by source)', () => {
+    // CT entry (source starts with 'cthai:') — filtered out unless SHOW_UNVERIFIED.
+    const ct = { source: 'cthai:test' } as unknown as Conversation;
+    expect(makeModule({ getShowUnverified: () => true }).isVerifiedEntry(ct)).toBe(true);
+    expect(makeModule({ getShowUnverified: () => false }).isVerifiedEntry(ct)).toBe(false);
+    // Non-CT entry (no source) — always passes.
+    const ok = {} as Conversation;
     expect(makeModule({ getShowUnverified: () => false }).isVerifiedEntry(ok)).toBe(true);
   });
 

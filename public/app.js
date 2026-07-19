@@ -24,7 +24,7 @@ running = false; paused = false; playTimeout = null; playResumeFn = null;
 
 // Set to true to include entries marked verified:false (pending teacher review).
 var SHOW_UNVERIFIED = true;
-function isVerifiedEntry(c) { return SHOW_UNVERIFIED || c.verified !== false; }
+function isVerifiedEntry(c) { return SHOW_UNVERIFIED || !(c.source && c.source.indexOf('cthai:') === 0); }
 
 // --- Get all categories ---
 function getCategories() {
@@ -52,7 +52,7 @@ function buildLessonTabs() {
   tabs.push({ key: 'youtube', label: 'YouTube' });
   tabs.push({ key: 'dificiles', label: '★ Difíciles (' + difficult.size + ')' });
   if (typeof SHOW_UNVERIFIED !== 'undefined' && SHOW_UNVERIFIED) {
-    var cthaiCount = (DATA.conversations || []).filter(function(c) { return c.verified === false; }).length;
+    var cthaiCount = (DATA.conversations || []).filter(function(c) { return c.source && c.source.indexOf('cthai:') === 0; }).length;
     tabs.push({ key: 'cthai', label: '🎬 C.Thai (' + cthaiCount + ')' });
   }
 
@@ -280,7 +280,7 @@ function buildDeck() {
   function matchLesson(item) {
     if (youtubeOnly) return item.category === 'youtube';
     if (dificilesOnly) return true; // membership filter applied at call sites
-    if (cthaiOnly) return item.verified === false;
+    if (cthaiOnly) return !!(item.source && item.source.indexOf('cthai:') === 0);
     return !lessonNum || (item.lesson || 1) === lessonNum;
   }
   function matchCategory(item) { return cat === 'all' || item.category === cat; }
@@ -766,7 +766,7 @@ function buildScopeTabs() {
       label: 'Top 1000', sub: topN + ' palabras'
     });
   }
-  var cthaiN = (DATA.conversations || []).filter(function (c) { return c.verified === false; }).length;
+  var cthaiN = (DATA.conversations || []).filter(function (c) { return c.source && c.source.indexOf('cthai:') === 0; }).length;
   if (cthaiN > 0) {
     scopes.push({
       key: 'comprehensive', icon: '&#127916;',
@@ -839,11 +839,11 @@ function buildModeTabs() {
   } else if (activeScope === 'comprehensive') {
     allowed = { cards: true, dashboard: true, srs: true };
   } else {
-    allowed = null; // lecciones → all modes
+    // lecciones → all modes EXCEPT top1000 (top1000 is its own top-level scope,
+    // surfaced via the scope tabs, not as a sub-mode of lecciones).
+    allowed = { cards: true, dashboard: true, questions: true, shadowing: true, matrix: true, tones: true, alphabet: true, srs: true };
   }
-  var visible = allowed
-    ? MODES.filter(function (m) { return allowed[m.key]; })
-    : MODES;
+  var visible = MODES.filter(function (m) { return allowed[m.key]; });
   // If current mode is not allowed in this scope, snap to a valid one.
   if (!visible.some(function (m) { return m.key === currentMode; })) {
     var fallback = visible[0];

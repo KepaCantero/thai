@@ -28,6 +28,7 @@
 // Module owns: srsCurrent, srsHostId, srsOnExit, srsDeckKeys, SRS_STATE,
 // FSRS_SCHEDULER, FSRS_TRIED.
 
+import { isCthaiEntry } from '../../types';
 import type {
   Conversation,
   Phrase,
@@ -454,7 +455,7 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
           const convs = data.conversations as unknown as AnyCard[];
           return showUnverified
             ? convs
-            : convs.filter((c) => (c as unknown as Conversation).verified !== false);
+            : convs.filter((c) => !isCthaiEntry(c as unknown as Conversation));
         },
         idOf: (c) => {
           const conv = c as unknown as Conversation;
@@ -470,7 +471,7 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
           const data = deps.getData();
           if (!data || !data.conversations) return [];
           return data.conversations.filter(
-            (c) => (c as unknown as Conversation).verified === false,
+            (c) => isCthaiEntry(c as unknown as Conversation),
           ) as unknown as AnyCard[];
         },
         idOf: (c) => {
