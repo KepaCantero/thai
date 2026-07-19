@@ -137,6 +137,10 @@ export interface DashboardModule {
   clearDashboardHighlights(): void;
   dashPlayAll(cardIdx: number): void;
   toggleDashboard(): void;
+  /** Drill into a CT group's cards (null = back to group tiles overview). */
+  setCthaiGroup(src: string | null): void;
+  /** Inspection helper for tests. */
+  _getActiveCthaiGroup(): string | null;
 
   // Inspection helpers
   isDashboardMode(): boolean;
@@ -150,6 +154,8 @@ export interface DashboardModule {
 
 export function createDashboardModule(deps: DashboardModuleDeps): DashboardModule {
   let dashboardMode = false;
+  // CT drill-down: null = group tiles overview; '<source>' = single group view.
+  let activeCthaiGroup: string | null = null;
 
   // ----- renderDashboard (app.js L980-1005) ---------------------------------
 
@@ -188,7 +194,14 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     );
   }
 
-  // ----- renderCthaiGroups (app.js L1008-1050) ------------------------------
+  // ----- renderCthaiGroups: 2-level nav (tiles → group detail) ---------------
+
+  function cthaiLabel(src: string): string {
+    return src
+      .replace(/^cthai:/, '')
+      .replace(/^./, (c) => c.toUpperCase())
+      .replace(/_/g, ' ');
+  }
 
   function renderCthaiGroups(cards: Card[]): string {
     // Group by source, preserving first-seen order.
@@ -203,7 +216,7 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       groups[src].push({ item, idx });
     });
 
-    // Overall progress counter
+    // Overall progress counter (always visible).
     let totalDone = 0;
     cards.forEach((it) => {
       if (deps.cthaiCardDone(it)) totalDone++;
@@ -227,42 +240,73 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       '%"></div></div>' +
       '</div>';
 
-    // Each group: sort by frequency rank, render header + grid.
-    order.forEach((src) => {
-      const g = groups[src];
-      g.sort((a, b) => deps.cthaiCardFreqRank(a.item) - deps.cthaiCardFreqRank(b.item));
-      let gDone = 0;
-      g.forEach((x) => {
-        if (deps.cthaiCardDone(x.item)) gDone++;
+    if (activeCthaiGroup === null) {
+      // Overview: grid of group tiles. Cheap to render (one tile per source).
+      html += '<div class="cthai-groups-grid">';
+      order.forEach((src) => {
+        const g = groups[src];
+        let gDone = 0;
+        g.forEach((x) => {
+          if (deps.cthaiCardDone(x.item)) gDone++;
+        });
+        const gComplete = g.length > 0 && gDone === g.length;
+        const gPct = g.length ? Math.round((100 * gDone) / g.length) : 0;
+        // Escape single quotes in src for the inline onclick attribute.
+        const safeSrc = src.replace(/'/g, "\\'");
+        html +=
+          '<div class="cthai-group-tile' +
+          (gComplete ? ' cthai-group-done' : '') +
+          '" onclick="setCthaiGroup(\'' +
+          safeSrc +
+          '\')">' +
+          '<div class="cthai-group-tile-title">' +
+          cthaiLabel(src) +
+          '</div>' +
+          '<div class="cthai-group-tile-count">' +
+          gDone +
+          '/' +
+          g.length +
+          '</div>' +
+          '<div class="cthai-group-tile-bar"><div style="width:' +
+          gPct +
+          '%"></div></div>' +
+          '</div>';
       });
-      const gComplete = gDone === g.length;
-      const label = src
-        .replace(/^cthai:/, '')
-        .replace(/^./, (c) => c.toUpperCase())
-        .replace(/_/g, ' ');
-      html +=
-        '<div class="cthai-group' +
-        (gComplete ? ' cthai-group-done' : '') +
-        '"' +
-        (gComplete ? '' : ' data-collapsed="false"') +
-        '>' +
-        '<div class="cthai-group-header">' +
-        '<span class="cthai-group-title">' +
-        label +
-        '</span>' +
-        '<span class="cthai-group-count">' +
-        gDone +
-        '/' +
-        g.length +
-        '</span>' +
-        '</div>' +
-        '<div class="cthai-group-grid">' +
-        g.map((x) => renderDashConversation(x.item, x.idx)).join('') +
-        '</div>' +
-        '</div>';
-    });
+      html += '</div>';
+      return html;
+    }
 
+    // Drill-down: header (back + label + count) + the group's cards only.
+    const g = groups[activeCthaiGroup] || [];
+    g.sort((a, b) => deps.cthaiCardFreqRank(a.item) - deps.cthaiCardFreqRank(b.item));
+    let gDone = 0;
+    g.forEach((x) => {
+      if (deps.cthaiCardDone(x.item)) gDone++;
+    });
+    const gComplete = g.length > 0 && gDone === g.length;
+    html +=
+      '<div class="cthai-group-back" onclick="setCthaiGroup(null)">← Todos los grupos</div>' +
+      '<div class="cthai-group-detail' +
+      (gComplete ? ' cthai-group-done' : '') +
+      '">' +
+      '<span class="cthai-group-title">' +
+      cthaiLabel(activeCthaiGroup) +
+      '</span>' +
+      '<span class="cthai-group-count">' +
+      gDone +
+      '/' +
+      g.length +
+      '</span>' +
+      '</div>' +
+      '<div class="cthai-group-grid">' +
+      g.map((x) => renderDashConversation(x.item, x.idx)).join('') +
+      '</div>';
     return html;
+  }
+
+  function setCthaiGroup(src: string | null): void {
+    activeCthaiGroup = src;
+    renderDashboard();
   }
 
   // ----- renderDashWordPhrase (app.js L1052-1072) ----------------------------
@@ -641,9 +685,11 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     clearDashboardHighlights,
     dashPlayAll,
     toggleDashboard,
+    setCthaiGroup,
     isDashboardMode: () => dashboardMode,
     _setDashboardMode: (v: boolean) => {
       dashboardMode = v;
     },
+    _getActiveCthaiGroup: () => activeCthaiGroup,
   };
 }

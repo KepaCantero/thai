@@ -234,7 +234,17 @@ describe('DashboardModule', () => {
     mod.renderDashboard();
     expect(calls.display).toBe('block');
     expect(calls.html).toContain('cthai-progress');
-    expect(calls.html).toContain('cthai-only');
+    // Overview shows group tiles, not inline cards.
+    expect(calls.html).toContain('cthai-groups-grid');
+    expect(calls.html).toContain('cthai-group-tile');
+    // Drilling into a group renders the actual cards.
+    mod.setCthaiGroup('otros');
+    expect(calls.html).toContain('cthai-group-grid');
+    expect(mod._getActiveCthaiGroup()).toBe('otros');
+    // Back button returns to overview.
+    mod.setCthaiGroup(null);
+    expect(calls.html).toContain('cthai-groups-grid');
+    expect(mod._getActiveCthaiGroup()).toBeNull();
   });
 
   it('dashPlayAll advances through cards and finalizes progress text', () => {
