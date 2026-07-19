@@ -613,7 +613,16 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
     });
 
     dueReviews.sort((a, b) => (a.cardState!.due - b.cardState!.due));
-    const newToday = newCards.slice(0, SRS_NEW_PER_DAY);
+    // New cards: easiest first. For Top1000 decks, `rank` is the word's
+    // frequency rank (1 = most frequent = easiest). Lower rank sorts first.
+    // Cards without `rank` (lesson / CT decks) keep their deck order via the
+    // stable sort fallback (Infinity).
+    const rankOf = (c: AnyCard): number =>
+      typeof (c as unknown as { rank?: number }).rank === 'number'
+        ? (c as unknown as { rank: number }).rank
+        : Infinity;
+    const rankedNew = [...newCards].sort((a, b) => rankOf(a) - rankOf(b));
+    const newToday = rankedNew.slice(0, SRS_NEW_PER_DAY);
 
     const queue: SrsSessionItem[] = [];
     learning.forEach((item) =>
