@@ -19,3 +19,12 @@ export type { AudioItem, AudioItemConversation, AudioItemPair, AudioItemWord } f
 export { createAudioWiring } from './wiring';
 export type { AudioWiring } from './wiring';
 export { wireLegacyAudio } from './legacyBridge';
+
+// Solo Leveling Phase 6: Web Audio SFX synthesis.
+export {
+  __resetSfxForTests,
+  isSfxEnabled,
+  playSfx,
+  setSfxEnabled,
+} from './sfx';
+export type { SfxName } from './sfx';

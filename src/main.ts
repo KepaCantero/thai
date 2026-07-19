@@ -22,7 +22,13 @@ import { wireLegacyDashboard } from './core/modes/dashboard/legacyBridge';
 import { wireLegacyAudio } from './core/audio/legacyBridge';
 import { wireLegacyFormat } from './core/format/legacyBridge';
 import { wireLegacyRender } from './core/render/legacyBridge';
-import { installStateBridge } from './core/state';
+import { wireSlHud, wireSlLevelUpModal, wireSlNotifications, wireSlQuests, wireSlStatusWindow } from './core/render';
+import {
+  installStateBridge,
+  wirePlayerEngine,
+  wireQuestEngine,
+  wireTitleEngine,
+} from './core/state';
 
 if (typeof document !== 'undefined') {
   const boot = async () => {
@@ -35,6 +41,32 @@ if (typeof document !== 'undefined') {
       installStateBridge();
     } catch (e) {
       console.error('[state] bridge install failed:', e);
+    }
+
+    // Solo Leveling Phase 1: subscribe the XP engine to the event bus before
+    // any mode boots, so the very first user action gets rewarded. Runs in
+    // its own try/catch so a store failure never blocks the rest of boot.
+    try {
+      wirePlayerEngine();
+    } catch (e) {
+      console.error('[player] engine wiring failed:', e);
+    }
+
+    // Solo Leveling Phase 5: subscribe the quest engine so the first user
+    // action of the day starts populating the daily window.
+    try {
+      wireQuestEngine();
+    } catch (e) {
+      console.error('[quests] engine wiring failed:', e);
+    }
+
+    // Solo Leveling Phase 7: subscribe the title engine so the first
+    // qualifying event unlocks the corresponding title (and emits the
+    // toast event Fase 6 listens to).
+    try {
+      wireTitleEngine();
+    } catch (e) {
+      console.error('[titles] engine wiring failed:', e);
     }
 
     // Phase 2: fetch the four data JSON bundles (app, top1000, top1000
@@ -74,6 +106,21 @@ if (typeof document !== 'undefined') {
     wire('shadowing', wireLegacyShadowing);
     wire('srs', wireLegacySrs);
     wire('dashboard', wireLegacyDashboard);
+    // Solo Leveling Phase 2: mount the HUD after the player engine is
+    // wired (above) so the first render reflects persisted state, and
+    // before 'thai-data-ready' so the legacy UI sees it in place.
+    wire('sl-hud', wireSlHud);
+    // Solo Leveling Phase 4: Status Window overlay. Mounts AFTER the HUD so
+    // #sl-hud exists when slStatusWindow attaches its click-delegation.
+    wire('sl-window', wireSlStatusWindow);
+    // Solo Leveling Phase 5: Daily Quests floating panel. Mounts after the
+    // other overlays so its z-index sits below the status window.
+    wire('sl-quests', wireSlQuests);
+    // Solo Leveling Phase 6: SFX synthesis (no-op wiring — AudioContext lazy),
+    // floating notifications, and rank-up modal.
+    wire('sfx', () => { /* nothing to wire; store-loaded */ });
+    wire('sl-notifications', wireSlNotifications);
+    wire('sl-levelup', wireSlLevelUpModal);
 
     // Dispatch 'thai-data-ready' AFTER all bridges have wired so the
     // legacy init listener in app.js can safely call setScope → setMode →
