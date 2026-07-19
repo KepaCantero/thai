@@ -94,6 +94,7 @@ export function wireLegacySrs(): SrsModule {
     getTop1000Structures: () => w.TOP1000_STRUCTURES,
     getTop1000Phrases: () => w.TOP1000_PHRASES,
     getShowUnverified: () => !!w.SHOW_UNVERIFIED,
+    getActiveScope: () => (typeof w.activeScope === 'string' ? w.activeScope : 'lecciones'),
     getFsrs: () => w.FSRS as FsrsLibrary | undefined,
     speakText: (text) => {
       if (typeof w.speakText === 'function') w.speakText(text);

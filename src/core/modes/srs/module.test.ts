@@ -593,3 +593,38 @@ describe('SrsModule · previewIntervals', () => {
     vi.useRealTimers();
   });
 });
+
+// ---------------------------------------------------------------------------
+// Smoke test for mountSrsInline / unmountSrsInline.
+//
+// Note: the real mountSrsInline signature is (hostId: string, onExit, deckKeys)
+// — it does NOT take a DOM element and does NOT append children directly.
+// Instead it records the host id and delegates DOM writes to deps.dom
+// (addHostClass / removeHostClassFromCurrent). The test environment is node
+// (vitest.config.ts) and jsdom is not installed, so we assert against spy
+// dom callbacks rather than against a real host element's childNodes. This
+// still gives the regression guarantee: the inline-mount entry point can be
+// invoked with a minimal deps bag without throwing, and it routes through the
+// typed SrsDom abstraction the dashboard relies on.
+// ---------------------------------------------------------------------------
+
+describe('SrsModule · mountSrsInline smoke', () => {
+  it('mountSrsInline + unmountSrsInline round-trip without throwing and route through SrsDom', () => {
+    const addHostClass = vi.fn();
+    const removeHostClassFromCurrent = vi.fn();
+    const dom: SrsDom = {
+      ...makeInfra().dom,
+      addHostClass,
+      removeHostClassFromCurrent,
+    };
+    const mod = createSrsModule(makeDeps({ dom }));
+
+    // Mount: must not throw, and must tag the host via deps.dom.addHostClass.
+    expect(() => mod.mountSrsInline('srsView', null, null)).not.toThrow();
+    expect(addHostClass).toHaveBeenCalledWith('srs-host');
+
+    // Unmount: must clear the class via deps.dom and also not throw.
+    expect(() => mod.unmountSrsInline()).not.toThrow();
+    expect(removeHostClassFromCurrent).toHaveBeenCalledWith('srs-host');
+  });
+});

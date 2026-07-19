@@ -107,7 +107,8 @@ export type SrsDeckKind =
   | 'phrase'
   | 'lesson-word'
   | 'lesson-phrase'
-  | 'lesson-question';
+  | 'lesson-question'
+  | 'cthai-question';
 
 export type SrsDeckKey =
   | 'palabras'
@@ -294,6 +295,8 @@ export interface SrsModuleDeps {
   getTop1000Phrases(): Top1000PhraseSegment[] | undefined;
   /** Returns the SHOW_UNVERIFIED flag (whether unverified Q&A is visible). */
   getShowUnverified(): boolean;
+  /** Returns the active scope ('lecciones' | 'top1000' | 'comprehensive'). */
+  getActiveScope?(): string;
   /** Lazy FSRS library accessor (window.FSRS). May return null/undefined. */
   getFsrs(): FsrsLibrary | undefined;
   /** speakText from audio.js. */
@@ -459,6 +462,23 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
         },
         kind: 'lesson-question',
       },
+      cthai: {
+        key: 'cthai',
+        label: 'Comprehensible Thai',
+        icon: '🎬',
+        source: () => {
+          const data = deps.getData();
+          if (!data || !data.conversations) return [];
+          return data.conversations.filter(
+            (c) => (c as unknown as Conversation).verified === false,
+          ) as unknown as AnyCard[];
+        },
+        idOf: (c) => {
+          const conv = c as unknown as Conversation;
+          return (conv.q_thai || '') + '||' + (conv.a_thai || '');
+        },
+        kind: 'lesson-question',
+      },
     };
   }
 
@@ -476,6 +496,7 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
       'lec-palabras': {},
       'lec-frases': {},
       'lec-preguntas': {},
+      cthai: {},
     };
   }
 
@@ -920,11 +941,10 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
   // ----- top-level render (from srs-ui.js L56-115) -------------------------
 
   function renderSrsView(): void {
-    mountSrsInline('srsView', null, [
-      'lec-palabras',
-      'lec-frases',
-      'lec-preguntas',
-    ]);
+    // In comprehensive scope, SRS only offers the CT (verified===false) deck.
+    const scope = deps.getActiveScope?.() ?? 'lecciones';
+    const deckKeys = scope === 'comprehensive' ? ['cthai'] : ['lec-palabras', 'lec-frases', 'lec-preguntas'];
+    mountSrsInline('srsView', null, deckKeys);
     const view = deps.dom.getById('srsView');
     if (!view) return;
     view.innerHTML = renderDeckPicker();
