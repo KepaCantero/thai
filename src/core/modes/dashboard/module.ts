@@ -87,6 +87,8 @@ export interface DashboardModuleDeps {
   cthaiCardDone(item: Card): boolean;
   /** cthaiCountPlays(item, 'q'|'a'): clamped play counter. */
   cthaiCountPlays(item: Card, which: 'q' | 'a'): number;
+  /** bumpCthaiPlay(item, 'q'|'a'): increment counter (writes to typed store). */
+  bumpCthaiPlay(item: Card, which: 'q' | 'a'): void;
   /** cthaiCardFreqRank(item): min frequency rank across Q+A thai text. */
   cthaiCardFreqRank(item: Card): number;
   /** CTHAI_THRESHOLD constant (10). */
@@ -131,6 +133,7 @@ export interface DashboardModule {
   renderDashConversation(item: Card, i: number): string;
   renderDashPair(item: Card, i: number): string;
   dashCardClick(el: HTMLElement, i: number): void;
+  playConvAudio(i: number, which: 'q' | 'a'): void;
   clearDashboardHighlights(): void;
   dashPlayAll(cardIdx: number): void;
   toggleDashboard(): void;
@@ -542,6 +545,36 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     deps.speakText(deps.getAudioText(deckRef[i]));
   }
 
+  // ----- playConvAudio (app.js L1144-1167) -----------------------------------
+  // Plays just the Q or just the A from a conversation dashboard card.
+  // Triggered by the 🔊 buttons emitted in renderDashConversation above
+  // (the data-stopPropagation + onclick="playConvAudio(...)").
+
+  function playConvAudio(i: number, which: 'q' | 'a'): void {
+    const deck = deps.getDeck();
+    const item = deck[i];
+    if (!item) return;
+    if (!deps.hasSpeakText()) return;
+    deps.stopCurrentAudio();
+    const text = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
+    if (text) {
+      if (item.verified === false) {
+        deps.bumpCthaiPlay(item, which);
+      }
+      deps.speakText(text);
+    }
+    if (item.verified === false && deps.getActiveLesson() === 'cthai') {
+      const btn = document.activeElement as HTMLElement | null;
+      renderDashboard();
+      if (btn && btn.classList.contains('dc-play-btn')) {
+        const restored = document.querySelector<HTMLElement>(
+          '.dash-card[data-idx="' + i + '"] .dc-play-btn[data-which="' + which + '"]',
+        );
+        if (restored) restored.focus();
+      }
+    }
+  }
+
   // ----- clearDashboardHighlights (app.js L1370-1372) ------------------------
 
   function clearDashboardHighlights(): void {
@@ -604,6 +637,7 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     renderDashConversation,
     renderDashPair,
     dashCardClick,
+    playConvAudio,
     clearDashboardHighlights,
     dashPlayAll,
     toggleDashboard,

@@ -122,6 +122,7 @@ function makeDeps(dom: DashboardDom, deck: Card[]): DashboardModuleDeps {
     hasSpeakText: () => true,
     cthaiCardDone: () => false,
     cthaiCountPlays: () => 0,
+    bumpCthaiPlay: () => {},
     cthaiCardFreqRank: () => 9999,
     getCthaiThreshold: () => 10,
     playAudioItem: (_item, onDone) => {

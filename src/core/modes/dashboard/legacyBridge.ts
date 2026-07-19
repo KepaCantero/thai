@@ -84,6 +84,9 @@ export function wireLegacyDashboard(): DashboardModule {
       typeof w.cthaiCardDone === 'function' ? !!w.cthaiCardDone(item) : false,
     cthaiCountPlays: (item, which) =>
       typeof w.cthaiCountPlays === 'function' ? w.cthaiCountPlays(item, which) : 0,
+    bumpCthaiPlay: (item, which) => {
+      if (typeof w.bumpCthaiPlay === 'function') w.bumpCthaiPlay(item, which);
+    },
     cthaiCardFreqRank: (item) =>
       typeof w.cthaiCardFreqRank === 'function' ? w.cthaiCardFreqRank(item) : 9999,
     getCthaiThreshold: () =>
@@ -158,6 +161,7 @@ export function wireLegacyDashboard(): DashboardModule {
   w.dashCardClick = dashboardModule.dashCardClick;
   w.clearDashboardHighlights = dashboardModule.clearDashboardHighlights;
   w.dashPlayAll = dashboardModule.dashPlayAll;
+  w.playConvAudio = dashboardModule.playConvAudio;
   w.toggleDashboard = dashboardModule.toggleDashboard;
 
   // Expose dashboardMode as a getter/setter on window so legacy bare-

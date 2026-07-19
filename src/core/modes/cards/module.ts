@@ -179,6 +179,7 @@ export interface CardsModule {
   cthaiPlaysOf(id: string): { q: number; a: number };
   cthaiCardDone(item: Conversation): boolean;
   cthaiCountPlays(item: Conversation, which: 'q' | 'a'): number;
+  bumpCthaiPlay(item: Conversation, which: 'q' | 'a'): void;
   cthaiCardFreqRank(item: Conversation): number;
   // PR2 — rendering
   showCard(): void;
@@ -576,6 +577,15 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
 
   function cthaiCountPlays(item: Conversation, which: 'q' | 'a'): number {
     return Math.min(cthaiPlaysOf(cthaiCardId(item))[which] || 0, CTHAI_THRESHOLD);
+  }
+
+  function bumpCthaiPlay(item: Conversation, which: 'q' | 'a'): void {
+    const id = cthaiCardId(item);
+    cthaiPlaysStore.update((current) => {
+      const entry = current[id] || { q: 0, a: 0 };
+      entry[which] = (entry[which] || 0) + 1;
+      return { ...current, [id]: entry };
+    });
   }
 
   function cthaiCardFreqRank(item: Conversation): number {
@@ -1059,6 +1069,7 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
     cthaiPlaysOf,
     cthaiCardDone,
     cthaiCountPlays,
+    bumpCthaiPlay,
     cthaiCardFreqRank,
     // PR2 — rendering
     showCard,

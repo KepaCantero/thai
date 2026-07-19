@@ -260,6 +260,7 @@ export function wireLegacyCards(): CardsModule {
   w.cthaiPlaysOf = cardsModule.cthaiPlaysOf;
   w.cthaiCardDone = cardsModule.cthaiCardDone;
   w.cthaiCountPlays = cardsModule.cthaiCountPlays;
+  w.bumpCthaiPlay = cardsModule.bumpCthaiPlay;
   w.cthaiCardFreqRank = cardsModule.cthaiCardFreqRank;
   w.getThaiFreqMap = cardsModule.getThaiFreqMap;
 

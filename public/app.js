@@ -940,50 +940,11 @@ function setMode(mode) {
 // playConvAudio (emitted as onclick by dashboard/module.ts) still writes
 // play counts to localStorage via these legacy vars — kept here until that
 // handler is migrated too.
-var CTHAI_PLAY_KEY = 'thai_cthai_plays_v1';
-var cthaiPlays = loadCthaiPlays();
-
-function loadCthaiPlays() {
-  try { return JSON.parse(localStorage.getItem(CTHAI_PLAY_KEY) || '{}') || {}; }
-  catch (e) { return {}; }
-}
-function saveCthaiPlays() {
-  try { localStorage.setItem(CTHAI_PLAY_KEY, JSON.stringify(cthaiPlays)); } catch (e) {}
-}
-
-// --- Dashboard Mode (extracted to src/core/modes/dashboard; legacy globals wired from main.ts) ---
-// Legacy dashboard code (renderDashboard, renderCthaiGroups, renderDashWordPhrase,
-// renderDashConversation) removed. Bridge overrides window.* so legacy callers
-// (setMode, rebuild, inline onclick dashCardClick/playConvAudio) resolve to
-// the typed module implementation.
-
-// Play just the Q or just the A from a conversation dashboard card.
-// Triggered by the 🔊 buttons in cthai cards; stopPropagation prevents any
-// parent handler from firing.
-function playConvAudio(i, which) {
-  var item = deck[i];
-  if (!item || typeof speakText !== 'function') return;
-  if (typeof stopCurrentAudio === 'function') stopCurrentAudio();
-  var txt = which === 'q' ? (item.q_thai || '') : (item.a_thai || '');
-  if (txt) {
-    if (item.verified === false) {
-      var id = cthaiCardId(item);
-      cthaiPlays[id] = cthaiPlays[id] || { q: 0, a: 0 };
-      cthaiPlays[id][which] = (cthaiPlays[id][which] || 0) + 1;
-      saveCthaiPlays();
-    }
-    speakText(txt);
-  }
-  if (item.verified === false && activeLesson === 'cthai') {
-    // Re-render so colors/counters update; focus the button that was clicked.
-    var btn = document.activeElement;
-    renderDashboard();
-    if (btn && btn.classList.contains('dc-play-btn')) {
-      var restored = document.querySelector('.dash-card[data-idx="' + i + '"] .dc-play-btn[data-which="' + which + '"]');
-      if (restored) restored.focus();
-    }
-  }
-}
+// cthai play-count state (was CTHAI_PLAY_KEY, cthaiPlays, loadCthaiPlays,
+// saveCthaiPlays) now owned by src/core/persistence/stores.ts:cthaiPlaysStore
+// and surfaced via src/core/modes/cards bridge as w.bumpCthaiPlay /
+// w.cthaiCountPlays. playConvAudio itself is ported to the typed dashboard
+// module and exposed as w.playConvAudio.
 
 // (Legacy renderDashPair, dashCardClick, clearDashboardHighlights, dashPlayAll,
 // dashRepeat removed — all overridden by src/core/modes/dashboard bridge.)
