@@ -29,6 +29,7 @@
 // CTHAI_THRESHOLD) is also injected because it lives in the cards module.
 
 import type { Card } from '../../types';
+import { gameBus } from '../../state/events';
 
 // ---------------------------------------------------------------------------
 // Dependency injection
@@ -204,16 +205,26 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
   }
 
   function renderCthaiGroups(cards: Card[]): string {
-    // Group by source, preserving first-seen order.
+    // Group by category (21 categories: preguntas, colores, numeros, etc).
+    // Compute total freqRank per group to sort tiles easiest → hardest.
     const order: string[] = [];
     const groups: Record<string, { item: Card; idx: number }[]> = {};
+    const groupFreqSum: Record<string, number> = {};
     cards.forEach((item, idx) => {
-      const src = (item as { source?: string }).source || 'otros';
-      if (!groups[src]) {
-        groups[src] = [];
-        order.push(src);
+      const cat = (item as { category?: string }).category || 'otros';
+      if (!groups[cat]) {
+        groups[cat] = [];
+        groupFreqSum[cat] = 0;
+        order.push(cat);
       }
-      groups[src].push({ item, idx });
+      groups[cat].push({ item, idx });
+      groupFreqSum[cat] += deps.cthaiCardFreqRank(item);
+    });
+    // Sort tiles easiest → hardest (lower avg freqRank = more frequent = easier).
+    order.sort((a, b) => {
+      const avgA = groups[a].length ? groupFreqSum[a] / groups[a].length : 9999;
+      const avgB = groups[b].length ? groupFreqSum[b] / groups[b].length : 9999;
+      return avgA - avgB;
     });
 
     // Overall progress counter (always visible).
@@ -229,10 +240,10 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       totalDone +
       '/' +
       cards.length +
-      '</b> tarjetas completadas ' +
+      '</b> cards completed ' +
       '<span class="cthai-progress-sub">(≥' +
       threshold +
-      ' Q y ≥' +
+      ' Q and ≥' +
       threshold +
       ' A)</span></div>' +
       '<div class="cthai-progress-bar"><div style="width:' +
@@ -241,26 +252,31 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       '</div>';
 
     if (activeCthaiGroup === null) {
-      // Overview: grid of group tiles. Cheap to render (one tile per source).
+      // Overview: grid of category tiles, sorted easiest → hardest.
       html += '<div class="cthai-groups-grid">';
-      order.forEach((src) => {
-        const g = groups[src];
+      order.forEach((cat, i) => {
+        const g = groups[cat];
         let gDone = 0;
         g.forEach((x) => {
           if (deps.cthaiCardDone(x.item)) gDone++;
         });
         const gComplete = g.length > 0 && gDone === g.length;
         const gPct = g.length ? Math.round((100 * gDone) / g.length) : 0;
-        // Escape single quotes in src for the inline onclick attribute.
-        const safeSrc = src.replace(/'/g, "\\'");
+        // Per-category accent color via HSL hash. Hue rotates across categories;
+        // done tiles still get the green override via the cthai-group-done class.
+        const hue = (i * 47) % 360;
+        const accent = 'hsl(' + hue + ', 65%, 55%)';
+        const accentSoft = 'hsl(' + hue + ', 65%, 22%)';
+        const safeCat = cat.replace(/'/g, "\\'");
         html +=
           '<div class="cthai-group-tile' +
           (gComplete ? ' cthai-group-done' : '') +
-          '" onclick="setCthaiGroup(\'' +
-          safeSrc +
+          '" style="--accent:' + accent + ';--accent-soft:' + accentSoft + '"' +
+          ' onclick="setCthaiGroup(\'' +
+          safeCat +
           '\')">' +
           '<div class="cthai-group-tile-title">' +
-          cthaiLabel(src) +
+          cat +
           '</div>' +
           '<div class="cthai-group-tile-count">' +
           gDone +
@@ -285,12 +301,12 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     });
     const gComplete = g.length > 0 && gDone === g.length;
     html +=
-      '<div class="cthai-group-back" onclick="setCthaiGroup(null)">← Todos los grupos</div>' +
+      '<div class="cthai-group-back" onclick="setCthaiGroup(null)">← All groups</div>' +
       '<div class="cthai-group-detail' +
       (gComplete ? ' cthai-group-done' : '') +
       '">' +
       '<span class="cthai-group-title">' +
-      cthaiLabel(activeCthaiGroup) +
+      activeCthaiGroup +
       '</span>' +
       '<span class="cthai-group-count">' +
       gDone +
@@ -552,6 +568,9 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     if (text) {
       deps.bumpCthaiPlay(item, which);
       deps.speakText(text);
+      const src = ((item as unknown as { source?: string }).source) || 'nosrc';
+      const entryId = src + '||' + (item.q_thai || '') + '||' + (item.a_thai || '');
+      gameBus.emit({ type: 'conv:play', source: src, entryId });
     }
     // Re-render so the counter updates. Focus restoration keeps the
     // clicked button accessible for keyboard users after re-render.
