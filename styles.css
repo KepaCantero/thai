@@ -2777,3 +2777,31 @@ body.sl-levelup-open .sl-levelup-modal {
     animation: none !important;
   }
 }
+
+/* === CT dashboard: level sections ============================================
+   Overview groups sources into 4 level sections (A1→B2), easiest first. */
+
+.cthai-level { margin-bottom: 24px; }
+.cthai-level-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 4px;
+}
+.cthai-level-label { display: flex; align-items: center; gap: 8px; }
+.cthai-level-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em;
+  background: rgba(129,140,248,0.15); color: var(--text);
+}
+.cthai-level-tag-A1 { background: rgba(95,200,120,0.20); color: #5fc878; }
+.cthai-level-tag-A2 { background: rgba(96,165,250,0.20); color: #60a5fa; }
+.cthai-level-tag-B1 { background: rgba(167,139,250,0.22); color: #a78bfa; }
+.cthai-level-tag-B2 { background: rgba(248,113,113,0.22); color: #f87171; }
+.cthai-level-title { font-weight: 600; font-size: 0.95rem; }
+.cthai-level-meta {
+  font-size: 0.75rem; color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.cthai-level-hint {
+  font-size: 0.72rem; color: var(--text-muted);
+  margin: 0 0 8px 0;
+}

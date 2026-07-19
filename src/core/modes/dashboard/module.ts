@@ -31,14 +31,11 @@
 import type { Card } from '../../types';
 import { gameBus } from '../../state/events';
 import {
-  renderCategoryTile,
+  bucketSourcesByLevel,
+  CTHAI_LEVEL_META,
   renderProgress,
   renderSourceTile,
-  sortByEasiestFirst,
-  sortSourcesByEasiestFirst,
-  groupCthaiByCategory,
   groupCthaiBySource,
-  wrapCategoryTiles,
   wrapSourceTiles,
   type CthaiGroupingDeps,
 } from './cthaiGroups';
@@ -228,13 +225,9 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       freqRank: (item) => deps.cthaiCardFreqRank(item),
     };
 
-    const categories = sortByEasiestFirst(
-      groupCthaiByCategory(cards, groupingDeps),
-    );
-
     // Overall progress counter (always visible, regardless of level).
-    const totalDone = categories.reduce(
-      (acc, g) => acc + g.done,
+    const totalDone = cards.reduce(
+      (acc, c) => acc + (deps.cthaiCardDone(c) ? 1 : 0),
       0,
     );
     const progress = renderProgress(
@@ -243,67 +236,86 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
       deps.getCthaiThreshold(),
     );
 
-    // Level 1: overview (category tiles).
-    if (activeCthaiCategory === null) {
+    // Source drill-down: cards. Falls through when user picked a source.
+    if (activeCthaiSource !== null) {
+      const allSources = groupCthaiBySource(cards, groupingDeps);
+      const source =
+        allSources.find((s) => s.source === activeCthaiSource) ?? null;
+      const sourceCards = source
+        ? [...source.cards].sort(
+            (a, b) =>
+              deps.cthaiCardFreqRank(a.item) - deps.cthaiCardFreqRank(b.item),
+          )
+        : [];
+
+      if (!sourceCards.length) {
+        return (
+          progress +
+          backBtn('setCthaiSource(null)', '← Volver a niveles') +
+          '<p style="color:#888;text-align:center;padding:40px 0">No hay clips para este source</p>'
+        );
+      }
+
       return (
         progress +
-        wrapCategoryTiles(
-          categories.map((g, i) => renderCategoryTile(g, i)),
-        )
+        backBtn('setCthaiSource(null)', '← Volver a niveles') +
+        sourceHeader(source.label, source.done, sourceCards.length) +
+        '<div class="cthai-group-grid">' +
+        sourceCards
+          .map((ref) => renderDashConversation(ref.item, ref.idx))
+          .join('') +
+        '</div>'
       );
     }
 
-    const category =
-      categories.find((g) => g.name === activeCthaiCategory) ?? null;
-    const categoryCards = category ? category.cards.map((c) => c.item) : [];
-
-    // Level 2: category drill-down (source tiles).
-    if (activeCthaiSource === null) {
-      const sources = sortSourcesByEasiestFirst(
-        groupCthaiBySource(categoryCards, groupingDeps),
-        groupingDeps.freqRank,
-      );
-      return (
-        progress +
-        backBtn('setCthaiGroup(null)', '← Todas las categorías') +
-        detailHeader(activeCthaiCategory, category?.done ?? 0, categoryCards.length) +
-        wrapSourceTiles(
-          sources.length
-            ? sources.map((s, i) => renderSourceTile(s, i))
-            : emptySourceHint(),
-        )
-      );
-    }
-
-    // Level 3: source drill-down (cards).
-    const source =
-      groupCthaiBySource(categoryCards, groupingDeps).find(
-        (s) => s.source === activeCthaiSource,
-      ) ?? null;
-    const sourceCards = source
-      ? [...source.cards].sort(
-          (a, b) =>
-            deps.cthaiCardFreqRank(a.item) - deps.cthaiCardFreqRank(b.item),
-        )
-      : [];
-
-    if (!sourceCards.length) {
-      return (
-        progress +
-        backBtn('setCthaiSource(null)', '← Volver a ' + activeCthaiCategory) +
-        '<p style="color:#888;text-align:center;padding:40px 0">No hay clips para este source</p>'
-      );
-    }
+    // Overview: 4 level sections (A1 → B2), sources sorted easiest-first inside each.
+    const allSources = groupCthaiBySource(cards, groupingDeps);
+    const levelGroups = bucketSourcesByLevel(allSources, groupingDeps.freqRank);
 
     return (
       progress +
-      backBtn('setCthaiSource(null)', '← Volver a ' + activeCthaiCategory) +
-      sourceHeader(source.label, source.done, sourceCards.length) +
-      '<div class="cthai-group-grid">' +
-      sourceCards
-        .map((ref) => renderDashConversation(ref.item, ref.idx))
-        .join('') +
-      '</div>'
+      levelGroups
+        .map((lg) => {
+          const meta = CTHAI_LEVEL_META[lg.level];
+          const sectionDone = lg.sources.reduce((acc, s) => acc + s.done, 0);
+          const sectionTotal = lg.sources.reduce(
+            (acc, s) => acc + s.cards.length,
+            0,
+          );
+          return (
+            '<section class="cthai-level">' +
+            '<header class="cthai-level-header">' +
+            '<div class="cthai-level-label">' +
+            '<span class="cthai-level-tag cthai-level-tag-' +
+            lg.level +
+            '">' +
+            lg.level +
+            '</span>' +
+            '<span class="cthai-level-title">' +
+            meta.label +
+            '</span>' +
+            '</div>' +
+            '<div class="cthai-level-meta">' +
+            sectionDone +
+            '/' +
+            sectionTotal +
+            ' · ' +
+            lg.sources.length +
+            ' clips' +
+            '</div>' +
+            '</header>' +
+            '<p class="cthai-level-hint">' +
+            meta.hint +
+            '</p>' +
+            wrapSourceTiles(
+              lg.sources.length
+                ? lg.sources.map((s, i) => renderSourceTile(s, i))
+                : emptySourceHint(),
+            ) +
+            '</section>'
+          );
+        })
+        .join('')
     );
   }
 

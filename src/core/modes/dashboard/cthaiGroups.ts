@@ -135,6 +135,59 @@ export function sortSourcesByEasiestFirst(
   return [...groups].sort((a, b) => avg(a) - avg(b));
 }
 
+// ---------------------------------------------------------------------------
+// Level bucketing — quartiles by avg freqRank. The user wants CT cards
+// grouped by difficulty the way the source videos were leveled. Freq rank
+// is the canonical signal: common words → easy (A1), rare words → hard (B2).
+// ---------------------------------------------------------------------------
+
+export type CthaiLevel = 'A1' | 'A2' | 'B1' | 'B2';
+
+export const CTHAI_LEVELS: readonly CthaiLevel[] = ['A1', 'A2', 'B1', 'B2'] as const;
+
+export interface CthaiLevelMeta {
+  level: CthaiLevel;
+  label: string;
+  hint: string;
+}
+
+export const CTHAI_LEVEL_META: Record<CthaiLevel, CthaiLevelMeta> = {
+  A1: { level: 'A1', label: 'A1 · Principiante', hint: 'Palabras frecuentes, frases cortas' },
+  A2: { level: 'A2', label: 'A2 · Básico', hint: 'Vocabulario común' },
+  B1: { level: 'B1', label: 'B1 · Intermedio', hint: 'Frases más largas' },
+  B2: { level: 'B2', label: 'B2 · Avanzado', hint: 'Vocabulario raro y marcadores formales' },
+};
+
+export interface CthaiLevelGroup {
+  level: CthaiLevel;
+  sources: CthaiSourceGroup[];
+}
+
+/**
+ * Bucket source groups into 4 difficulty levels by quartile of avg freqRank.
+ * Sources with no cards land in A1 (defensive — should not happen in
+ * practice). Returns levels in canonical A1→B2 order, easiest first.
+ */
+export function bucketSourcesByLevel(
+  groups: CthaiSourceGroup[],
+  freqRank: (item: Card) => number,
+): CthaiLevelGroup[] {
+  const sorted = sortSourcesByEasiestFirst(groups, freqRank);
+  const n = sorted.length;
+  if (n === 0) {
+    return CTHAI_LEVELS.map((level) => ({ level, sources: [] }));
+  }
+  // Quartile boundaries (clamp n<4 by collapsing levels — but with 576
+  // sources this is theoretical).
+  const q = Math.max(1, Math.floor(n / 4));
+  return [
+    { level: 'A1', sources: sorted.slice(0, q) },
+    { level: 'A2', sources: sorted.slice(q, 2 * q) },
+    { level: 'B1', sources: sorted.slice(2 * q, 3 * q) },
+    { level: 'B2', sources: sorted.slice(3 * q) },
+  ];
+}
+
 /** "cthai:foo_bar_baz" → "Foo Bar Baz". Non-destructive on unknown shapes. */
 export function cthaiSourceLabel(src: string): string {
   return src

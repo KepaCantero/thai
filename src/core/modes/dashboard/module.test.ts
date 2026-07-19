@@ -235,26 +235,17 @@ describe('DashboardModule', () => {
     mod.renderDashboard();
     expect(calls.display).toBe('block');
     expect(calls.html).toContain('cthai-progress');
-    // Level 1: overview shows category tiles.
-    expect(calls.html).toContain('cthai-groups-grid');
-    expect(calls.html).toContain('cthai-group-tile');
-    // Level 2: drilling into a category shows source tiles (not cards).
-    mod.setCthaiGroup('comida');
-    expect(calls.html).toContain('cthai-sources-grid');
+    // Overview: 4 level sections (A1 → B2), source tiles inside each.
+    expect(calls.html).toContain('cthai-level');
+    expect(calls.html).toContain('cthai-level-tag-A1');
     expect(calls.html).toContain('cthai-source-tile');
-    expect(mod._getActiveCthaiGroup()).toBe('comida');
-    expect(mod._getActiveCthaiSource()).toBeNull();
-    // Level 3: drilling into a source renders the cards.
+    // Drilling into a source renders the cards.
     mod.setCthaiSource('cthai:market_directions');
     expect(calls.html).toContain('cthai-group-grid');
     expect(mod._getActiveCthaiSource()).toBe('cthai:market_directions');
-    // Back to source list.
-    mod.setCthaiSource(null);
-    expect(calls.html).toContain('cthai-sources-grid');
     // Back to overview.
-    mod.setCthaiGroup(null);
-    expect(calls.html).toContain('cthai-groups-grid');
-    expect(mod._getActiveCthaiGroup()).toBeNull();
+    mod.setCthaiSource(null);
+    expect(calls.html).toContain('cthai-level');
   });
 
   it('dashPlayAll advances through cards and finalizes progress text', () => {
