@@ -19,6 +19,9 @@ vi.mock('../../persistence/stores', () => ({
   cthaiPlaysStore: {
     get: () => cthaiPlaysState,
     set: (v: typeof cthaiPlaysState) => { cthaiPlaysState = v; },
+    update: (fn: (cur: typeof cthaiPlaysState) => typeof cthaiPlaysState) => {
+      cthaiPlaysState = fn(cthaiPlaysState);
+    },
   },
   difficultStore: {
     get: () => difficultState,
@@ -258,6 +261,33 @@ describe('createCardsModule — buildDeck', () => {
     expect((ct[0] as unknown as { verified?: boolean }).verified).toBe(false);
   });
 
+  it('cthai: regression — verified===false CT cards appear even when SHOW_UNVERIFIED is false', () => {
+    // Regression for the filter-ordering bug at module.ts:~404. Before the
+    // fix, isVerifiedEntry(c) ran BEFORE matchLesson(c, lf) — so when
+    // SHOW_UNVERIFIED was false, all CT cards (verified===false by design)
+    // were silently dropped from the cthai deck. The existing cthai case in
+    // the test above slipped through because makeModule defaults
+    // getShowUnverified to true; this test pins the dangerous default-off
+    // path. If isVerifiedEntry is ever re-ordered before matchLesson again,
+    // the deck here would be empty and the assertion would fail.
+    const m = makeModule({ getShowUnverified: () => false });
+    setActiveLesson('cthai');
+    const ct = m.buildDeck();
+    // Deck is non-empty…
+    expect(ct.length).toBeGreaterThan(0);
+    // …and every entry is a verified===false conversation (CT contract).
+    expect(
+      ct.every(
+        (c) =>
+          c.type === 'conversation' &&
+          (c as unknown as { verified?: boolean }).verified === false,
+      ),
+    ).toBe(true);
+  });
+});
+
+describe('createCardsModule — buildQuestionsDeck', () => {
+
   it('tone filter "tone:m" matches split tones like "m-l"', () => {
     const m = makeModule();
     setActiveCategory('tone:m');
@@ -362,6 +392,38 @@ describe('createCardsModule — cthai helpers', () => {
     const id2 = m.cthaiCardId(item);
     expect(id1).toBe(id2);
     expect(id1.startsWith('yt-ABC||')).toBe(true);
+  });
+
+  it('bumpCthaiPlay round-trips through cthaiPlaysStore so cthaiCardDone flips true (regression for 1a60430)', () => {
+    // Regression for commit 1a60430: legacy app.js used to write to an
+    // in-memory `cthaiPlays` map while the typed cards module read from
+    // `cthaiPlaysStore` — two separate stores, so plays silently
+    // disappeared and cthaiCardDone never flipped. This test pins the
+    // contract: bumpCthaiPlay MUST write through cthaiPlaysStore (the same
+    // store cthaiCardDone reads), and reaching the threshold on both Q and
+    // A sides MUST mark the card done. An item below the threshold on
+    // either side MUST stay undone.
+    const m = makeModule();
+    const item = makeData().conversations[1] as Conversation;
+
+    // 9 bumps on Q: below threshold, not done.
+    for (let i = 0; i < 9; i++) m.bumpCthaiPlay(item, 'q');
+    expect(m.cthaiCountPlays(item, 'q')).toBe(9);
+    expect(m.cthaiCardDone(item)).toBe(false);
+
+    // 10th Q bump reaches threshold on Q, but A is still 0 → not done.
+    m.bumpCthaiPlay(item, 'q');
+    expect(m.cthaiCountPlays(item, 'q')).toBe(10);
+    expect(m.cthaiCardDone(item)).toBe(false);
+
+    // 10 A bumps complete the contract → done.
+    for (let i = 0; i < 10; i++) m.bumpCthaiPlay(item, 'a');
+    expect(m.cthaiCountPlays(item, 'a')).toBe(10);
+    expect(m.cthaiCardDone(item)).toBe(true);
+
+    // Sanity: a different item with zero plays is not done.
+    const other = { ...item, q_thai: 'other-q', a_thai: 'other-a' } as Conversation;
+    expect(m.cthaiCardDone(other)).toBe(false);
   });
 });
 

@@ -403,10 +403,17 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
       const deletedKeys = deps.getDeletedQaKeys();
       data.conversations
         .filter((c) => {
-          if (!isVerifiedEntry(c)) return false;
+          // matchLesson first: in lf.cthaiOnly mode it targets verified===false
+          // entries, which isVerifiedEntry would otherwise filter out when
+          // SHOW_UNVERIFIED is false. CT cards are verified===false by design.
+          if (!matchLesson(c, lf)) return false;
+          if (lf.cthaiOnly) {
+            // CT cards are verified===false by design; skip isVerifiedEntry.
+          } else {
+            if (!isVerifiedEntry(c)) return false;
+          }
           const dkey = (c.q_thai || '') + '||' + (c.a_thai || '');
           if (deletedKeys.has(dkey)) return false;
-          if (!matchLesson(c, lf)) return false;
           if (!matchSearch(c as unknown as Record<string, unknown>)) return false;
           if (isTone) return matchTone(c.q_tone, tone) || matchTone(c.a_tone, tone);
           return matchCategory(c, cat);
