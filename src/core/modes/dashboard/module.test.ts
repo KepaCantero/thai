@@ -50,10 +50,11 @@ const CONV: Card = {
   lesson: 1,
 };
 
-const CTHAI: Card = {
+const CTHAI = {
   type: 'conversation',
   thai: '',
   verified: false,
+  source: 'cthai:market_directions',
   q_thai: 'ไปไหน',
   q_phonetic: 'pai nai',
   q_es: 'pai nai',
@@ -68,7 +69,7 @@ const CTHAI: Card = {
   a_en: 'Market',
   category: 'comida',
   lesson: 1,
-};
+} as unknown as Card;
 
 // The declared Card.w1 type is `Thai` (string) but legacy runtime stores
 // rich objects. Build the fixture as a plain object and cast through
@@ -234,14 +235,23 @@ describe('DashboardModule', () => {
     mod.renderDashboard();
     expect(calls.display).toBe('block');
     expect(calls.html).toContain('cthai-progress');
-    // Overview shows group tiles, not inline cards.
+    // Level 1: overview shows category tiles.
     expect(calls.html).toContain('cthai-groups-grid');
     expect(calls.html).toContain('cthai-group-tile');
-    // Drilling into a group renders the actual cards.
-    mod.setCthaiGroup('otros');
+    // Level 2: drilling into a category shows source tiles (not cards).
+    mod.setCthaiGroup('comida');
+    expect(calls.html).toContain('cthai-sources-grid');
+    expect(calls.html).toContain('cthai-source-tile');
+    expect(mod._getActiveCthaiGroup()).toBe('comida');
+    expect(mod._getActiveCthaiSource()).toBeNull();
+    // Level 3: drilling into a source renders the cards.
+    mod.setCthaiSource('cthai:market_directions');
     expect(calls.html).toContain('cthai-group-grid');
-    expect(mod._getActiveCthaiGroup()).toBe('otros');
-    // Back button returns to overview.
+    expect(mod._getActiveCthaiSource()).toBe('cthai:market_directions');
+    // Back to source list.
+    mod.setCthaiSource(null);
+    expect(calls.html).toContain('cthai-sources-grid');
+    // Back to overview.
     mod.setCthaiGroup(null);
     expect(calls.html).toContain('cthai-groups-grid');
     expect(mod._getActiveCthaiGroup()).toBeNull();

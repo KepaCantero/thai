@@ -30,6 +30,18 @@
 
 import type { Card } from '../../types';
 import { gameBus } from '../../state/events';
+import {
+  renderCategoryTile,
+  renderProgress,
+  renderSourceTile,
+  sortByEasiestFirst,
+  sortSourcesByEasiestFirst,
+  groupCthaiByCategory,
+  groupCthaiBySource,
+  wrapCategoryTiles,
+  wrapSourceTiles,
+  type CthaiGroupingDeps,
+} from './cthaiGroups';
 
 // ---------------------------------------------------------------------------
 // Dependency injection
@@ -138,10 +150,17 @@ export interface DashboardModule {
   clearDashboardHighlights(): void;
   dashPlayAll(cardIdx: number): void;
   toggleDashboard(): void;
-  /** Drill into a CT group's cards (null = back to group tiles overview). */
-  setCthaiGroup(src: string | null): void;
-  /** Inspection helper for tests. */
+  /** Drill into a CT category (null = back to overview). Resets source. */
+  setCthaiGroup(name: string | null): void;
+  /** Drill into a CT source within the active category (null = back to
+   *  category source list). */
+  setCthaiSource(src: string | null): void;
+  /** Inspection helper for tests: active category name (or null). */
   _getActiveCthaiGroup(): string | null;
+  /** Inspection helper for tests: active source (or null). */
+  _getActiveCthaiSource(): string | null;
+  /** Test-only: reset both drill-down slots. */
+  _resetCthaiNavForTests(): void;
 
   // Inspection helpers
   isDashboardMode(): boolean;
@@ -155,8 +174,12 @@ export interface DashboardModule {
 
 export function createDashboardModule(deps: DashboardModuleDeps): DashboardModule {
   let dashboardMode = false;
-  // CT drill-down: null = group tiles overview; '<source>' = single group view.
-  let activeCthaiGroup: string | null = null;
+  // CT drill-down state machine (3 levels):
+  //   category=null          → overview (category tiles)
+  //   category='<name>', source=null → source tiles within that category
+  //   category='<name>', source='<src>' → cards from that source
+  let activeCthaiCategory: string | null = null;
+  let activeCthaiSource: string | null = null;
 
   // ----- renderDashboard (app.js L980-1005) ---------------------------------
 
@@ -197,132 +220,146 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
 
   // ----- renderCthaiGroups: 2-level nav (tiles → group detail) ---------------
 
-  function cthaiLabel(src: string): string {
-    return src
-      .replace(/^cthai:/, '')
-      .replace(/^./, (c) => c.toUpperCase())
-      .replace(/_/g, ' ');
-  }
+  
 
   function renderCthaiGroups(cards: Card[]): string {
-    // Group by category (21 categories: preguntas, colores, numeros, etc).
-    // Compute total freqRank per group to sort tiles easiest → hardest.
-    const order: string[] = [];
-    const groups: Record<string, { item: Card; idx: number }[]> = {};
-    const groupFreqSum: Record<string, number> = {};
-    cards.forEach((item, idx) => {
-      const cat = (item as { category?: string }).category || 'otros';
-      if (!groups[cat]) {
-        groups[cat] = [];
-        groupFreqSum[cat] = 0;
-        order.push(cat);
-      }
-      groups[cat].push({ item, idx });
-      groupFreqSum[cat] += deps.cthaiCardFreqRank(item);
-    });
-    // Sort tiles easiest → hardest (lower avg freqRank = more frequent = easier).
-    order.sort((a, b) => {
-      const avgA = groups[a].length ? groupFreqSum[a] / groups[a].length : 9999;
-      const avgB = groups[b].length ? groupFreqSum[b] / groups[b].length : 9999;
-      return avgA - avgB;
-    });
+    const groupingDeps: CthaiGroupingDeps = {
+      isDone: (item) => deps.cthaiCardDone(item),
+      freqRank: (item) => deps.cthaiCardFreqRank(item),
+    };
 
-    // Overall progress counter (always visible).
-    let totalDone = 0;
-    cards.forEach((it) => {
-      if (deps.cthaiCardDone(it)) totalDone++;
-    });
-    const pct = cards.length ? Math.round((100 * totalDone) / cards.length) : 0;
-    const threshold = deps.getCthaiThreshold();
-    let html =
-      '<div class="cthai-progress">' +
-      '<div class="cthai-progress-text"><b>' +
-      totalDone +
-      '/' +
-      cards.length +
-      '</b> cards completed ' +
-      '<span class="cthai-progress-sub">(≥' +
-      threshold +
-      ' Q and ≥' +
-      threshold +
-      ' A)</span></div>' +
-      '<div class="cthai-progress-bar"><div style="width:' +
-      pct +
-      '%"></div></div>' +
-      '</div>';
+    const categories = sortByEasiestFirst(
+      groupCthaiByCategory(cards, groupingDeps),
+    );
 
-    if (activeCthaiGroup === null) {
-      // Overview: grid of category tiles, sorted easiest → hardest.
-      html += '<div class="cthai-groups-grid">';
-      order.forEach((cat, i) => {
-        const g = groups[cat];
-        let gDone = 0;
-        g.forEach((x) => {
-          if (deps.cthaiCardDone(x.item)) gDone++;
-        });
-        const gComplete = g.length > 0 && gDone === g.length;
-        const gPct = g.length ? Math.round((100 * gDone) / g.length) : 0;
-        // Per-category accent color via HSL hash. Hue rotates across categories;
-        // done tiles still get the green override via the cthai-group-done class.
-        const hue = (i * 47) % 360;
-        const accent = 'hsl(' + hue + ', 65%, 55%)';
-        const accentSoft = 'hsl(' + hue + ', 65%, 22%)';
-        const safeCat = cat.replace(/'/g, "\\'");
-        html +=
-          '<div class="cthai-group-tile' +
-          (gComplete ? ' cthai-group-done' : '') +
-          '" style="--accent:' + accent + ';--accent-soft:' + accentSoft + '"' +
-          ' onclick="setCthaiGroup(\'' +
-          safeCat +
-          '\')">' +
-          '<div class="cthai-group-tile-title">' +
-          cat +
-          '</div>' +
-          '<div class="cthai-group-tile-count">' +
-          gDone +
-          '/' +
-          g.length +
-          '</div>' +
-          '<div class="cthai-group-tile-bar"><div style="width:' +
-          gPct +
-          '%"></div></div>' +
-          '</div>';
-      });
-      html += '</div>';
-      return html;
+    // Overall progress counter (always visible, regardless of level).
+    const totalDone = categories.reduce(
+      (acc, g) => acc + g.done,
+      0,
+    );
+    const progress = renderProgress(
+      totalDone,
+      cards.length,
+      deps.getCthaiThreshold(),
+    );
+
+    // Level 1: overview (category tiles).
+    if (activeCthaiCategory === null) {
+      return (
+        progress +
+        wrapCategoryTiles(
+          categories.map((g, i) => renderCategoryTile(g, i)),
+        )
+      );
     }
 
-    // Drill-down: header (back + label + count) + the group's cards only.
-    const g = groups[activeCthaiGroup] || [];
-    g.sort((a, b) => deps.cthaiCardFreqRank(a.item) - deps.cthaiCardFreqRank(b.item));
-    let gDone = 0;
-    g.forEach((x) => {
-      if (deps.cthaiCardDone(x.item)) gDone++;
-    });
-    const gComplete = g.length > 0 && gDone === g.length;
-    html +=
-      '<div class="cthai-group-back" onclick="setCthaiGroup(null)">← All groups</div>' +
-      '<div class="cthai-group-detail' +
-      (gComplete ? ' cthai-group-done' : '') +
-      '">' +
-      '<span class="cthai-group-title">' +
-      activeCthaiGroup +
-      '</span>' +
-      '<span class="cthai-group-count">' +
-      gDone +
-      '/' +
-      g.length +
-      '</span>' +
-      '</div>' +
+    const category =
+      categories.find((g) => g.name === activeCthaiCategory) ?? null;
+    const categoryCards = category ? category.cards.map((c) => c.item) : [];
+
+    // Level 2: category drill-down (source tiles).
+    if (activeCthaiSource === null) {
+      const sources = sortSourcesByEasiestFirst(
+        groupCthaiBySource(categoryCards, groupingDeps),
+        groupingDeps.freqRank,
+      );
+      return (
+        progress +
+        backBtn('setCthaiGroup(null)', '← Todas las categorías') +
+        detailHeader(activeCthaiCategory, category?.done ?? 0, categoryCards.length) +
+        wrapSourceTiles(
+          sources.length
+            ? sources.map((s, i) => renderSourceTile(s, i))
+            : emptySourceHint(),
+        )
+      );
+    }
+
+    // Level 3: source drill-down (cards).
+    const source =
+      groupCthaiBySource(categoryCards, groupingDeps).find(
+        (s) => s.source === activeCthaiSource,
+      ) ?? null;
+    const sourceCards = source
+      ? [...source.cards].sort(
+          (a, b) =>
+            deps.cthaiCardFreqRank(a.item) - deps.cthaiCardFreqRank(b.item),
+        )
+      : [];
+
+    if (!sourceCards.length) {
+      return (
+        progress +
+        backBtn('setCthaiSource(null)', '← Volver a ' + activeCthaiCategory) +
+        '<p style="color:#888;text-align:center;padding:40px 0">No hay clips para este source</p>'
+      );
+    }
+
+    return (
+      progress +
+      backBtn('setCthaiSource(null)', '← Volver a ' + activeCthaiCategory) +
+      sourceHeader(source.label, source.done, sourceCards.length) +
       '<div class="cthai-group-grid">' +
-      g.map((x) => renderDashConversation(x.item, x.idx)).join('') +
-      '</div>';
-    return html;
+      sourceCards
+        .map((ref) => renderDashConversation(ref.item, ref.idx))
+        .join('') +
+      '</div>'
+    );
   }
 
-  function setCthaiGroup(src: string | null): void {
-    activeCthaiGroup = src;
+  function setCthaiGroup(name: string | null): void {
+    activeCthaiCategory = name;
+    // Reset source whenever category changes — keeps the state machine flat
+    // (you can't be inside a source of a different category).
+    activeCthaiSource = null;
     renderDashboard();
+  }
+
+  function setCthaiSource(src: string | null): void {
+    activeCthaiSource = src;
+    renderDashboard();
+  }
+
+  /** Compact "← back" button. `onclick` is the JS expression to run on click. */
+  function backBtn(onclick: string, label: string): string {
+    return (
+      '<div class="cthai-group-back" onclick="' +
+      onclick +
+      '">' +
+      label +
+      '</div>'
+    );
+  }
+
+  /** Category detail header (label + done/total). */
+  function detailHeader(name: string, done: number, total: number): string {
+    const complete = total > 0 && done === total;
+    return (
+      '<div class="cthai-group-detail' +
+      (complete ? ' cthai-group-done' : '') +
+      '">' +
+      '<span class="cthai-group-title">' +
+      name +
+      '</span>' +
+      '<span class="cthai-group-count">' +
+      done +
+      '/' +
+      total +
+      '</span>' +
+      '</div>'
+    );
+  }
+
+  /** Source detail header — reuses the same detail chrome. */
+  function sourceHeader(label: string, done: number, total: number): string {
+    return detailHeader(label, done, total);
+  }
+
+  function emptySourceHint(): string[] {
+    return [
+      '<p style="color:#888;grid-column:1/-1;text-align:center;padding:40px 0">' +
+        'No hay clips en esta categoría</p>',
+    ];
   }
 
   // ----- renderDashWordPhrase (app.js L1052-1072) ----------------------------
@@ -653,10 +690,16 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     dashPlayAll,
     toggleDashboard,
     setCthaiGroup,
+    setCthaiSource,
     isDashboardMode: () => dashboardMode,
     _setDashboardMode: (v: boolean) => {
       dashboardMode = v;
     },
-    _getActiveCthaiGroup: () => activeCthaiGroup,
+    _getActiveCthaiGroup: () => activeCthaiCategory,
+    _getActiveCthaiSource: () => activeCthaiSource,
+    _resetCthaiNavForTests: () => {
+      activeCthaiCategory = null;
+      activeCthaiSource = null;
+    },
   };
 }

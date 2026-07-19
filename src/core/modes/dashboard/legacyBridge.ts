@@ -164,6 +164,7 @@ export function wireLegacyDashboard(): DashboardModule {
   w.playConvAudio = dashboardModule.playConvAudio;
   w.toggleDashboard = dashboardModule.toggleDashboard;
   w.setCthaiGroup = dashboardModule.setCthaiGroup;
+  w.setCthaiSource = dashboardModule.setCthaiSource;
 
   // Expose dashboardMode as a getter/setter on window so legacy bare-
   // identifier reads (app.js:8 `var dashboardMode = false`, app.js:215
