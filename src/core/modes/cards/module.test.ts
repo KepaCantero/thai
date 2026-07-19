@@ -27,6 +27,10 @@ vi.mock('../../persistence/stores', () => ({
     get: () => difficultState,
     set: (v: string[]) => { difficultState = v; },
   },
+  modeStore: {
+    get: () => 'cards',
+    set: (_v: string) => { /* no-op for tests */ },
+  },
 }));
 
 import {

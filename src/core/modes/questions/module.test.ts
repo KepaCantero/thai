@@ -14,6 +14,10 @@ vi.mock('../../persistence/stores', () => ({
     get: () => deletedQaState,
     set: (v: string[]) => { deletedQaState = v; },
   },
+  modeStore: {
+    get: () => 'cards',
+    set: (_v: string) => { /* no-op for tests */ },
+  },
 }));
 
 import { setActiveLesson, setDeck, setMode } from '../../state';

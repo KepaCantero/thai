@@ -14,11 +14,16 @@ import {
   defaultTitlesInitialState,
   type TitlesState,
 } from '../state/titles';
-import type { Scope } from '../types';
+import type { ModeKey, Scope } from '../types';
 import { defineNamespacedStore, defineStore } from './repository';
 
 // --- app.js: difficult set -------------------------------------------------
 export const difficultStore = defineStore<string[]>('thai_difficult', []);
+
+// --- app.js / state.mode: active top-level mode ----------------------------
+// Persisted so reopening the app lands on the last mode the player chose
+// (e.g. SRS "Estudiar"). Defaults to 'cards' on first load.
+export const modeStore = defineStore<ModeKey>('thai_mode_v1', 'cards');
 
 // --- app.js: top-level scope ('lecciones' | 'top1000' | 'comprehensive') ---
 // Legacy app.js reads/writes `thai_scope` as a RAW string (no JSON wrapping):

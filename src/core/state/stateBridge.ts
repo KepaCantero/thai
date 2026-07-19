@@ -44,7 +44,15 @@ export function installStateBridge(w: AnyWindow = window): void {
   };
 
   // --- Cluster A: mode + filterPanelOpen --------------------------------
-  mode.setMode(get<ModeKey>('currentMode', 'cards'));
+  // `mode` is the source of truth and is already hydrated from `modeStore`
+  // when the module loaded. Only honor the legacy `window.currentMode` seed
+  // when the store still holds its default — i.e., first run with no prior
+  // choice. This keeps existing tests (which force a non-default seed) green
+  // while letting returning users land on their persisted mode.
+  const legacyModeSeed = get<ModeKey>('currentMode', 'cards');
+  if (mode.getMode() === 'cards' && legacyModeSeed !== 'cards') {
+    mode.setMode(legacyModeSeed);
+  }
   mode.setFilterPanelOpen(get<boolean>('filterPanelOpen', false));
   mirror(w, 'currentMode', mode.getMode, (v: ModeKey) => mode.setMode(v));
   mirror(w, 'filterPanelOpen', mode.isFilterPanelOpen, (v: boolean) =>

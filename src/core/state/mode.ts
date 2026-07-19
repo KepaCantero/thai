@@ -13,7 +13,12 @@
 
 import type { ModeKey } from '../types';
 
-let currentMode: ModeKey = 'cards';
+import { modeStore } from '../persistence/stores';
+
+// Active top-level mode. Hydrated from `modeStore` on first import so the
+// player lands on the last mode they chose (e.g. SRS "Estudiar") across
+// reloads. `setMode` keeps the store in sync.
+let currentMode: ModeKey = modeStore.get();
 let filterPanelOpen = false;
 
 export function getMode(): ModeKey {
@@ -22,6 +27,7 @@ export function getMode(): ModeKey {
 
 export function setMode(m: ModeKey): void {
   currentMode = m;
+  modeStore.set(m);
 }
 
 export function isMode(m: ModeKey): boolean {

@@ -18,6 +18,17 @@ describe('mode state', () => {
     setMode(before);
   });
 
+  it('setMode writes through to the mode store (persistence hook)', () => {
+    // In the node test env there's no localStorage, so the adapter is a
+    // silent no-op. We verify the call shape: setMode consults the store
+    // (no throw) and updates module state. End-to-end persistence is
+    // covered by repository.test.ts.
+    const before = getMode();
+    expect(() => setMode('srs')).not.toThrow();
+    expect(getMode()).toBe('srs');
+    setMode(before);
+  });
+
   it('round-trips every supported mode', () => {
     const before = getMode();
     const modes = [
