@@ -18,6 +18,7 @@
 
 import { getActiveLesson } from '../../state';
 import { shTimesStore } from '../../persistence/stores';
+import { gameBus } from '../../state/events';
 import type { ShadowingConversation, ShadowingLine } from '../../types';
 
 // ---------------------------------------------------------------------------
@@ -256,6 +257,7 @@ export function createShadowingModule(deps: ShadowingModuleDeps): ShadowingModul
     if (!conv || idx < 0 || idx >= conv.lines.length) return;
     shLineIdx = idx;
     updateShHighlight();
+    gameBus.emit({ type: 'shadow:rep', level: conv.id });
     if (conv.audio) {
       const a = deps.dom.getAudio();
       if (a && conv.lines[idx].t) a.currentTime = conv.lines[idx].t;

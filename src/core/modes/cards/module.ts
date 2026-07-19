@@ -47,6 +47,7 @@ import {
   getPlayResumeFn,
 } from '../../state';
 import { cthaiPlaysStore } from '../../persistence/stores';
+import { gameBus } from '../../state/events';
 import type {
   Card,
   Conversation,
@@ -894,8 +895,8 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
     if (!deckRef.length) return;
     const card = deckRef[getIdx()] as Card;
     const key = cardKey(card);
-    if (knew) { markKnown(key); haptic(10); }
-    else { markUnknown(key); haptic(20); }
+    if (knew) { markKnown(key); haptic(10); gameBus.emit({ type: 'card:known', entryId: key }); }
+    else { markUnknown(key); haptic(20); gameBus.emit({ type: 'card:unknown', entryId: key }); }
     // SRS feedback hook. Legacy app.js:517-520 calls findSrsCardByThai +
     // recordRating. The bridge wires deps.onScoreCard to those globals.
     if (deps.onScoreCard) {
