@@ -37,6 +37,7 @@ import type {
   Word,
 } from '../../types';
 import type { SrsStats } from '../../persistence/stores';
+import { gameBus, type SrsRating } from '../../state/events';
 
 // ---------------------------------------------------------------------------
 // Constants (from srs.js L7-13)
@@ -1633,6 +1634,9 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
       }
     }
     setTimeout(advanceCard, 380);
+    const ratingNames: SrsRating[] = ['again', 'hard', 'good', 'easy'];
+    const r = ratingNames[rating - 1];
+    if (r) gameBus.emit({ type: 'srs:review', rating: r, deck: String(deckKey) });
   }
 
   function reinsertOffset(nextState: SrsCardState): number {
