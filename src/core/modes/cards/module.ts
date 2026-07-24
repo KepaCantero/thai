@@ -244,7 +244,15 @@ export function createCardsModule(deps: CardsModuleDeps): CardsModule {
     if (lf.youtubeOnly) return item.category === 'youtube';
     if (lf.dificilesOnly) return true; // membership applied at call sites
     if (lf.cthaiOnly) return isCthaiEntry(item);
-    return !lf.lessonNum || (item.lesson || 1) === lf.lessonNum;
+    // Specific lesson selected: exact match. `(item.lesson || 1)` preserves
+    // legacy behavior where items assigned to lesson 1 sometimes omit the
+    // field entirely (defaults to 1).
+    if (lf.lessonNum) return (item.lesson || 1) === lf.lessonNum;
+    // activeLesson='all' (lecciones scope): exclude Comprehensible Thai
+    // entries, which belong only in the 'comprehensive' scope. Pronouns,
+    // greetings, and other lesson vocab without an explicit `lesson` field
+    // still pass. Pairs don't go through matchLesson so they're unaffected.
+    return !isCthaiEntry(item);
   }
 
   function matchCategory(

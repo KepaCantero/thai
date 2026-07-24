@@ -31,7 +31,8 @@
 import type { Card } from '../../types';
 import { gameBus } from '../../state/events';
 import {
-  bucketSourcesByLevel,
+    bucketSourcesByLevel,
+  countUniqueThaiChars,
   CTHAI_LEVEL_META,
   renderProgress,
   renderSourceTile,
@@ -223,6 +224,9 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
     const groupingDeps: CthaiGroupingDeps = {
       isDone: (item) => deps.cthaiCardDone(item),
       freqRank: (item) => deps.cthaiCardFreqRank(item),
+      aThaiLength: (item) => (item.a_thai ?? '').length,
+      uniqueCharCount: (item) =>
+        countUniqueThaiChars(item.q_thai, item.a_thai),
     };
 
     // Overall progress counter (always visible, regardless of level).
@@ -270,7 +274,7 @@ export function createDashboardModule(deps: DashboardModuleDeps): DashboardModul
 
     // Overview: 4 level sections (A1 → B2), sources sorted easiest-first inside each.
     const allSources = groupCthaiBySource(cards, groupingDeps);
-    const levelGroups = bucketSourcesByLevel(allSources, groupingDeps.freqRank);
+    const levelGroups = bucketSourcesByLevel(allSources, groupingDeps);
 
     return (
       progress +

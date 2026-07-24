@@ -53,6 +53,11 @@ export function wireLegacyTop1000(): Top1000Module {
         const el = document.getElementById('top1000View');
         if (el) el.innerHTML = html;
       },
+      queryContainer: <T extends Element>(selector: string): T | null => {
+        const root = document.getElementById('top1000View');
+        if (!root) return null;
+        return root.querySelector<T>(selector);
+      },
     },
   };
 
@@ -61,7 +66,19 @@ export function wireLegacyTop1000(): Top1000Module {
   w.renderTop1000 = top1000Module.renderTop1000;
   w.setTop1000Tab = top1000Module.setTop1000Tab;
   w.setTop1000Cat = top1000Module.setTop1000Cat;
-  w.setTop1000Search = top1000Module.setTop1000Search;
+  // Debounce search input: typing fast rebuilds the grid only once 150ms after
+  // the last keystroke. The module's own setTop1000Search stays synchronous
+  // for unit tests; the debounce is an integration concern owned here.
+  let searchTimer: ReturnType<typeof setTimeout> | null = null;
+  let pendingQuery = '';
+  w.setTop1000Search = (q: string) => {
+    pendingQuery = q;
+    if (searchTimer) clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      searchTimer = null;
+      top1000Module.setTop1000Search(pendingQuery);
+    }, 150);
+  };
   w.top1000Speak = top1000Module.top1000Speak;
   w.renderTop1000Words = top1000Module.renderTop1000Words;
   w.renderTop1000Structures = top1000Module.renderTop1000Structures;

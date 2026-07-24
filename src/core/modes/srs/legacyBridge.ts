@@ -12,6 +12,7 @@
 
 import { createSrsModule } from './module';
 import type {
+  AnyCard,
   FsrsLibrary,
   SrsDom,
   SrsModule,
@@ -19,6 +20,7 @@ import type {
   SrsPersistence,
 } from './module';
 import { renderTone as typedRenderTone } from '../../format';
+import { getCardsModule } from '../cards/legacyBridge';
 
 let srsModule: SrsModule | undefined;
 
@@ -102,6 +104,11 @@ export function wireLegacySrs(): SrsModule {
     renderTone: (toneStr) => typedRenderTone(toneStr),
     persistence,
     dom,
+    freqRankOf: (card: AnyCard) => {
+      const cm = getCardsModule();
+      if (!cm) return 9999;
+      return cm.cthaiCardFreqRank(card as any);
+    },
   };
 
   srsModule = createSrsModule(deps);

@@ -93,6 +93,13 @@ export interface Top1000Dom {
   setViewHtml(html: string): void;
   /** Read #top1000View innerHTML (only used by tests). */
   getViewHtml?(): string;
+  /**
+   * Query an element inside the view container. Used by the pagination
+   * sentinel observer. Returns null when DOM access isn't available
+   * (e.g., in unit tests with a spy DOM); the module treats absence as
+   * "no pagination observer will fire" and silently degrades.
+   */
+  queryContainer?<T extends Element = Element>(selector: string): T | null;
 }
 
 export interface Top1000Module {
@@ -135,6 +142,75 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
   // top1000-ui.js:9-10 — cached word dictionary for phrase segmentation.
   let wordDict: Record<string, Top1000Word> | null = null;
   let wordMaxLen = 0;
+
+  // -------------------------------------------------------------------------
+  // Pagination (P0 perf): render only `visibleCount` items per render and
+  // attach an IntersectionObserver on a sentinel to grow the window when the
+  // user scrolls near the bottom. Reset on tab/category change; the search
+  // debounce lives in legacyBridge so the module's setTop1000Search stays
+  // synchronous and unit-testable.
+  // -------------------------------------------------------------------------
+
+  const PAGE_SIZE = 50;
+  const PAGINATION_SENTINEL_ID = 'top1000PaginationSentinel';
+  let visibleCount = PAGE_SIZE;
+  let paginationObserver: IntersectionObserver | null = null;
+  // Set by each list renderer via renderPage() so renderTop1000 can wire the
+  // observer without changing the renderers' public string return type.
+  let lastPageTotal = 0;
+
+  function resetPagination(): void {
+    visibleCount = PAGE_SIZE;
+    disconnectPagination();
+  }
+
+  function disconnectPagination(): void {
+    if (paginationObserver) {
+      paginationObserver.disconnect();
+      paginationObserver = null;
+    }
+  }
+
+  function attachPaginationIfPossible(totalCount: number): void {
+    disconnectPagination();
+    // No more pages to load → no sentinel was rendered.
+    if (totalCount <= visibleCount) return;
+    // Test environments (spy DOM without queryContainer) skip the observer.
+    if (typeof IntersectionObserver === 'undefined') return;
+    if (typeof deps.dom.queryContainer !== 'function') return;
+    const sentinel = deps.dom.queryContainer<HTMLDivElement>(
+      '#' + PAGINATION_SENTINEL_ID,
+    );
+    if (!sentinel) return;
+    paginationObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          visibleCount += PAGE_SIZE;
+          renderTop1000();
+        }
+      },
+      { rootMargin: '200px' },
+    );
+    paginationObserver.observe(sentinel);
+  }
+
+  /**
+   * Slice + render a list page and append a sentinel when more pages exist.
+   * Writes `lastPageTotal` as a side effect so renderTop1000 can read it
+   * without changing the public string return type of the renderers.
+   */
+  function renderPage<T>(items: T[], render: (item: T) => string): string {
+    lastPageTotal = items.length;
+    const page = items.slice(0, visibleCount);
+    const hasMore = items.length > page.length;
+    const body = page.map(render).join('');
+    if (!hasMore) return body;
+    return (
+      body +
+      '<div id="' + PAGINATION_SENTINEL_ID + '" class="top1000-sentinel">' +
+      'Cargando más…</div>'
+    );
+  }
 
   // -------------------------------------------------------------------------
   // Helpers — data accessors (handle missing bundle defensively)
@@ -279,6 +355,7 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
       '</div>';
 
     let body = '';
+    lastPageTotal = 0;
     if (top1000Filter.tab === 'palabras') body = renderTop1000Words();
     else if (top1000Filter.tab === 'estructuras')
       body = renderTop1000Structures();
@@ -287,7 +364,9 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
       body = renderTop1000Conversations();
     else if (top1000Filter.tab === 'estudiar') body = renderTop1000StudyBody();
 
+    disconnectPagination();
     deps.dom.setViewHtml(tabsHtml + body);
+    attachPaginationIfPossible(lastPageTotal);
   }
 
   // -------------------------------------------------------------------------
@@ -325,6 +404,7 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
     top1000Filter.tab = tab;
     top1000Filter.category = 'all';
     top1000Filter.search = '';
+    resetPagination();
     renderTop1000();
   }
 
@@ -408,7 +488,7 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
       );
     }
 
-    const cards = filtered.map(renderTop1000Card).join('');
+    const cards = renderPage(filtered, renderTop1000Card);
     return header + '<div class="top1000-grid">' + cards + '</div>';
   }
 
@@ -540,7 +620,7 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
     return (
       header +
       '<div class="top1000-grid">' +
-      filtered.map(renderTop1000StructureCard).join('') +
+      renderPage(filtered, renderTop1000StructureCard) +
       '</div>'
     );
   }
@@ -645,7 +725,7 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
     return (
       header +
       '<div class="top1000-grid">' +
-      filtered.map(renderTop1000PhraseRow).join('') +
+      renderPage(filtered, renderTop1000PhraseRow) +
       '</div>'
     );
   }
@@ -783,7 +863,7 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
     return (
       header +
       '<div class="top1000-convo-list">' +
-      filtered.map(renderTop1000ConvoCard).join('') +
+      renderPage(filtered, renderTop1000ConvoCard) +
       '</div>'
     );
   }
@@ -828,11 +908,13 @@ export function createTop1000Module(deps: Top1000ModuleDeps): Top1000Module {
 
   function setTop1000Cat(cat: string): void {
     top1000Filter.category = cat;
+    resetPagination();
     renderTop1000();
   }
 
   function setTop1000Search(q: string): void {
     top1000Filter.search = q;
+    resetPagination();
     renderTop1000();
   }
 

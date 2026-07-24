@@ -297,7 +297,7 @@ describe('SrsModule · formatInterval boundaries', () => {
   });
 });
 
-describe('SrsModule · buildSession interleaving', () => {
+describe('SrsModule · buildSession easiest-first ordering', () => {
   function makeWords(n: number) {
     return Array.from({ length: n }, (_, i) => ({
       rank: i + 1,
@@ -319,15 +319,15 @@ describe('SrsModule · buildSession interleaving', () => {
     expect(q.every((it) => it.isNew)).toBe(true);
   });
 
-  it('interleaves a new card every 4 due reviews', () => {
+  it('surfaces the whole deck easiest-first by ascending rank, mixing new + due', () => {
     const words = makeWords(50);
-    // Make 12 due-review cards + leave the rest new.
+    // Make 12 due-review cards (ranks 1-12) and leave the rest new.
     const preState: Record<string, SrsCardState> = {};
     for (let i = 0; i < 12; i++) {
       preState[String(i + 1)] = {
         ef: 2.5,
         ivl: 1,
-        due: NOW - 100, // due in the past
+        due: NOW - 100,
         reps: 2,
         lapses: 0,
         state: 'review',
@@ -345,15 +345,58 @@ describe('SrsModule · buildSession interleaving', () => {
       dom: infra.dom,
     });
     const q = mod.buildSession('palabras');
-    // First 12 items are reviews; the loop adds a new card at positions 4 and 8.
-    const newPositions = q
-      .map((it, i) => (it.isNew ? i : -1))
-      .filter((i) => i >= 0);
-    // New cards are inserted at i=4 and i=8 of the dueReview loop, but
-    // the queue index includes those insertions, so they appear at queue
-    // indices 4 and 9.
-    expect(newPositions).toContain(4);
+    const ranks = q.map((it) => (it.card as unknown as { rank: number }).rank);
+    // Queue is strictly ascending — easiest card first regardless of state.
+    for (let i = 1; i < ranks.length; i++) {
+      expect(ranks[i]).toBeGreaterThanOrEqual(ranks[i - 1]);
+    }
+    expect(ranks[0]).toBe(1);
     vi.useRealTimers();
+  });
+
+  it('sorts Top1000 structures by inverted importance (5 stars = easiest)', () => {
+    const structs = [
+      { id: 'a', name: 'A', importance: 2 },
+      { id: 'b', name: 'B', importance: 5 },
+      { id: 'c', name: 'C', importance: 4 },
+    ];
+    const mod = createSepsWithDeps({
+      getTop1000Structures: () => structs as any,
+    });
+    const q = mod.buildSession('estructuras');
+    expect(q.map((it) => it.card.id)).toEqual(['b', 'c', 'a']);
+  });
+
+  it('uses injected freqRankOf for lesson Q&A decks', () => {
+    const convs = [
+      { q_thai: 'hardq', a_thai: '', lesson: 1 },
+      { q_thai: 'easyx', a_thai: '', lesson: 1 },
+    ];
+    const rankByText: Record<string, number> = { easyx: 1, hardq: 100 };
+    const mod = createSepsWithDeps({
+      getData: () => ({ conversations: convs as any }),
+      freqRankOf: (c) => rankByText[(c.q_thai || '') + (c.a_thai || '')] ?? 9999,
+    });
+    const q = mod.buildSession('lec-preguntas');
+    expect(q.map((it) => it.card.q_thai)).toEqual(['easyx', 'hardq']);
+  });
+
+  it('surfaces N0 sources before A1-B2 regardless of freqRank (CT deck)', () => {
+    // Source 'breakfast_foods_students' is in the curated N0_SOURCES set;
+    // 'embarrassing_stories_elevator_temple_airplane' is not.
+    const convs = [
+      { q_thai: 'hardq', a_thai: '', source: 'cthai:breakfast_foods_students' },
+      { q_thai: 'easyx', a_thai: '', source: 'cthai:embarrassing_stories_elevator_temple_airplane' },
+      { q_thai: 'midq', a_thai: '', source: 'cthai:breakfast_foods_students' },
+    ];
+    const rankByText: Record<string, number> = { easyx: 1, midq: 50, hardq: 100 };
+    const mod = createSepsWithDeps({
+      getData: () => ({ conversations: convs as any }),
+      freqRankOf: (c) => rankByText[(c.q_thai || '') + (c.a_thai || '')] ?? 9999,
+    });
+    const q = mod.buildSession('cthai');
+    // N0 tier first (midq before hardq by freqRank), then non-N0 (easyx).
+    expect(q.map((it) => it.card.q_thai)).toEqual(['midq', 'hardq', 'easyx']);
   });
 
   it('returns an empty queue when deck has no cards', () => {

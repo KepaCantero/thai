@@ -1,0 +1,58 @@
+Q1: คุณชอบเที่ยวที่ไหนที่ประเทศไทยคะ · *khun chôop thîao thîi-nǎi thîi prà-thêet thai khǎ* · ¿Dónde te gusta viajar por Tailandia?
+
+  ▎ ผมอยากไปเที่ยวกรุงเทพ จอมเทียน และเกาะช้าง คุณชอบที่ไหนในไทยที่สุดครับ
+  ▎ phǒm yàak bpai thîao krung-thêep joom-thian lɛ̀ kɔ̂ɔ-châang. khun chôop thîi-nǎi nai thai thîi-sùt khráp?
+  ▎ Quiero visitar Bangkok, Jomtien y Ko Chang. ¿Cuáles son tus lugares favoritos en Tailandia?
+
+---
+Q2: เพราะว่าอะไร · *phrǎa-wâa a-rai* · ¿Por qué?
+
+  ▎ ผมอยากดูมวยไทยที่กรุงเทพ และพักผ่อนที่จอมเทียนและเกาะช้าง อยากเห็นที่ๆสวย ครับ
+  ▎ phǒm yàak duu muay-thai thîi krung-thêep, lɛ̀ phák-phòon thîi joom-thian lɛ̀ kɔ̂ɔ-châang, yàak hěn thîi-thîi sǔai khráp
+  ▎ Quiero ver muay thai en Bangkok, y relajarme en Jomtien y Ko Chang, quiero ver lugares bonitos.
+
+---
+Q3: คุณชอบเที่ยวตอนกลางวัน หรือ ตอนกลางคืน คะ · *khun chôop thîao dton-klang-wan rǔe dton-klang-kheun khǎ* · ¿Te gusta viajar de día o de noche?
+
+  ▎ ชอบเที่ยว ตอนกลางวัน ครับ
+  ▎ chôop thîao dton-klang-wan khráp
+  ▎ Me gusta viajar de día.
+
+  (ตอนกลางวัน L8 = de día · ชอบ = gustar · เที่ยว L5 = viajar)
+
+---
+Q4: เพราะว่าอะไร · *phrǎa-wâa a-rai* · ¿Por qué?
+
+  ▎ เพราะ เย็น สบาย ครับ
+  ▎ phrǎa yen sà-baai khráp
+  ▎ Porque hace fresco y se está agradable.
+
+  (เย็น L8 = fresco/tarde · สบาย L4 = agradable)
+
+---
+Q5: คุณอยากไปเที่ยวประเทศอะไรที่สุด · *khun yàak bpai thîao prà-thêet a-rai thîi-sùt* · ¿A qué país tienes más ganas de viajar?
+
+  ▎ อยากไป ประเทศสเปน ที่สุด ครับ
+  ▎ yàak bpai prà-thêet china thîi-sùt khráp
+  ▎ Quiero ir a china sobre todo.
+
+  (ประเทศ L4 · สเปน L4 · ที่สุด L17)
+
+---
+Q6: เพราะว่าอะไร · *phrǎa-wâa a-rai* · ¿Por qué?
+
+  ▎ เพราะ คิดถึง บ้าน ครับ
+  ▎ phrǎa khít-teung bâan khráp
+  ▎ Porque extraño casa.
+
+  (คิดถึง L5 = extrañar · บ้าน L7 = casa)
+
+AWSTemplateFormatVersion: "2010-09-09"ผมอยากไปเที่ยวประเทศจีน เพราะว่าที่นั่นแตกต่างจากสเปนมากครับ
+
+Fonética:
+
+póm yàak pai tíao pra-têt yin, prór-wâa tîi-nân tàek-dtàang jàak sà-pen mâak khráp
+
+Literalmente:
+
+"Quiero viajar a China porque allí es muy diferente de España."

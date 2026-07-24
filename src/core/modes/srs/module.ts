@@ -29,6 +29,7 @@
 // FSRS_SCHEDULER, FSRS_TRIED.
 
 import { isCthaiEntry } from '../../types';
+import { N0_SOURCES } from '../dashboard/n0_sources';
 import type {
   Conversation,
   Phrase,
@@ -301,6 +302,12 @@ export interface SrsModuleDeps {
   getShowUnverified(): boolean;
   /** Returns the active scope ('lecciones' | 'top1000' | 'comprehensive'). */
   getActiveScope?(): string;
+  /**
+   * Derives a frequency rank (lower = more common = easier) for Q&A-style
+   * cards (conversations / CT). Optional — when absent, those decks fall back
+   * to deck order via Infinity. Mirrors cards module's cthaiCardFreqRank.
+   */
+  freqRankOf?(card: AnyCard): number;
   /** Lazy FSRS library accessor (window.FSRS). May return null/undefined. */
   getFsrs(): FsrsLibrary | undefined;
   /** speakText from audio.js. */
@@ -611,15 +618,9 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
     });
 
     dueReviews.sort((a, b) => (a.cardState!.due - b.cardState!.due));
-    // New cards: easiest first. For Top1000 decks, `rank` is the word's
-    // frequency rank (1 = most frequent = easiest). Lower rank sorts first.
-    // Cards without `rank` (lesson / CT decks) keep their deck order via the
-    // stable sort fallback (Infinity).
-    const rankOf = (c: AnyCard): number =>
-      typeof (c as unknown as { rank?: number }).rank === 'number'
-        ? (c as unknown as { rank: number }).rank
-        : Infinity;
-    const rankedNew = [...newCards].sort((a, b) => rankOf(a) - rankOf(b));
+    const rankedNew = [...newCards].sort(
+      (a, b) => cardDifficulty(deck, a) - cardDifficulty(deck, b)
+    );
     const newToday = rankedNew.slice(0, SRS_NEW_PER_DAY);
 
     const queue: SrsSessionItem[] = [];
@@ -644,7 +645,36 @@ export function createSrsModule(deps: SrsModuleDeps): SrsModule {
       queue.push({ card: newToday[ni], cardState: null, isNew: true });
       ni++;
     }
+    queue.sort(
+      (a, b) => cardDifficulty(deck, a.card) - cardDifficulty(deck, b.card)
+    );
     return queue;
+  }
+
+  /**
+   * Easiest-first difficulty score for a card within a deck (lower = easier).
+   * `freqRank`-shaped: lower means more common / earlier introduced.
+   *   - Top1000 word/phrase: numeric `rank` (1 = most frequent).
+   *   - Top1000 structure: invert `importance` (5 stars → rank 1).
+   *   - Q&A conversations: deps.freqRankOf (derived from Q+A thai text).
+   *     CT cards from an N0 (absolute beginner) source get a 10 M offset
+   *     discount so they always surface before A1-B2 cards, regardless of
+   *     the derived freqRank. Inside each tier, freqRank still orders.
+   *   - Anything else: Infinity — stable sort preserves deck source order.
+   */
+  function cardDifficulty(deck: SrsDeck, c: AnyCard): number {
+    if (typeof (c as unknown as { rank?: number }).rank === 'number') {
+      return (c as unknown as { rank: number }).rank;
+    }
+    if (deck.kind === 'structure' && typeof c.importance === 'number') {
+      return 6 - c.importance;
+    }
+    if (deck.kind === 'lesson-question' && deps.freqRankOf) {
+      const base = deps.freqRankOf(c);
+      const src = (c as unknown as { source?: string }).source;
+      return src && N0_SOURCES.has(src) ? base : base + 10_000_000;
+    }
+    return Infinity;
   }
 
   // ----- FSRS engine (from srs.js L207-272) --------------------------------

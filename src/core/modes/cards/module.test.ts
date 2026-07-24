@@ -310,6 +310,12 @@ describe('createCardsModule — buildQuestionsDeck', () => {
   });
 
   it('excludes deleted-QA keys (stubbed non-empty set)', () => {
+    // Use lesson 1 so both fixture conversations are eligible: ไปไหน has
+    // lesson=1 directly, cthai-1 has lesson=0 (normalized to 1 by legacy
+    // `(item.lesson || 1)` fallback). In 'all', cthai-1 is excluded by
+    // matchLesson's !isCthaiEntry guard, which would leave no survivor to
+    // observe the deleted-key filter against.
+    setActiveLesson('1');
     const m = makeModule({
       getDeletedQaKeys: () => new Set(['ไปไหน||ไปตลาด']),
     });
